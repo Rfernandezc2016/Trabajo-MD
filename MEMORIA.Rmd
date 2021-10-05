@@ -2,28 +2,58 @@
 title: "Memoria del trabajo"
 author: "Adrián Rochas De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
 date: "5/10/2021"
-output: html_document
+output:
+  
+  html_document: default
+  pdf_document: default
 ---
+<div>
+<p style = 'text-align:center;'>
+<img src="https://static1.elcorreo.com/www/multimedia/202010/15/media/cortadas/setas1-kxnG-U12046697641310-984x468@RC.jpg" alt="JuveYell" width="500px">
+</p>
+</div>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 1. Introducción
-Este conjunto de datos formado por 8124 observaciones, incluye descripciones de muestras hipotéticas basándose en 22 carracterísticas de hongos de la familia Agaricus y Lepiota (págs. 500-525). Estas características son:
 
- + Forma del sombrebro o píleo: campana (b), cónica (c), convexa (x), plana (f), nudosa (k) y hundida (s).
- + Cutícula o superficie del sombrero: fibroso (f), con surcos (g), escamosa (y) y lisa (s).
- + Color del sombrero: marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) y amarillo (y).
+Este conjunto de datos formado por 8124 observaciones, incluye descripciones de muestras hipotéticas basándose en 22 carracterísticas de hongos de la familia Agaricus y Lepiota.
 
 Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
 
 
-
-# 2. Objetivos (del negocio)
+# ¿2. Objetivos (del negocio)?
 
 # 3. Datos 
 
+Como ya hemos dicho, disponemos de la observación de 8124 setas de las cuales hemos recogido información sobre 22 características, luego son variables cualitativas y por tanto habrá que tratarlas como factores.Estas variables son:
+
++ Forma del sombrebro o píleo: campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s).
+ + Cutícula o superficie del sombrero: fibroso (f), con surcos (g), escamosa (y) o lisa (s).
+ + Color del sombrero: marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y).
+ + ?: verdadero (t) o falso (f).
+ + Olor: almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s).
+ + Fijación de las láminas: adjunto (a), descentente (d), libre (f) o entallado (n).
+ + Espacio entre láminas: cerca (c), atestado (w) o distante (d).
+ + Tamaño de las láminas: ancho (b) o estrecho (n).
+ + Color de las láminas: negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y).
+ + Forma del tallo: agrandado (e) o afilado (t).
+ + Tallo-raíz: bulboso (b), club (c), copa (u), igual (e), rizomorfos (z), enraizado (r) o faltante (?).
+ + Superficie del tallo por encima del anillo: fibroso (f), escamoso (y), sedoso (k) o liso (s).
+ + Superficie del tallo por debajo del anillo: fibroso (f), escamoso (y), sedoso (k) o liso (s).
+ + Color del tallo por encima del anillo: marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y).
+ + Color del tallo por debajo del anillo: marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y).
+ + Tipo de volva: parcial (p) o universal (u).
+ + Color del volva: naranja (o), blanco (w) o amarillo (y).
+ + Número de anillos: ninguno (n), uno (o) o dos (t).
+ + Tipo de anillo: telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z).
+ + Color de las esporas: negro (k), marrón (n), ante (b), chocolate (c), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y).
+ + Población: abundante (a,), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y).
+ + Habitat: pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d).
+ 
+ 
 # 4. Preprocesado de datos.
 
 ## 4.1. EDA. Exploratory Data Analysis.
@@ -45,7 +75,7 @@ Nuestro objetivo será identifcar cada especie como una especie comestible o una
 # 5.7. Redes Neuronales
 
 # 6. Evaluación
-AVISO!!!!!!!!!!!!!!!!!!!!!!!! eL VIERNES A LAS 16:00 HAY UNA CHARLA EN EL MASTER EN DATA SCIENCE SOBRE ESTE TEMA!!!
+
 
 # 7. Visualización y Presentación de Resultados
 
