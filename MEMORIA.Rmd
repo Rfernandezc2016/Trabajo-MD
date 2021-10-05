@@ -1,0 +1,47 @@
+---
+title: "Memoria del trabajo"
+author: "Adrián Rochas, Yassin y Rocío Fernández Cebrián"
+date: "5/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Introducción
+
+# 2. Objetivos (del negocio)
+
+# 3. Datos 
+
+# 4. Preprocesado de datos.
+
+## 4.1. EDA. Exploratory Data Analysis.
+
+## 4.2. Correlación entre las variables.
+
+## 4.3. Transformación de variables
+
+## 4.4. Imputacion de datos (datos faltantes)
+
+# 5. Modelado
+
+# 5.1. k-NN
+# 5.2. Regresión Logística
+# 5.3. Clustering
+# 5.4. Arboles de Decisión
+# 5.5. Bosques Aleatorios
+# 5.6. Support Vector Machines
+# 5.7. Redes Neuronales
+
+# 6. Evaluación
+AVISO!!!!!!!!!!!!!!!!!!!!!!!! eL VIERNES A LAS 16:00 HAY UNA CHARLA EN EL MASTER EN DATA SCIENCE SOBRE ESTE TEMA!!!
+
+# 7. Visualización y Presentación de Resultados
+
+# 8. Puesta en producción
+OJO!!! al inicio del estudio, necesitamos reservar parte de la bases de datos para esta etapa. Nos referiremos a esa parte como "los datos guardados en un cajón". Normalmente esta etapa se hace "el último día de clase".
+
+# 9. Actualización del modelo...
+Vuelta a empezar.
