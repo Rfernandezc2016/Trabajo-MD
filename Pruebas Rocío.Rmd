@@ -1,0 +1,264 @@
+---
+title: "MINERIA DE DATOS"
+author: "Rocío Fernández Cebrián"
+date: "29/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1 Introducción
+
+This data set includes descriptions of hypothetical samples corresponding to 23 species of gilled mushrooms in the Agaricus and Lepiota Family (pp. 500-525). Each species is identified as definitely edible, definitely poisonous, or of unknown edibility and not recommended.
+
+
+Importamos los datos sabiendo que hay 8124 observaciones con 22 variables 
+predictoras y la variable respuesta.
+
+```{r importar datos}
+datos.setas<-read.table("D:/URJC/CURSO 2021-2022/ASIGNATURAS/CUATRIMESTRE 1/MINERIA DE DATOS/MEMORIA/DATOS/agaricus-lepiota.data",header=FALSE,sep=",")
+summary(datos.setas)
+
+```
+
+
+Las variables predictoras son cualitatitas, luego debemos codificarlas para poder 
+seguir analizando los datos.
+```{r datos en factores}
+#VARIABLE RESPUESTA
+datos.setas$V1=as.factor(datos.setas$V1)
+#VARIABLE 1
+datos.setas$V2=as.factor(datos.setas$V2)
+#VARIABLE 2
+datos.setas$V3=as.factor(datos.setas$V3)
+#VARIABLE 3
+datos.setas$V4=as.factor(datos.setas$V4)
+#VARIABLE 4
+datos.setas$V5=as.factor(datos.setas$V5)
+#VARIABLE 5
+datos.setas$V6=as.factor(datos.setas$V6)
+#VARIABLE 6
+datos.setas$V7=as.factor(datos.setas$V7)
+#VARIABLE 7
+datos.setas$V8=as.factor(datos.setas$V8)
+#VARIABLE 8
+datos.setas$V9=as.factor(datos.setas$V9)
+#VARIABLE 9
+datos.setas$V10=as.factor(datos.setas$V10)
+#VARIABLE 10
+datos.setas$V11=as.factor(datos.setas$V11)
+#VARIABLE 11
+datos.setas$V12=as.factor(datos.setas$V12)
+#VARIABLE 12
+datos.setas$V13=as.factor(datos.setas$V13)
+#VARIABLE 13
+datos.setas$V14=as.factor(datos.setas$V14)
+#VARIABLE 14
+datos.setas$V15=as.factor(datos.setas$V15)
+#VARIABLE 15
+datos.setas$V16=as.factor(datos.setas$V16)
+#VARIABLE 16
+datos.setas$V17=as.factor(datos.setas$V17)
+#VARIABLE 17
+datos.setas$V18=as.factor(datos.setas$V18)
+#VARIABLE 18
+datos.setas$V19=as.factor(datos.setas$V19)
+#VARIABLE 19
+datos.setas$V20=as.factor(datos.setas$V20)
+#VARIABLE 20
+datos.setas$V21=as.factor(datos.setas$V21)
+#VARIABLE 21
+datos.setas$V22=as.factor(datos.setas$V22)
+#VARIABLE 22
+datos.setas$V23=as.factor(datos.setas$V23)
+
+summary(datos.setas)
+
+
+#OTRA FORMA:
+#VARIABLE RESPUESTA
+datos.setas$V1=as.numeric(as.factor(datos.setas$V1))
+#VARIABLE 1
+datos.setas$V2=as.numeric(as.factor(datos.setas$V2))
+#VARIABLE 2
+datos.setas$V3=as.numeric(as.factor(datos.setas$V3))
+#VARIABLE 3
+datos.setas$V4=as.numeric(as.factor(datos.setas$V4))
+#VARIABLE 4
+datos.setas$V5=as.numeric(as.factor(datos.setas$V5))
+#VARIABLE 5
+datos.setas$V6=as.numeric(as.factor(datos.setas$V6))
+#VARIABLE 6
+datos.setas$V7=as.numeric(as.factor(datos.setas$V7))
+#VARIABLE 7
+datos.setas$V8=as.numeric(as.factor(datos.setas$V8))
+#VARIABLE 8
+datos.setas$V9=as.numeric(as.factor(datos.setas$V9))
+#VARIABLE 9
+datos.setas$V10=as.numeric(as.factor(datos.setas$V10))
+#VARIABLE 10
+datos.setas$V11=as.numeric(as.factor(datos.setas$V11))
+#VARIABLE 11
+datos.setas$V12=as.numeric(as.factor(datos.setas$V12))
+#VARIABLE 12
+datos.setas$V13=as.numeric(as.factor(datos.setas$V13))
+#VARIABLE 13
+datos.setas$V14=as.numeric(as.factor(datos.setas$V14))
+#VARIABLE 14
+datos.setas$V15=as.numeric(as.factor(datos.setas$V15))
+#VARIABLE 15
+datos.setas$V16=as.numeric(as.factor(datos.setas$V16))
+#VARIABLE 16 : NO ES NECESARIA 
+datos.setas$V17=as.numeric(as.factor(datos.setas$V17))
+#VARIABLE 17
+datos.setas$V18=as.numeric(as.factor(datos.setas$V18))
+#VARIABLE 18
+datos.setas$V19=as.numeric(as.factor(datos.setas$V19))
+#VARIABLE 19
+datos.setas$V20=as.numeric(as.factor(datos.setas$V20))
+#VARIABLE 20
+datos.setas$V21=as.numeric(as.factor(datos.setas$V21))
+#VARIABLE 21
+datos.setas$V22=as.numeric(as.factor(datos.setas$V22))
+#VARIABLE 22
+datos.setas$V23=as.numeric(as.factor(datos.setas$V23))
+```
+
+
+```{r modificacion variable respuesta}
+#Variable respuesta:
+setas=data.frame(matrix(ncol=1))
+colnames(setas)=c("Venenosas")
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,1]=="e"){
+    setas=rbind(setas,c(0))
+  }
+  if(datos.setas[i,1]=="p"){
+    setas=rbind(setas,c(1))
+  }
+  
+}
+setas=setas[-1,]
+
+```
+
+
+```{r modificacion variable forma sombrero}
+#Variable 1: forma del sombrero
+sombrero=matrix(ncol=6)
+colnames(sombrero)=c("Campana","Cónica","Convexa","Plana","Nudosa","Hundida")
+
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,2]=="b"){
+    sombrero=rbind(sombrero,c(1,0,0,0,0,0))
+  }
+  if(datos.setas[i,2]=="c"){
+    sombrero=rbind(sombrero,c(0,1,0,0,0,0))
+  }
+  if(datos.setas[i,2]=="x"){
+    sombrero=rbind(sombrero,c(0,0,1,0,0,0))
+  }
+  if(datos.setas[i,2]=="f"){
+    sombrero=rbind(sombrero,c(0,0,0,1,0,0))
+  }
+  if(datos.setas[i,2]=="k"){
+    sombrero=rbind(sombrero,c(0,0,0,0,1,0))
+  }
+  if(datos.setas[i,2]=="s"){
+    sombrero=rbind(sombrero,c(0,0,0,0,0,1))
+  }
+}
+sombrero=sombrero[-1,]
+setas=cbind(setas,sombrero)
+```
+
+
+```{r modificacion variable superficie}
+superficie=matrix(ncol=4)
+colnames(superficie)=c("Fibroso","Surcos","Escamoso","Liso")
+
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,3]=="f"){
+    superficie=rbind(superficie,c(1,0,0,0))
+  }
+  if(datos.setas[i,3]=="g"){
+    superficie=rbind(superficie,c(0,1,0,0))
+  }
+  if(datos.setas[i,3]=="y"){
+    superficie=rbind(superficie,c(0,0,1,0))
+  }
+  if(datos.setas[i,3]=="s"){
+    superficie=rbind(superficie,c(0,0,0,1))
+  }
+}
+superficie=superficie[-1,]
+setas=cbind(setas,superficie)
+```
+
+
+```{r modificacion variable color del sombrero}
+color_sombrero=matrix(ncol=10)
+colnames(color_sombrero)=c("S_Marrón","S_Ante","S_Canela","S_Gris","S_Verde","S_Rosa","S_Morado","S_Rojo","S_Blanco","S_Amarillo")
+
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,4]=="n"){
+    color_sombrero=rbind(color_sombrero,c(1,0,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="b"){
+    color_sombrero=rbind(color_sombrero,c(0,1,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="c"){
+    color_sombrero=rbind(color_sombrero,c(0,0,1,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="g"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="r"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="p"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="u"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas[i,4]=="e"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas[i,4]=="w"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas[i,4]=="y"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,0,0,1))
+  }
+}
+color_sombrero=color_sombrero[-1,]
+setas=cbind(setas,color_sombrero)
+```
+Separamos los datos en tres conjuntos de tamaño distinto para tener datos de entrenamiento, de validación y de test.
+
+```{r conjuto de datos}
+set.seed(8)
+
+indices=1:8124
+ind_train=sort(sample(indices,4874))
+inde_resto=sort(indices[-ind_train])
+posiciones_resto=1:(8124-4874)
+auxiliar_test=sort(sample(posiciones_resto,1625))
+ind_test=inde_resto[auxiliar_test]
+auxiliar_val=posiciones_resto[-auxiliar_test]
+ind_val=inde_resto[auxiliar_val]
+
+#FORMA ISAAC
+n_totales=1:dim(datos.setas)[1]
+n_train=n_totales*0.5
+n_test=n_totales*0.2
+
+indices_totales=seq(1:n_totales)
+indices_train=sample(indices_totales,n_train)
+indices_test
+  
+
+```
