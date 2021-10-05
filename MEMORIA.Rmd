@@ -2,10 +2,7 @@
 title: "Memoria del trabajo"
 author: "Adrián Rochas De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
 date: "5/10/2021"
-output:
-  
-  html_document: default
-  pdf_document: default
+output: html_document
 ---
 <div>
 <p style = 'text-align:center;'>
@@ -30,7 +27,7 @@ Nuestro objetivo será identifcar cada especie como una especie comestible o una
 
 Como ya hemos dicho, disponemos de la observación de 8124 setas de las cuales hemos recogido información sobre 22 características, luego son variables cualitativas y por tanto habrá que tratarlas como factores.Estas variables son:
 
-+ Forma del sombrebro o píleo: campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s).
+ + Forma del sombrebro o píleo: campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s).
  + Cutícula o superficie del sombrero: fibroso (f), con surcos (g), escamosa (y) o lisa (s).
  + Color del sombrero: marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y).
  + ?: verdadero (t) o falso (f).
