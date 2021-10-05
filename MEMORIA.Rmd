@@ -1,6 +1,6 @@
 ---
 title: "Memoria del trabajo"
-author: "Adrián Rochas, Yassin y Rocío Fernández Cebrián"
+author: "Adrián Rochas De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
 date: "5/10/2021"
 output: html_document
 ---
@@ -10,6 +10,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 1. Introducción
+Este conjunto de datos formado por 8124 observaciones, incluye descripciones de muestras hipotéticas basándose en 22 carracterísticas de hongos de la familia Agaricus y Lepiota (págs. 500-525). Estas características son:
+
+ + Forma del sombrebro o píleo: campana (b), cónica (c), convexa (x), plana (f), nudosa (k) y hundida (s).
+ + Cutícula o superficie del sombrero: fibroso (f), con surcos (g), escamosa (y) y lisa (s).
+ + Color del sombrero: marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) y amarillo (y).
+
+Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
+
+
 
 # 2. Objetivos (del negocio)
 
