@@ -13,9 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en carracterísticas de hongos de la familia Agaricus y Lepiota.
 
-Para nuestro análisis necesitamos cargar las siguientes librerías:
+Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librerías:
 ```{r librerias,echo=TRUE,warning=FALSE}
 library(ggplot2)
+library(corrplot)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -66,17 +67,17 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
   Número de anillos | ninguno (n), uno (o) o dos (t)
   Tipo de anillo | telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z)
   Color de las esporas | negro (k), marrón (n), ante (b), chocolate (c), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y)
-  Población | abundante (a,), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)
+  Población | abundante (a), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)
   Habitat | pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)
 
 Vamos a llamar a las variables como la caracteristica que ejemplifican.
 ```{r nombre de variables}
-colnames(datos.setas)=c("Letalidad","Forma_S","Cuticula","Color_S","Escamas","Olor","Fijacion_L","Espacio_L","Tamaño_L","Color_L","Forma_T","Tallo_raiz","Superficie_T1","Superficie_T2","Color_T1","Color_T2","Tipo_V","Color_V","N_anillos","Tipo_anillo","Color_esporas","Población","Habitat")
+colnames(datos.setas)=c("Letalidad","Forma_S","Cuticula","Color_S","Escamas","Olor","Fijacion_L","Espacio_L","Tamaño_L","Color_L","Forma_T","Tallo_raiz","Superficie_T1","Superficie_T2","Color_T1","Color_T2","Tipo_V","Color_V","N_anillos","Tipo_anillo","Color_esporas","Poblacion","Habitat")
 ```
  
 #  Preprocesado de datos.
 
-Para poder tranformar las variables en factor, lo haremos mediante *as.factor()* a todas las variables de los datos.
+Para poder tranformar las variables en factor, lo haremos mediante **as.factor()** a todas las variables de los datos.
 ```{r factores, echo=FALSE}
 #VARIABLE RESPUESTA
 datos.setas$Letalidad=as.factor(datos.setas$Letalidad)
@@ -121,7 +122,7 @@ datos.setas$Tipo_anillo=as.factor(datos.setas$Tipo_anillo)
 #VARIABLE 20
 datos.setas$Color_esporas=as.factor(datos.setas$Color_esporas)
 #VARIABLE 21
-datos.setas$Población=as.factor(datos.setas$Población)
+datos.setas$Poblacion=as.factor(datos.setas$Poblacion)
 #VARIABLE 22
 datos.setas$Habitat=as.factor(datos.setas$Habitat)
 ```
@@ -132,7 +133,38 @@ summary(datos.setas)
 ```
 ##  EDA. Exploratory Data Analysis.
 
+### Letalidad:
+La variable **letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
+```{r proporcion, echo=TRUE}
+#Tabla:
+table(datos.setas$Letalidad)
+#Tabla de frecuencias:
+prop.table(table(datos.setas$Letalidad))
+#Gráfico
+barplot(table(datos.setas$Letalidad),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
+```
+
+Podríamos transformar esta variable para que fuera interpretada como binaria numérica (0-comestible, 1-venenosa)
+
+
+Una de las variables, **Tipo_v** tipo de volva, con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
+
+
 ##  Correlación entre las variables.
+
+Vamos a comprobar si existe alguna correlación entre las distintas variables. 
+```{r correlacion,echo=TRUE}
+#Tabla de frecuencias letalidad~habitat
+table(datos.setas$Letalidad,datos.setas$Habitat)
+#Gráfico letalidad~habitat
+barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
+legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+#Tabla de frecuencias letalidad~poblacion
+table(datos.setas$Letalidad,datos.setas$Poblacion)
+#Gráfico letalidad~habitat
+barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
+legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+```
 
 ##  Transformación de variables
 

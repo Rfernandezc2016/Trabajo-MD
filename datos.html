@@ -137,7 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a></li>
 <li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.1.1</b> Letalidad:</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a></li>
 <li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
 <li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
@@ -176,13 +179,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="datos" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Datos</h1>
 <p>Leemos los datos mediante el siguiente comando:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="datos.html#cb2-1" aria-hidden="true" tabindex="-1"></a>datos.setas<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;D:/URJC/CURSO 2021-2022/ASIGNATURAS/CUATRIMESTRE 1/MINERIA DE DATOS/MEMORIA/DATOS/agaricus-lepiota.data&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="datos.html#cb3-1" aria-hidden="true" tabindex="-1"></a>datos.setas<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;D:/URJC/CURSO 2021-2022/ASIGNATURAS/CUATRIMESTRE 1/MINERIA DE DATOS/MEMORIA/DATOS/agaricus-lepiota.data&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <p>Comprobamos que se han leído correctamente los datos mirando la dimensión de los datos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="datos.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos.setas)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="datos.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos.setas)</span></code></pre></div>
 <pre><code>## [1] 8124   23</code></pre>
 <p>Como ya hemos visto, disponemos de 8124 observaciones de setas de las cuales hemos recogido información sobre 23 características.</p>
 <p>Realizamos una exploración básica de los datos para comprobar que tipo de datos disponemos.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="datos.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos.setas)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="datos.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos.setas)</span></code></pre></div>
 <pre><code>##       V1                 V2                 V3                 V4           
 ##  Length:8124        Length:8124        Length:8124        Length:8124       
 ##  Class :character   Class :character   Class :character   Class :character  
@@ -306,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td>Población</td>
-<td>abundante (a,), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)</td>
+<td>abundante (a), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)</td>
 </tr>
 <tr class="odd">
 <td>Habitat</td>
@@ -315,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Vamos a llamar a las variables como la caracteristica que ejemplifican.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="datos.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(datos.setas)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Letalidad&quot;</span>,<span class="st">&quot;Forma_S&quot;</span>,<span class="st">&quot;Cuticula&quot;</span>,<span class="st">&quot;Color_S&quot;</span>,<span class="st">&quot;Escamas&quot;</span>,<span class="st">&quot;Olor&quot;</span>,<span class="st">&quot;Fijacion_L&quot;</span>,<span class="st">&quot;Espacio_L&quot;</span>,<span class="st">&quot;Tamaño_L&quot;</span>,<span class="st">&quot;Color_L&quot;</span>,<span class="st">&quot;Forma_T&quot;</span>,<span class="st">&quot;Tallo_raiz&quot;</span>,<span class="st">&quot;Superficie_T1&quot;</span>,<span class="st">&quot;Superficie_T2&quot;</span>,<span class="st">&quot;Color_T1&quot;</span>,<span class="st">&quot;Color_T2&quot;</span>,<span class="st">&quot;Tipo_V&quot;</span>,<span class="st">&quot;Color_V&quot;</span>,<span class="st">&quot;N_anillos&quot;</span>,<span class="st">&quot;Tipo_anillo&quot;</span>,<span class="st">&quot;Color_esporas&quot;</span>,<span class="st">&quot;Población&quot;</span>,<span class="st">&quot;Habitat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="datos.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(datos.setas)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Letalidad&quot;</span>,<span class="st">&quot;Forma_S&quot;</span>,<span class="st">&quot;Cuticula&quot;</span>,<span class="st">&quot;Color_S&quot;</span>,<span class="st">&quot;Escamas&quot;</span>,<span class="st">&quot;Olor&quot;</span>,<span class="st">&quot;Fijacion_L&quot;</span>,<span class="st">&quot;Espacio_L&quot;</span>,<span class="st">&quot;Tamaño_L&quot;</span>,<span class="st">&quot;Color_L&quot;</span>,<span class="st">&quot;Forma_T&quot;</span>,<span class="st">&quot;Tallo_raiz&quot;</span>,<span class="st">&quot;Superficie_T1&quot;</span>,<span class="st">&quot;Superficie_T2&quot;</span>,<span class="st">&quot;Color_T1&quot;</span>,<span class="st">&quot;Color_T2&quot;</span>,<span class="st">&quot;Tipo_V&quot;</span>,<span class="st">&quot;Color_V&quot;</span>,<span class="st">&quot;N_anillos&quot;</span>,<span class="st">&quot;Tipo_anillo&quot;</span>,<span class="st">&quot;Color_esporas&quot;</span>,<span class="st">&quot;Poblacion&quot;</span>,<span class="st">&quot;Habitat&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 
