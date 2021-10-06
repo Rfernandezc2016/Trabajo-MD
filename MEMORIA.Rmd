@@ -2,28 +2,23 @@
 title: "Memoria del trabajo"
 author: "Adrián Rochas De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
 date: "5/10/2021"
-output: html_document
+output: bookdown::gitbook
 ---
-<div>
-<p style = 'text-align:center;'>
-<img src="https://static1.elcorreo.com/www/multimedia/202010/15/media/cortadas/setas1-kxnG-U12046697641310-984x468@RC.jpg" alt="JuveYell" width="500px">
-</p>
-</div>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 1. Introducción
+#  Introducción
 
 Este conjunto de datos formado por 8124 observaciones, incluye descripciones de muestras hipotéticas basándose en 22 carracterísticas de hongos de la familia Agaricus y Lepiota.
 
 Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
 
 
-# ¿2. Objetivos (del negocio)?
+# ¿ Objetivos (del negocio)?
 
-# 3. Datos 
+#  Datos 
 
 Como ya hemos dicho, disponemos de la observación de 8124 setas de las cuales hemos recogido información sobre 22 características, luego son variables cualitativas y por tanto habrá que tratarlas como factores.Estas variables son:
 
@@ -51,33 +46,33 @@ Como ya hemos dicho, disponemos de la observación de 8124 setas de las cuales h
  + Habitat: pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d).
  
  
-# 4. Preprocesado de datos.
+#  Preprocesado de datos.
 
-## 4.1. EDA. Exploratory Data Analysis.
+##  EDA. Exploratory Data Analysis.
 
-## 4.2. Correlación entre las variables.
+##  Correlación entre las variables.
 
-## 4.3. Transformación de variables
+##  Transformación de variables
 
-## 4.4. Imputacion de datos (datos faltantes)
+##  Imputacion de datos (datos faltantes)
 
-# 5. Modelado
+#  Modelado
 
-# 5.1. k-NN
-# 5.2. Regresión Logística
-# 5.3. Clustering
-# 5.4. Arboles de Decisión
-# 5.5. Bosques Aleatorios
-# 5.6. Support Vector Machines
-# 5.7. Redes Neuronales
+##  k-NN
+##  Regresión Logística
+##  Clustering
+##  Arboles de Decisión
+##  Bosques Aleatorios
+##  Support Vector Machines
+##  Redes Neuronales
 
-# 6. Evaluación
+#  Evaluación
 
 
-# 7. Visualización y Presentación de Resultados
+#  Visualización y Presentación de Resultados
 
-# 8. Puesta en producción
+#  Puesta en producción
 OJO!!! al inicio del estudio, necesitamos reservar parte de la bases de datos para esta etapa. Nos referiremos a esa parte como "los datos guardados en un cajón". Normalmente esta etapa se hace "el último día de clase".
 
-# 9. Actualización del modelo...
+#  Actualización del modelo...
 Vuelta a empezar.
