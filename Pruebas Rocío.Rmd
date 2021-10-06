@@ -292,7 +292,8 @@ n_test=n_totales*0.2
 
 indices_totales=seq(1:n_totales)
 indices_train=sample(indices_totales,n_train)
-indices_test
+indices_test=indices_totales[-indices_train]
   
 
 ```
+

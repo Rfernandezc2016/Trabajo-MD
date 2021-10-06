@@ -11,10 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #  Introducción
 
-Este conjunto de datos formado por 8124 observaciones, incluye descripciones de muestras hipotéticas basándose en 22 carracterísticas de hongos de la familia Agaricus y Lepiota.
-
-Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
-
+Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en carracterísticas de hongos de la familia Agaricus y Lepiota.
 
 Para nuestro análisis necesitamos cargar las siguientes librerías:
 ```{r librerias,echo=TRUE,warning=FALSE}
@@ -22,6 +19,8 @@ library(ggplot2)
 ```
 
 # ¿ Objetivos (del negocio)?
+
+Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
 
 #  Datos 
 
@@ -43,13 +42,14 @@ summary(datos.setas)
 ```
 Luego son variables cualitativas y por tanto habrá que tratarlas como factores. Estas variables son:
 
+
  NOMBRE VARIABLE | DESCRIPCIÓN
  --------------- | ------------
   Letalidad      | venenosa (p) o comestible(e)
   Forma del sombrebro o píleo | campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s)
   Cutícula o superficie del sombrero | fibroso (f), con surcos (g), escamosa (y) o lisa (s)
   Color del sombrero | marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
-  ? | verdadero (t) o falso (f)
+  Escamas | verdadero (t) o falso (f)
   Olor | almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s)
   Fijación de las láminas | adjunto (a), descentente (d), libre (f) o entallado (n)
   Espacio entre láminas | cerca (c), atestado (w) o distante (d)
@@ -69,9 +69,67 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
   Población | abundante (a,), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)
   Habitat | pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)
 
+Vamos a llamar a las variables como la caracteristica que ejemplifican.
+```{r nombre de variables}
+colnames(datos.setas)=c("Letalidad","Forma_S","Cuticula","Color_S","Escamas","Olor","Fijacion_L","Espacio_L","Tamaño_L","Color_L","Forma_T","Tallo_raiz","Superficie_T1","Superficie_T2","Color_T1","Color_T2","Tipo_V","Color_V","N_anillos","Tipo_anillo","Color_esporas","Población","Habitat")
+```
  
 #  Preprocesado de datos.
 
+Para poder tranformar las variables en factor, lo haremos mediante *as.factor()* a todas las variables de los datos.
+```{r factores, echo=FALSE}
+#VARIABLE RESPUESTA
+datos.setas$Letalidad=as.factor(datos.setas$Letalidad)
+#VARIABLE 1
+datos.setas$Forma_S=as.factor(datos.setas$Forma_S)
+#VARIABLE 2
+datos.setas$Cuticula=as.factor(datos.setas$Cuticula)
+#VARIABLE 3
+datos.setas$Color_S=as.factor(datos.setas$Color_S)
+#VARIABLE 4
+datos.setas$Escamas=as.factor(datos.setas$Escamas)
+#VARIABLE 5
+datos.setas$Olor=as.factor(datos.setas$Olor)
+#VARIABLE 6
+datos.setas$Fijacion_L=as.factor(datos.setas$Fijacion_L)
+#VARIABLE 7
+datos.setas$Espacio_L=as.factor(datos.setas$Espacio_L)
+#VARIABLE 8
+datos.setas$Tamaño_L=as.factor(datos.setas$Tamaño_L)
+#VARIABLE 9
+datos.setas$Color_L=as.factor(datos.setas$Color_L)
+#VARIABLE 10
+datos.setas$Forma_T=as.factor(datos.setas$Forma_T)
+#VARIABLE 11
+datos.setas$Tallo_raiz=as.factor(datos.setas$Tallo_raiz)
+#VARIABLE 12
+datos.setas$Superficie_T1=as.factor(datos.setas$Superficie_T1)
+#VARIABLE 13
+datos.setas$Superficie_T2=as.factor(datos.setas$Superficie_T2)
+#VARIABLE 14
+datos.setas$Color_T1=as.factor(datos.setas$Color_T1)
+#VARIABLE 15
+datos.setas$Color_T2=as.factor(datos.setas$Color_T2)
+#VARIABLE 16
+datos.setas$Tipo_V=as.factor(datos.setas$Tipo_V)
+#VARIABLE 17
+datos.setas$Color_V=as.factor(datos.setas$Color_V)
+#VARIABLE 18
+datos.setas$N_anillos=as.factor(datos.setas$N_anillos)
+#VARIABLE 19
+datos.setas$Tipo_anillo=as.factor(datos.setas$Tipo_anillo)
+#VARIABLE 20
+datos.setas$Color_esporas=as.factor(datos.setas$Color_esporas)
+#VARIABLE 21
+datos.setas$Población=as.factor(datos.setas$Población)
+#VARIABLE 22
+datos.setas$Habitat=as.factor(datos.setas$Habitat)
+```
+
+Ahora podemos ver mejor como son nuestros datos.
+```{r resumen datos,echo=TRUE}
+summary(datos.setas)
+```
 ##  EDA. Exploratory Data Analysis.
 
 ##  Correlación entre las variables.
