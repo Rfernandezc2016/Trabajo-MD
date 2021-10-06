@@ -16,35 +16,59 @@ Este conjunto de datos formado por 8124 observaciones, incluye descripciones de 
 Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
 
 
+Para nuestro análisis necesitamos cargar las siguientes librerías:
+```{r librerias,echo=TRUE,warning=FALSE}
+library(ggplot2)
+```
+
 # ¿ Objetivos (del negocio)?
 
 #  Datos 
 
-Como ya hemos dicho, disponemos de la observación de 8124 setas de las cuales hemos recogido información sobre 22 características, luego son variables cualitativas y por tanto habrá que tratarlas como factores.Estas variables son:
+Leemos los datos mediante el siguiente comando:
+```{r introduccion datos,echo=TRUE}
+datos.setas<-read.table("D:/URJC/CURSO 2021-2022/ASIGNATURAS/CUATRIMESTRE 1/MINERIA DE DATOS/MEMORIA/DATOS/agaricus-lepiota.data",header=FALSE,sep=",")
+```
 
- + Forma del sombrebro o píleo: campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s).
- + Cutícula o superficie del sombrero: fibroso (f), con surcos (g), escamosa (y) o lisa (s).
- + Color del sombrero: marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y).
- + ?: verdadero (t) o falso (f).
- + Olor: almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s).
- + Fijación de las láminas: adjunto (a), descentente (d), libre (f) o entallado (n).
- + Espacio entre láminas: cerca (c), atestado (w) o distante (d).
- + Tamaño de las láminas: ancho (b) o estrecho (n).
- + Color de las láminas: negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y).
- + Forma del tallo: agrandado (e) o afilado (t).
- + Tallo-raíz: bulboso (b), club (c), copa (u), igual (e), rizomorfos (z), enraizado (r) o faltante (?).
- + Superficie del tallo por encima del anillo: fibroso (f), escamoso (y), sedoso (k) o liso (s).
- + Superficie del tallo por debajo del anillo: fibroso (f), escamoso (y), sedoso (k) o liso (s).
- + Color del tallo por encima del anillo: marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y).
- + Color del tallo por debajo del anillo: marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y).
- + Tipo de volva: parcial (p) o universal (u).
- + Color del volva: naranja (o), blanco (w) o amarillo (y).
- + Número de anillos: ninguno (n), uno (o) o dos (t).
- + Tipo de anillo: telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z).
- + Color de las esporas: negro (k), marrón (n), ante (b), chocolate (c), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y).
- + Población: abundante (a,), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y).
- + Habitat: pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d).
- 
+Comprobamos que se han leído correctamente los datos mirando la dimensión de los datos.
+```{r dimension,echo=TRUE}
+dim(datos.setas)
+```
+
+Como ya hemos visto, disponemos de 8124 observaciones de setas de las cuales hemos recogido información sobre 23 características.
+
+Realizamos una exploración básica de los datos para comprobar que tipo de datos disponemos.
+```{r tipo de variables, echo=TRUE}
+summary(datos.setas)
+```
+Luego son variables cualitativas y por tanto habrá que tratarlas como factores. Estas variables son:
+
+ NOMBRE VARIABLE | DESCRIPCIÓN
+ --------------- | ------------
+  Letalidad      | venenosa (p) o comestible(e)
+  Forma del sombrebro o píleo | campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s)
+  Cutícula o superficie del sombrero | fibroso (f), con surcos (g), escamosa (y) o lisa (s)
+  Color del sombrero | marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
+  ? | verdadero (t) o falso (f)
+  Olor | almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s)
+  Fijación de las láminas | adjunto (a), descentente (d), libre (f) o entallado (n)
+  Espacio entre láminas | cerca (c), atestado (w) o distante (d)
+  Tamaño de las láminas | ancho (b) o estrecho (n)
+  Color de las láminas | negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
+  Forma del tallo | agrandado (e) o afilado (t)
+  Tallo-raíz | bulboso (b), club (c), copa (u), igual (e), rizomorfos (z), enraizado (r) o faltante (?)
+  Superficie del tallo por encima del anillo | fibroso (f), escamoso (y), sedoso (k) o liso (s)
+  Superficie del tallo por debajo del anillo | fibroso (f), escamoso (y), sedoso (k) o liso (s)
+  Color del tallo por encima del anillo | marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y)
+  Color del tallo por debajo del anillo | marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y)
+  Tipo de volva | parcial (p) o universal (u)
+  Color del volva | naranja (o), blanco (w) o amarillo (y)
+  Número de anillos | ninguno (n), uno (o) o dos (t)
+  Tipo de anillo | telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z)
+  Color de las esporas | negro (k), marrón (n), ante (b), chocolate (c), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y)
+  Población | abundante (a,), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)
+  Habitat | pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)
+
  
 #  Preprocesado de datos.
 
