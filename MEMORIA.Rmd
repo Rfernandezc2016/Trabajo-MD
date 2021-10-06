@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #  Introducción
 
 Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en carracterísticas de hongos de la familia Agaricus y Lepiota.
-xcjndshfvjbdjvbds
+
 Para nuestro análisis necesitamos cargar las siguientes librerías:
 ```{r librerias,echo=TRUE,warning=FALSE}
 library(ggplot2)
