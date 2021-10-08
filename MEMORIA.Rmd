@@ -26,7 +26,7 @@ Nuestro objetivo será identifcar cada especie como una especie comestible o una
 
 Leemos los datos mediante el siguiente comando:
 ```{r introduccion datos,echo=TRUE}
-datos.setas<-read.table("D:/URJC/CURSO 2021-2022/ASIGNATURAS/CUATRIMESTRE 1/MINERIA DE DATOS/MEMORIA/DATOS/agaricus-lepiota.data",header=FALSE,sep=",")
+datos.setas<-read.table("agaricus-lepiota.data",header=FALSE,sep=",")
 ```
 
 Comprobamos que se han leído correctamente los datos mirando la dimensión de los datos.
@@ -93,6 +93,8 @@ indices_validacion=indices_totales[-c(indices_train,indices_test)]
 datos.setas_train=datos.setas[indices_train,]
 datos.setas_test=datos.setas[indices_test,]
 datos.setas_validacion=datos.setas[indices_validacion,]
+
+
 ```
 
 #  Preprocesado de datos.
