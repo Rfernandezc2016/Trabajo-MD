@@ -170,7 +170,9 @@ Podríamos transformar esta variable para que fuera interpretada como binaria nu
 
 
 Una de las variables, **Tipo_v** tipo de volva, con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
-
+```{r eliminar variable}
+datos.setas_train=datos.setas_train[,-17]
+```
 
 ##  Correlación entre las variables.
 
@@ -180,12 +182,14 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 table(datos.setas_train$Letalidad,datos.setas_train$Habitat)
 #Gráfico letalidad~habitat
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
-legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+#legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+
+
 #Tabla de frecuencias letalidad~poblacion
 table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
 #Gráfico letalidad~poblacion
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
-legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+#legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 
 ##  Transformación de variables
