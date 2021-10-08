@@ -16,7 +16,6 @@ Este conjunto de datos incluye descripciones de muestras hipotéticas basándose
 Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librerías:
 ```{r librerias,echo=TRUE,warning=FALSE}
 library(ggplot2)
-library(corrplot)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -182,7 +181,7 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letal
 legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 #Tabla de frecuencias letalidad~poblacion
 table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
-#Gráfico letalidad~habitat
+#Gráfico letalidad~poblacion
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
 legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
