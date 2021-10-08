@@ -297,3 +297,7 @@ indices_test=indices_totales[-indices_train]
 
 ```
 
+```{r pruebas test}
+table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
+```
