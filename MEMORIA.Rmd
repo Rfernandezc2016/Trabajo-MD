@@ -74,62 +74,83 @@ Vamos a llamar a las variables como la caracteristica que ejemplifican.
 ```{r nombre de variables}
 colnames(datos.setas)=c("Letalidad","Forma_S","Cuticula","Color_S","Escamas","Olor","Fijacion_L","Espacio_L","Tamaño_L","Color_L","Forma_T","Tallo_raiz","Superficie_T1","Superficie_T2","Color_T1","Color_T2","Tipo_V","Color_V","N_anillos","Tipo_anillo","Color_esporas","Poblacion","Habitat")
 ```
- 
+
+##  Particiones.
+
+```{r particiones}
+n_totales=dim(datos.setas)[1]
+n_train=floor(n_totales*0.6) # el 60% de los datos los utilizamos para entrenar los modelos
+n_test=floor(n_totales*0.2) # el 20% para test
+n_validacion=n_totales-n_train-n_test
+
+set.seed(34735)
+
+indices_totales=seq(1:n_totales)
+indices_train=sample(indices_totales,n_train)
+indices_test=sample(indices_totales[-indices_train],n_test)
+indices_validacion=indices_totales[-c(indices_train,indices_test)]
+
+
+datos.setas_train=datos.setas[indices_train,]
+datos.setas_test=datos.setas[indices_test,]
+datos.setas_validacion=datos.setas[indices_validacion,]
+```
+
 #  Preprocesado de datos.
 
 Para poder tranformar las variables en factor, lo haremos mediante **as.factor()** a todas las variables de los datos.
 ```{r factores, echo=FALSE}
 #VARIABLE RESPUESTA
-datos.setas$Letalidad=as.factor(datos.setas$Letalidad)
+datos.setas_train$Letalidad=as.factor(datos.setas_train$Letalidad)
 #VARIABLE 1
-datos.setas$Forma_S=as.factor(datos.setas$Forma_S)
+datos.setas_train$Forma_S=as.factor(datos.setas_train$Forma_S)
 #VARIABLE 2
-datos.setas$Cuticula=as.factor(datos.setas$Cuticula)
+datos.setas_train$Cuticula=as.factor(datos.setas_train$Cuticula)
 #VARIABLE 3
-datos.setas$Color_S=as.factor(datos.setas$Color_S)
+datos.setas_train$Color_S=as.factor(datos.setas_train$Color_S)
 #VARIABLE 4
-datos.setas$Escamas=as.factor(datos.setas$Escamas)
+datos.setas_train$Escamas=as.factor(datos.setas_train$Escamas)
 #VARIABLE 5
-datos.setas$Olor=as.factor(datos.setas$Olor)
+datos.setas_train$Olor=as.factor(datos.setas_train$Olor)
 #VARIABLE 6
-datos.setas$Fijacion_L=as.factor(datos.setas$Fijacion_L)
+datos.setas_train$Fijacion_L=as.factor(datos.setas_train$Fijacion_L)
 #VARIABLE 7
-datos.setas$Espacio_L=as.factor(datos.setas$Espacio_L)
+datos.setas_train$Espacio_L=as.factor(datos.setas_train$Espacio_L)
 #VARIABLE 8
-datos.setas$Tamaño_L=as.factor(datos.setas$Tamaño_L)
+datos.setas_train$Tamaño_L=as.factor(datos.setas_train$Tamaño_L)
 #VARIABLE 9
-datos.setas$Color_L=as.factor(datos.setas$Color_L)
+datos.setas_train$Color_L=as.factor(datos.setas_train$Color_L)
 #VARIABLE 10
-datos.setas$Forma_T=as.factor(datos.setas$Forma_T)
+datos.setas_train$Forma_T=as.factor(datos.setas_train$Forma_T)
 #VARIABLE 11
-datos.setas$Tallo_raiz=as.factor(datos.setas$Tallo_raiz)
+datos.setas_train$Tallo_raiz=as.factor(datos.setas_train$Tallo_raiz)
 #VARIABLE 12
-datos.setas$Superficie_T1=as.factor(datos.setas$Superficie_T1)
+datos.setas_train$Superficie_T1=as.factor(datos.setas_train$Superficie_T1)
 #VARIABLE 13
-datos.setas$Superficie_T2=as.factor(datos.setas$Superficie_T2)
+datos.setas_train$Superficie_T2=as.factor(datos.setas_train$Superficie_T2)
 #VARIABLE 14
-datos.setas$Color_T1=as.factor(datos.setas$Color_T1)
+datos.setas_train$Color_T1=as.factor(datos.setas_train$Color_T1)
 #VARIABLE 15
-datos.setas$Color_T2=as.factor(datos.setas$Color_T2)
+datos.setas_train$Color_T2=as.factor(datos.setas_train$Color_T2)
 #VARIABLE 16
-datos.setas$Tipo_V=as.factor(datos.setas$Tipo_V)
+datos.setas_train$Tipo_V=as.factor(datos.setas_train$Tipo_V)
 #VARIABLE 17
-datos.setas$Color_V=as.factor(datos.setas$Color_V)
+datos.setas_train$Color_V=as.factor(datos.setas_train$Color_V)
 #VARIABLE 18
-datos.setas$N_anillos=as.factor(datos.setas$N_anillos)
+datos.setas_train$N_anillos=as.factor(datos.setas_train$N_anillos)
 #VARIABLE 19
-datos.setas$Tipo_anillo=as.factor(datos.setas$Tipo_anillo)
+datos.setas_train$Tipo_anillo=as.factor(datos.setas_train$Tipo_anillo)
 #VARIABLE 20
-datos.setas$Color_esporas=as.factor(datos.setas$Color_esporas)
+datos.setas_train$Color_esporas=as.factor(datos.setas_train$Color_esporas)
 #VARIABLE 21
-datos.setas$Poblacion=as.factor(datos.setas$Poblacion)
+datos.setas_train$Poblacion=as.factor(datos.setas_train$Poblacion)
 #VARIABLE 22
-datos.setas$Habitat=as.factor(datos.setas$Habitat)
+datos.setas_train$Habitat=as.factor(datos.setas_train$Habitat)
 ```
 
 Ahora podemos ver mejor como son nuestros datos.
 ```{r resumen datos,echo=TRUE}
-summary(datos.setas)
+summary(datos.setas_train)
 ```
 ##  EDA. Exploratory Data Analysis.
 
@@ -137,11 +158,11 @@ summary(datos.setas)
 La variable **letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
 ```{r proporcion, echo=TRUE}
 #Tabla:
-table(datos.setas$Letalidad)
+table(datos.setas_train$Letalidad)
 #Tabla de frecuencias:
-prop.table(table(datos.setas$Letalidad))
+prop.table(table(datos.setas_train$Letalidad))
 #Gráfico
-barplot(table(datos.setas$Letalidad),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
+barplot(table(datos.setas_train$Letalidad),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
 ```
 
 Podríamos transformar esta variable para que fuera interpretada como binaria numérica (0-comestible, 1-venenosa)
@@ -155,14 +176,14 @@ Una de las variables, **Tipo_v** tipo de volva, con dos niveles distintos, parci
 Vamos a comprobar si existe alguna correlación entre las distintas variables. 
 ```{r correlacion,echo=TRUE}
 #Tabla de frecuencias letalidad~habitat
-table(datos.setas$Letalidad,datos.setas$Habitat)
+table(datos.setas_train$Letalidad,datos.setas_train$Habitat)
 #Gráfico letalidad~habitat
-barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
 legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 #Tabla de frecuencias letalidad~poblacion
-table(datos.setas$Letalidad,datos.setas$Poblacion)
+table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
 #Gráfico letalidad~habitat
-barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
 legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 
