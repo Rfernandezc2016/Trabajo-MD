@@ -157,12 +157,12 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 #Tabla de frecuencias letalidad~habitat
 table(datos.setas$Letalidad,datos.setas$Habitat)
 #Gráfico letalidad~habitat
-barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
 legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 #Tabla de frecuencias letalidad~poblacion
 table(datos.setas$Letalidad,datos.setas$Poblacion)
 #Gráfico letalidad~habitat
-barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
 legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 
