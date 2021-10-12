@@ -181,7 +181,7 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 #Tabla de frecuencias letalidad~habitat
 table(datos.setas_train$Letalidad,datos.setas_train$Habitat)
 #Gráfico letalidad~habitat
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("pastos", "hojas", "prados", "caminos", "urbano", "desechos", "bosques"),col=c("blue","magenta"))
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos"),col=c("blue","magenta"))
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 
 
