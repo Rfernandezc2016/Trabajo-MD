@@ -131,25 +131,16 @@ datos.setas$V23=as.numeric(as.factor(datos.setas$V23))
 #Variable respuesta:
 setas=data.frame(matrix(ncol=1))
 colnames(setas)=c("Venenosas")
-venenosas=0
-no_venenosas=0
 for(i in 1:dim(datos.setas)[1]){
   if(datos.setas[i,1]=="e"){
     setas=rbind(setas,c(0))
-    no_venenosas=no_venenosas+1
   }
   if(datos.setas[i,1]=="p"){
     setas=rbind(setas,c(1))
-    venenosas=venenosas+1
   }
-  
 }
 setas=setas[-1,]
 
-barplot(c(venenosas,no_venenosas),main = "Setas", ylab = "Número de setas",col =
-c("blue","magenta") )
-legend(x = "bottomleft", legend = c("Venenosas","No venenosas"), fill = c("blue", "magenta"), 
-title = "Letalidad")
 ```
 
 
@@ -157,78 +148,54 @@ title = "Letalidad")
 #Variable 1: forma del sombrero
 sombrero=matrix(ncol=6)
 colnames(sombrero)=c("Campana","Cónica","Convexa","Plana","Nudosa","Hundida")
-campana=0
-conica=0
-convexa=0
-plana=0
-nudosa=0
-hundida=0
+
 for(i in 1:dim(datos.setas)[1]){
   if(datos.setas[i,2]=="b"){
     sombrero=rbind(sombrero,c(1,0,0,0,0,0))
-    campana=campana+1
   }
   if(datos.setas[i,2]=="c"){
     sombrero=rbind(sombrero,c(0,1,0,0,0,0))
-    conica=conica+1
   }
   if(datos.setas[i,2]=="x"){
     sombrero=rbind(sombrero,c(0,0,1,0,0,0))
-    convexa=convexa=+1
   }
   if(datos.setas[i,2]=="f"){
     sombrero=rbind(sombrero,c(0,0,0,1,0,0))
-    plana=plana+1
   }
   if(datos.setas[i,2]=="k"){
     sombrero=rbind(sombrero,c(0,0,0,0,1,0))
-    nudosa=nudosa+1
   }
   if(datos.setas[i,2]=="s"){
     sombrero=rbind(sombrero,c(0,0,0,0,0,1))
-    hundida=hundida+1
   }
 }
 sombrero=sombrero[-1,]
 setas=cbind(setas,sombrero)
-barplot(c(campana,conica,convexa,plana,nudosa,hundida),main = "Setas", ylab = "Número de setas",col =
-c("blue","magenta","green","yellow","red","orange") )
-legend(x = "topleft", legend = c("Camapana","Cónica","Convexa","Plana","Nudosa","Hundida"), fill = c("blue", "magenta","green","yellow","red","orange"), 
-title = "Forma del sombrero")
+
 ```
 
 
 ```{r modificacion variable superficie}
 superficie=matrix(ncol=4)
 colnames(superficie)=c("Fibroso","Surcos","Escamoso","Liso")
-fibroso=0
-surcos=0
-escamoso=0
-liso=0
+
 for(i in 1:dim(datos.setas)[1]){
   if(datos.setas[i,3]=="f"){
     superficie=rbind(superficie,c(1,0,0,0))
-    fibroso=fibroso+1
   }
   if(datos.setas[i,3]=="g"){
     superficie=rbind(superficie,c(0,1,0,0))
-    surcos=surcos+1
   }
   if(datos.setas[i,3]=="y"){
     superficie=rbind(superficie,c(0,0,1,0))
-    escamoso=escamoso+1
   }
   if(datos.setas[i,3]=="s"){
     superficie=rbind(superficie,c(0,0,0,1))
-    liso=liso+1
   }
 }
 superficie=superficie[-1,]
 setas=cbind(setas,superficie)
-barplot(c(fibroso,surcos,escamoso,liso),main = "Setas", ylab = "Número de setas",col =
-c("blue","magenta","green","yellow") )
-legend(x = "bottomright", legend = c("Fibroso","Con surcos","Escamoso","Liso"), fill = c("blue", "magenta","green","yellow"),
-title = "Superficie del sombrero")
+
 ```
 
 

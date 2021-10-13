@@ -1,6 +1,6 @@
 ---
 title: "Memoria del trabajo"
-author: "Adrián Rochas De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
+author: "Adrián Rocha De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
 date: "5/10/2021"
 output: bookdown::gitbook
 ---
