@@ -168,7 +168,6 @@ barplot(table(datos.setas_train$Letalidad),main="Letalidad",ylab="Número de set
 
 Podríamos transformar esta variable para que fuera interpretada como binaria numérica (0-comestible, 1-venenosa)
 
-
 Una de las variables, **Tipo_v** tipo de volva, con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
 ```{r eliminar variable}
 datos.setas_train=datos.setas_train[,-17]
@@ -177,14 +176,29 @@ datos.setas_train=datos.setas_train[,-17]
 ##  Correlación entre las variables.
 
 Vamos a comprobar si existe alguna correlación entre las distintas variables. 
-```{r correlacion,echo=TRUE}
+
+### Forma del sombrero (Forma_S)
+
+```{r forma del sombrero,echo=TRUE}
+#Tabla de frecuencias letalidad~forma del sombrero
+table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
+#Gráfico letalidad~forma del sombrero
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S),main="Letalidad",xlab="Forma_S",ylab="Número de setas",names.arg=c("campana", "cónica", "convexa", "plana", "nudosa", "hundida"),col=c("blue","magenta"))
+```
+
+### Habitat
+
+```{r habitat,echo=TRUE}
 #Tabla de frecuencias letalidad~habitat
 table(datos.setas_train$Letalidad,datos.setas_train$Habitat)
 #Gráfico letalidad~habitat
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos"),col=c("blue","magenta"))
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+```
 
+### Población
 
+```{r poblacion,echo=TRUE}
 #Tabla de frecuencias letalidad~poblacion
 table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
 #Gráfico letalidad~poblacion
