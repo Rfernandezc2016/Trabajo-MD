@@ -21,7 +21,7 @@
   
   
 
-<meta name="author" content="Adrián Rochas De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián" />
+<meta name="author" content="Adrián Rocha De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián" />
 
 
 
@@ -144,7 +144,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.1.1</b> Letalidad:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a></li>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-sombrero-forma_s"><i class="fa fa-check"></i><b>4.2.1</b> Forma del sombrero (Forma_S)</a></li>
+<li class="chapter" data-level="4.2.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#habitat"><i class="fa fa-check"></i><b>4.2.2</b> Habitat</a></li>
+<li class="chapter" data-level="4.2.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#población"><i class="fa fa-check"></i><b>4.2.3</b> Población</a></li>
+</ul></li>
 <li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
 <li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
@@ -182,7 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="datos" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Datos</h1>
 <p>Leemos los datos mediante el siguiente comando:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="datos.html#cb2-1" aria-hidden="true" tabindex="-1"></a>datos.setas<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;D:/URJC/CURSO 2021-2022/ASIGNATURAS/CUATRIMESTRE 1/MINERIA DE DATOS/MEMORIA/DATOS/agaricus-lepiota.data&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="datos.html#cb2-1" aria-hidden="true" tabindex="-1"></a>datos.setas<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;agaricus-lepiota.data&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <p>Comprobamos que se han leído correctamente los datos mirando la dimensión de los datos.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="datos.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos.setas)</span></code></pre></div>
 <pre><code>## [1] 8124   23</code></pre>
@@ -256,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td>Espacio entre láminas</td>
-<td>cerca (c), atestado (w) o distante (d)</td>
+<td>cerca (c) o atestado (w)</td>
 </tr>
 <tr class="odd">
 <td>Tamaño de las láminas</td>
@@ -332,8 +337,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-6"><a href="datos.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">34735</span>)</span>
 <span id="cb8-7"><a href="datos.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="datos.html#cb8-8" aria-hidden="true" tabindex="-1"></a>indices_totales<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span>n_totales)</span>
-<span id="cb8-9"><a href="datos.html#cb8-9" aria-hidden="true" tabindex="-1"></a>indices_train<span class="ot">=</span><span class="fu">sample</span>(indices_totales,n_train)</span>
-<span id="cb8-10"><a href="datos.html#cb8-10" aria-hidden="true" tabindex="-1"></a>indices_test<span class="ot">=</span><span class="fu">sample</span>(indices_totales[<span class="sc">-</span>indices_train],n_test)</span>
+<span id="cb8-9"><a href="datos.html#cb8-9" aria-hidden="true" tabindex="-1"></a>indices_train<span class="ot">=</span><span class="fu">sort</span>(<span class="fu">sample</span>(indices_totales,n_train))</span>
+<span id="cb8-10"><a href="datos.html#cb8-10" aria-hidden="true" tabindex="-1"></a>indices_test<span class="ot">=</span><span class="fu">sort</span>(<span class="fu">sample</span>(indices_totales[<span class="sc">-</span>indices_train],n_test))</span>
 <span id="cb8-11"><a href="datos.html#cb8-11" aria-hidden="true" tabindex="-1"></a>indices_validacion<span class="ot">=</span>indices_totales[<span class="sc">-</span><span class="fu">c</span>(indices_train,indices_test)]</span>
 <span id="cb8-12"><a href="datos.html#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="datos.html#cb8-13" aria-hidden="true" tabindex="-1"></a></span>

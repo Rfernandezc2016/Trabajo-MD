@@ -52,7 +52,7 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
   Escamas | verdadero (t) o falso (f)
   Olor | almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s)
   Fijación de las láminas | adjunto (a), descentente (d), libre (f) o entallado (n)
-  Espacio entre láminas | cerca (c), atestado (w) o distante (d)
+  Espacio entre láminas | cerca (c) o atestado (w)
   Tamaño de las láminas | ancho (b) o estrecho (n)
   Color de las láminas | negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
   Forma del tallo | agrandado (e) o afilado (t)
@@ -85,15 +85,14 @@ n_validacion=n_totales-n_train-n_test
 set.seed(34735)
 
 indices_totales=seq(1:n_totales)
-indices_train=sample(indices_totales,n_train)
-indices_test=sample(indices_totales[-indices_train],n_test)
+indices_train=sort(sample(indices_totales,n_train))
+indices_test=sort(sample(indices_totales[-indices_train],n_test))
 indices_validacion=indices_totales[-c(indices_train,indices_test)]
 
 
 datos.setas_train=datos.setas[indices_train,]
 datos.setas_test=datos.setas[indices_test,]
 datos.setas_validacion=datos.setas[indices_validacion,]
-
 
 ```
 
@@ -153,25 +152,391 @@ Ahora podemos ver mejor como son nuestros datos.
 ```{r resumen datos,echo=TRUE}
 summary(datos.setas_train)
 ```
+Una de las variables, **Tipo_v** (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
+
+```{r eliminar variable}
+datos.setas_train=datos.setas_train[,-17]
+```
+
+Además, la variable **Fijacion_L** tendría solo dos niveles pues en el nivel descendente y entallado no aparecen en los datos y la variable **Espacio_L** también tiene dos niveles pues el nivel distante tampoco aparece, por ello las codificamos mediante unas variable binomiales.
+
+Codificamos el resto de las variables originales de forma que obtendremos también nuevas variables binomiales, excepto las variables relacionadas con el color que las codificaremos siguiendo la escala de colores.
+```{r codificación,echo=FALSE}
+#Variable respuesta: venenosa-1 comestible-0
+setas=data.frame(matrix(ncol=1))
+colnames(setas)=c("Venenosas")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,1]=="e"){
+    setas=rbind(setas,c(0))
+  }
+  if(datos.setas_train[i,1]=="p"){
+    setas=rbind(setas,c(1))
+  }
+}
+
+#Variable 1: forma del sombrero
+sombrero=matrix(ncol=6)
+colnames(sombrero)=c("Campana","Cónica","Convexa","Plana","Nudosa","Hundida")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,2]=="b"){
+    sombrero=rbind(sombrero,c(1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,2]=="c"){
+    sombrero=rbind(sombrero,c(0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,2]=="x"){
+    sombrero=rbind(sombrero,c(0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,2]=="f"){
+    sombrero=rbind(sombrero,c(0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,2]=="k"){
+    sombrero=rbind(sombrero,c(0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,2]=="s"){
+    sombrero=rbind(sombrero,c(0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,sombrero)
+
+#Variable 2: superficie del sombrero
+superficie=matrix(ncol=4)
+colnames(superficie)=c("Fibroso","Surcos","Escamoso","Liso")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,3]=="f"){
+    superficie=rbind(superficie,c(1,0,0,0))
+  }
+  if(datos.setas_train[i,3]=="g"){
+    superficie=rbind(superficie,c(0,1,0,0))
+  }
+  if(datos.setas_train[i,3]=="y"){
+    superficie=rbind(superficie,c(0,0,1,0))
+  }
+  if(datos.setas_train[i,3]=="s"){
+    superficie=rbind(superficie,c(0,0,0,1))
+  }
+}
+setas=cbind(setas,superficie)
+
+#Variable 3: color del sombrero
+
+#Variable 4: Escamas (true-1 false-0)
+escamas_S=matrix(ncol=1)
+colnames(escamas_S)=c("Escamas")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,5]=="f"){
+    escamas_S=rbind(escamas_S,c(0))
+  }
+  if(datos.setas_train[i,5]=="t"){
+    escamas_S=rbind(escamas_S,c(1))
+  }
+}
+setas=cbind(setas,escamas_S)
+
+#Variable 5: olor
+olor=matrix(ncol=9)
+colnames(olor)=c("O_almendra","O_anís","O_creosota","O_pescado","O_asqueroso","O_mohoso","O_ninguno","O_acre","O_picante")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,6]=="a"){
+    olor=rbind(olor,c(1,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,6]=="l"){
+    olor=rbind(olor,c(0,1,0,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,6]=="c"){
+    olor=rbind(olor,c(0,0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,6]=="y"){
+    olor=rbind(olor,c(0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,6]=="f"){
+    olor=rbind(olor,c(0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,6]=="m"){
+    olor=rbind(olor,c(0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,6]=="n"){
+    olor=rbind(olor,c(0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,6]=="p"){
+    olor=rbind(olor,c(0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,6]=="s"){
+    olor=rbind(olor,c(0,0,0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,olor)
+
+#Varibale 6: fijación de láminas (adjunto-1 libre-0)
+fijacion_laminas=matrix(ncol=1)
+colnames(fijacion_laminas)=c("Adjunto/Libre")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,7]=="a"){
+    fijacion_laminas=rbind(fijacion_laminas,c(1))
+  }
+  if(datos.setas_train[i,7]=="f"){
+    fijacion_laminas=rbind(fijacion_laminas,c(0))
+  }
+}
+setas=cbind(setas,fijacion_laminas)
+
+#Variable 7: espacio entre láminas (cerca-1 atestado-0)
+espacio_laminas=matrix(ncol=1)
+colnames(espacio_laminas)=c("Cerca/Atestado")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,8]=="c"){
+    espacio_laminas=rbind(espacio_laminas,c(1))
+  }
+  if(datos.setas_train[i,8]=="w"){
+    espacio_laminas=rbind(espacio_laminas,c(0))
+  }
+}
+setas=cbind(setas,espacio_laminas)
+
+#Variable 8: tamaño de láminas (Ancho-1 estrecho-0)
+tamaño_laminas=matrix(ncol=1)
+colnames(tamaño_laminas)=c("Ancho/Estrecho")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,9]=="b"){
+    tamaño_laminas=rbind(tamaño_laminas,c(1))
+  }
+  if(datos.setas_train[i,9]=="n"){
+    tamaño_laminas=rbind(tamaño_laminas,c(0))
+  }
+}
+setas=cbind(setas,tamaño_laminas)
+
+#Variable 9: color de láminas
+
+#Variable 10: forma del tallo (agrandado-1 afilado-0)
+forma_tallo=matrix(ncol=1)
+colnames(forma_tallo)=c("Agrandado/Afilado")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,11]=="e"){
+    forma_tallo=rbind(forma_tallo,c(1))
+  }
+  if(datos.setas_train[i,11]=="t"){
+    forma_tallo=rbind(forma_tallo,c(0))
+  }
+}
+setas=cbind(setas,forma_tallo)
+
+#Variable 11: tallo-raíz
+tallo_r=matrix(ncol=7)
+colnames(tallo_r)=c("TR_bulboso","TR_club","TR_copa","TR_igual","TR_rizomorfos","TR_enraizado","TR_faltante")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,12]=="b"){
+    tallo_r=rbind(tallo_r,c(1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,12]=="c"){
+    tallo_r=rbind(tallo_r,c(0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,12]=="u"){
+    tallo_r=rbind(tallo_r,c(0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,12]=="e"){
+    tallo_r=rbind(tallo_r,c(0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,12]=="z"){
+    tallo_r=rbind(tallo_r,c(0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,12]=="r"){
+    tallo_r=rbind(tallo_r,c(0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,12]=="?"){
+    tallo_r=rbind(tallo_r,c(0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,tallo_r)
+
+#Variable 12: superficie del tallo por encima del anillo
+superficiet1=matrix(ncol=4)
+colnames(superficiet1)=c("ST1_Fibroso","ST1_Escamoso","ST1_Sedoso","ST1_Liso")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,13]=="f"){
+    superficiet1=rbind(superficiet1,c(1,0,0,0))
+  }
+  if(datos.setas_train[i,13]=="y"){
+    superficiet1=rbind(superficiet1,c(0,1,0,0))
+  }
+  if(datos.setas_train[i,13]=="k"){
+    superficiet1=rbind(superficiet1,c(0,0,1,0))
+  }
+  if(datos.setas_train[i,13]=="s"){
+    superficiet1=rbind(superficiet1,c(0,0,0,1))
+  }
+}
+setas=cbind(setas,superficiet1)
+
+#Variable 13: superficie del tallo por debajo del anillo
+superficiet2=matrix(ncol=4)
+colnames(superficiet2)=c("ST2_Fibroso","ST2_Escamoso","ST2_Sedoso","ST2_Liso")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,14]=="f"){
+    superficiet2=rbind(superficiet2,c(1,0,0,0))
+  }
+  if(datos.setas_train[i,14]=="y"){
+    superficiet2=rbind(superficiet2,c(0,1,0,0))
+  }
+  if(datos.setas_train[i,14]=="k"){
+    superficiet2=rbind(superficiet2,c(0,0,1,0))
+  }
+  if(datos.setas_train[i,14]=="s"){
+    superficiet2=rbind(superficiet2,c(0,0,0,1))
+  }
+}
+setas=cbind(setas,superficiet2)
+
+#Variable 14: color del tallo por encima del anillo
+
+#Variable 15: color del tallo por debajo del anillo
+
+#Variable 16: color de la volva
+
+#Variable 17: número de anillos
+nanillos=matrix(ncol=1)
+colnames(nanillos)=c("Nº anillos")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,18]=="n"){
+    nanillos=rbind(nanillos,c(0))
+  }
+  if(datos.setas_train[i,18]=="o"){
+    nanillos=rbind(nanillos,c(1))
+  }
+  if(datos.setas_train[i,18]=="t"){
+    nanillos=rbind(nanillos,c(2))
+  }
+}
+setas=cbind(setas,nanillos)
+
+#Variable 18: tipo de anillo
+tanillo=matrix(ncol=8)
+colnames(tanillo)=c("TA_Telaraña","TA_Evanescente","TA_Abocinado","TA_Grande","TA_Ninguno","TA_Colgante","TA_Revestimiento","TA_Zona")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,19]=="c"){
+    tanillo=rbind(tanillo,c(1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,19]=="e"){
+    tanillo=rbind(tanillo,c(0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,19]=="f"){
+    tanillo=rbind(tanillo,c(0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,19]=="l"){
+    tanillo=rbind(tanillo,c(0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,19]=="n"){
+    tanillo=rbind(tanillo,c(0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,19]=="p"){
+    tanillo=rbind(tanillo,c(0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,19]=="s"){
+    tanillo=rbind(tanillo,c(0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,19]=="z"){
+    tanillo=rbind(tanillo,c(0,0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,tanillo)
+
+#Variable 19: color de las esporas
+
+#Variable 20: población
+poblation=matrix(ncol=6)
+colnames(poblation)=c("Abundante", "Agrupada", "Numerosa", "Dispersa", "Varias", "Solitaria")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,21]=="a"){
+    poblation=rbind(poblation,c(1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,21]=="c"){
+    poblation=rbind(poblation,c(0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,21]=="n"){
+    poblation=rbind(poblation,c(0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,21]=="s"){
+    poblation=rbind(poblation,c(0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,21]=="v"){
+    poblation=rbind(poblation,c(0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,21]=="y"){
+    poblation=rbind(poblation,c(0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,poblation)
+
+#Variable 21: habitat
+habita=matrix(ncol=7)
+colnames(habita)=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,22]=="d"){
+    habita=rbind(habita,c(1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,22]=="g"){
+    habita=rbind(habita,c(0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,22]=="l"){
+    habita=rbind(habita,c(0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,22]=="m"){
+    habita=rbind(habita,c(0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,22]=="p"){
+    habita=rbind(habita,c(0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,22]=="u"){
+    habita=rbind(habita,c(0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,22]=="w"){
+    habita=rbind(habita,c(0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,habita)
+
+setas=setas[-1,]
+rownames(setas)=as.character(seq(1:n_train))
+```
+
+```{r datos codificados,echo=TRUE}
+#6 primeras observaciones de los datos ya codificados
+head(setas)
+
+#Dimensión
+dim(setas)
+```
+
 ##  EDA. Exploratory Data Analysis.
 
 ### Letalidad:
 La variable **letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
 ```{r proporcion, echo=TRUE}
 #Tabla:
-table(datos.setas_train$Letalidad)
+table(setas$Venenosas)
 #Tabla de frecuencias:
-prop.table(table(datos.setas_train$Letalidad))
+prop.table(table(setas$Venenosas))
 #Gráfico
-barplot(table(datos.setas_train$Letalidad),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
+barplot(table(setas$Venenosas),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
 ```
 
-Podríamos transformar esta variable para que fuera interpretada como binaria numérica (0-comestible, 1-venenosa)
 
-Una de las variables, **Tipo_v** tipo de volva, con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
-```{r eliminar variable}
-datos.setas_train=datos.setas_train[,-17]
-```
 
 ##  Correlación entre las variables.
 
