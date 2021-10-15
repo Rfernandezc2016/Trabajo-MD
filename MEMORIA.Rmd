@@ -678,7 +678,7 @@ setas=cbind(setas,poblation)
 
 #Variable 21: habitat
 habita=matrix(ncol=7)
-colnames(habita)=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos")
+colnames(habita)=c("Bosques", "Pastos", "Hojas", "Prados", "Caminos", "Urbano", "Desechos")
 
 for(i in 1:dim(datos.setas_train)[1]){
   if(datos.setas_train[i,22]=="d"){

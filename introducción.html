@@ -32,6 +32,7 @@
   
 
 <link rel="next" href="objetivos-del-negocio.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,24 +50,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,14 +134,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> ¿ Objetivos (del negocio)?</a></li>
-<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a><ul>
+<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="datos.html"><a href="datos.html#particiones."><i class="fa fa-check"></i><b>3.1</b> Particiones.</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a><ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a><ul>
+<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.1.1</b> Letalidad:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-sombrero-forma_s"><i class="fa fa-check"></i><b>4.2.1</b> Forma del sombrero (Forma_S)</a></li>
 <li class="chapter" data-level="4.2.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#habitat"><i class="fa fa-check"></i><b>4.2.2</b> Habitat</a></li>
 <li class="chapter" data-level="4.2.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#población"><i class="fa fa-check"></i><b>4.2.3</b> Población</a></li>
@@ -149,7 +153,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
 <li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a><ul>
+<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="modelado.html"><a href="modelado.html#k-nn"><i class="fa fa-check"></i><b>5.1</b> k-NN</a></li>
 <li class="chapter" data-level="5.2" data-path="modelado.html"><a href="modelado.html#regresión-logística"><i class="fa fa-check"></i><b>5.2</b> Regresión Logística</a></li>
 <li class="chapter" data-level="5.3" data-path="modelado.html"><a href="modelado.html#clustering"><i class="fa fa-check"></i><b>5.3</b> Clustering</a></li>
@@ -184,11 +189,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Adrián Rocha De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián</em></p>
 <p class="date"><em>5/10/2021</em></p>
 </div>
-<div id="introducción" class="section level1">
+<div id="introducción" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introducción</h1>
 <p>Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en carracterísticas de hongos de la familia Agaricus y Lepiota.</p>
 <p>Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librerías:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introducción.html#cb1-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introducción.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 </div>
             </section>
 
