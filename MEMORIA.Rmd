@@ -48,11 +48,11 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
   Letalidad      | venenosa (p) o comestible(e)
   Forma del sombrebro o píleo | campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s)
   Cutícula o superficie del sombrero | fibroso (f), con surcos (g), escamosa (y) o lisa (s)
-  Color del sombrero | marrón (b), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
+  Color del sombrero | marrón (n), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
   Escamas | verdadero (t) o falso (f)
   Olor | almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s)
   Fijación de las láminas | adjunto (a), descentente (d), libre (f) o entallado (n)
-  Espacio entre láminas | cerca (c) o atestado (w)
+  Espacio entre láminas | cerca (c), atestado (w) o distante (d)
   Tamaño de las láminas | ancho (b) o estrecho (n)
   Color de las láminas | negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
   Forma del tallo | agrandado (e) o afilado (t)
@@ -62,10 +62,10 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
   Color del tallo por encima del anillo | marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y)
   Color del tallo por debajo del anillo | marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y)
   Tipo de volva | parcial (p) o universal (u)
-  Color del volva | naranja (o), blanco (w) o amarillo (y)
+  Color del volva | marrón (n), naranja (o), blanco (w) o amarillo (y)
   Número de anillos | ninguno (n), uno (o) o dos (t)
   Tipo de anillo | telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z)
-  Color de las esporas | negro (k), marrón (n), ante (b), chocolate (c), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y)
+  Color de las esporas | negro (k), marrón (n), ante (b), chocolate (h), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y)
   Población | abundante (a), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)
   Habitat | pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)
 
@@ -222,6 +222,42 @@ for(i in 1:dim(datos.setas_train)[1]){
 setas=cbind(setas,superficie)
 
 #Variable 3: color del sombrero
+color_sombrero=matrix(ncol=10)
+colnames(color_sombrero)=c("S_Marrón","S_Ante","S_Canela","S_Gris","S_Verde","S_Rosa","S_Morado","S_Rojo","S_Blanco","S_Amarillo")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas[i,4]=="n"){
+    color_sombrero=rbind(color_sombrero,c(1,0,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="b"){
+    color_sombrero=rbind(color_sombrero,c(0,1,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="c"){
+    color_sombrero=rbind(color_sombrero,c(0,0,1,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="g"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="r"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="p"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas[i,4]=="u"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas[i,4]=="e"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas[i,4]=="w"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas[i,4]=="y"){
+    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,color_sombrero)
 
 #Variable 4: Escamas (true-1 false-0)
 escamas_S=matrix(ncol=1)
@@ -300,7 +336,7 @@ for(i in 1:dim(datos.setas_train)[1]){
 }
 setas=cbind(setas,espacio_laminas)
 
-#Variable 8: tamaño de láminas (Ancho-1 estrecho-0)
+#Variable 8: tamaño de láminas (ancho-1 estrecho-0)
 tamaño_laminas=matrix(ncol=1)
 colnames(tamaño_laminas)=c("Ancho/Estrecho")
 
@@ -315,6 +351,48 @@ for(i in 1:dim(datos.setas_train)[1]){
 setas=cbind(setas,tamaño_laminas)
 
 #Variable 9: color de láminas
+color_laminas=matrix(ncol=12)
+colnames(color_laminas)=c("L_Negro","L_Marrón","L_Canela","L_Chocolate","L_Gris","L_Verde","L_Naranja","L_Rosa","L_Morado","L_Rojo","L_Blanco","L_Amarillo")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas[i,10]=="k"){
+    color_laminas=rbind(color_laminas,c(1,0,0,0,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="n"){
+    color_laminas=rbind(color_laminas,c(0,1,0,0,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="b"){
+    color_laminas=rbind(color_laminas,c(0,0,1,0,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="h"){
+    color_laminas=rbind(color_laminas,c(0,0,0,1,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="g"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,1,0,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="r"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="o"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="p"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas[i,10]=="u"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas[i,10]=="e"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas[i,10]=="w"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas[i,10]=="y"){
+    color_laminas=rbind(color_laminas,c(0,0,0,0,0,0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,color_laminas)
 
 #Variable 10: forma del tallo (agrandado-1 afilado-0)
 forma_tallo=matrix(ncol=1)
@@ -404,6 +482,24 @@ setas=cbind(setas,superficiet2)
 #Variable 15: color del tallo por debajo del anillo
 
 #Variable 16: color de la volva
+color_volva=matrix(ncol=4)
+colnames(color_volva)=c("V_Marrón","V_Naranja","V_Blanco","V_Amarillo")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas[i,17]=="n"){
+    color_volva=rbind(color_volva,c(1,0,0,0))
+  }
+  if(datos.setas[i,17]=="o"){
+    color_volva=rbind(color_volva,c(0,1,0,0))
+  }
+  if(datos.setas[i,17]=="w"){
+    color_volva=rbind(color_volva,c(0,0,1,0))
+  }
+  if(datos.setas[i,17]=="y"){
+    color_volva=rbind(color_volva,c(0,0,0,1))
+  }
+}
+setas=cbind(setas,color_volva)
 
 #Variable 17: número de anillos
 nanillos=matrix(ncol=1)
