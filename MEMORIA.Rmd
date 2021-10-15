@@ -16,6 +16,7 @@ Este conjunto de datos incluye descripciones de muestras hipotéticas basándose
 Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librerías:
 ```{r librerias,echo=TRUE,warning=FALSE}
 library(ggplot2)
+library(psych)
 ```
 
 # ¿ Objetivos (del negocio)?
