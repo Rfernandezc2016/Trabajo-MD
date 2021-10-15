@@ -546,7 +546,26 @@ for(i in 1:dim(datos.setas_train)[1]){
   }
 }
 setas=cbind(setas,color.t2)
+
 #Variable 16: color de la volva
+color_volva=matrix(ncol=4)
+colnames(color_volva)=c("V_Marrón","V_Naranja","V_Blanco","V_Amarillo")
+
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,17]=="n"){
+    color_volva=rbind(color_volva,c(1,0,0,0))
+  }
+  if(datos.setas_train[i,17]=="o"){
+    color_volva=rbind(color_volva,c(0,1,0,0))
+  }
+  if(datos.setas_train[i,17]=="w"){
+    color_volva=rbind(color_volva,c(0,0,1,0))
+  }
+  if(datos.setas_train[i,17]=="y"){
+    color_volva=rbind(color_volva,c(0,0,0,1))
+  }
+}
+setas=cbind(setas,color_volva)
 
 #Variable 17: número de anillos
 nanillos=matrix(ncol=1)
@@ -610,7 +629,7 @@ for(i in 1:dim(datos.setas_train)[1]){
   if(datos.setas_train[i,20]=="b"){
     color.e=rbind(color.e,c(0,0,1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,20]=="c"){
+  if(datos.setas_train[i,20]=="h"){
     color.e=rbind(color.e,c(0,0,0,1,0,0,0,0,0))
   }
   if(datos.setas_train[i,20]=="r"){
@@ -620,7 +639,7 @@ for(i in 1:dim(datos.setas_train)[1]){
     color.e=rbind(color.e,c(0,0,0,0,0,1,0,0,0))
   }
   if(datos.setas_train[i,20]=="u"){
-    color.t2=rbind(color.e,c(0,0,0,0,0,0,1,0,0))
+    color.e=rbind(color.e,c(0,0,0,0,0,0,1,0,0))
   }
   if(datos.setas_train[i,20]=="w"){
     color.e=rbind(color.e,c(0,0,0,0,0,0,0,1,0))
