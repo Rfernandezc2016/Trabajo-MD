@@ -259,7 +259,7 @@ for(i in 1:dim(datos.setas_train)[1]){
 }
 setas=cbind(setas,color_sombrero)
 
-#Variable 4: Escamas (true-1 false-0)
+#Variable 4: Escamas (true-1 false-0) prueba
 escamas_S=matrix(ncol=1)
 colnames(escamas_S)=c("Escamas")
 
@@ -478,28 +478,75 @@ for(i in 1:dim(datos.setas_train)[1]){
 setas=cbind(setas,superficiet2)
 
 #Variable 14: color del tallo por encima del anillo
-
-#Variable 15: color del tallo por debajo del anillo
-
-#Variable 16: color de la volva
-color_volva=matrix(ncol=4)
-colnames(color_volva)=c("V_Marrón","V_Naranja","V_Blanco","V_Amarillo")
-
+color.t1=matrix(ncol=9)
+colnames(color.t1)=c("CT1_marron","CT1_ante","CT1_canela","CT1_gris","CT1_naranja","CT1_rosa","CT1_rojo","CT1_blanco","CT1_amarillo")
 for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas[i,17]=="n"){
-    color_volva=rbind(color_volva,c(1,0,0,0))
+  if(datos.setas_train[i,15]=="n"){
+    color.t1=rbind(color.t1,c(1,0,0,0,0,0,0,0,0))
   }
-  if(datos.setas[i,17]=="o"){
-    color_volva=rbind(color_volva,c(0,1,0,0))
+  if(datos.setas_train[i,15]=="b"){
+    color.t1=rbind(color.t1,c(0,1,0,0,0,0,0,0,0))
   }
-  if(datos.setas[i,17]=="w"){
-    color_volva=rbind(color_volva,c(0,0,1,0))
+  if(datos.setas_train[i,15]=="c"){
+    color.t1=rbind(color.t1,c(0,0,1,0,0,0,0,0,0))
   }
-  if(datos.setas[i,17]=="y"){
-    color_volva=rbind(color_volva,c(0,0,0,1))
+  if(datos.setas_train[i,15]=="g"){
+    color.t1=rbind(color.t1,c(0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,15]=="o"){
+    color.t1=rbind(color.t1,c(0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,15]=="p"){
+    color.t1=rbind(color.t1,c(0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,15]=="e"){
+    color.t1=rbind(color.t1,c(0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,15]=="w"){
+    color.t1=rbind(color.t1,c(0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,15]=="y"){
+    color.t1=rbind(color.t1,c(0,0,0,0,0,0,0,0,1))
   }
 }
-setas=cbind(setas,color_volva)
+setas=cbind(setas,color.t1)
+  
+
+
+#Variable 15: color del tallo por debajo del anillo
+color.t2=matrix(ncol=9)
+colnames(color.t2)=c("CT2_marron","CT2_ante","CT2_canela","CT2_gris","CT2_naranja","CT2_rosa","CT2_rojo","CT2_blanco","CT2_amarillo")
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,16]=="n"){
+    color.t2=rbind(color.t2,c(1,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,16]=="b"){
+    color.t2=rbind(color.t2,c(0,1,0,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,16]=="c"){
+    color.t2=rbind(color.t2,c(0,0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,16]=="g"){
+    color.t2=rbind(color.t2,c(0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,16]=="o"){
+    color.t2=rbind(color.t2,c(0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,16]=="p"){
+    color.t2=rbind(color.t2,c(0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,16]=="e"){
+    color.t2=rbind(color.t2,c(0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,16]=="w"){
+    color.t2=rbind(color.t2,c(0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,16]=="y"){
+    color.t2=rbind(color.t2,c(0,0,0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,color.t2)
+#Variable 16: color de la volva
 
 #Variable 17: número de anillos
 nanillos=matrix(ncol=1)
@@ -551,6 +598,38 @@ for(i in 1:dim(datos.setas_train)[1]){
 setas=cbind(setas,tanillo)
 
 #Variable 19: color de las esporas
+color.e=matrix(ncol=9)
+colnames(color.e)=c("CE_negro","CE_marron","CE_ante","CE_chocolate","CE_verde","CE_naranja","CE_morado","CE_blanco","CE_amarillo")
+for(i in 1:dim(datos.setas_train)[1]){
+  if(datos.setas_train[i,20]=="k"){
+    color.e=rbind(color.e,c(1,0,0,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,20]=="n"){
+    color.e=rbind(color.e,c(0,1,0,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,20]=="b"){
+    color.e=rbind(color.e,c(0,0,1,0,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,20]=="c"){
+    color.e=rbind(color.e,c(0,0,0,1,0,0,0,0,0))
+  }
+  if(datos.setas_train[i,20]=="r"){
+    color.e=rbind(color.e,c(0,0,0,0,1,0,0,0,0))
+  }
+  if(datos.setas_train[i,20]=="o"){
+    color.e=rbind(color.e,c(0,0,0,0,0,1,0,0,0))
+  }
+  if(datos.setas_train[i,20]=="u"){
+    color.t2=rbind(color.e,c(0,0,0,0,0,0,1,0,0))
+  }
+  if(datos.setas_train[i,20]=="w"){
+    color.e=rbind(color.e,c(0,0,0,0,0,0,0,1,0))
+  }
+  if(datos.setas_train[i,20]=="y"){
+    color.e=rbind(color.e,c(0,0,0,0,0,0,0,0,1))
+  }
+}
+setas=cbind(setas,color.e)
 
 #Variable 20: población
 poblation=matrix(ncol=6)
