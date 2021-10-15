@@ -32,7 +32,6 @@
   
 <link rel="prev" href="datos.html"/>
 <link rel="next" href="modelado.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,23 +49,24 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,18 +134,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> ¿ Objetivos (del negocio)?</a></li>
-<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a>
-<ul>
+<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a><ul>
 <li class="chapter" data-level="3.1" data-path="datos.html"><a href="datos.html#particiones."><i class="fa fa-check"></i><b>3.1</b> Particiones.</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a>
-<ul>
+<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a><ul>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.1.1</b> Letalidad:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a>
-<ul>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-sombrero-forma_s"><i class="fa fa-check"></i><b>4.2.1</b> Forma del sombrero (Forma_S)</a></li>
 <li class="chapter" data-level="4.2.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#habitat"><i class="fa fa-check"></i><b>4.2.2</b> Habitat</a></li>
 <li class="chapter" data-level="4.2.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#población"><i class="fa fa-check"></i><b>4.2.3</b> Población</a></li>
@@ -153,8 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
 <li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a>
-<ul>
+<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a><ul>
 <li class="chapter" data-level="5.1" data-path="modelado.html"><a href="modelado.html#k-nn"><i class="fa fa-check"></i><b>5.1</b> k-NN</a></li>
 <li class="chapter" data-level="5.2" data-path="modelado.html"><a href="modelado.html#regresión-logística"><i class="fa fa-check"></i><b>5.2</b> Regresión Logística</a></li>
 <li class="chapter" data-level="5.3" data-path="modelado.html"><a href="modelado.html#clustering"><i class="fa fa-check"></i><b>5.3</b> Clustering</a></li>
@@ -184,11 +179,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preprocesado-de-datos." class="section level1" number="4">
+<div id="preprocesado-de-datos." class="section level1">
 <h1><span class="header-section-number">4</span> Preprocesado de datos.</h1>
 <p>Para poder tranformar las variables en factor, lo haremos mediante <strong>as.factor()</strong> a todas las variables de los datos.</p>
 <p>Ahora podemos ver mejor como son nuestros datos.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="preprocesado-de-datos..html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos.setas_train)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="preprocesado-de-datos..html#cb9-1"></a><span class="kw">summary</span>(datos.setas_train)</span></code></pre></div>
 <pre><code>##  Letalidad Forma_S  Cuticula    Color_S     Escamas       Olor      Fijacion_L
 ##  e:2522    b: 252   f:1401   n      :1394   f:2868   n      :2127   a: 114    
 ##  p:2352    c:   2   g:   3   g      :1103   t:2006   f      :1276   f:4760    
@@ -222,143 +217,143 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##              o      :  26   y:1037    u: 222  
 ##              (Other):  70             w: 116</code></pre>
 <p>Una de las variables, <strong>Tipo_v</strong> (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesado-de-datos..html#cb11-1" aria-hidden="true" tabindex="-1"></a>datos.setas_train<span class="ot">=</span>datos.setas_train[,<span class="sc">-</span><span class="dv">17</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesado-de-datos..html#cb11-1"></a>datos.setas_train=datos.setas_train[,<span class="op">-</span><span class="dv">17</span>]</span></code></pre></div>
 <p>Además, la variable <strong>Fijacion_L</strong> tendría solo dos niveles pues en el nivel descendente y entallado no aparecen en los datos y la variable <strong>Espacio_L</strong> también tiene dos niveles pues el nivel distante tampoco aparece, por ello las codificamos mediante unas variable binomiales.</p>
 <p>Codificamos el resto de las variables originales de forma que obtendremos también nuevas variables binomiales, excepto las variables relacionadas con el color que las codificaremos siguiendo la escala de colores.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="preprocesado-de-datos..html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#6 primeras observaciones de los datos ya codificados</span></span>
-<span id="cb12-2"><a href="preprocesado-de-datos..html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(setas)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="preprocesado-de-datos..html#cb12-1"></a><span class="co">#6 primeras observaciones de los datos ya codificados</span></span>
+<span id="cb12-2"><a href="preprocesado-de-datos..html#cb12-2"></a><span class="kw">head</span>(setas)</span></code></pre></div>
 <pre><code>##   Venenosas Campana Cónica Convexa Plana Nudosa Hundida Fibroso Surcos Escamoso
+## 1         0       1      0       0     0      0       0       0      0        0
 ## 2         0       1      0       0     0      0       0       0      0        0
-## 3         0       1      0       0     0      0       0       0      0        0
-## 4         0       1      0       0     0      0       0       0      0        1
-## 5         1       0      0       1     0      0       0       0      0        1
+## 3         0       1      0       0     0      0       0       0      0        1
+## 4         1       0      0       1     0      0       0       0      0        1
+## 5         0       0      0       1     0      0       0       0      0        1
 ## 6         0       0      0       1     0      0       0       0      0        1
-## 7         0       0      0       1     0      0       0       0      0        1
 ##   Liso Escamas O_almendra O_anís O_creosota O_pescado O_asqueroso O_mohoso
-## 2    1       1          0      1          0         0           0        0
-## 3    1       1          1      0          0         0           0        0
-## 4    0       1          0      1          0         0           0        0
-## 5    0       1          0      0          0         0           0        0
-## 6    0       1          0      1          0         0           0        0
-## 7    0       1          1      0          0         0           0        0
+## 1    1       1          0      1          0         0           0        0
+## 2    1       1          1      0          0         0           0        0
+## 3    0       1          0      1          0         0           0        0
+## 4    0       1          0      0          0         0           0        0
+## 5    0       1          0      1          0         0           0        0
+## 6    0       1          1      0          0         0           0        0
 ##   O_ninguno O_acre O_picante Adjunto/Libre Cerca/Atestado Ancho/Estrecho
+## 1         0      0         0             0              1              1
 ## 2         0      0         0             0              1              1
 ## 3         0      0         0             0              1              1
-## 4         0      0         0             0              1              1
-## 5         0      1         0             0              1              0
+## 4         0      1         0             0              1              0
+## 5         0      0         0             0              1              1
 ## 6         0      0         0             0              1              1
-## 7         0      0         0             0              1              1
 ##   Agrandado/Afilado TR_bulboso TR_club TR_copa TR_igual TR_rizomorfos
+## 1                 1          0       1       0        0             0
 ## 2                 1          0       1       0        0             0
 ## 3                 1          0       1       0        0             0
-## 4                 1          0       1       0        0             0
-## 5                 1          0       0       0        1             0
+## 4                 1          0       0       0        1             0
+## 5                 1          0       1       0        0             0
 ## 6                 1          0       1       0        0             0
-## 7                 1          0       1       0        0             0
 ##   TR_enraizado TR_faltante ST1_Fibroso ST1_Escamoso ST1_Sedoso ST1_Liso
+## 1            0           0           0            0          0        1
 ## 2            0           0           0            0          0        1
 ## 3            0           0           0            0          0        1
 ## 4            0           0           0            0          0        1
 ## 5            0           0           0            0          0        1
 ## 6            0           0           0            0          0        1
-## 7            0           0           0            0          0        1
 ##   ST2_Fibroso ST2_Escamoso ST2_Sedoso ST2_Liso Nº anillos TA_Telaraña
+## 1           0            0          0        1          1           0
 ## 2           0            0          0        1          1           0
 ## 3           0            0          0        1          1           0
 ## 4           0            0          0        1          1           0
 ## 5           0            0          0        1          1           0
 ## 6           0            0          0        1          1           0
-## 7           0            0          0        1          1           0
 ##   TA_Evanescente TA_Abocinado TA_Grande TA_Ninguno TA_Colgante TA_Revestimiento
+## 1              0            0         0          0           1                0
 ## 2              0            0         0          0           1                0
 ## 3              0            0         0          0           1                0
 ## 4              0            0         0          0           1                0
 ## 5              0            0         0          0           1                0
 ## 6              0            0         0          0           1                0
-## 7              0            0         0          0           1                0
 ##   TA_Zona Abundante Agrupada Numerosa Dispersa Varias Solitaria bosques pastos
+## 1       0         0        0        1        0      0         0       0      0
 ## 2       0         0        0        1        0      0         0       0      0
-## 3       0         0        0        1        0      0         0       0      0
-## 4       0         0        0        0        1      0         0       0      0
-## 5       0         0        0        0        0      1         0       0      1
-## 6       0         0        0        1        0      0         0       0      1
-## 7       0         0        0        0        1      0         0       0      0
+## 3       0         0        0        0        1      0         0       0      0
+## 4       0         0        0        0        0      1         0       0      1
+## 5       0         0        0        1        0      0         0       0      1
+## 6       0         0        0        0        1      0         0       0      0
 ##   hojas prados caminos urbano desechos
+## 1     0      1       0      0        0
 ## 2     0      1       0      0        0
 ## 3     0      1       0      0        0
-## 4     0      1       0      0        0
+## 4     0      0       0      0        0
 ## 5     0      0       0      0        0
-## 6     0      0       0      0        0
-## 7     0      1       0      0        0</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesado-de-datos..html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Dimensión</span></span>
-<span id="cb14-2"><a href="preprocesado-de-datos..html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(setas)</span></code></pre></div>
+## 6     0      1       0      0        0</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesado-de-datos..html#cb14-1"></a><span class="co">#Dimensión</span></span>
+<span id="cb14-2"><a href="preprocesado-de-datos..html#cb14-2"></a><span class="kw">dim</span>(setas)</span></code></pre></div>
 <pre><code>## [1] 4874   62</code></pre>
-<div id="eda.-exploratory-data-analysis." class="section level2" number="4.1">
+<div id="eda.-exploratory-data-analysis." class="section level2">
 <h2><span class="header-section-number">4.1</span> EDA. Exploratory Data Analysis.</h2>
-<div id="letalidad" class="section level3" number="4.1.1">
+<div id="letalidad" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Letalidad:</h3>
 <p>La variable <strong>letalidad</strong> tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="preprocesado-de-datos..html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla:</span></span>
-<span id="cb16-2"><a href="preprocesado-de-datos..html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(setas<span class="sc">$</span>Venenosas)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="preprocesado-de-datos..html#cb16-1"></a><span class="co">#Tabla:</span></span>
+<span id="cb16-2"><a href="preprocesado-de-datos..html#cb16-2"></a><span class="kw">table</span>(setas<span class="op">$</span>Venenosas)</span></code></pre></div>
 <pre><code>## 
 ##    0    1 
 ## 2522 2352</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocesado-de-datos..html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias:</span></span>
-<span id="cb18-2"><a href="preprocesado-de-datos..html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(setas<span class="sc">$</span>Venenosas))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocesado-de-datos..html#cb18-1"></a><span class="co">#Tabla de frecuencias:</span></span>
+<span id="cb18-2"><a href="preprocesado-de-datos..html#cb18-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(setas<span class="op">$</span>Venenosas))</span></code></pre></div>
 <pre><code>## 
 ##         0         1 
 ## 0.5174395 0.4825605</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocesado-de-datos..html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico</span></span>
-<span id="cb20-2"><a href="preprocesado-de-datos..html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(setas<span class="sc">$</span>Venenosas),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>),<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Comestible&quot;</span>,<span class="st">&quot;Venenosa&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocesado-de-datos..html#cb20-1"></a><span class="co">#Gráfico</span></span>
+<span id="cb20-2"><a href="preprocesado-de-datos..html#cb20-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(setas<span class="op">$</span>Venenosas),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>),<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Comestible&quot;</span>,<span class="st">&quot;Venenosa&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/proporcion-1.png" width="672" /></p>
 </div>
 </div>
-<div id="correlación-entre-las-variables." class="section level2" number="4.2">
+<div id="correlación-entre-las-variables." class="section level2">
 <h2><span class="header-section-number">4.2</span> Correlación entre las variables.</h2>
 <p>Vamos a comprobar si existe alguna correlación entre las distintas variables.</p>
-<div id="forma-del-sombrero-forma_s" class="section level3" number="4.2.1">
+<div id="forma-del-sombrero-forma_s" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Forma del sombrero (Forma_S)</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="preprocesado-de-datos..html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~forma del sombrero</span></span>
-<span id="cb21-2"><a href="preprocesado-de-datos..html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_S)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="preprocesado-de-datos..html#cb21-1"></a><span class="co">#Tabla de frecuencias letalidad~forma del sombrero</span></span>
+<span id="cb21-2"><a href="preprocesado-de-datos..html#cb21-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_S)</span></code></pre></div>
 <pre><code>##    
 ##        b    c    f    k    s    x
 ##   e  229    0  960  133   21 1179
 ##   p   23    2  922  356    0 1049</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preprocesado-de-datos..html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~forma del sombrero</span></span>
-<span id="cb23-2"><a href="preprocesado-de-datos..html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_S),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Forma_S&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;campana&quot;</span>, <span class="st">&quot;cónica&quot;</span>, <span class="st">&quot;convexa&quot;</span>, <span class="st">&quot;plana&quot;</span>, <span class="st">&quot;nudosa&quot;</span>, <span class="st">&quot;hundida&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preprocesado-de-datos..html#cb23-1"></a><span class="co">#Gráfico letalidad~forma del sombrero</span></span>
+<span id="cb23-2"><a href="preprocesado-de-datos..html#cb23-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_S),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Forma_S&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;campana&quot;</span>, <span class="st">&quot;cónica&quot;, &quot;</span>convexa<span class="st">&quot;, &quot;</span>plana<span class="st">&quot;, &quot;</span>nudosa<span class="st">&quot;, &quot;</span>hundida<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/forma%20del%20sombrero-1.png" width="672" /></p>
 </div>
-<div id="habitat" class="section level3" number="4.2.2">
+<div id="habitat" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Habitat</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="preprocesado-de-datos..html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~habitat</span></span>
-<span id="cb24-2"><a href="preprocesado-de-datos..html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Habitat)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="preprocesado-de-datos..html#cb24-1"></a><span class="co">#Tabla de frecuencias letalidad~habitat</span></span>
+<span id="cb24-2"><a href="preprocesado-de-datos..html#cb24-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Habitat)</span></code></pre></div>
 <pre><code>##    
 ##        d    g    l    m    p    u    w
 ##   e 1130  849  141  142   79   65  116
 ##   p  770  435  368   21  601  157    0</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="preprocesado-de-datos..html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~habitat</span></span>
-<span id="cb26-2"><a href="preprocesado-de-datos..html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Habitat),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Habitat&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;bosques&quot;</span>, <span class="st">&quot;pastos&quot;</span>, <span class="st">&quot;hojas&quot;</span>, <span class="st">&quot;prados&quot;</span>, <span class="st">&quot;caminos&quot;</span>, <span class="st">&quot;urbano&quot;</span>, <span class="st">&quot;desechos&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="preprocesado-de-datos..html#cb26-1"></a><span class="co">#Gráfico letalidad~habitat</span></span>
+<span id="cb26-2"><a href="preprocesado-de-datos..html#cb26-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Habitat),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Habitat&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;bosques&quot;</span>, <span class="st">&quot;pastos&quot;</span>, <span class="st">&quot;hojas&quot;</span>, <span class="st">&quot;prados&quot;</span>, <span class="st">&quot;caminos&quot;</span>, <span class="st">&quot;urbano&quot;</span>, <span class="st">&quot;desechos&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/habitat-1.png" width="672" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="preprocesado-de-datos..html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="preprocesado-de-datos..html#cb27-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
 </div>
-<div id="población" class="section level3" number="4.2.3">
+<div id="población" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Población</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="preprocesado-de-datos..html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~poblacion</span></span>
-<span id="cb28-2"><a href="preprocesado-de-datos..html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Poblacion)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="preprocesado-de-datos..html#cb28-1"></a><span class="co">#Tabla de frecuencias letalidad~poblacion</span></span>
+<span id="cb28-2"><a href="preprocesado-de-datos..html#cb28-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Poblacion)</span></code></pre></div>
 <pre><code>##    
 ##        a    c    n    s    v    y
 ##   e  241  176  223  530  707  645
 ##   p    0   28    0  205 1727  392</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="preprocesado-de-datos..html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~poblacion</span></span>
-<span id="cb30-2"><a href="preprocesado-de-datos..html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Poblacion),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Poblacion&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;abundante&quot;</span>, <span class="st">&quot;agrupada&quot;</span>, <span class="st">&quot;numerosa&quot;</span>, <span class="st">&quot;dispersa&quot;</span>, <span class="st">&quot;varias&quot;</span>, <span class="st">&quot;solitaria&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="preprocesado-de-datos..html#cb30-1"></a><span class="co">#Gráfico letalidad~poblacion</span></span>
+<span id="cb30-2"><a href="preprocesado-de-datos..html#cb30-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Poblacion),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Poblacion&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;abundante&quot;</span>, <span class="st">&quot;agrupada&quot;</span>, <span class="st">&quot;numerosa&quot;</span>, <span class="st">&quot;dispersa&quot;</span>, <span class="st">&quot;varias&quot;</span>, <span class="st">&quot;solitaria&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/poblacion-1.png" width="672" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="preprocesado-de-datos..html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="preprocesado-de-datos..html#cb31-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
 </div>
 </div>
-<div id="transformación-de-variables" class="section level2" number="4.3">
+<div id="transformación-de-variables" class="section level2">
 <h2><span class="header-section-number">4.3</span> Transformación de variables</h2>
 </div>
-<div id="imputacion-de-datos-datos-faltantes" class="section level2" number="4.4">
+<div id="imputacion-de-datos-datos-faltantes" class="section level2">
 <h2><span class="header-section-number">4.4</span> Imputacion de datos (datos faltantes)</h2>
 </div>
 </div>
