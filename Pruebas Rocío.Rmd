@@ -264,44 +264,13 @@ indices_test=indices_totales[-indices_train]
 
 ```
 
-ESCALA DE COLORES
-```{r escala de colores}
-color_sombrero=matrix(ncol=1)
-colnames(color_sombrero)=c("Color_S")
 
-for(i in 1:dim(datos.setas)[1]){
-  if(datos.setas[i,4]=="n"){
-    color_sombrero=rbind(color_sombrero,c(1,0,0,0,0,0,0,0,0,0))
-  }
-  if(datos.setas[i,4]=="b"){
-    color_sombrero=rbind(color_sombrero,c(0,1,0,0,0,0,0,0,0,0))
-  }
-  if(datos.setas[i,4]=="c"){
-    color_sombrero=rbind(color_sombrero,c(0,0,1,0,0,0,0,0,0,0))
-  }
-  if(datos.setas[i,4]=="g"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,1,0,0,0,0,0,0))
-  }
-  if(datos.setas[i,4]=="r"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,0,1,0,0,0,0,0))
-  }
-  if(datos.setas[i,4]=="p"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,1,0,0,0,0))
-  }
-  if(datos.setas[i,4]=="u"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,1,0,0,0))
-  }
-  if(datos.setas[i,4]=="e"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,1,0,0))
-  }
-  if(datos.setas[i,4]=="w"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,0,1,0))
-  }
-  if(datos.setas[i,4]=="y"){
-    color_sombrero=rbind(color_sombrero,c(0,0,0,0,0,0,0,0,0,1))
-  }
-}
-color_sombrero=color_sombrero[-1,]
+```{r graficos}
+library(psych)
+
+pairs.panels(setas[,1:5],method = "pearson",hist.col = "#00AFBB",density = TRUE,ellipses = TRUE)
+
+pairs(setas[,c(1,11)])
 
 ```
 
