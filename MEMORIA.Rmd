@@ -744,6 +744,9 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
 #Gráfico letalidad~forma del sombrero
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S),main="Letalidad",xlab="Forma_S",ylab="Número de setas",names.arg=c("campana", "cónica", "convexa", "plana", "nudosa", "hundida"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
 ```
 
 ### Habitat
