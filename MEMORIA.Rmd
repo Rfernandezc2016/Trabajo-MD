@@ -717,8 +717,6 @@ head(setas)
 #Dimensión
 dim(setas)
 
-#Resumen
-summary(setas)
 ```
 
 ##  EDA. Exploratory Data Analysis.
