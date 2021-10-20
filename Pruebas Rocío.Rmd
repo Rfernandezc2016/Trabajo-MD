@@ -270,7 +270,7 @@ library(psych)
 
 pairs.panels(setas[,1:7],method = "pearson",hist.col = "#00AFBB",density = TRUE,ellipses = TRUE)
 
-pairs(setas[,c(1,11)])
+pairs(setas[,c(1,7)])
 
 ```
 
