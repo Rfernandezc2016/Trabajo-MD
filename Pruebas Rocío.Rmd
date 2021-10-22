@@ -268,13 +268,29 @@ indices_test=indices_totales[-indices_train]
 ```{r graficos}
 library(psych)
 
-pairs.panels(setas[,1:7],method = "pearson",hist.col = "#00AFBB",density = TRUE,ellipses = TRUE)
+pairs.panels(datos.setas_train[,1:5],method = "pearson",hist.col = "#00AFBB",density = TRUE,ellipses = TRUE)
 
-pairs(setas[,c(1,7)])
+pairs(datos.setas_train[,c(1:5)])
 
 ```
 
 ```{r pruebas test}
 table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
+```
+
+
+
+CALCULO DE DISTANCIAS
+```{R distancias}
+for (i in 1:dim(setas)[1]){
+  a=0
+  b=0
+  c=0
+  d=0
+  i=1
+  if(setas[i,i]==1&setas[i+1,i]==1){
+    
+  }
+}
 ```
