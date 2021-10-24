@@ -54,13 +54,20 @@ dist.pearson=function(a,b,c,d,matriz,i,j){
   matriz[i,j]=distancia
   matriz
 }
+#Distancia Yule:
+dist.yule=function(a,b,c,d,matriz,i,j){
+  distancia=((a*d)-(b*c))/((a*d)+(b*c))
+  matriz[j,i]=distancia
+  matriz[i,j]=distancia
+  matriz
+}
 
 
 #Matrices de las distintas distancias:
 distancia_dice=diag(dim(setas)[1])
 distancia_hamman=diag(dim(setas)[1])
 distancia_pearson=diag(dim(setas)[1])
-
+distancia_yule=diag(dim(setas)[1])
 ```
 
 
@@ -89,19 +96,20 @@ for (i in 1:(dim(setas)[1]-1)){
     distancia_dice=dist.dice(a,b,c,d,distancia_dice,i,j)
     distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
     distancia_pearson=dist.pearson(a,b,c,d,distancia_pearson,i,j)
+    distancia_yule=dist.yule(a,b,c,d,distancia_yule,i,j)
   }
 }
 ```
 
 
 ```{r distancias prueba}
-dim_prueba=200
+dim_prueba=100
 
 #Matrices de las distintas distancias:
 distancia_dice=diag(dim_prueba)
 distancia_hamman=diag(dim_prueba)
 distancia_pearson=diag(dim_prueba)
-
+distancia_yule=diag(dim_prueba)
 
 inicio=Sys.time()
 #i observacion1, j observacion2, k caracteristica
@@ -128,6 +136,7 @@ for (i in 1:(dim_prueba-1)){
     distancia_dice=dist.dice(a,b,c,d,distancia_dice,i,j)
     distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
     distancia_pearson=dist.pearson(a,b,c,d,distancia_pearson,i,j)
+    distancia_yule=dist.yule(a,b,c,d,distancia_yule,i,j)
   }
 }
 fin=Sys.time()
