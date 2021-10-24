@@ -569,18 +569,18 @@ for(i in 1:dim(datos.setas_train)[1]){
 setas=cbind(setas,color_volva)
 
 #Variable 17: número de anillos
-nanillos=matrix(ncol=1)
-colnames(nanillos)=c("Nº anillos")
+nanillos=matrix(ncol=3)
+colnames(nanillos)=c("NA_0","NA_1","NA_2")
 
 for(i in 1:dim(datos.setas_train)[1]){
   if(datos.setas_train[i,18]=="n"){
-    nanillos=rbind(nanillos,c(0))
+    nanillos=rbind(nanillos,c(1,0,0))
   }
   if(datos.setas_train[i,18]=="o"){
-    nanillos=rbind(nanillos,c(1))
+    nanillos=rbind(nanillos,c(0,1,0))
   }
   if(datos.setas_train[i,18]=="t"){
-    nanillos=rbind(nanillos,c(2))
+    nanillos=rbind(nanillos,c(0,0,1))
   }
 }
 setas=cbind(setas,nanillos)
