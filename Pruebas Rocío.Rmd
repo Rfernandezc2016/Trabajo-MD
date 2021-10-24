@@ -85,8 +85,8 @@ for (i in 1:(dim(setas)[1]-1)){
       }
     }
     distancia_dice=dist.dice(a,b,c,d,distancia_dice,i,j)
-    distancia_hamman=dist.dice(a,b,c,d,distancia_hamman,i,j)
-    distancia_pearson=dist.dice(a,b,c,d,distancia_pearson,i,j)
+    distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
+    distancia_pearson=dist.pearson(a,b,c,d,distancia_pearson,i,j)
   }
 }
 ```
