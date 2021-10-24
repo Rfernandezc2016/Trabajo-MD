@@ -111,7 +111,7 @@ distancia_hamman=diag(dim_prueba)
 distancia_pearson=diag(dim_prueba)
 distancia_yule=diag(dim_prueba)
 
-inicio=Sys.time()
+
 #i observacion1, j observacion2, k caracteristica
 for (i in 1:(dim_prueba-1)){
   for (j in (i+1):(dim_prueba)) {
@@ -139,7 +139,6 @@ for (i in 1:(dim_prueba-1)){
     distancia_yule=dist.yule(a,b,c,d,distancia_yule,i,j)
   }
 }
-fin=Sys.time()
-fin-inicio
+
 ```
 
