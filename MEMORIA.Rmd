@@ -744,11 +744,37 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 #Tabla de frecuencias letalidad~forma del sombrero
 table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
 #Gráfico letalidad~forma del sombrero
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S),main="Letalidad",xlab="Forma_S",ylab="Número de setas",names.arg=c("campana", "cónica", "convexa", "plana", "nudosa", "hundida"),col=c("blue","magenta"))
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S),main="Letalidad vs Forma del sombrero",xlab="Forma_S",ylab="Número de setas",names.arg=c("Campana", "Cónica", "Plana", "Nudosa", "Hundida", "Convexa"),col=c("blue","magenta"))
 
 #Test de independencia:
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
 ```
+
+### Cutícula
+
+```{r cuticula,echo=TRUE}
+#Tabla de frecuencias letalidad~cuticula
+table(datos.setas_train$Letalidad,datos.setas_train$Cuticula)
+#Gráfico letalidad~cuticula
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Cuticula),main="Letalidad vs Cuticula",xlab="Forma_S",ylab="Número de setas",names.arg=c("Fibroso", "Con surcos", "Lisa", "Escamosa"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Cuticula))
+```
+
+
+### Color del sombrero (Color_S)
+
+```{r color del sombrero,echo=TRUE}
+#Tabla de frecuencias letalidad~color del sombrero
+table(datos.setas_train$Letalidad,datos.setas_train$Color_S)
+#Gráfico letalidad~color del sombrero
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_S),main="Letalidad vs Color del sombrero",xlab="Forma_S",ylab="Número de setas",names.arg=c("Ante", "Canela", "Rojo", "Gris","Marrón","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_S))
+```
+
 
 ### Habitat
 
