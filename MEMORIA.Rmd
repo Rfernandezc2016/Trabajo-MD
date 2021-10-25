@@ -795,7 +795,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
 ```{r olor,echo=TRUE}
 #Tabla de frecuencias letalidad~olor
 table(datos.setas_train$Letalidad,datos.setas_train$Olor)
-#Gráfico letalidad~escamas
+#Gráfico letalidad~olor
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Olor),main="Letalidad vs Olor",xlab="Olor",ylab="Número de setas",names.arg=c("Almendra", "Creosota","Asqueroso","Anís","Mohoso","Ninguno","Acre","Picante","Pescado"),col=c("blue","magenta"))
 
 #Test de independencia:
@@ -817,7 +817,11 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 94% frente a un 6%, comestible o venenosa, respectivamente.
 ```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+#Proporción según fijacion sea adjunto
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,1])*100
+
+#Proporción según fijacion sea libre
+prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,2])*100
 ```
 
 
@@ -834,6 +838,10 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L))
 ```
 Podemos ver que ocurre algo parecido que en la variable **fijacion_L**, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 92% frente a un 8%, comestible o venenosa, respectivamente.
 ```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+#Proporción según espacio sea cerca
+prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,1])*100
+
+#Proporción según espacio sea atestado
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,2])*100
 ```
 
@@ -857,6 +865,93 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,1])*1
 #Proporción según tamaño sea estrecho
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,2])*100
 ```
+
+
+### Color de las láminas (Color_L)
+
+```{r color laminas,echo=TRUE}
+#Tabla de frecuencias letalidad~color de las láminas
+table(datos.setas_train$Letalidad,datos.setas_train$Color_L)
+#Gráfico letalidad~color de las láminas
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_L),main="Letalidad vs Color de las láminas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Rojo","Gris","Chocolate","Negro","Marrón","Naranja","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_L))
+```
+
+
+### Forma del tallo (Forma_T)
+
+```{r forma tallo,echo=TRUE}
+#Tabla de frecuencias letalidad~forma del tallo
+table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)
+#Gráfico letalidad~forma del tallo
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T),main="Letalidad vs Forma del tallo",xlab="Tallo",ylab="Número de setas",names.arg=c("Agrandado", "Afilado"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T))
+```
+Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo
+```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+#Proporción según forma sea agrandado
+prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,1])*100
+
+#Proporción según forma sea afilado
+prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,2])*100
+```
+
+
+### Tallo-Raíz (Tallo_raiz)
+
+```{r tallo raiz,echo=TRUE}
+#Tabla de frecuencias letalidad~tallo-raiz
+table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz)
+#Gráfico letalidad~tallo-raiz
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz),main="Letalidad vs Tallo-Raiz",xlab="Tallo-Raiz",ylab="Número de setas",names.arg=c("Faltante", "Bulboso","Club","Igual","Enraizado"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz))
+```
+
+
+### Superficie del tallo por encima del anillo (Superficie_T1)
+
+```{r superficie t1,echo=TRUE}
+#Tabla de frecuencias letalidad~supercifie del tallo por encima del anillo
+table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1)
+#Gráfico letalidad~superficie del tallo por encima del anillo
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1),main="Letalidad vs Tallo por encima del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1))
+```
+
+
+### Color del tallo por encima del anillo (Color_T1)
+
+```{r color t1,echo=TRUE}
+#Tabla de frecuencias letalidad~color del tallo por encima del anillo
+table(datos.setas_train$Letalidad,datos.setas_train$Color_T1)
+#Gráfico letalidad~color del tallo por encima del anillo
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1),main="Letalidad vs Tallo por encima del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1))
+```
+
+
+### Color del volva (Color_V)
+
+```{r color volva,echo=TRUE}
+#Tabla de frecuencias letalidad~color del volva
+table(datos.setas_train$Letalidad,datos.setas_train$Color_V)
+#Gráfico letalidad~color del volva
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_V),main="Letalidad vs Volva",xlab="Color",ylab="Número de setas",names.arg=c("Marrón", "Naranja","Blanco","Amarillo"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_V))
+```
+
 
 ### Habitat
 
