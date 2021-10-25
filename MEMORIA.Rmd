@@ -953,6 +953,45 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_V))
 ```
 
 
+### Número de anillos (N_anillos)
+
+```{r olor,echo=TRUE}
+#Tabla de frecuencias letalidad~numero de anillos
+table(datos.setas_train$Letalidad,datos.setas_train$N_anillos)
+#Gráfico letalidad~numero de anillos
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$N_anillos),main="Letalidad vs Anillos",xlab="Número",ylab="Número de setas",names.arg=c("Ninguno", "Uno","Dos"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$N_anillos))
+```
+
+
+### Tipo de anillo (Tipo_anillo)
+
+```{r olor,echo=TRUE}
+#Tabla de frecuencias letalidad~tipo de anillo
+table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo)
+#Gráfico letalidad~tipo de anillo
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo),main="Letalidad vs Anillo",xlab="Tipo",ylab="Número de setas",names.arg=c("Evanescente", "Abocinado","Grande","Ninguno","Colgante"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo))
+```
+
+
+### Color de las esporas
+
+```{r olor,echo=TRUE}
+#Tabla de frecuencias letalidad~color de las esporas
+table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas)
+#Gráfico letalidad~color de las esporas
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas),main="Letalidad vs Esporas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Chocolate","Negro","Marrón","Naranja","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas))
+```
+Podemos observar que aquellas setas que tengan el color de las esporas *ante, naranja, morado o amarillo* son comestibles.
+
 ### Habitat
 
 ```{r habitat,echo=TRUE}
