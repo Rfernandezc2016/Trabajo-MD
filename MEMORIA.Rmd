@@ -927,6 +927,19 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1))
 ```
 
 
+### Superficie del tallo por debajo del anillo (Superficie_T2)
+
+```{r superficie t2,echo=TRUE}
+#Tabla de frecuencias letalidad~supercifie del tallo por debajo del anillo
+table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2)
+#Gráfico letalidad~superficie del tallo por debajo del anillo
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2),main="Letalidad vs Tallo por debajo del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2))
+```
+
+
 ### Color del tallo por encima del anillo (Color_T1)
 
 ```{r color t1,echo=TRUE}
@@ -937,6 +950,19 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1),main="Leta
 
 #Test de independencia:
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1))
+```
+
+
+### Color del tallo por debajo del anillo (Color_T2)
+
+```{r color t2,echo=TRUE}
+#Tabla de frecuencias letalidad~color del tallo por debajo del anillo
+table(datos.setas_train$Letalidad,datos.setas_train$Color_T2)
+#Gráfico letalidad~color del tallo por debajo del anillo
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_T2),main="Letalidad vs Tallo por debajo del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T2))
 ```
 
 
@@ -992,6 +1018,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas))
 ```
 Podemos observar que aquellas setas que tengan el color de las esporas *ante, naranja, morado o amarillo* son comestibles.
 
+
 ### Habitat
 
 ```{r habitat,echo=TRUE}
@@ -1002,6 +1029,7 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letal
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 
+
 ### Población
 
 ```{r poblacion,echo=TRUE}
@@ -1011,6 +1039,8 @@ table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
 barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
+
+
 
 ##  Transformación de variables
 
