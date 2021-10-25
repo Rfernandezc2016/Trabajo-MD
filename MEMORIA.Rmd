@@ -816,7 +816,7 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L),main="Le
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 94% frente a un 6%, comestible o venenosa, respectivamente.
-```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+```{r proporcion fijacion,echo=TRUE}
 #Proporción según fijacion sea adjunto
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,1])*100
 
@@ -837,7 +837,7 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L),main="Let
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L))
 ```
 Podemos ver que ocurre algo parecido que en la variable **fijacion_L**, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 92% frente a un 8%, comestible o venenosa, respectivamente.
-```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+```{r proporcion espacio,echo=TRUE}
 #Proporción según espacio sea cerca
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,1])*100
 
@@ -858,7 +858,7 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L),main="Let
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según el tamaño de las láminas en el caso de que sea ancha es del 30% frente a 70%, respectivamente, mientras que si es estrecho la proporción cambia a un 11.5% frente a un 88.5%, respectivamente.
-```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+```{r proporcion tamaño,echo=TRUE}
 #Proporción según tamaño sea ancho
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,1])*100
 
@@ -892,7 +892,7 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T),main="Letal
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo
-```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+```{r proporcion forma,echo=TRUE}
 #Proporción según forma sea agrandado
 prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,1])*100
 
