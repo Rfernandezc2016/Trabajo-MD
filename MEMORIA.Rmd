@@ -804,6 +804,40 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
 Podemos observar que la variable **olor** se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís o ninguno* son comestibles. Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
 
+### Fijación de las láminas (Fijacion_L)
+
+```{r fijacion,echo=TRUE}
+#Tabla de frecuencias letalidad~fijación de las láminas
+table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)
+#Gráfico letalidad~fijación de las láminas
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L),main="Letalidad vs Fijación de las láminas",xlab="Fijación",ylab="Número de setas",names.arg=c("Adjunto", "Libre"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
+```
+Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 94% frente a un 6%, comestible o venenosa, respectivamente.
+```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,1]/sum(datos.setas_train$Fijacion_L=="a"))*100
+```
+
+
+### Espacio entre láminas (Espacio_L)
+
+```{r espacio,echo=TRUE}
+#Tabla de frecuencias letalidad~espacio entre láminas
+table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)
+#Gráfico letalidad~espacio entre láminas
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L),main="Letalidad vs Espacio entre láminas",xlab="Espacio",ylab="Número de setas",names.arg=c("Cerca", "Atestado"),col=c("blue","magenta"))
+
+#Test de independencia:
+chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
+```
+Podemos ver que ocurre algo parecido que en la variable **fijacion_L**, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 92% frente a un 8%, comestible o venenosa, respectivamente.
+```{r proporcion venenosas o comestibles si están adjuntas,echo=TRUE}
+(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,2]/sum(datos.setas_train$Espacio_L=="w"))*100
+```
+
+
 ### Habitat
 
 ```{r habitat,echo=TRUE}
