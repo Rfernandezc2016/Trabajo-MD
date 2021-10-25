@@ -740,7 +740,7 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 
 ### Forma del sombrero (Forma_S)
 
-```{r forma del sombrero,echo=TRUE}
+```{r forma del sombrero,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~forma del sombrero
 table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
 #Gráfico letalidad~forma del sombrero
@@ -753,7 +753,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
 
 ### Cutícula
 
-```{r cuticula,echo=TRUE}
+```{r cuticula,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~cuticula
 table(datos.setas_train$Letalidad,datos.setas_train$Cuticula)
 #Gráfico letalidad~cuticula
@@ -766,7 +766,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Cuticula))
 
 ### Color del sombrero (Color_S)
 
-```{r color del sombrero,echo=TRUE}
+```{r color del sombrero,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del sombrero
 table(datos.setas_train$Letalidad,datos.setas_train$Color_S)
 #Gráfico letalidad~color del sombrero
@@ -779,7 +779,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_S))
 
 ### Escamas
 
-```{r escamas,echo=TRUE}
+```{r escamas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~escamas
 table(datos.setas_train$Letalidad,datos.setas_train$Escamas)
 #Gráfico letalidad~escamas
@@ -792,7 +792,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
 
 ### Olor
 
-```{r olor,echo=TRUE}
+```{r olor setas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~olor
 table(datos.setas_train$Letalidad,datos.setas_train$Olor)
 #Gráfico letalidad~olor
@@ -806,7 +806,7 @@ Podemos observar que la variable **olor** se distribuye entre los distintos tipo
 
 ### Fijación de las láminas (Fijacion_L)
 
-```{r fijacion,echo=TRUE}
+```{r fijacion,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~fijación de las láminas
 table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)
 #Gráfico letalidad~fijación de las láminas
@@ -827,7 +827,7 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,2])*
 
 ### Espacio entre láminas (Espacio_L)
 
-```{r espacio,echo=TRUE}
+```{r espacio,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~espacio entre láminas
 table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)
 #Gráfico letalidad~espacio entre láminas
@@ -848,7 +848,7 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,2])*1
 
 ### Tamaño de las láminas (Tamaño_L)
 
-```{r tamaño,echo=TRUE}
+```{r tamaño,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~tamaño de las láminas
 table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)
 #Gráfico letalidad~tamaño de las láminas
@@ -869,7 +869,7 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,2])*1
 
 ### Color de las láminas (Color_L)
 
-```{r color laminas,echo=TRUE}
+```{r color laminas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color de las láminas
 table(datos.setas_train$Letalidad,datos.setas_train$Color_L)
 #Gráfico letalidad~color de las láminas
@@ -882,7 +882,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_L))
 
 ### Forma del tallo (Forma_T)
 
-```{r forma tallo,echo=TRUE}
+```{r forma tallo,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~forma del tallo
 table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)
 #Gráfico letalidad~forma del tallo
@@ -903,7 +903,7 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,2])*100
 
 ### Tallo-Raíz (Tallo_raiz)
 
-```{r tallo raiz,echo=TRUE}
+```{r tallo raiz,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~tallo-raiz
 table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz)
 #Gráfico letalidad~tallo-raiz
@@ -916,7 +916,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz))
 
 ### Superficie del tallo por encima del anillo (Superficie_T1)
 
-```{r superficie t1,echo=TRUE}
+```{r superficie t1,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~supercifie del tallo por encima del anillo
 table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1)
 #Gráfico letalidad~superficie del tallo por encima del anillo
@@ -929,7 +929,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1))
 
 ### Superficie del tallo por debajo del anillo (Superficie_T2)
 
-```{r superficie t2,echo=TRUE}
+```{r superficie t2,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~supercifie del tallo por debajo del anillo
 table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2)
 #Gráfico letalidad~superficie del tallo por debajo del anillo
@@ -942,7 +942,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2))
 
 ### Color del tallo por encima del anillo (Color_T1)
 
-```{r color t1,echo=TRUE}
+```{r color t1,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del tallo por encima del anillo
 table(datos.setas_train$Letalidad,datos.setas_train$Color_T1)
 #Gráfico letalidad~color del tallo por encima del anillo
@@ -955,7 +955,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1))
 
 ### Color del tallo por debajo del anillo (Color_T2)
 
-```{r color t2,echo=TRUE}
+```{r color t2,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del tallo por debajo del anillo
 table(datos.setas_train$Letalidad,datos.setas_train$Color_T2)
 #Gráfico letalidad~color del tallo por debajo del anillo
@@ -968,7 +968,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T2))
 
 ### Color del volva (Color_V)
 
-```{r color volva,echo=TRUE}
+```{r color volva,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del volva
 table(datos.setas_train$Letalidad,datos.setas_train$Color_V)
 #Gráfico letalidad~color del volva
@@ -981,7 +981,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_V))
 
 ### Número de anillos (N_anillos)
 
-```{r olor,echo=TRUE}
+```{r numero anillos,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~numero de anillos
 table(datos.setas_train$Letalidad,datos.setas_train$N_anillos)
 #Gráfico letalidad~numero de anillos
@@ -994,7 +994,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$N_anillos))
 
 ### Tipo de anillo (Tipo_anillo)
 
-```{r olor,echo=TRUE}
+```{r tipo anillos,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~tipo de anillo
 table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo)
 #Gráfico letalidad~tipo de anillo
@@ -1007,7 +1007,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo))
 
 ### Color de las esporas
 
-```{r olor,echo=TRUE}
+```{r color esporas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color de las esporas
 table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas)
 #Gráfico letalidad~color de las esporas
@@ -1019,9 +1019,20 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas))
 Podemos observar que aquellas setas que tengan el color de las esporas *ante, naranja, morado o amarillo* son comestibles.
 
 
+### Población
+
+```{r poblacion,echo=TRUE,warning=FALSE}
+#Tabla de frecuencias letalidad~poblacion
+table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
+#Gráfico letalidad~poblacion
+barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
+#legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
+```
+
+
 ### Habitat
 
-```{r habitat,echo=TRUE}
+```{r habitat,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~habitat
 table(datos.setas_train$Letalidad,datos.setas_train$Habitat)
 #Gráfico letalidad~habitat
@@ -1029,16 +1040,6 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letal
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 
-
-### Población
-
-```{r poblacion,echo=TRUE}
-#Tabla de frecuencias letalidad~poblacion
-table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
-#Gráfico letalidad~poblacion
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
-#legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
-```
 
 
 
