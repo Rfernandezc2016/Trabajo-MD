@@ -73,6 +73,33 @@ distancia_yule=diag(dim(setas)[1])
 
 ```{r distancias}
 #i observacion1, j observacion2, k caracteristica
+distancias=function(i,j,setas){
+    a=0
+    b=0
+    c=0
+    d=0
+    for (k in 1:dim(setas)[2]) {
+      if(setas[i,k]==1 & setas[j,k]==1){
+        a=a+1
+      }
+      if(setas[i,k]==1 & setas[j,k]==0){
+        b=b+1
+      }
+      if(setas[i,k]==0 & setas[j,k]==1){
+        c=c+1
+      }
+      if(setas[i,k]==0 & setas[j,k]==0){
+        d=d+1
+      }
+    }
+    distancia_dice=dist.dice(a,b,c,d,distancia_dice,i,j)
+    distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
+    distancia_pearson=dist.pearson(a,b,c,d,distancia_pearson,i,j)
+    distancia_yule=dist.yule(a,b,c,d,distancia_yule,i,j)
+}
+
+
+#i observacion1, j observacion2, k caracteristica
 for (i in 1:(dim(setas)[1]-1)){
   for (j in (i+1):(dim(setas)[1])) {
     a=0
