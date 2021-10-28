@@ -801,7 +801,12 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Olor),main="Letalida
 #Test de independencia:
 chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Olor))
 ```
-Podemos observar que la variable **olor** se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís o ninguno* son comestibles. Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
+Podemos observar que la variable **olor** se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 97% de que sea comestible. 
+```{r proporcion olor,echo=TRUE}
+#Proporción según olor sea ninguno
+prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Olor)[,6])
+```
+Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
 
 ### Fijación de las láminas (Fijacion_L)

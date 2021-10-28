@@ -32,7 +32,7 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
 
 
 CALCULO DE DISTANCIAS
-```{r funcion distancias}
+```{r funcion distancia dice}
 #Distancia Dice:
 dist.dice=function(i,j){
     a=0
@@ -57,6 +57,27 @@ dist.dice=function(i,j){
     }
   distancia=(2*a)/(2*a+b+c)
 }
+#Matriz de distancias:
+distancia_dice=diag(dim(setas)[1])
+
+#i observacion1, j observacion2, k caracteristica
+i=1
+while(i<=(dim(setas)[1]-1)){
+  j=i+1
+  while(j<=dim(setas)[1]) {
+    distancia_dice[i,j]=dist.dice(setas[i,],setas[j,])
+    distancia_dice[j,i]=distancia_dice[i,j]
+    j=j+1
+  }
+  i=i+1
+}
+
+
+
+```
+
+
+```{r otras distancias}
 
 #Distancia Hamman:
 dist.hamman=function(a,b,c,d,matriz,i,j){
@@ -81,29 +102,13 @@ dist.yule=function(a,b,c,d,matriz,i,j){
 }
 
 
-#Matrices de las distintas distancias:
-distancia_dice=diag(dim(setas)[1])
+#Matriz de distancias:
 distancia_hamman=diag(dim(setas)[1])
 distancia_pearson=diag(dim(setas)[1])
 distancia_yule=diag(dim(setas)[1])
-```
 
 
-```{r distancias}
-#i observacion1, j observacion2, k caracteristica
-i=1
-while(i<=(dim(setas)[1]-1)){
-  j=i+1
-  while(j<=dim(setas)[1]) {
-    distancia_dice[i,j]=dist.dice(setas[i,],setas[j,])
-    distancia_dice[j,i]=distancia_dice[i,j]
-    j=j+1
-  }
-  i=i+1
-}
-
-
-distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
+    distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
     distancia_pearson=dist.pearson(a,b,c,d,distancia_pearson,i,j)
     distancia_yule=dist.yule(a,b,c,d,distancia_yule,i,j)
 ```
@@ -130,24 +135,21 @@ while(i<=(dim_prueba-1)){
     d=0
     k=1
     while(k<=dim(setas)[2]) {
-      if(setas[i,k]==1 & setas[j,k]==1){
+      if(i[k]==1 & j[k]==1){
         a=a+1
       }
-      if(setas[i,k]==1 & setas[j,k]==0){
+      if(i[k]==1 & j[k]==0){
         b=b+1
       }
-      if(setas[i,k]==0 & setas[j,k]==1){
+      if(i[k]==0 & j[k]==1){
         c=c+1
       }
-      if(setas[i,k]==0 & setas[j,k]==0){
+      if(i[k]==0 & j[k]==0){
         d=d+1
       }
       k=k+1
     }
-    distancia_dice=dist.dice(a,b,c,d,distancia_dice,i,j)
-    distancia_hamman=dist.hamman(a,b,c,d,distancia_hamman,i,j)
-    distancia_pearson=dist.pearson(a,b,c,d,distancia_pearson,i,j)
-    distancia_yule=dist.yule(a,b,c,d,distancia_yule,i,j)
+    distancia_dice=dist.dice(i,j)
     j=j+1
   }
   i=i+1
