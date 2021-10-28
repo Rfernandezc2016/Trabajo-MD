@@ -11,22 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-
-
-
-
 ```{r graficos}
 library(psych)
-
 pairs.panels(datos.setas_train[,c(1,6)],method = "pearson",hist.col = "#00AFBB",density = TRUE,ellipses = TRUE)
-
 pairs(datos.setas_train[,c(1:5)])
-
 ```
 
-```{r pruebas test}
-table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
+```{r PCA}
+
+
+
 ```
 
 
