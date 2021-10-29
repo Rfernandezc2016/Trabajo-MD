@@ -42,18 +42,21 @@ distancia_dice=diag(dim(setas)[1])
 #i observacion1, j observacion2, k caracteristica
 i=1
 n=dim(setas)[1]
+k=dim(setas)[2]
 while(i<n){
+  inicio=Sys.time()
   j=i+1
   while(j<=n) {
-    distancia_dice[i,j]=dist.dice(setas[i,],setas[j,])
-    distancia_dice[j,i]=distancia_dice[i,j]
+    a=sum(setas[i,]*setas[j,])
+    d=sum((1-setas[i,])*(1-setas[j,]))
+    distancia_dice[i,j]=((2*a)/(a+(k-d)))
+    distancia_dice[j,i]=((2*a)/(a+(k-d)))
     j=j+1
   }
+  fin=Sys.time()
+  fin-inicio
   i=i+1
 }
-
-
-
 ```
 
 
