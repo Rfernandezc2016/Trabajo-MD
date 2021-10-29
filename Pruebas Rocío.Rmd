@@ -36,7 +36,7 @@ dist.dice=function(i,j){
     
  return ((2*a)/(a+(k-d)))
 }
-#Matriz de distancias:
+#Matriz de similitud:
 distancia_dice=diag(dim(setas)[1])
 
 #i observacion1, j observacion2, k caracteristica
@@ -47,8 +47,10 @@ while(i<n){
   inicio=Sys.time()
   j=i+1
   while(j<=n) {
-    a=sum(setas[i,]*setas[j,])
-    d=sum((1-setas[i,])*(1-setas[j,]))
+    #Calculo de similitud
+    a=sum(setas[i,2:k]*setas[j,2:k])
+    d=sum((1-setas[i,2:k])*(1-setas[j,2:k]))
+    
     distancia_dice[i,j]=((2*a)/(a+(k-d)))
     distancia_dice[j,i]=((2*a)/(a+(k-d)))
     j=j+1
