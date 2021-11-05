@@ -75,88 +75,67 @@ Vamos a llamar a las variables como la caracteristica que ejemplifican.
 colnames(datos.setas)=c("Letalidad","Forma_S","Cuticula","Color_S","Escamas","Olor","Fijacion_L","Espacio_L","Tamaño_L","Color_L","Forma_T","Tallo_raiz","Superficie_T1","Superficie_T2","Color_T1","Color_T2","Tipo_V","Color_V","N_anillos","Tipo_anillo","Color_esporas","Poblacion","Habitat")
 ```
 
-##  Particiones.
-
-```{r particiones}
-n_totales=dim(datos.setas)[1]
-n_train=floor(n_totales*0.6) # el 60% de los datos los utilizamos para entrenar los modelos
-n_test=floor(n_totales*0.2) # el 20% para test
-n_validacion=n_totales-n_train-n_test
-
-set.seed(34735)
-
-indices_totales=seq(1:n_totales)
-indices_train=sort(sample(indices_totales,n_train))
-indices_test=sort(sample(indices_totales[-indices_train],n_test))
-indices_validacion=indices_totales[-c(indices_train,indices_test)]
-
-
-datos.setas_train=datos.setas[indices_train,]
-datos.setas_test=datos.setas[indices_test,]
-datos.setas_validacion=datos.setas[indices_validacion,]
-
-```
 
 #  Preprocesado de datos.
 
 Para poder tranformar las variables en factor, lo haremos mediante **as.factor()** a todas las variables de los datos.
 ```{r factores, echo=FALSE}
 #VARIABLE RESPUESTA
-datos.setas_train$Letalidad=as.factor(datos.setas_train$Letalidad)
+datos.setas$Letalidad=as.factor(datos.setas$Letalidad)
 #VARIABLE 1
-datos.setas_train$Forma_S=as.factor(datos.setas_train$Forma_S)
+datos.setas$Forma_S=as.factor(datos.setas$Forma_S)
 #VARIABLE 2
-datos.setas_train$Cuticula=as.factor(datos.setas_train$Cuticula)
+datos.setas$Cuticula=as.factor(datos.setas$Cuticula)
 #VARIABLE 3
-datos.setas_train$Color_S=as.factor(datos.setas_train$Color_S)
+datos.setas$Color_S=as.factor(datos.setas$Color_S)
 #VARIABLE 4
-datos.setas_train$Escamas=as.factor(datos.setas_train$Escamas)
+datos.setas$Escamas=as.factor(datos.setas$Escamas)
 #VARIABLE 5
-datos.setas_train$Olor=as.factor(datos.setas_train$Olor)
+datos.setas$Olor=as.factor(datos.setas$Olor)
 #VARIABLE 6
-datos.setas_train$Fijacion_L=as.factor(datos.setas_train$Fijacion_L)
+datos.setas$Fijacion_L=as.factor(datos.setas$Fijacion_L)
 #VARIABLE 7
-datos.setas_train$Espacio_L=as.factor(datos.setas_train$Espacio_L)
+datos.setas$Espacio_L=as.factor(datos.setas$Espacio_L)
 #VARIABLE 8
-datos.setas_train$Tamaño_L=as.factor(datos.setas_train$Tamaño_L)
+datos.setas$Tamaño_L=as.factor(datos.setas$Tamaño_L)
 #VARIABLE 9
-datos.setas_train$Color_L=as.factor(datos.setas_train$Color_L)
+datos.setas$Color_L=as.factor(datos.setas$Color_L)
 #VARIABLE 10
-datos.setas_train$Forma_T=as.factor(datos.setas_train$Forma_T)
+datos.setas$Forma_T=as.factor(datos.setas$Forma_T)
 #VARIABLE 11
-datos.setas_train$Tallo_raiz=as.factor(datos.setas_train$Tallo_raiz)
+datos.setas$Tallo_raiz=as.factor(datos.setas$Tallo_raiz)
 #VARIABLE 12
-datos.setas_train$Superficie_T1=as.factor(datos.setas_train$Superficie_T1)
+datos.setas$Superficie_T1=as.factor(datos.setas$Superficie_T1)
 #VARIABLE 13
-datos.setas_train$Superficie_T2=as.factor(datos.setas_train$Superficie_T2)
+datos.setas$Superficie_T2=as.factor(datos.setas$Superficie_T2)
 #VARIABLE 14
-datos.setas_train$Color_T1=as.factor(datos.setas_train$Color_T1)
+datos.setas$Color_T1=as.factor(datos.setas$Color_T1)
 #VARIABLE 15
-datos.setas_train$Color_T2=as.factor(datos.setas_train$Color_T2)
+datos.setas$Color_T2=as.factor(datos.setas$Color_T2)
 #VARIABLE 16
-datos.setas_train$Tipo_V=as.factor(datos.setas_train$Tipo_V)
+datos.setas$Tipo_V=as.factor(datos.setas$Tipo_V)
 #VARIABLE 17
-datos.setas_train$Color_V=as.factor(datos.setas_train$Color_V)
+datos.setas$Color_V=as.factor(datos.setas$Color_V)
 #VARIABLE 18
-datos.setas_train$N_anillos=as.factor(datos.setas_train$N_anillos)
+datos.setas$N_anillos=as.factor(datos.setas$N_anillos)
 #VARIABLE 19
-datos.setas_train$Tipo_anillo=as.factor(datos.setas_train$Tipo_anillo)
+datos.setas$Tipo_anillo=as.factor(datos.setas$Tipo_anillo)
 #VARIABLE 20
-datos.setas_train$Color_esporas=as.factor(datos.setas_train$Color_esporas)
+datos.setas$Color_esporas=as.factor(datos.setas$Color_esporas)
 #VARIABLE 21
-datos.setas_train$Poblacion=as.factor(datos.setas_train$Poblacion)
+datos.setas$Poblacion=as.factor(datos.setas$Poblacion)
 #VARIABLE 22
-datos.setas_train$Habitat=as.factor(datos.setas_train$Habitat)
+datos.setas$Habitat=as.factor(datos.setas$Habitat)
 ```
 
 Ahora podemos ver mejor como son nuestros datos.
 ```{r resumen datos,echo=TRUE}
-summary(datos.setas_train)
+summary(datos.setas)
 ```
 Una de las variables, **Tipo_v** (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
 
 ```{r eliminar variable}
-datos.setas_train=datos.setas_train[,-17]
+datos.setas=datos.setas[,-17]
 ```
 
 Además, la variable **Fijacion_L** tendría solo dos niveles pues en el nivel descendente y entallado no aparecen en los datos y la variable **Espacio_L** también tiene dos niveles pues el nivel distante tampoco aparece, por ello las codificamos mediante unas variable binomiales.
@@ -167,11 +146,11 @@ Codificamos el resto de las variables originales de forma que obtendremos tambi�
 setas=data.frame(matrix(ncol=1))
 colnames(setas)=c("Venenosas")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,1]=="e"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,1]=="e"){
     setas=rbind(setas,c(0))
   }
-  if(datos.setas_train[i,1]=="p"){
+  if(datos.setas[i,1]=="p"){
     setas=rbind(setas,c(1))
   }
 }
@@ -180,23 +159,23 @@ for(i in 1:dim(datos.setas_train)[1]){
 sombrero=matrix(ncol=6)
 colnames(sombrero)=c("Campana","Cónica","Convexa","Plana","Nudosa","Hundida")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,2]=="b"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,2]=="b"){
     sombrero=rbind(sombrero,c(1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,2]=="c"){
+  if(datos.setas[i,2]=="c"){
     sombrero=rbind(sombrero,c(0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,2]=="x"){
+  if(datos.setas[i,2]=="x"){
     sombrero=rbind(sombrero,c(0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,2]=="f"){
+  if(datos.setas[i,2]=="f"){
     sombrero=rbind(sombrero,c(0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,2]=="k"){
+  if(datos.setas[i,2]=="k"){
     sombrero=rbind(sombrero,c(0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,2]=="s"){
+  if(datos.setas[i,2]=="s"){
     sombrero=rbind(sombrero,c(0,0,0,0,0,1))
   }
 }
@@ -206,17 +185,17 @@ setas=cbind(setas,sombrero)
 superficie=matrix(ncol=4)
 colnames(superficie)=c("Fibroso","Surcos","Escamoso","Liso")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,3]=="f"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,3]=="f"){
     superficie=rbind(superficie,c(1,0,0,0))
   }
-  if(datos.setas_train[i,3]=="g"){
+  if(datos.setas[i,3]=="g"){
     superficie=rbind(superficie,c(0,1,0,0))
   }
-  if(datos.setas_train[i,3]=="y"){
+  if(datos.setas[i,3]=="y"){
     superficie=rbind(superficie,c(0,0,1,0))
   }
-  if(datos.setas_train[i,3]=="s"){
+  if(datos.setas[i,3]=="s"){
     superficie=rbind(superficie,c(0,0,0,1))
   }
 }
@@ -226,7 +205,7 @@ setas=cbind(setas,superficie)
 color_sombrero=matrix(ncol=10)
 colnames(color_sombrero)=c("S_Marrón","S_Ante","S_Canela","S_Gris","S_Verde","S_Rosa","S_Morado","S_Rojo","S_Blanco","S_Amarillo")
 
-for(i in 1:dim(datos.setas_train)[1]){
+for(i in 1:dim(datos.setas)[1]){
   if(datos.setas[i,4]=="n"){
     color_sombrero=rbind(color_sombrero,c(1,0,0,0,0,0,0,0,0,0))
   }
@@ -264,11 +243,11 @@ setas=cbind(setas,color_sombrero)
 escamas_S=matrix(ncol=1)
 colnames(escamas_S)=c("Escamas")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,5]=="f"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,5]=="f"){
     escamas_S=rbind(escamas_S,c(0))
   }
-  if(datos.setas_train[i,5]=="t"){
+  if(datos.setas[i,5]=="t"){
     escamas_S=rbind(escamas_S,c(1))
   }
 }
@@ -278,32 +257,32 @@ setas=cbind(setas,escamas_S)
 olor=matrix(ncol=9)
 colnames(olor)=c("O_almendra","O_anís","O_creosota","O_pescado","O_asqueroso","O_mohoso","O_ninguno","O_acre","O_picante")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,6]=="a"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,6]=="a"){
     olor=rbind(olor,c(1,0,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,6]=="l"){
+  if(datos.setas[i,6]=="l"){
     olor=rbind(olor,c(0,1,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,6]=="c"){
+  if(datos.setas[i,6]=="c"){
     olor=rbind(olor,c(0,0,1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,6]=="y"){
+  if(datos.setas[i,6]=="y"){
     olor=rbind(olor,c(0,0,0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,6]=="f"){
+  if(datos.setas[i,6]=="f"){
     olor=rbind(olor,c(0,0,0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,6]=="m"){
+  if(datos.setas[i,6]=="m"){
     olor=rbind(olor,c(0,0,0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,6]=="n"){
+  if(datos.setas[i,6]=="n"){
     olor=rbind(olor,c(0,0,0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,6]=="p"){
+  if(datos.setas[i,6]=="p"){
     olor=rbind(olor,c(0,0,0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,6]=="s"){
+  if(datos.setas[i,6]=="s"){
     olor=rbind(olor,c(0,0,0,0,0,0,0,0,1))
   }
 }
@@ -313,11 +292,11 @@ setas=cbind(setas,olor)
 fijacion_laminas=matrix(ncol=1)
 colnames(fijacion_laminas)=c("Adjunto/Libre")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,7]=="a"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,7]=="a"){
     fijacion_laminas=rbind(fijacion_laminas,c(1))
   }
-  if(datos.setas_train[i,7]=="f"){
+  if(datos.setas[i,7]=="f"){
     fijacion_laminas=rbind(fijacion_laminas,c(0))
   }
 }
@@ -327,11 +306,11 @@ setas=cbind(setas,fijacion_laminas)
 espacio_laminas=matrix(ncol=1)
 colnames(espacio_laminas)=c("Cerca/Atestado")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,8]=="c"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,8]=="c"){
     espacio_laminas=rbind(espacio_laminas,c(1))
   }
-  if(datos.setas_train[i,8]=="w"){
+  if(datos.setas[i,8]=="w"){
     espacio_laminas=rbind(espacio_laminas,c(0))
   }
 }
@@ -341,11 +320,11 @@ setas=cbind(setas,espacio_laminas)
 tamaño_laminas=matrix(ncol=1)
 colnames(tamaño_laminas)=c("Ancho/Estrecho")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,9]=="b"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,9]=="b"){
     tamaño_laminas=rbind(tamaño_laminas,c(1))
   }
-  if(datos.setas_train[i,9]=="n"){
+  if(datos.setas[i,9]=="n"){
     tamaño_laminas=rbind(tamaño_laminas,c(0))
   }
 }
@@ -355,7 +334,7 @@ setas=cbind(setas,tamaño_laminas)
 color_laminas=matrix(ncol=12)
 colnames(color_laminas)=c("L_Negro","L_Marrón","L_Canela","L_Chocolate","L_Gris","L_Verde","L_Naranja","L_Rosa","L_Morado","L_Rojo","L_Blanco","L_Amarillo")
 
-for(i in 1:dim(datos.setas_train)[1]){
+for(i in 1:dim(datos.setas)[1]){
   if(datos.setas[i,10]=="k"){
     color_laminas=rbind(color_laminas,c(1,0,0,0,0,0,0,0,0,0,0,0))
   }
@@ -399,11 +378,11 @@ setas=cbind(setas,color_laminas)
 forma_tallo=matrix(ncol=1)
 colnames(forma_tallo)=c("Agrandado/Afilado")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,11]=="e"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,11]=="e"){
     forma_tallo=rbind(forma_tallo,c(1))
   }
-  if(datos.setas_train[i,11]=="t"){
+  if(datos.setas[i,11]=="t"){
     forma_tallo=rbind(forma_tallo,c(0))
   }
 }
@@ -413,26 +392,26 @@ setas=cbind(setas,forma_tallo)
 tallo_r=matrix(ncol=7)
 colnames(tallo_r)=c("TR_bulboso","TR_club","TR_copa","TR_igual","TR_rizomorfos","TR_enraizado","TR_faltante")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,12]=="b"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,12]=="b"){
     tallo_r=rbind(tallo_r,c(1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,12]=="c"){
+  if(datos.setas[i,12]=="c"){
     tallo_r=rbind(tallo_r,c(0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,12]=="u"){
+  if(datos.setas[i,12]=="u"){
     tallo_r=rbind(tallo_r,c(0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,12]=="e"){
+  if(datos.setas[i,12]=="e"){
     tallo_r=rbind(tallo_r,c(0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,12]=="z"){
+  if(datos.setas[i,12]=="z"){
     tallo_r=rbind(tallo_r,c(0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,12]=="r"){
+  if(datos.setas[i,12]=="r"){
     tallo_r=rbind(tallo_r,c(0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,12]=="?"){
+  if(datos.setas[i,12]=="?"){
     tallo_r=rbind(tallo_r,c(0,0,0,0,0,0,1))
   }
 }
@@ -442,17 +421,17 @@ setas=cbind(setas,tallo_r)
 superficiet1=matrix(ncol=4)
 colnames(superficiet1)=c("ST1_Fibroso","ST1_Escamoso","ST1_Sedoso","ST1_Liso")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,13]=="f"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,13]=="f"){
     superficiet1=rbind(superficiet1,c(1,0,0,0))
   }
-  if(datos.setas_train[i,13]=="y"){
+  if(datos.setas[i,13]=="y"){
     superficiet1=rbind(superficiet1,c(0,1,0,0))
   }
-  if(datos.setas_train[i,13]=="k"){
+  if(datos.setas[i,13]=="k"){
     superficiet1=rbind(superficiet1,c(0,0,1,0))
   }
-  if(datos.setas_train[i,13]=="s"){
+  if(datos.setas[i,13]=="s"){
     superficiet1=rbind(superficiet1,c(0,0,0,1))
   }
 }
@@ -462,17 +441,17 @@ setas=cbind(setas,superficiet1)
 superficiet2=matrix(ncol=4)
 colnames(superficiet2)=c("ST2_Fibroso","ST2_Escamoso","ST2_Sedoso","ST2_Liso")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,14]=="f"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,14]=="f"){
     superficiet2=rbind(superficiet2,c(1,0,0,0))
   }
-  if(datos.setas_train[i,14]=="y"){
+  if(datos.setas[i,14]=="y"){
     superficiet2=rbind(superficiet2,c(0,1,0,0))
   }
-  if(datos.setas_train[i,14]=="k"){
+  if(datos.setas[i,14]=="k"){
     superficiet2=rbind(superficiet2,c(0,0,1,0))
   }
-  if(datos.setas_train[i,14]=="s"){
+  if(datos.setas[i,14]=="s"){
     superficiet2=rbind(superficiet2,c(0,0,0,1))
   }
 }
@@ -481,32 +460,32 @@ setas=cbind(setas,superficiet2)
 #Variable 14: color del tallo por encima del anillo
 color.t1=matrix(ncol=9)
 colnames(color.t1)=c("CT1_marron","CT1_ante","CT1_canela","CT1_gris","CT1_naranja","CT1_rosa","CT1_rojo","CT1_blanco","CT1_amarillo")
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,15]=="n"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,15]=="n"){
     color.t1=rbind(color.t1,c(1,0,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,15]=="b"){
+  if(datos.setas[i,15]=="b"){
     color.t1=rbind(color.t1,c(0,1,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,15]=="c"){
+  if(datos.setas[i,15]=="c"){
     color.t1=rbind(color.t1,c(0,0,1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,15]=="g"){
+  if(datos.setas[i,15]=="g"){
     color.t1=rbind(color.t1,c(0,0,0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,15]=="o"){
+  if(datos.setas[i,15]=="o"){
     color.t1=rbind(color.t1,c(0,0,0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,15]=="p"){
+  if(datos.setas[i,15]=="p"){
     color.t1=rbind(color.t1,c(0,0,0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,15]=="e"){
+  if(datos.setas[i,15]=="e"){
     color.t1=rbind(color.t1,c(0,0,0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,15]=="w"){
+  if(datos.setas[i,15]=="w"){
     color.t1=rbind(color.t1,c(0,0,0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,15]=="y"){
+  if(datos.setas[i,15]=="y"){
     color.t1=rbind(color.t1,c(0,0,0,0,0,0,0,0,1))
   }
 }
@@ -517,32 +496,32 @@ setas=cbind(setas,color.t1)
 #Variable 15: color del tallo por debajo del anillo
 color.t2=matrix(ncol=9)
 colnames(color.t2)=c("CT2_marron","CT2_ante","CT2_canela","CT2_gris","CT2_naranja","CT2_rosa","CT2_rojo","CT2_blanco","CT2_amarillo")
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,16]=="n"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,16]=="n"){
     color.t2=rbind(color.t2,c(1,0,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,16]=="b"){
+  if(datos.setas[i,16]=="b"){
     color.t2=rbind(color.t2,c(0,1,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,16]=="c"){
+  if(datos.setas[i,16]=="c"){
     color.t2=rbind(color.t2,c(0,0,1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,16]=="g"){
+  if(datos.setas[i,16]=="g"){
     color.t2=rbind(color.t2,c(0,0,0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,16]=="o"){
+  if(datos.setas[i,16]=="o"){
     color.t2=rbind(color.t2,c(0,0,0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,16]=="p"){
+  if(datos.setas[i,16]=="p"){
     color.t2=rbind(color.t2,c(0,0,0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,16]=="e"){
+  if(datos.setas[i,16]=="e"){
     color.t2=rbind(color.t2,c(0,0,0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,16]=="w"){
+  if(datos.setas[i,16]=="w"){
     color.t2=rbind(color.t2,c(0,0,0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,16]=="y"){
+  if(datos.setas[i,16]=="y"){
     color.t2=rbind(color.t2,c(0,0,0,0,0,0,0,0,1))
   }
 }
@@ -552,17 +531,17 @@ setas=cbind(setas,color.t2)
 color_volva=matrix(ncol=4)
 colnames(color_volva)=c("V_Marrón","V_Naranja","V_Blanco","V_Amarillo")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,17]=="n"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,17]=="n"){
     color_volva=rbind(color_volva,c(1,0,0,0))
   }
-  if(datos.setas_train[i,17]=="o"){
+  if(datos.setas[i,17]=="o"){
     color_volva=rbind(color_volva,c(0,1,0,0))
   }
-  if(datos.setas_train[i,17]=="w"){
+  if(datos.setas[i,17]=="w"){
     color_volva=rbind(color_volva,c(0,0,1,0))
   }
-  if(datos.setas_train[i,17]=="y"){
+  if(datos.setas[i,17]=="y"){
     color_volva=rbind(color_volva,c(0,0,0,1))
   }
 }
@@ -572,14 +551,14 @@ setas=cbind(setas,color_volva)
 nanillos=matrix(ncol=3)
 colnames(nanillos)=c("NA_0","NA_1","NA_2")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,18]=="n"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,18]=="n"){
     nanillos=rbind(nanillos,c(1,0,0))
   }
-  if(datos.setas_train[i,18]=="o"){
+  if(datos.setas[i,18]=="o"){
     nanillos=rbind(nanillos,c(0,1,0))
   }
-  if(datos.setas_train[i,18]=="t"){
+  if(datos.setas[i,18]=="t"){
     nanillos=rbind(nanillos,c(0,0,1))
   }
 }
@@ -589,29 +568,29 @@ setas=cbind(setas,nanillos)
 tanillo=matrix(ncol=8)
 colnames(tanillo)=c("TA_Telaraña","TA_Evanescente","TA_Abocinado","TA_Grande","TA_Ninguno","TA_Colgante","TA_Revestimiento","TA_Zona")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,19]=="c"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,19]=="c"){
     tanillo=rbind(tanillo,c(1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,19]=="e"){
+  if(datos.setas[i,19]=="e"){
     tanillo=rbind(tanillo,c(0,1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,19]=="f"){
+  if(datos.setas[i,19]=="f"){
     tanillo=rbind(tanillo,c(0,0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,19]=="l"){
+  if(datos.setas[i,19]=="l"){
     tanillo=rbind(tanillo,c(0,0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,19]=="n"){
+  if(datos.setas[i,19]=="n"){
     tanillo=rbind(tanillo,c(0,0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,19]=="p"){
+  if(datos.setas[i,19]=="p"){
     tanillo=rbind(tanillo,c(0,0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,19]=="s"){
+  if(datos.setas[i,19]=="s"){
     tanillo=rbind(tanillo,c(0,0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,19]=="z"){
+  if(datos.setas[i,19]=="z"){
     tanillo=rbind(tanillo,c(0,0,0,0,0,0,0,1))
   }
 }
@@ -620,32 +599,32 @@ setas=cbind(setas,tanillo)
 #Variable 19: color de las esporas
 color.e=matrix(ncol=9)
 colnames(color.e)=c("CE_negro","CE_marron","CE_ante","CE_chocolate","CE_verde","CE_naranja","CE_morado","CE_blanco","CE_amarillo")
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,20]=="k"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,20]=="k"){
     color.e=rbind(color.e,c(1,0,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,20]=="n"){
+  if(datos.setas[i,20]=="n"){
     color.e=rbind(color.e,c(0,1,0,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,20]=="b"){
+  if(datos.setas[i,20]=="b"){
     color.e=rbind(color.e,c(0,0,1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,20]=="h"){
+  if(datos.setas[i,20]=="h"){
     color.e=rbind(color.e,c(0,0,0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,20]=="r"){
+  if(datos.setas[i,20]=="r"){
     color.e=rbind(color.e,c(0,0,0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,20]=="o"){
+  if(datos.setas[i,20]=="o"){
     color.e=rbind(color.e,c(0,0,0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,20]=="u"){
+  if(datos.setas[i,20]=="u"){
     color.e=rbind(color.e,c(0,0,0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,20]=="w"){
+  if(datos.setas[i,20]=="w"){
     color.e=rbind(color.e,c(0,0,0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,20]=="y"){
+  if(datos.setas[i,20]=="y"){
     color.e=rbind(color.e,c(0,0,0,0,0,0,0,0,1))
   }
 }
@@ -655,23 +634,23 @@ setas=cbind(setas,color.e)
 poblation=matrix(ncol=6)
 colnames(poblation)=c("Abundante", "Agrupada", "Numerosa", "Dispersa", "Varias", "Solitaria")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,21]=="a"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,21]=="a"){
     poblation=rbind(poblation,c(1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,21]=="c"){
+  if(datos.setas[i,21]=="c"){
     poblation=rbind(poblation,c(0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,21]=="n"){
+  if(datos.setas[i,21]=="n"){
     poblation=rbind(poblation,c(0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,21]=="s"){
+  if(datos.setas[i,21]=="s"){
     poblation=rbind(poblation,c(0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,21]=="v"){
+  if(datos.setas[i,21]=="v"){
     poblation=rbind(poblation,c(0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,21]=="y"){
+  if(datos.setas[i,21]=="y"){
     poblation=rbind(poblation,c(0,0,0,0,0,1))
   }
 }
@@ -681,33 +660,33 @@ setas=cbind(setas,poblation)
 habita=matrix(ncol=7)
 colnames(habita)=c("Bosques", "Pastos", "Hojas", "Prados", "Caminos", "Urbano", "Desechos")
 
-for(i in 1:dim(datos.setas_train)[1]){
-  if(datos.setas_train[i,22]=="d"){
+for(i in 1:dim(datos.setas)[1]){
+  if(datos.setas[i,22]=="d"){
     habita=rbind(habita,c(1,0,0,0,0,0,0))
   }
-  if(datos.setas_train[i,22]=="g"){
+  if(datos.setas[i,22]=="g"){
     habita=rbind(habita,c(0,1,0,0,0,0,0))
   }
-  if(datos.setas_train[i,22]=="l"){
+  if(datos.setas[i,22]=="l"){
     habita=rbind(habita,c(0,0,1,0,0,0,0))
   }
-  if(datos.setas_train[i,22]=="m"){
+  if(datos.setas[i,22]=="m"){
     habita=rbind(habita,c(0,0,0,1,0,0,0))
   }
-  if(datos.setas_train[i,22]=="p"){
+  if(datos.setas[i,22]=="p"){
     habita=rbind(habita,c(0,0,0,0,1,0,0))
   }
-  if(datos.setas_train[i,22]=="u"){
+  if(datos.setas[i,22]=="u"){
     habita=rbind(habita,c(0,0,0,0,0,1,0))
   }
-  if(datos.setas_train[i,22]=="w"){
+  if(datos.setas[i,22]=="w"){
     habita=rbind(habita,c(0,0,0,0,0,0,1))
   }
 }
 setas=cbind(setas,habita)
 
 setas=setas[-1,]
-rownames(setas)=as.character(seq(1:n_train))
+rownames(setas)=as.character(seq(1:dim(datos.setas)[1]))
 ```
 
 ```{r datos codificados,echo=TRUE}
@@ -719,17 +698,40 @@ dim(setas)
 
 ```
 
+##  Particiones.
+
+```{r particiones}
+n_totales=dim(datos.setas)[1]
+n_train=floor(n_totales*0.6) # el 60% de los datos los utilizamos para entrenar los modelos
+n_test=floor(n_totales*0.2) # el 20% para test
+n_validacion=n_totales-n_train-n_test
+
+set.seed(34735)
+
+indices_totales=seq(1:n_totales)
+indices_train=sort(sample(indices_totales,n_train))
+indices_test=sort(sample(indices_totales[-indices_train],n_test))
+indices_validacion=indices_totales[-c(indices_train,indices_test)]
+
+
+setas_train=setas[indices_train,]
+setas_test=setas[indices_test,]
+setas_validacion=setas[indices_validacion,]
+
+```
+
+
 ##  EDA. Exploratory Data Analysis.
 
 ### Letalidad:
 La variable **letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
 ```{r proporcion, echo=TRUE}
 #Tabla:
-table(setas$Venenosas)
+table(setas_train$Venenosas)
 #Tabla de frecuencias:
-prop.table(table(setas$Venenosas))
+prop.table(table(setas_train$Venenosas))
 #Gráfico
-barplot(table(setas$Venenosas),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
+barplot(table(setas_train$Venenosas),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
 ```
 
 
@@ -742,12 +744,12 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 
 ```{r forma del sombrero,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~forma del sombrero
-table(datos.setas_train$Letalidad,datos.setas_train$Forma_S)
+table(datos.setas$Letalidad,datos.setas$Forma_S)
 #Gráfico letalidad~forma del sombrero
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S),main="Letalidad vs Forma del sombrero",xlab="Forma",ylab="Número de setas",names.arg=c("Campana", "Cónica", "Plana", "Nudosa", "Hundida", "Convexa"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Forma_S),main="Letalidad vs Forma del sombrero",xlab="Forma",ylab="Número de setas",names.arg=c("Campana", "Cónica", "Plana", "Nudosa", "Hundida", "Convexa"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Forma_S))
 ```
 
 
@@ -755,12 +757,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_S))
 
 ```{r cuticula,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~cuticula
-table(datos.setas_train$Letalidad,datos.setas_train$Cuticula)
+table(datos.setas$Letalidad,datos.setas$Cuticula)
 #Gráfico letalidad~cuticula
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Cuticula),main="Letalidad vs Cuticula",xlab="Cuticula",ylab="Número de setas",names.arg=c("Fibroso", "Con surcos", "Lisa", "Escamosa"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Cuticula),main="Letalidad vs Cuticula",xlab="Cuticula",ylab="Número de setas",names.arg=c("Fibroso", "Con surcos", "Lisa", "Escamosa"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Cuticula))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Cuticula))
 ```
 
 
@@ -768,12 +770,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Cuticula))
 
 ```{r color del sombrero,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del sombrero
-table(datos.setas_train$Letalidad,datos.setas_train$Color_S)
+table(datos.setas$Letalidad,datos.setas$Color_S)
 #Gráfico letalidad~color del sombrero
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_S),main="Letalidad vs Color del sombrero",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela", "Rojo", "Gris","Marrón","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Color_S),main="Letalidad vs Color del sombrero",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela", "Rojo", "Gris","Marrón","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_S))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Color_S))
 ```
 
 
@@ -781,12 +783,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_S))
 
 ```{r escamas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~escamas
-table(datos.setas_train$Letalidad,datos.setas_train$Escamas)
+table(datos.setas$Letalidad,datos.setas$Escamas)
 #Gráfico letalidad~escamas
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Escamas),main="Letalidad vs Escamas",xlab="Escamas",ylab="Número de setas",names.arg=c("Sin escamas", "Con escamas"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Escamas),main="Letalidad vs Escamas",xlab="Escamas",ylab="Número de setas",names.arg=c("Sin escamas", "Con escamas"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Escamas))
 ```
 
 
@@ -794,17 +796,17 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Escamas))
 
 ```{r olor setas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~olor
-table(datos.setas_train$Letalidad,datos.setas_train$Olor)
+table(datos.setas$Letalidad,datos.setas$Olor)
 #Gráfico letalidad~olor
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Olor),main="Letalidad vs Olor",xlab="Olor",ylab="Número de setas",names.arg=c("Almendra", "Creosota","Asqueroso","Anís","Mohoso","Ninguno","Acre","Picante","Pescado"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Olor),main="Letalidad vs Olor",xlab="Olor",ylab="Número de setas",names.arg=c("Almendra", "Creosota","Asqueroso","Anís","Mohoso","Ninguno","Acre","Picante","Pescado"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Olor))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Olor))
 ```
 Podemos observar que la variable **olor** se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 97% de que sea comestible. 
 ```{r proporcion olor,echo=TRUE}
 #Proporción según olor sea ninguno
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Olor)[,6])
+prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])
 ```
 Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
@@ -813,20 +815,20 @@ Entonces modríamos cambiar la codificación hecha anteriormente y tener solo un
 
 ```{r fijacion,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~fijación de las láminas
-table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)
+table(datos.setas$Letalidad,datos.setas$Fijacion_L)
 #Gráfico letalidad~fijación de las láminas
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L),main="Letalidad vs Fijación de las láminas",xlab="Fijación",ylab="Número de setas",names.arg=c("Adjunto", "Libre"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Fijacion_L),main="Letalidad vs Fijación de las láminas",xlab="Fijación",ylab="Número de setas",names.arg=c("Adjunto", "Libre"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Fijacion_L))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 94% frente a un 6%, comestible o venenosa, respectivamente.
 ```{r proporcion fijacion,echo=TRUE}
 #Proporción según fijacion sea adjunto
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,1])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Fijacion_L)[,1])*100
 
 #Proporción según fijacion sea libre
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,2])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Fijacion_L)[,2])*100
 ```
 
 
@@ -834,20 +836,20 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Fijacion_L)[,2])*
 
 ```{r espacio,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~espacio entre láminas
-table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)
+table(datos.setas$Letalidad,datos.setas$Espacio_L)
 #Gráfico letalidad~espacio entre láminas
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L),main="Letalidad vs Espacio entre láminas",xlab="Espacio",ylab="Número de setas",names.arg=c("Cerca", "Atestado"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Espacio_L),main="Letalidad vs Espacio entre láminas",xlab="Espacio",ylab="Número de setas",names.arg=c("Cerca", "Atestado"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Espacio_L))
 ```
 Podemos ver que ocurre algo parecido que en la variable **fijacion_L**, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 92% frente a un 8%, comestible o venenosa, respectivamente.
 ```{r proporcion espacio,echo=TRUE}
 #Proporción según espacio sea cerca
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,1])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Espacio_L)[,1])*100
 
 #Proporción según espacio sea atestado
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,2])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Espacio_L)[,2])*100
 ```
 
 
@@ -855,20 +857,20 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Espacio_L)[,2])*1
 
 ```{r tamaño,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~tamaño de las láminas
-table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)
+table(datos.setas$Letalidad,datos.setas$Tamaño_L)
 #Gráfico letalidad~tamaño de las láminas
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L),main="Letalidad vs Tamaño de las láminas",xlab="Tamaño",ylab="Número de setas",names.arg=c("Ancho", "Estrecho"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Tamaño_L),main="Letalidad vs Tamaño de las láminas",xlab="Tamaño",ylab="Número de setas",names.arg=c("Ancho", "Estrecho"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Tamaño_L))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según el tamaño de las láminas en el caso de que sea ancha es del 30% frente a 70%, respectivamente, mientras que si es estrecho la proporción cambia a un 11.5% frente a un 88.5%, respectivamente.
 ```{r proporcion tamaño,echo=TRUE}
 #Proporción según tamaño sea ancho
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,1])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Tamaño_L)[,1])*100
 
 #Proporción según tamaño sea estrecho
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,2])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Tamaño_L)[,2])*100
 ```
 
 
@@ -876,12 +878,12 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Tamaño_L)[,2])*1
 
 ```{r color laminas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color de las láminas
-table(datos.setas_train$Letalidad,datos.setas_train$Color_L)
+table(datos.setas$Letalidad,datos.setas$Color_L)
 #Gráfico letalidad~color de las láminas
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_L),main="Letalidad vs Color de las láminas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Rojo","Gris","Chocolate","Negro","Marrón","Naranja","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Color_L),main="Letalidad vs Color de las láminas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Rojo","Gris","Chocolate","Negro","Marrón","Naranja","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_L))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Color_L))
 ```
 
 
@@ -889,20 +891,20 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_L))
 
 ```{r forma tallo,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~forma del tallo
-table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)
+table(datos.setas$Letalidad,datos.setas$Forma_T)
 #Gráfico letalidad~forma del tallo
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T),main="Letalidad vs Forma del tallo",xlab="Tallo",ylab="Número de setas",names.arg=c("Agrandado", "Afilado"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Forma_T),main="Letalidad vs Forma del tallo",xlab="Tallo",ylab="Número de setas",names.arg=c("Agrandado", "Afilado"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Forma_T))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo
 ```{r proporcion forma,echo=TRUE}
 #Proporción según forma sea agrandado
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,1])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Forma_T)[,1])*100
 
 #Proporción según forma sea afilado
-prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,2])*100
+prop.table(table(datos.setas$Letalidad,datos.setas$Forma_T)[,2])*100
 ```
 
 
@@ -910,12 +912,12 @@ prop.table(table(datos.setas_train$Letalidad,datos.setas_train$Forma_T)[,2])*100
 
 ```{r tallo raiz,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~tallo-raiz
-table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz)
+table(datos.setas$Letalidad,datos.setas$Tallo_raiz)
 #Gráfico letalidad~tallo-raiz
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz),main="Letalidad vs Tallo-Raiz",xlab="Tallo-Raiz",ylab="Número de setas",names.arg=c("Faltante", "Bulboso","Club","Igual","Enraizado"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Tallo_raiz),main="Letalidad vs Tallo-Raiz",xlab="Tallo-Raiz",ylab="Número de setas",names.arg=c("Faltante", "Bulboso","Club","Igual","Enraizado"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Tallo_raiz))
 ```
 
 
@@ -923,12 +925,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tallo_raiz))
 
 ```{r superficie t1,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~supercifie del tallo por encima del anillo
-table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1)
+table(datos.setas$Letalidad,datos.setas$Superficie_T1)
 #Gráfico letalidad~superficie del tallo por encima del anillo
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1),main="Letalidad vs Tallo por encima del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Superficie_T1),main="Letalidad vs Tallo por encima del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Superficie_T1))
 ```
 
 
@@ -936,12 +938,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T1))
 
 ```{r superficie t2,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~supercifie del tallo por debajo del anillo
-table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2)
+table(datos.setas$Letalidad,datos.setas$Superficie_T2)
 #Gráfico letalidad~superficie del tallo por debajo del anillo
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2),main="Letalidad vs Tallo por debajo del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Superficie_T2),main="Letalidad vs Tallo por debajo del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Superficie_T2))
 ```
 
 
@@ -949,12 +951,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Superficie_T2))
 
 ```{r color t1,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del tallo por encima del anillo
-table(datos.setas_train$Letalidad,datos.setas_train$Color_T1)
+table(datos.setas$Letalidad,datos.setas$Color_T1)
 #Gráfico letalidad~color del tallo por encima del anillo
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1),main="Letalidad vs Tallo por encima del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Color_T1),main="Letalidad vs Tallo por encima del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Color_T1))
 ```
 
 
@@ -962,12 +964,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T1))
 
 ```{r color t2,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del tallo por debajo del anillo
-table(datos.setas_train$Letalidad,datos.setas_train$Color_T2)
+table(datos.setas$Letalidad,datos.setas$Color_T2)
 #Gráfico letalidad~color del tallo por debajo del anillo
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_T2),main="Letalidad vs Tallo por debajo del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Color_T2),main="Letalidad vs Tallo por debajo del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T2))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Color_T2))
 ```
 
 
@@ -975,12 +977,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_T2))
 
 ```{r color volva,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color del volva
-table(datos.setas_train$Letalidad,datos.setas_train$Color_V)
+table(datos.setas$Letalidad,datos.setas$Color_V)
 #Gráfico letalidad~color del volva
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_V),main="Letalidad vs Volva",xlab="Color",ylab="Número de setas",names.arg=c("Marrón", "Naranja","Blanco","Amarillo"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Color_V),main="Letalidad vs Volva",xlab="Color",ylab="Número de setas",names.arg=c("Marrón", "Naranja","Blanco","Amarillo"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_V))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Color_V))
 ```
 
 
@@ -988,12 +990,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_V))
 
 ```{r numero anillos,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~numero de anillos
-table(datos.setas_train$Letalidad,datos.setas_train$N_anillos)
+table(datos.setas$Letalidad,datos.setas$N_anillos)
 #Gráfico letalidad~numero de anillos
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$N_anillos),main="Letalidad vs Anillos",xlab="Número",ylab="Número de setas",names.arg=c("Ninguno", "Uno","Dos"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$N_anillos),main="Letalidad vs Anillos",xlab="Número",ylab="Número de setas",names.arg=c("Ninguno", "Uno","Dos"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$N_anillos))
+chisq.test(table(datos.setas$Letalidad,datos.setas$N_anillos))
 ```
 
 
@@ -1001,12 +1003,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$N_anillos))
 
 ```{r tipo anillos,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~tipo de anillo
-table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo)
+table(datos.setas$Letalidad,datos.setas$Tipo_anillo)
 #Gráfico letalidad~tipo de anillo
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo),main="Letalidad vs Anillo",xlab="Tipo",ylab="Número de setas",names.arg=c("Evanescente", "Abocinado","Grande","Ninguno","Colgante"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Tipo_anillo),main="Letalidad vs Anillo",xlab="Tipo",ylab="Número de setas",names.arg=c("Evanescente", "Abocinado","Grande","Ninguno","Colgante"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Tipo_anillo))
 ```
 
 
@@ -1014,12 +1016,12 @@ chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Tipo_anillo))
 
 ```{r color esporas,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~color de las esporas
-table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas)
+table(datos.setas$Letalidad,datos.setas$Color_esporas)
 #Gráfico letalidad~color de las esporas
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas),main="Letalidad vs Esporas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Chocolate","Negro","Marrón","Naranja","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Color_esporas),main="Letalidad vs Esporas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Chocolate","Negro","Marrón","Naranja","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
 
 #Test de independencia:
-chisq.test(table(datos.setas_train$Letalidad,datos.setas_train$Color_esporas))
+chisq.test(table(datos.setas$Letalidad,datos.setas$Color_esporas))
 ```
 Podemos observar que aquellas setas que tengan el color de las esporas *ante, naranja, morado o amarillo* son comestibles.
 
@@ -1028,9 +1030,9 @@ Podemos observar que aquellas setas que tengan el color de las esporas *ante, na
 
 ```{r poblacion,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~poblacion
-table(datos.setas_train$Letalidad,datos.setas_train$Poblacion)
+table(datos.setas$Letalidad,datos.setas$Poblacion)
 #Gráfico letalidad~poblacion
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 
@@ -1039,9 +1041,9 @@ barplot(table(datos.setas_train$Letalidad,datos.setas_train$Poblacion),main="Let
 
 ```{r habitat,echo=TRUE,warning=FALSE}
 #Tabla de frecuencias letalidad~habitat
-table(datos.setas_train$Letalidad,datos.setas_train$Habitat)
+table(datos.setas$Letalidad,datos.setas$Habitat)
 #Gráfico letalidad~habitat
-barplot(table(datos.setas_train$Letalidad,datos.setas_train$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos"),col=c("blue","magenta"))
+barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos"),col=c("blue","magenta"))
 #legend(x = "topright", legend = c("Comestible","Venenosa"), fill = c("blue", "magenta"))
 ```
 

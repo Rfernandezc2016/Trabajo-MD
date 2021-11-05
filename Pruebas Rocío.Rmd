@@ -20,14 +20,26 @@ pairs(datos.setas_train[,c(1:5)])
 
 ANALISIS COMPONENTES PRINCIPALES
 ```{r PCA}
-pca=prcomp(setas)
+pca=prcomp(setas_train)
 plot(pca)
 summary(pca)
+nuevos.datos.pca=pca$x[,1:13]
+
+
+pca.respuesta=cbind(setas_train[,1],nuevos.datos.pca)
+pca.venenosas=which(pca.respuesta[,1]==1)
+pca.novenenosas=which(pca.respuesta[,1]==0)
+
+plot(nuevos.datos.pca)
+points(nuevos.datos.pca[pca.venenosas,],col="aquamarine")
+points(nuevos.datos.pca[pca.novenenosas,],col="purple")
+
+pairs(nuevos.datos.pca[,1:4])
 ```
 
 ANALISIS CLUSTER
 ```{r cluster}
-clusters2.datos=kmeans(setas,centers=2,nstart=25)
+clusters2.datos=kmeans(nuevos.datos.pca,centers=2,nstart=25)
 #Números de clusters
 SSW <- vector(mode = "numeric", length = 15)
 
@@ -87,6 +99,23 @@ while(i<n){
   fin-inicio
   i=i+1
 }
+
+#Matriz de a:
+inicio=Sys.time()
+a=diag(500)
+i=1
+while(i<=500){
+  j=i
+  while(j<=500){
+    a[i,j]=sum(setas[i,2:k]*setas[j,2:k])
+    a[j,i]=a[i,j]
+    #cat(i,j,a[i,j],"\n")
+    j=j+1
+  }
+  i=i+1
+}
+fin=Sys.time()
+fin-inicio
 ```
 
 
