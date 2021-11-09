@@ -45,7 +45,7 @@ ANALISIS CLUSTER
 clusters2.datos=kmeans(nuevos.datos.pca,centers=2,nstart=25)
 #Números de clusters
 SSW <- vector(mode = "numeric", length = 15)
-
+n=dim(nuevos.datos.pca)[1]
 #Variabilidad de todos los datos, es decir, todos los datos como un único cluster
 SSW[1] <- (n - 1) * sum(apply(setas,2,var)) 
 
@@ -57,15 +57,15 @@ plot(1:15, SSW, type="b", xlab="Number of Clusters", ylab="Sum of squares within
 
 
 #Cluster con 5 centroides:
-clusters5.datos=kmeans(setas,centers=5,nstart=25)
-centroides=aggregate(setas,by=list(clusters5.datos $cluster),FUN=mean) 
+clusters8.datos=kmeans(setas,centers=8,nstart=25)
+centroides=aggregate(setas,by=list(clusters8.datos$cluster),FUN=mean) 
 
-pairs(setas,col= clusters5.datos$cluster,pch=19)
-points(clusters5.datos$centers, col = 1:nk, pch = 19, cex=2)
+pairs(setas,col= clusters8.datos$cluster,pch=19)
+points(clusters8.datos$centers, col = 1:nk, pch = 19, cex=2)
 
 
 library(cluster)
-clusplot(setas, clusters5.datos$cluster, color=TRUE, shade=TRUE, labels=2,lines=0)
+clusplot(setas, clusters8.datos$cluster, color=TRUE, shade=TRUE, labels=2,lines=0)
 ```
 
 CALCULO DE DISTANCIAS
