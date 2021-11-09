@@ -25,14 +25,17 @@ plot(pca)
 summary(pca)
 nuevos.datos.pca=pca$x[,1:13]
 
-
-pca.respuesta=cbind(setas_train[,1],nuevos.datos.pca)
-pca.venenosas=which(pca.respuesta[,1]==1)
-pca.novenenosas=which(pca.respuesta[,1]==0)
+pca.venenosas=which(setas_train[,1]==1)
+pca.novenenosas=which(setas_train[,1]==0)
 
 plot(nuevos.datos.pca)
-points(nuevos.datos.pca[pca.venenosas,],col="aquamarine")
-points(nuevos.datos.pca[pca.novenenosas,],col="purple")
+points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
+points(nuevos.datos.pca[pca.novenenosas,],col="purple",lwd=2)
+
+plot(nuevos.datos.pca)
+points(nuevos.datos.pca[pca.novenenosas,],col="purple",lwd=2)
+points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
+
 
 pairs(nuevos.datos.pca[,1:4])
 ```
