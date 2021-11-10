@@ -32,7 +32,6 @@
   
 <link rel="prev" href="datos.html"/>
 <link rel="next" href="modelado.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,23 +49,24 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,18 +134,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> ¿ Objetivos (del negocio)?</a></li>
-<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a>
-<ul>
+<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a><ul>
 <li class="chapter" data-level="3.1" data-path="datos.html"><a href="datos.html#particiones."><i class="fa fa-check"></i><b>3.1</b> Particiones.</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a>
-<ul>
+<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a><ul>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.1.1</b> Letalidad:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a>
-<ul>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-sombrero-forma_s"><i class="fa fa-check"></i><b>4.2.1</b> Forma del sombrero (Forma_S)</a></li>
 <li class="chapter" data-level="4.2.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#cutícula"><i class="fa fa-check"></i><b>4.2.2</b> Cutícula</a></li>
 <li class="chapter" data-level="4.2.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-sombrero-color_s"><i class="fa fa-check"></i><b>4.2.3</b> Color del sombrero (Color_S)</a></li>
@@ -171,8 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
 <li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a>
-<ul>
+<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a><ul>
 <li class="chapter" data-level="5.1" data-path="modelado.html"><a href="modelado.html#k-nn"><i class="fa fa-check"></i><b>5.1</b> k-NN</a></li>
 <li class="chapter" data-level="5.2" data-path="modelado.html"><a href="modelado.html#regresión-logística"><i class="fa fa-check"></i><b>5.2</b> Regresión Logística</a></li>
 <li class="chapter" data-level="5.3" data-path="modelado.html"><a href="modelado.html#clustering"><i class="fa fa-check"></i><b>5.3</b> Clustering</a></li>
@@ -202,11 +197,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preprocesado-de-datos." class="section level1" number="4">
+<div id="preprocesado-de-datos." class="section level1">
 <h1><span class="header-section-number">4</span> Preprocesado de datos.</h1>
 <p>Para poder tranformar las variables en factor, lo haremos mediante <strong>as.factor()</strong> a todas las variables de los datos.</p>
 <p>Ahora podemos ver mejor como son nuestros datos.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesado-de-datos..html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos.setas_train)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesado-de-datos..html#cb11-1"></a><span class="kw">summary</span>(datos.setas_train)</span></code></pre></div>
 <pre><code>##  Letalidad Forma_S  Cuticula    Color_S     Escamas       Olor      Fijacion_L
 ##  e:2522    b: 252   f:1401   n      :1394   f:2868   n      :2127   a: 114    
 ##  p:2352    c:   2   g:   3   g      :1103   t:2006   f      :1276   f:4760    
@@ -240,11 +235,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##              o      :  26   y:1037    u: 222  
 ##              (Other):  70             w: 116</code></pre>
 <p>Una de las variables, <strong>Tipo_v</strong> (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="preprocesado-de-datos..html#cb13-1" aria-hidden="true" tabindex="-1"></a>datos.setas_train<span class="ot">=</span>datos.setas_train[,<span class="sc">-</span><span class="dv">17</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="preprocesado-de-datos..html#cb13-1"></a>datos.setas_train=datos.setas_train[,<span class="op">-</span><span class="dv">17</span>]</span></code></pre></div>
 <p>Además, la variable <strong>Fijacion_L</strong> tendría solo dos niveles pues en el nivel descendente y entallado no aparecen en los datos y la variable <strong>Espacio_L</strong> también tiene dos niveles pues el nivel distante tampoco aparece, por ello las codificamos mediante unas variable binomiales.</p>
 <p>Codificamos el resto de las variables originales de forma que obtendremos también nuevas variables binomiales, excepto las variables relacionadas con el color que las codificaremos siguiendo la escala de colores.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesado-de-datos..html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#6 primeras observaciones de los datos ya codificados</span></span>
-<span id="cb14-2"><a href="preprocesado-de-datos..html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(setas)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesado-de-datos..html#cb14-1"></a><span class="co">#6 primeras observaciones de los datos ya codificados</span></span>
+<span id="cb14-2"><a href="preprocesado-de-datos..html#cb14-2"></a><span class="kw">head</span>(setas)</span></code></pre></div>
 <pre><code>##   Venenosas Campana Cónica Convexa Plana Nudosa Hundida Fibroso Surcos Escamoso
 ## 1         0       1      0       0     0      0       0       0      0        0
 ## 2         0       1      0       0     0      0       0       0      0        0
@@ -357,424 +352,429 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4       0      0        0
 ## 5       0      0        0
 ## 6       0      0        0</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="preprocesado-de-datos..html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Dimensión</span></span>
-<span id="cb16-2"><a href="preprocesado-de-datos..html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(setas)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="preprocesado-de-datos..html#cb16-1"></a><span class="co">#Dimensión</span></span>
+<span id="cb16-2"><a href="preprocesado-de-datos..html#cb16-2"></a><span class="kw">dim</span>(setas)</span></code></pre></div>
 <pre><code>## [1] 4874  117</code></pre>
-<div id="eda.-exploratory-data-analysis." class="section level2" number="4.1">
+<div id="eda.-exploratory-data-analysis." class="section level2">
 <h2><span class="header-section-number">4.1</span> EDA. Exploratory Data Analysis.</h2>
-<div id="letalidad" class="section level3" number="4.1.1">
+<div id="letalidad" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Letalidad:</h3>
 <p>La variable <strong>letalidad</strong> tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocesado-de-datos..html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla:</span></span>
-<span id="cb18-2"><a href="preprocesado-de-datos..html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(setas<span class="sc">$</span>Venenosas)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocesado-de-datos..html#cb18-1"></a><span class="co">#Tabla:</span></span>
+<span id="cb18-2"><a href="preprocesado-de-datos..html#cb18-2"></a><span class="kw">table</span>(setas<span class="op">$</span>Venenosas)</span></code></pre></div>
 <pre><code>## 
 ##    0    1 
 ## 2522 2352</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocesado-de-datos..html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias:</span></span>
-<span id="cb20-2"><a href="preprocesado-de-datos..html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(setas<span class="sc">$</span>Venenosas))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocesado-de-datos..html#cb20-1"></a><span class="co">#Tabla de frecuencias:</span></span>
+<span id="cb20-2"><a href="preprocesado-de-datos..html#cb20-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(setas<span class="op">$</span>Venenosas))</span></code></pre></div>
 <pre><code>## 
 ##         0         1 
 ## 0.5174395 0.4825605</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="preprocesado-de-datos..html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico</span></span>
-<span id="cb22-2"><a href="preprocesado-de-datos..html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(setas<span class="sc">$</span>Venenosas),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>),<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Comestible&quot;</span>,<span class="st">&quot;Venenosa&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="preprocesado-de-datos..html#cb22-1"></a><span class="co">#Gráfico</span></span>
+<span id="cb22-2"><a href="preprocesado-de-datos..html#cb22-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(setas<span class="op">$</span>Venenosas),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>),<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Comestible&quot;</span>,<span class="st">&quot;Venenosa&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/proporcion-1.png" width="672" /></p>
 </div>
 </div>
-<div id="correlación-entre-las-variables." class="section level2" number="4.2">
+<div id="correlación-entre-las-variables." class="section level2">
 <h2><span class="header-section-number">4.2</span> Correlación entre las variables.</h2>
 <p>Vamos a comprobar si existe alguna correlación entre las distintas variables.</p>
-<div id="forma-del-sombrero-forma_s" class="section level3" number="4.2.1">
+<div id="forma-del-sombrero-forma_s" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Forma del sombrero (Forma_S)</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preprocesado-de-datos..html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~forma del sombrero</span></span>
-<span id="cb23-2"><a href="preprocesado-de-datos..html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_S)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preprocesado-de-datos..html#cb23-1"></a><span class="co">#Tabla de frecuencias letalidad~forma del sombrero</span></span>
+<span id="cb23-2"><a href="preprocesado-de-datos..html#cb23-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_S)</span></code></pre></div>
 <pre><code>##    
 ##        b    c    f    k    s    x
 ##   e  229    0  960  133   21 1179
 ##   p   23    2  922  356    0 1049</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="preprocesado-de-datos..html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~forma del sombrero</span></span>
-<span id="cb25-2"><a href="preprocesado-de-datos..html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_S),<span class="at">main=</span><span class="st">&quot;Letalidad vs Forma del sombrero&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Forma&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Campana&quot;</span>, <span class="st">&quot;Cónica&quot;</span>, <span class="st">&quot;Plana&quot;</span>, <span class="st">&quot;Nudosa&quot;</span>, <span class="st">&quot;Hundida&quot;</span>, <span class="st">&quot;Convexa&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="preprocesado-de-datos..html#cb25-1"></a><span class="co">#Gráfico letalidad~forma del sombrero</span></span>
+<span id="cb25-2"><a href="preprocesado-de-datos..html#cb25-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_S),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Forma del sombrero&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Forma&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Campana&quot;</span>, <span class="st">&quot;Cónica&quot;, &quot;</span>Plana<span class="st">&quot;, &quot;</span>Nudosa<span class="st">&quot;, &quot;</span>Hundida<span class="st">&quot;, &quot;</span>Convexa<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/forma%20del%20sombrero-1.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="preprocesado-de-datos..html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb26-2"><a href="preprocesado-de-datos..html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_S))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="preprocesado-de-datos..html#cb26-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb26-2"><a href="preprocesado-de-datos..html#cb26-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_S))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Forma_S)
 ## X-squared = 295.88, df = 5, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="cutícula" class="section level3" number="4.2.2">
+<div id="cutícula" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Cutícula</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="preprocesado-de-datos..html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~cuticula</span></span>
-<span id="cb28-2"><a href="preprocesado-de-datos..html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Cuticula)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="preprocesado-de-datos..html#cb28-1"></a><span class="co">#Tabla de frecuencias letalidad~cuticula</span></span>
+<span id="cb28-2"><a href="preprocesado-de-datos..html#cb28-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Cuticula)</span></code></pre></div>
 <pre><code>##    
 ##        f    g    s    y
 ##   e  942    0  669  911
 ##   p  459    3  860 1030</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="preprocesado-de-datos..html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~cuticula</span></span>
-<span id="cb30-2"><a href="preprocesado-de-datos..html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Cuticula),<span class="at">main=</span><span class="st">&quot;Letalidad vs Cuticula&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Cuticula&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Fibroso&quot;</span>, <span class="st">&quot;Con surcos&quot;</span>, <span class="st">&quot;Lisa&quot;</span>, <span class="st">&quot;Escamosa&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="preprocesado-de-datos..html#cb30-1"></a><span class="co">#Gráfico letalidad~cuticula</span></span>
+<span id="cb30-2"><a href="preprocesado-de-datos..html#cb30-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Cuticula),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Cuticula&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Cuticula&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Fibroso&quot;</span>, <span class="st">&quot;Con surcos&quot;</span>, <span class="st">&quot;Lisa&quot;</span>, <span class="st">&quot;Escamosa&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/cuticula-1.png" width="672" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="preprocesado-de-datos..html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb31-2"><a href="preprocesado-de-datos..html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Cuticula))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="preprocesado-de-datos..html#cb31-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb31-2"><a href="preprocesado-de-datos..html#cb31-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Cuticula))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Cuticula)
 ## X-squared = 194.98, df = 3, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="color-del-sombrero-color_s" class="section level3" number="4.2.3">
+<div id="color-del-sombrero-color_s" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Color del sombrero (Color_S)</h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="preprocesado-de-datos..html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~color del sombrero</span></span>
-<span id="cb33-2"><a href="preprocesado-de-datos..html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_S)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="preprocesado-de-datos..html#cb33-1"></a><span class="co">#Tabla de frecuencias letalidad~color del sombrero</span></span>
+<span id="cb33-2"><a href="preprocesado-de-datos..html#cb33-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_S)</span></code></pre></div>
 <pre><code>##    
 ##       b   c   e   g   n   p   r   u   w   y
 ##   e  28  21 375 632 760  34  12  11 417 232
 ##   p  68   6 528 471 634  53   0   0 198 394</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="preprocesado-de-datos..html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color del sombrero</span></span>
-<span id="cb35-2"><a href="preprocesado-de-datos..html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_S),<span class="at">main=</span><span class="st">&quot;Letalidad vs Color del sombrero&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Canela&quot;</span>, <span class="st">&quot;Rojo&quot;</span>, <span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Marrón&quot;</span>,<span class="st">&quot;Rosa&quot;</span>,<span class="st">&quot;Verde&quot;</span>,<span class="st">&quot;Morado&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="preprocesado-de-datos..html#cb35-1"></a><span class="co">#Gráfico letalidad~color del sombrero</span></span>
+<span id="cb35-2"><a href="preprocesado-de-datos..html#cb35-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_S),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Color del sombrero&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Canela&quot;</span>, <span class="st">&quot;Rojo&quot;</span>, <span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Marrón&quot;,&quot;</span>Rosa<span class="st">&quot;,&quot;</span>Verde<span class="st">&quot;,&quot;</span>Morado<span class="st">&quot;,&quot;</span>Blanco<span class="st">&quot;,&quot;</span>Amarillo<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/color%20del%20sombrero-1.png" width="672" /></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="preprocesado-de-datos..html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb36-2"><a href="preprocesado-de-datos..html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_S))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="preprocesado-de-datos..html#cb36-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb36-2"><a href="preprocesado-de-datos..html#cb36-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_S))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Color_S)
 ## X-squared = 227.22, df = 9, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="escamas" class="section level3" number="4.2.4">
+<div id="escamas" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Escamas</h3>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="preprocesado-de-datos..html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~escamas</span></span>
-<span id="cb38-2"><a href="preprocesado-de-datos..html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Escamas)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="preprocesado-de-datos..html#cb38-1"></a><span class="co">#Tabla de frecuencias letalidad~escamas</span></span>
+<span id="cb38-2"><a href="preprocesado-de-datos..html#cb38-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Escamas)</span></code></pre></div>
 <pre><code>##    
 ##        f    t
 ##   e  882 1640
 ##   p 1986  366</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="preprocesado-de-datos..html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~escamas</span></span>
-<span id="cb40-2"><a href="preprocesado-de-datos..html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Escamas),<span class="at">main=</span><span class="st">&quot;Letalidad vs Escamas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Escamas&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Sin escamas&quot;</span>, <span class="st">&quot;Con escamas&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="preprocesado-de-datos..html#cb40-1"></a><span class="co">#Gráfico letalidad~escamas</span></span>
+<span id="cb40-2"><a href="preprocesado-de-datos..html#cb40-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Escamas),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Escamas&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Escamas&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Sin escamas&quot;</span>, <span class="st">&quot;Con escamas&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/escamas-1.png" width="672" /></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="preprocesado-de-datos..html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb41-2"><a href="preprocesado-de-datos..html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Escamas))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="preprocesado-de-datos..html#cb41-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb41-2"><a href="preprocesado-de-datos..html#cb41-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Escamas))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Escamas)
 ## X-squared = 1227.6, df = 1, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="olor" class="section level3" number="4.2.5">
+<div id="olor" class="section level3">
 <h3><span class="header-section-number">4.2.5</span> Olor</h3>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="preprocesado-de-datos..html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~olor</span></span>
-<span id="cb43-2"><a href="preprocesado-de-datos..html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Olor)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="preprocesado-de-datos..html#cb43-1"></a><span class="co">#Tabla de frecuencias letalidad~olor</span></span>
+<span id="cb43-2"><a href="preprocesado-de-datos..html#cb43-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Olor)</span></code></pre></div>
 <pre><code>##    
 ##        a    c    f    l    m    n    p    s    y
 ##   e  234    0    0  228    0 2060    0    0    0
 ##   p    0  114 1276    0   19   67  163  365  348</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="preprocesado-de-datos..html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~olor</span></span>
-<span id="cb45-2"><a href="preprocesado-de-datos..html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Olor),<span class="at">main=</span><span class="st">&quot;Letalidad vs Olor&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Olor&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Almendra&quot;</span>, <span class="st">&quot;Creosota&quot;</span>,<span class="st">&quot;Asqueroso&quot;</span>,<span class="st">&quot;Anís&quot;</span>,<span class="st">&quot;Mohoso&quot;</span>,<span class="st">&quot;Ninguno&quot;</span>,<span class="st">&quot;Acre&quot;</span>,<span class="st">&quot;Picante&quot;</span>,<span class="st">&quot;Pescado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="preprocesado-de-datos..html#cb45-1"></a><span class="co">#Gráfico letalidad~olor</span></span>
+<span id="cb45-2"><a href="preprocesado-de-datos..html#cb45-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Olor),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Olor&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Olor&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Almendra&quot;</span>, <span class="st">&quot;Creosota&quot;</span>,<span class="st">&quot;Asqueroso&quot;</span>,<span class="st">&quot;Anís&quot;</span>,<span class="st">&quot;Mohoso&quot;</span>,<span class="st">&quot;Ninguno&quot;</span>,<span class="st">&quot;Acre&quot;</span>,<span class="st">&quot;Picante&quot;</span>,<span class="st">&quot;Pescado&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/olor%20setas-1.png" width="672" /></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="preprocesado-de-datos..html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb46-2"><a href="preprocesado-de-datos..html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Olor))</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="preprocesado-de-datos..html#cb46-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb46-2"><a href="preprocesado-de-datos..html#cb46-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Olor))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Olor)
 ## X-squared = 4614.1, df = 8, p-value &lt; 2.2e-16</code></pre>
-<p>Podemos observar que la variable <strong>olor</strong> se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo <em>creosota, asqueroso, mohoso, acre, picante o pesacado</em> son venenosas mientras que si presentan un olor del tipo <em>almendar, anís o ninguno</em> son comestibles. Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.</p>
+<p>Podemos observar que la variable <strong>olor</strong> se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo <em>creosota, asqueroso, mohoso, acre, picante o pesacado</em> son venenosas mientras que si presentan un olor del tipo <em>almendar, anís </em> son comestibles, mientras que si es <em>ninguno</em> el olor tienes una proporción de 97% de que sea comestible.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="preprocesado-de-datos..html#cb48-1"></a><span class="co">#Proporción según olor sea ninguno</span></span>
+<span id="cb48-2"><a href="preprocesado-de-datos..html#cb48-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Olor)[,<span class="dv">6</span>])</span></code></pre></div>
+<pre><code>##          e          p 
+## 0.96850024 0.03149976</code></pre>
+<p>Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.</p>
 </div>
-<div id="fijación-de-las-láminas-fijacion_l" class="section level3" number="4.2.6">
+<div id="fijación-de-las-láminas-fijacion_l" class="section level3">
 <h3><span class="header-section-number">4.2.6</span> Fijación de las láminas (Fijacion_L)</h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="preprocesado-de-datos..html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~fijación de las láminas</span></span>
-<span id="cb48-2"><a href="preprocesado-de-datos..html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Fijacion_L)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="preprocesado-de-datos..html#cb50-1"></a><span class="co">#Tabla de frecuencias letalidad~fijación de las láminas</span></span>
+<span id="cb50-2"><a href="preprocesado-de-datos..html#cb50-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Fijacion_L)</span></code></pre></div>
 <pre><code>##    
 ##        a    f
 ##   e  107 2415
 ##   p    7 2345</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="preprocesado-de-datos..html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~fijación de las láminas</span></span>
-<span id="cb50-2"><a href="preprocesado-de-datos..html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Fijacion_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Fijación de las láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Fijación&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Adjunto&quot;</span>, <span class="st">&quot;Libre&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="preprocesado-de-datos..html#cb52-1"></a><span class="co">#Gráfico letalidad~fijación de las láminas</span></span>
+<span id="cb52-2"><a href="preprocesado-de-datos..html#cb52-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Fijacion_L),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Fijación de las láminas&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Fijación&quot;,ylab=&quot;</span>Número de setas<span class="st">&quot;,names.arg=c(&quot;</span>Adjunto<span class="st">&quot;, &quot;</span>Libre<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/fijacion-1.png" width="672" /></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="preprocesado-de-datos..html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb51-2"><a href="preprocesado-de-datos..html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Fijacion_L))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="preprocesado-de-datos..html#cb53-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb53-2"><a href="preprocesado-de-datos..html#cb53-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Fijacion_L))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Fijacion_L)
 ## X-squared = 81.202, df = 1, p-value &lt; 2.2e-16</code></pre>
 <p>Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 94% frente a un 6%, comestible o venenosa, respectivamente.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="preprocesado-de-datos..html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según fijacion sea adjunto</span></span>
-<span id="cb53-2"><a href="preprocesado-de-datos..html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Fijacion_L)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="preprocesado-de-datos..html#cb55-1"></a><span class="co">#Proporción según fijacion sea adjunto</span></span>
+<span id="cb55-2"><a href="preprocesado-de-datos..html#cb55-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Fijacion_L)[,<span class="dv">1</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##         e         p 
 ## 93.859649  6.140351</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="preprocesado-de-datos..html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según fijacion sea libre</span></span>
-<span id="cb55-2"><a href="preprocesado-de-datos..html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Fijacion_L)[,<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="preprocesado-de-datos..html#cb57-1"></a><span class="co">#Proporción según fijacion sea libre</span></span>
+<span id="cb57-2"><a href="preprocesado-de-datos..html#cb57-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Fijacion_L)[,<span class="dv">2</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
 ## 50.73529 49.26471</code></pre>
 </div>
-<div id="espacio-entre-láminas-espacio_l" class="section level3" number="4.2.7">
+<div id="espacio-entre-láminas-espacio_l" class="section level3">
 <h3><span class="header-section-number">4.2.7</span> Espacio entre láminas (Espacio_L)</h3>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="preprocesado-de-datos..html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~espacio entre láminas</span></span>
-<span id="cb57-2"><a href="preprocesado-de-datos..html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Espacio_L)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="preprocesado-de-datos..html#cb59-1"></a><span class="co">#Tabla de frecuencias letalidad~espacio entre láminas</span></span>
+<span id="cb59-2"><a href="preprocesado-de-datos..html#cb59-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Espacio_L)</span></code></pre></div>
 <pre><code>##    
 ##        c    w
 ##   e 1805  717
 ##   p 2292   60</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="preprocesado-de-datos..html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~espacio entre láminas</span></span>
-<span id="cb59-2"><a href="preprocesado-de-datos..html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Espacio_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Espacio entre láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Espacio&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Cerca&quot;</span>, <span class="st">&quot;Atestado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="preprocesado-de-datos..html#cb61-1"></a><span class="co">#Gráfico letalidad~espacio entre láminas</span></span>
+<span id="cb61-2"><a href="preprocesado-de-datos..html#cb61-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Espacio_L),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Espacio entre láminas&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Espacio&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Cerca&quot;</span>, <span class="st">&quot;Atestado&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/espacio-1.png" width="672" /></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="preprocesado-de-datos..html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb60-2"><a href="preprocesado-de-datos..html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Espacio_L))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="preprocesado-de-datos..html#cb62-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb62-2"><a href="preprocesado-de-datos..html#cb62-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Espacio_L))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Espacio_L)
 ## X-squared = 606.3, df = 1, p-value &lt; 2.2e-16</code></pre>
 <p>Podemos ver que ocurre algo parecido que en la variable <strong>fijacion_L</strong>, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 92% frente a un 8%, comestible o venenosa, respectivamente.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="preprocesado-de-datos..html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según espacio sea cerca</span></span>
-<span id="cb62-2"><a href="preprocesado-de-datos..html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Espacio_L)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="preprocesado-de-datos..html#cb64-1"></a><span class="co">#Proporción según espacio sea cerca</span></span>
+<span id="cb64-2"><a href="preprocesado-de-datos..html#cb64-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Espacio_L)[,<span class="dv">1</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
 ## 44.05663 55.94337</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="preprocesado-de-datos..html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según espacio sea atestado</span></span>
-<span id="cb64-2"><a href="preprocesado-de-datos..html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Espacio_L)[,<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="preprocesado-de-datos..html#cb66-1"></a><span class="co">#Proporción según espacio sea atestado</span></span>
+<span id="cb66-2"><a href="preprocesado-de-datos..html#cb66-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Espacio_L)[,<span class="dv">2</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##         e         p 
 ## 92.277992  7.722008</code></pre>
 </div>
-<div id="tamaño-de-las-láminas-tamaño_l" class="section level3" number="4.2.8">
+<div id="tamaño-de-las-láminas-tamaño_l" class="section level3">
 <h3><span class="header-section-number">4.2.8</span> Tamaño de las láminas (Tamaño_L)</h3>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="preprocesado-de-datos..html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~tamaño de las láminas</span></span>
-<span id="cb66-2"><a href="preprocesado-de-datos..html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tamaño_L)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="preprocesado-de-datos..html#cb68-1"></a><span class="co">#Tabla de frecuencias letalidad~tamaño de las láminas</span></span>
+<span id="cb68-2"><a href="preprocesado-de-datos..html#cb68-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tamaño_L)</span></code></pre></div>
 <pre><code>##    
 ##        b    n
 ##   e 2344  178
 ##   p  985 1367</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="preprocesado-de-datos..html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~tamaño de las láminas</span></span>
-<span id="cb68-2"><a href="preprocesado-de-datos..html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tamaño_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tamaño de las láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Tamaño&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ancho&quot;</span>, <span class="st">&quot;Estrecho&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="preprocesado-de-datos..html#cb70-1"></a><span class="co">#Gráfico letalidad~tamaño de las láminas</span></span>
+<span id="cb70-2"><a href="preprocesado-de-datos..html#cb70-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tamaño_L),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Tamaño de las láminas&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Tamaño&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Ancho&quot;</span>, <span class="st">&quot;Estrecho&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/tamaño-1.png" width="672" /></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="preprocesado-de-datos..html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb69-2"><a href="preprocesado-de-datos..html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tamaño_L))</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="preprocesado-de-datos..html#cb71-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb71-2"><a href="preprocesado-de-datos..html#cb71-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tamaño_L))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Tamaño_L)
 ## X-squared = 1463.3, df = 1, p-value &lt; 2.2e-16</code></pre>
 <p>Podemos ver que la proporción de que la seta sea venenosa o comestible según el tamaño de las láminas en el caso de que sea ancha es del 30% frente a 70%, respectivamente, mientras que si es estrecho la proporción cambia a un 11.5% frente a un 88.5%, respectivamente.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="preprocesado-de-datos..html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según tamaño sea ancho</span></span>
-<span id="cb71-2"><a href="preprocesado-de-datos..html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tamaño_L)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="preprocesado-de-datos..html#cb73-1"></a><span class="co">#Proporción según tamaño sea ancho</span></span>
+<span id="cb73-2"><a href="preprocesado-de-datos..html#cb73-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tamaño_L)[,<span class="dv">1</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
 ## 70.41153 29.58847</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="preprocesado-de-datos..html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según tamaño sea estrecho</span></span>
-<span id="cb73-2"><a href="preprocesado-de-datos..html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tamaño_L)[,<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="preprocesado-de-datos..html#cb75-1"></a><span class="co">#Proporción según tamaño sea estrecho</span></span>
+<span id="cb75-2"><a href="preprocesado-de-datos..html#cb75-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tamaño_L)[,<span class="dv">2</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
 ## 11.52104 88.47896</code></pre>
 </div>
-<div id="color-de-las-láminas-color_l" class="section level3" number="4.2.9">
+<div id="color-de-las-láminas-color_l" class="section level3">
 <h3><span class="header-section-number">4.2.9</span> Color de las láminas (Color_L)</h3>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="preprocesado-de-datos..html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~color de las láminas</span></span>
-<span id="cb75-2"><a href="preprocesado-de-datos..html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_L)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="preprocesado-de-datos..html#cb77-1"></a><span class="co">#Tabla de frecuencias letalidad~color de las láminas</span></span>
+<span id="cb77-2"><a href="preprocesado-de-datos..html#cb77-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_L)</span></code></pre></div>
 <pre><code>##    
 ##        b    e    g    h    k    n    o    p    r    u    w    y
 ##   e    0   58  148  124  218  559   36  515    0  272  556   36
 ##   p 1062    0  311  302   43   64    0  368   15   28  145   14</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="preprocesado-de-datos..html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color de las láminas</span></span>
-<span id="cb77-2"><a href="preprocesado-de-datos..html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Color de las láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Rojo&quot;</span>,<span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Chocolate&quot;</span>,<span class="st">&quot;Negro&quot;</span>,<span class="st">&quot;Marrón&quot;</span>,<span class="st">&quot;Naranja&quot;</span>,<span class="st">&quot;Rosa&quot;</span>,<span class="st">&quot;Verde&quot;</span>,<span class="st">&quot;Morado&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="preprocesado-de-datos..html#cb79-1"></a><span class="co">#Gráfico letalidad~color de las láminas</span></span>
+<span id="cb79-2"><a href="preprocesado-de-datos..html#cb79-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_L),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Color de las láminas&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Rojo&quot;</span>,<span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Chocolate&quot;</span>,<span class="st">&quot;Negro&quot;</span>,<span class="st">&quot;Marrón&quot;,&quot;</span>Naranja<span class="st">&quot;,&quot;</span>Rosa<span class="st">&quot;,&quot;</span>Verde<span class="st">&quot;,&quot;</span>Morado<span class="st">&quot;,&quot;</span>Blanco<span class="st">&quot;,&quot;</span>Amarillo<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/color%20laminas-1.png" width="672" /></p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="preprocesado-de-datos..html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb78-2"><a href="preprocesado-de-datos..html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_L))</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="preprocesado-de-datos..html#cb80-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb80-2"><a href="preprocesado-de-datos..html#cb80-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_L))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Color_L)
 ## X-squared = 2284.3, df = 11, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="forma-del-tallo-forma_t" class="section level3" number="4.2.10">
+<div id="forma-del-tallo-forma_t" class="section level3">
 <h3><span class="header-section-number">4.2.10</span> Forma del tallo (Forma_T)</h3>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="preprocesado-de-datos..html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~forma del tallo</span></span>
-<span id="cb80-2"><a href="preprocesado-de-datos..html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_T)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="preprocesado-de-datos..html#cb82-1"></a><span class="co">#Tabla de frecuencias letalidad~forma del tallo</span></span>
+<span id="cb82-2"><a href="preprocesado-de-datos..html#cb82-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_T)</span></code></pre></div>
 <pre><code>##    
 ##        e    t
 ##   e  958 1564
 ##   p 1131 1221</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="preprocesado-de-datos..html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~forma del tallo</span></span>
-<span id="cb82-2"><a href="preprocesado-de-datos..html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_T),<span class="at">main=</span><span class="st">&quot;Letalidad vs Forma del tallo&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Tallo&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Agrandado&quot;</span>, <span class="st">&quot;Afilado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="preprocesado-de-datos..html#cb84-1"></a><span class="co">#Gráfico letalidad~forma del tallo</span></span>
+<span id="cb84-2"><a href="preprocesado-de-datos..html#cb84-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_T),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Forma del tallo&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Tallo&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Agrandado&quot;</span>, <span class="st">&quot;Afilado&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/forma%20tallo-1.png" width="672" /></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="preprocesado-de-datos..html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb83-2"><a href="preprocesado-de-datos..html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_T))</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="preprocesado-de-datos..html#cb85-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb85-2"><a href="preprocesado-de-datos..html#cb85-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_T))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Forma_T)
 ## X-squared = 50.291, df = 1, p-value = 1.325e-12</code></pre>
 <p>Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="preprocesado-de-datos..html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según forma sea agrandado</span></span>
-<span id="cb85-2"><a href="preprocesado-de-datos..html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_T)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="preprocesado-de-datos..html#cb87-1"></a><span class="co">#Proporción según forma sea agrandado</span></span>
+<span id="cb87-2"><a href="preprocesado-de-datos..html#cb87-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_T)[,<span class="dv">1</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
 ## 45.85926 54.14074</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="preprocesado-de-datos..html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según forma sea afilado</span></span>
-<span id="cb87-2"><a href="preprocesado-de-datos..html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Forma_T)[,<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="preprocesado-de-datos..html#cb89-1"></a><span class="co">#Proporción según forma sea afilado</span></span>
+<span id="cb89-2"><a href="preprocesado-de-datos..html#cb89-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Forma_T)[,<span class="dv">2</span>])<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
 ## 56.15799 43.84201</code></pre>
 </div>
-<div id="tallo-raíz-tallo_raiz" class="section level3" number="4.2.11">
+<div id="tallo-raíz-tallo_raiz" class="section level3">
 <h3><span class="header-section-number">4.2.11</span> Tallo-Raíz (Tallo_raiz)</h3>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="preprocesado-de-datos..html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~tallo-raiz</span></span>
-<span id="cb89-2"><a href="preprocesado-de-datos..html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tallo_raiz)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="preprocesado-de-datos..html#cb91-1"></a><span class="co">#Tabla de frecuencias letalidad~tallo-raiz</span></span>
+<span id="cb91-2"><a href="preprocesado-de-datos..html#cb91-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tallo_raiz)</span></code></pre></div>
 <pre><code>##    
 ##        ?    b    c    e    r
 ##   e  418 1151  301  538  114
 ##   p 1081 1085   23  163    0</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="preprocesado-de-datos..html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~tallo-raiz</span></span>
-<span id="cb91-2"><a href="preprocesado-de-datos..html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tallo_raiz),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tallo-Raiz&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Tallo-Raiz&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Faltante&quot;</span>, <span class="st">&quot;Bulboso&quot;</span>,<span class="st">&quot;Club&quot;</span>,<span class="st">&quot;Igual&quot;</span>,<span class="st">&quot;Enraizado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="preprocesado-de-datos..html#cb93-1"></a><span class="co">#Gráfico letalidad~tallo-raiz</span></span>
+<span id="cb93-2"><a href="preprocesado-de-datos..html#cb93-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tallo_raiz),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Tallo-Raiz&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Tallo-Raiz&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Faltante&quot;</span>, <span class="st">&quot;Bulboso&quot;</span>,<span class="st">&quot;Club&quot;</span>,<span class="st">&quot;Igual&quot;</span>,<span class="st">&quot;Enraizado&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/tallo%20raiz-1.png" width="672" /></p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="preprocesado-de-datos..html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb92-2"><a href="preprocesado-de-datos..html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tallo_raiz))</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="preprocesado-de-datos..html#cb94-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb94-2"><a href="preprocesado-de-datos..html#cb94-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tallo_raiz))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Tallo_raiz)
 ## X-squared = 843.42, df = 4, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="superficie-del-tallo-por-encima-del-anillo-superficie_t1" class="section level3" number="4.2.12">
+<div id="superficie-del-tallo-por-encima-del-anillo-superficie_t1" class="section level3">
 <h3><span class="header-section-number">4.2.12</span> Superficie del tallo por encima del anillo (Superficie_T1)</h3>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="preprocesado-de-datos..html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~supercifie del tallo por encima del anillo</span></span>
-<span id="cb94-2"><a href="preprocesado-de-datos..html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Superficie_T1)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="preprocesado-de-datos..html#cb96-1"></a><span class="co">#Tabla de frecuencias letalidad~supercifie del tallo por encima del anillo</span></span>
+<span id="cb96-2"><a href="preprocesado-de-datos..html#cb96-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Superficie_T1)</span></code></pre></div>
 <pre><code>##    
 ##        f    k    s    y
 ##   e  248   85 2181    8
 ##   p   77 1328  943    4</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="preprocesado-de-datos..html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~superficie del tallo por encima del anillo</span></span>
-<span id="cb96-2"><a href="preprocesado-de-datos..html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Superficie_T1),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tallo por encima del anillo&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Superficie&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Fibroso&quot;</span>, <span class="st">&quot;Sedoso&quot;</span>,<span class="st">&quot;Liso&quot;</span>,<span class="st">&quot;Escamoso&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="preprocesado-de-datos..html#cb98-1"></a><span class="co">#Gráfico letalidad~superficie del tallo por encima del anillo</span></span>
+<span id="cb98-2"><a href="preprocesado-de-datos..html#cb98-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Superficie_T1),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Tallo por encima del anillo&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Superficie&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Fibroso&quot;</span>, <span class="st">&quot;Sedoso&quot;</span>,<span class="st">&quot;Liso&quot;</span>,<span class="st">&quot;Escamoso&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/superficie%20t1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="preprocesado-de-datos..html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb97-2"><a href="preprocesado-de-datos..html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Superficie_T1))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="preprocesado-de-datos..html#cb99-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb99-2"><a href="preprocesado-de-datos..html#cb99-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Superficie_T1))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Superficie_T1)
 ## X-squared = 1671.5, df = 3, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="superficie-del-tallo-por-debajo-del-anillo-superficie_t2" class="section level3" number="4.2.13">
+<div id="superficie-del-tallo-por-debajo-del-anillo-superficie_t2" class="section level3">
 <h3><span class="header-section-number">4.2.13</span> Superficie del tallo por debajo del anillo (Superficie_T2)</h3>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="preprocesado-de-datos..html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~supercifie del tallo por debajo del anillo</span></span>
-<span id="cb99-2"><a href="preprocesado-de-datos..html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Superficie_T2)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="preprocesado-de-datos..html#cb101-1"></a><span class="co">#Tabla de frecuencias letalidad~supercifie del tallo por debajo del anillo</span></span>
+<span id="cb101-2"><a href="preprocesado-de-datos..html#cb101-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Superficie_T2)</span></code></pre></div>
 <pre><code>##    
 ##        f    k    s    y
 ##   e  290   86 2024  122
 ##   p   79 1290  941   42</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="preprocesado-de-datos..html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~superficie del tallo por debajo del anillo</span></span>
-<span id="cb101-2"><a href="preprocesado-de-datos..html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Superficie_T2),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tallo por debajo del anillo&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Superficie&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Fibroso&quot;</span>, <span class="st">&quot;Sedoso&quot;</span>,<span class="st">&quot;Liso&quot;</span>,<span class="st">&quot;Escamoso&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="preprocesado-de-datos..html#cb103-1"></a><span class="co">#Gráfico letalidad~superficie del tallo por debajo del anillo</span></span>
+<span id="cb103-2"><a href="preprocesado-de-datos..html#cb103-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Superficie_T2),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Tallo por debajo del anillo&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Superficie&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Fibroso&quot;</span>, <span class="st">&quot;Sedoso&quot;</span>,<span class="st">&quot;Liso&quot;</span>,<span class="st">&quot;Escamoso&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/superficie%20t2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="preprocesado-de-datos..html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb102-2"><a href="preprocesado-de-datos..html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Superficie_T2))</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="preprocesado-de-datos..html#cb104-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb104-2"><a href="preprocesado-de-datos..html#cb104-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Superficie_T2))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Superficie_T2)
 ## X-squared = 1604.8, df = 3, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="color-del-tallo-por-encima-del-anillo-color_t1" class="section level3" number="4.2.14">
+<div id="color-del-tallo-por-encima-del-anillo-color_t1" class="section level3">
 <h3><span class="header-section-number">4.2.14</span> Color del tallo por encima del anillo (Color_T1)</h3>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="preprocesado-de-datos..html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~color del tallo por encima del anillo</span></span>
-<span id="cb104-2"><a href="preprocesado-de-datos..html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_T1)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="preprocesado-de-datos..html#cb106-1"></a><span class="co">#Tabla de frecuencias letalidad~color del tallo por encima del anillo</span></span>
+<span id="cb106-2"><a href="preprocesado-de-datos..html#cb106-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_T1)</span></code></pre></div>
 <pre><code>##    
 ##        b    c    e    g    n    o    p    w    y
 ##   e    0    0   60  358    8  107  336 1653    0
 ##   p  248   19    0    0  262    0  791 1028    4</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="preprocesado-de-datos..html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color del tallo por encima del anillo</span></span>
-<span id="cb106-2"><a href="preprocesado-de-datos..html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_T1),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tallo por encima del anillos&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Canela&quot;</span>,<span class="st">&quot;Rojo&quot;</span>,<span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Marrón&quot;</span>,<span class="st">&quot;Naranja&quot;</span>,<span class="st">&quot;Rosa&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="preprocesado-de-datos..html#cb108-1"></a><span class="co">#Gráfico letalidad~color del tallo por encima del anillo</span></span>
+<span id="cb108-2"><a href="preprocesado-de-datos..html#cb108-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_T1),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Tallo por encima del anillos&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Canela&quot;</span>,<span class="st">&quot;Rojo&quot;</span>,<span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Marrón&quot;,&quot;</span>Naranja<span class="st">&quot;,&quot;</span>Rosa<span class="st">&quot;,&quot;</span>Blanco<span class="st">&quot;,&quot;</span>Amarillo<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/color%20t1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="preprocesado-de-datos..html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb107-2"><a href="preprocesado-de-datos..html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_T1))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="preprocesado-de-datos..html#cb109-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb109-2"><a href="preprocesado-de-datos..html#cb109-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_T1))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Color_T1)
 ## X-squared = 1360.1, df = 8, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="color-del-tallo-por-debajo-del-anillo-color_t2" class="section level3" number="4.2.15">
+<div id="color-del-tallo-por-debajo-del-anillo-color_t2" class="section level3">
 <h3><span class="header-section-number">4.2.15</span> Color del tallo por debajo del anillo (Color_T2)</h3>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="preprocesado-de-datos..html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~color del tallo por debajo del anillo</span></span>
-<span id="cb109-2"><a href="preprocesado-de-datos..html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_T2)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="preprocesado-de-datos..html#cb111-1"></a><span class="co">#Tabla de frecuencias letalidad~color del tallo por debajo del anillo</span></span>
+<span id="cb111-2"><a href="preprocesado-de-datos..html#cb111-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_T2)</span></code></pre></div>
 <pre><code>##    
 ##        b    c    e    g    n    o    p    w    y
 ##   e    0    0   52  354   42  107  340 1627    0
 ##   p  255   19    0    0  268    0  792 1005   13</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="preprocesado-de-datos..html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color del tallo por debajo del anillo</span></span>
-<span id="cb111-2"><a href="preprocesado-de-datos..html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_T2),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tallo por debajo del anillos&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Canela&quot;</span>,<span class="st">&quot;Rojo&quot;</span>,<span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Marrón&quot;</span>,<span class="st">&quot;Naranja&quot;</span>,<span class="st">&quot;Rosa&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="preprocesado-de-datos..html#cb113-1"></a><span class="co">#Gráfico letalidad~color del tallo por debajo del anillo</span></span>
+<span id="cb113-2"><a href="preprocesado-de-datos..html#cb113-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_T2),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Tallo por debajo del anillos&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Canela&quot;</span>,<span class="st">&quot;Rojo&quot;</span>,<span class="st">&quot;Gris&quot;</span>,<span class="st">&quot;Marrón&quot;,&quot;</span>Naranja<span class="st">&quot;,&quot;</span>Rosa<span class="st">&quot;,&quot;</span>Blanco<span class="st">&quot;,&quot;</span>Amarillo<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/color%20t2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="preprocesado-de-datos..html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb112-2"><a href="preprocesado-de-datos..html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_T2))</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="preprocesado-de-datos..html#cb114-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb114-2"><a href="preprocesado-de-datos..html#cb114-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_T2))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Color_T2)
 ## X-squared = 1287.9, df = 8, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="color-del-volva-color_v" class="section level3" number="4.2.16">
+<div id="color-del-volva-color_v" class="section level3">
 <h3><span class="header-section-number">4.2.16</span> Color del volva (Color_V)</h3>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="preprocesado-de-datos..html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~color del volva</span></span>
-<span id="cb114-2"><a href="preprocesado-de-datos..html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_V)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="preprocesado-de-datos..html#cb116-1"></a><span class="co">#Tabla de frecuencias letalidad~color del volva</span></span>
+<span id="cb116-2"><a href="preprocesado-de-datos..html#cb116-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_V)</span></code></pre></div>
 <pre><code>##    
 ##        n    o    w    y
 ##   e   53   54 2415    0
 ##   p    0    0 2348    4</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="preprocesado-de-datos..html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color del volva</span></span>
-<span id="cb116-2"><a href="preprocesado-de-datos..html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_V),<span class="at">main=</span><span class="st">&quot;Letalidad vs Volva&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Marrón&quot;</span>, <span class="st">&quot;Naranja&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="preprocesado-de-datos..html#cb118-1"></a><span class="co">#Gráfico letalidad~color del volva</span></span>
+<span id="cb118-2"><a href="preprocesado-de-datos..html#cb118-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_V),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Volva&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Marrón&quot;, &quot;</span>Naranja<span class="st">&quot;,&quot;</span>Blanco<span class="st">&quot;,&quot;</span>Amarillo<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/color%20volva-1.png" width="672" /></p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="preprocesado-de-datos..html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb117-2"><a href="preprocesado-de-datos..html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_V))</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="preprocesado-de-datos..html#cb119-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb119-2"><a href="preprocesado-de-datos..html#cb119-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_V))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Color_V)
 ## X-squared = 106.14, df = 3, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="número-de-anillos-n_anillos" class="section level3" number="4.2.17">
+<div id="número-de-anillos-n_anillos" class="section level3">
 <h3><span class="header-section-number">4.2.17</span> Número de anillos (N_anillos)</h3>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="preprocesado-de-datos..html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~numero de anillos</span></span>
-<span id="cb119-2"><a href="preprocesado-de-datos..html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>N_anillos)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="preprocesado-de-datos..html#cb121-1"></a><span class="co">#Tabla de frecuencias letalidad~numero de anillos</span></span>
+<span id="cb121-2"><a href="preprocesado-de-datos..html#cb121-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>N_anillos)</span></code></pre></div>
 <pre><code>##    
 ##        n    o    t
 ##   e    0 2217  305
 ##   p   19 2294   39</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="preprocesado-de-datos..html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~numero de anillos</span></span>
-<span id="cb121-2"><a href="preprocesado-de-datos..html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>N_anillos),<span class="at">main=</span><span class="st">&quot;Letalidad vs Anillos&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Número&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ninguno&quot;</span>, <span class="st">&quot;Uno&quot;</span>,<span class="st">&quot;Dos&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="preprocesado-de-datos..html#cb123-1"></a><span class="co">#Gráfico letalidad~numero de anillos</span></span>
+<span id="cb123-2"><a href="preprocesado-de-datos..html#cb123-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>N_anillos),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Anillos&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Número&quot;,ylab=&quot;</span>Número de setas<span class="st">&quot;,names.arg=c(&quot;</span>Ninguno<span class="st">&quot;, &quot;</span>Uno<span class="st">&quot;,&quot;</span>Dos<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/numero%20anillos-1.png" width="672" /></p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="preprocesado-de-datos..html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb122-2"><a href="preprocesado-de-datos..html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>N_anillos))</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="preprocesado-de-datos..html#cb124-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb124-2"><a href="preprocesado-de-datos..html#cb124-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>N_anillos))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$N_anillos)
 ## X-squared = 220.34, df = 2, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="tipo-de-anillo-tipo_anillo" class="section level3" number="4.2.18">
+<div id="tipo-de-anillo-tipo_anillo" class="section level3">
 <h3><span class="header-section-number">4.2.18</span> Tipo de anillo (Tipo_anillo)</h3>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="preprocesado-de-datos..html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~tipo de anillo</span></span>
-<span id="cb124-2"><a href="preprocesado-de-datos..html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tipo_anillo)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="preprocesado-de-datos..html#cb126-1"></a><span class="co">#Tabla de frecuencias letalidad~tipo de anillo</span></span>
+<span id="cb126-2"><a href="preprocesado-de-datos..html#cb126-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tipo_anillo)</span></code></pre></div>
 <pre><code>##    
 ##        e    f    l    n    p
 ##   e  623   32    0    0 1867
 ##   p 1085    0  768   19  480</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="preprocesado-de-datos..html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~tipo de anillo</span></span>
-<span id="cb126-2"><a href="preprocesado-de-datos..html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tipo_anillo),<span class="at">main=</span><span class="st">&quot;Letalidad vs Anillo&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Tipo&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Evanescente&quot;</span>, <span class="st">&quot;Abocinado&quot;</span>,<span class="st">&quot;Grande&quot;</span>,<span class="st">&quot;Ninguno&quot;</span>,<span class="st">&quot;Colgante&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="preprocesado-de-datos..html#cb128-1"></a><span class="co">#Gráfico letalidad~tipo de anillo</span></span>
+<span id="cb128-2"><a href="preprocesado-de-datos..html#cb128-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tipo_anillo),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Anillo&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Tipo&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Evanescente&quot;</span>, <span class="st">&quot;Abocinado&quot;</span>,<span class="st">&quot;Grande&quot;</span>,<span class="st">&quot;Ninguno&quot;</span>,<span class="st">&quot;Colgante&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/tipo%20anillos-1.png" width="672" /></p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="preprocesado-de-datos..html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb127-2"><a href="preprocesado-de-datos..html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Tipo_anillo))</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="preprocesado-de-datos..html#cb129-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb129-2"><a href="preprocesado-de-datos..html#cb129-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Tipo_anillo))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(datos.setas_train$Letalidad, datos.setas_train$Tipo_anillo)
 ## X-squared = 1759.9, df = 4, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div id="color-de-las-esporas" class="section level3" number="4.2.19">
+<div id="color-de-las-esporas" class="section level3">
 <h3><span class="header-section-number">4.2.19</span> Color de las esporas</h3>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="preprocesado-de-datos..html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~color de las esporas</span></span>
-<span id="cb129-2"><a href="preprocesado-de-datos..html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_esporas)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="preprocesado-de-datos..html#cb131-1"></a><span class="co">#Tabla de frecuencias letalidad~color de las esporas</span></span>
+<span id="cb131-2"><a href="preprocesado-de-datos..html#cb131-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_esporas)</span></code></pre></div>
 <pre><code>##    
 ##        b    h    k    n    o    r    u    w    y
 ##   e   24   32  975 1080   26    0   20  339   26
 ##   p    0  927  138  139    0   39    0 1109    0</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="preprocesado-de-datos..html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color de las esporas</span></span>
-<span id="cb131-2"><a href="preprocesado-de-datos..html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_esporas),<span class="at">main=</span><span class="st">&quot;Letalidad vs Esporas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Chocolate&quot;</span>,<span class="st">&quot;Negro&quot;</span>,<span class="st">&quot;Marrón&quot;</span>,<span class="st">&quot;Naranja&quot;</span>,<span class="st">&quot;Verde&quot;</span>,<span class="st">&quot;Morado&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="preprocesado-de-datos..html#cb133-1"></a><span class="co">#Gráfico letalidad~color de las esporas</span></span>
+<span id="cb133-2"><a href="preprocesado-de-datos..html#cb133-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_esporas),<span class="dt">main=</span><span class="st">&quot;Letalidad vs Esporas&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Chocolate&quot;</span>,<span class="st">&quot;Negro&quot;</span>,<span class="st">&quot;Marrón&quot;,&quot;</span>Naranja<span class="st">&quot;,&quot;</span>Verde<span class="st">&quot;,&quot;</span>Morado<span class="st">&quot;,&quot;</span>Blanco<span class="st">&quot;,&quot;</span>Amarillo<span class="st">&quot;),col=c(&quot;</span>blue<span class="st">&quot;,&quot;</span>magenta<span class="st">&quot;))</span></span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/color%20esporas-1.png" width="672" /></p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="preprocesado-de-datos..html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test de independencia:</span></span>
-<span id="cb132-2"><a href="preprocesado-de-datos..html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Color_esporas))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="preprocesado-de-datos..html#cb134-1"></a><span class="co">#Test de independencia:</span></span>
+<span id="cb134-2"><a href="preprocesado-de-datos..html#cb134-2"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Color_esporas))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -782,37 +782,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## X-squared = 2733, df = 8, p-value &lt; 2.2e-16</code></pre>
 <p>Podemos observar que aquellas setas que tengan el color de las esporas <em>ante, naranja, morado o amarillo</em> son comestibles.</p>
 </div>
-<div id="población" class="section level3" number="4.2.20">
+<div id="población" class="section level3">
 <h3><span class="header-section-number">4.2.20</span> Población</h3>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="preprocesado-de-datos..html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~poblacion</span></span>
-<span id="cb134-2"><a href="preprocesado-de-datos..html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Poblacion)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="preprocesado-de-datos..html#cb136-1"></a><span class="co">#Tabla de frecuencias letalidad~poblacion</span></span>
+<span id="cb136-2"><a href="preprocesado-de-datos..html#cb136-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Poblacion)</span></code></pre></div>
 <pre><code>##    
 ##        a    c    n    s    v    y
 ##   e  241  176  223  530  707  645
 ##   p    0   28    0  205 1727  392</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="preprocesado-de-datos..html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~poblacion</span></span>
-<span id="cb136-2"><a href="preprocesado-de-datos..html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Poblacion),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Poblacion&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;abundante&quot;</span>, <span class="st">&quot;agrupada&quot;</span>, <span class="st">&quot;numerosa&quot;</span>, <span class="st">&quot;dispersa&quot;</span>, <span class="st">&quot;varias&quot;</span>, <span class="st">&quot;solitaria&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="preprocesado-de-datos..html#cb138-1"></a><span class="co">#Gráfico letalidad~poblacion</span></span>
+<span id="cb138-2"><a href="preprocesado-de-datos..html#cb138-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Poblacion),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Poblacion&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;abundante&quot;</span>, <span class="st">&quot;agrupada&quot;</span>, <span class="st">&quot;numerosa&quot;</span>, <span class="st">&quot;dispersa&quot;</span>, <span class="st">&quot;varias&quot;</span>, <span class="st">&quot;solitaria&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/poblacion-1.png" width="672" /></p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="preprocesado-de-datos..html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="preprocesado-de-datos..html#cb139-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
 </div>
-<div id="habitat" class="section level3" number="4.2.21">
+<div id="habitat" class="section level3">
 <h3><span class="header-section-number">4.2.21</span> Habitat</h3>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="preprocesado-de-datos..html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de frecuencias letalidad~habitat</span></span>
-<span id="cb138-2"><a href="preprocesado-de-datos..html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Habitat)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="preprocesado-de-datos..html#cb140-1"></a><span class="co">#Tabla de frecuencias letalidad~habitat</span></span>
+<span id="cb140-2"><a href="preprocesado-de-datos..html#cb140-2"></a><span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Habitat)</span></code></pre></div>
 <pre><code>##    
 ##        d    g    l    m    p    u    w
 ##   e 1130  849  141  142   79   65  116
 ##   p  770  435  368   21  601  157    0</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="preprocesado-de-datos..html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~habitat</span></span>
-<span id="cb140-2"><a href="preprocesado-de-datos..html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas_train<span class="sc">$</span>Letalidad,datos.setas_train<span class="sc">$</span>Habitat),<span class="at">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Habitat&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;bosques&quot;</span>, <span class="st">&quot;pastos&quot;</span>, <span class="st">&quot;hojas&quot;</span>, <span class="st">&quot;prados&quot;</span>, <span class="st">&quot;caminos&quot;</span>, <span class="st">&quot;urbano&quot;</span>, <span class="st">&quot;desechos&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="preprocesado-de-datos..html#cb142-1"></a><span class="co">#Gráfico letalidad~habitat</span></span>
+<span id="cb142-2"><a href="preprocesado-de-datos..html#cb142-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(datos.setas_train<span class="op">$</span>Letalidad,datos.setas_train<span class="op">$</span>Habitat),<span class="dt">main=</span><span class="st">&quot;Letalidad&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Habitat&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="dt">names.arg=</span><span class="kw">c</span>(<span class="st">&quot;bosques&quot;</span>, <span class="st">&quot;pastos&quot;</span>, <span class="st">&quot;hojas&quot;</span>, <span class="st">&quot;prados&quot;</span>, <span class="st">&quot;caminos&quot;</span>, <span class="st">&quot;urbano&quot;</span>, <span class="st">&quot;desechos&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/habitat-1.png" width="672" /></p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="preprocesado-de-datos..html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="preprocesado-de-datos..html#cb143-1"></a><span class="co">#legend(x = &quot;topright&quot;, legend = c(&quot;Comestible&quot;,&quot;Venenosa&quot;), fill = c(&quot;blue&quot;, &quot;magenta&quot;))</span></span></code></pre></div>
 </div>
 </div>
-<div id="transformación-de-variables" class="section level2" number="4.3">
+<div id="transformación-de-variables" class="section level2">
 <h2><span class="header-section-number">4.3</span> Transformación de variables</h2>
 </div>
-<div id="imputacion-de-datos-datos-faltantes" class="section level2" number="4.4">
+<div id="imputacion-de-datos-datos-faltantes" class="section level2">
 <h2><span class="header-section-number">4.4</span> Imputacion de datos (datos faltantes)</h2>
 </div>
 </div>
