@@ -40,6 +40,35 @@ points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
 pairs(nuevos.datos.pca[,1:4])
 ```
 
+
+
+
+
+ANALISIS CON LA DISTANCIA DICE
+```{r PCA}
+kmeans(setas,30)
+pca=prcomp(distancia_dice)
+plot(pca)
+summary(pca)
+nuevos.datos.pca=pca$x[,1:13]
+
+pca.venenosas=which(setas_train[,1]==1)
+pca.novenenosas=which(setas_train[,1]==0)
+
+plot(nuevos.datos.pca)
+points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
+points(nuevos.datos.pca[pca.novenenosas,],col="purple",lwd=2)
+
+plot(nuevos.datos.pca)
+points(nuevos.datos.pca[pca.novenenosas,],col="purple",lwd=2)
+points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
+
+
+pairs(nuevos.datos.pca[,1:4])
+```
+
+
+
 ANALISIS CLUSTER
 ```{r cluster}
 clusters2.datos=kmeans(nuevos.datos.pca,centers=2,nstart=25)
@@ -71,6 +100,7 @@ clusplot(setas, clusters8.datos$cluster, color=TRUE, shade=TRUE, labels=2,lines=
 CALCULO DE DISTANCIAS
 ```{r funcion distancia dice}
 #Distancia Dice:
+#Instalar librerias philentropy,vegan,Rcpp
 dist.dice=function(i,j){
     a=sum(i*j)
     d=sum((1-i)*(1-j))
@@ -81,6 +111,13 @@ dist.dice=function(i,j){
 }
 #Matriz de similitud:
 distancia_dice=diag(dim(setas)[1])
+library(philentropy)
+Sys.time()
+distancia_dice=distance(setas,method="dice")
+Sys.time()
+#Parece que funciona
+
+distanci_jaccard=
 
 #i observacion1, j observacion2, k caracteristica
 i=1
@@ -91,8 +128,7 @@ while(i<n){
   j=i+1
   while(j<=n) {
     #Calculo de similitud
-    a=sum(setas[i,2:k]*setas[j,2:k])
-    d=sum((1-setas[i,2:k])*(1-setas[j,2:k]))
+    
     
     distancia_dice[i,j]=((2*a)/(a+(k-d)))
     distancia_dice[j,i]=((2*a)/(a+(k-d)))
