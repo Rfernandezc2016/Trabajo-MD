@@ -115,14 +115,14 @@ library(philentropy)
 inicio = Sys.time()
 distancia_dice=distance(setas,method="dice")
 fin = Sys.time()
-inicio - fin
+fin - inicio
 #Parece que funciona
 
 distanci_jaccard=diag(dim(setas)[1])
 inicio = Sys.time()
 distancia_jaccaed=distance(setas,method="jaccard")
 fin = Sys.time()
-inicio - fin
+fin - inicio
 
 #i observacion1, j observacion2, k caracteristica
 i=1
