@@ -109,15 +109,20 @@ dist.dice=function(i,j){
     
  return ((2*a)/(a+(k-d)))
 }
-#Matriz de similitud:
+#Matriz de distancia:
 distancia_dice=diag(dim(setas)[1])
 library(philentropy)
-Sys.time()
+inicio = Sys.time()
 distancia_dice=distance(setas,method="dice")
-Sys.time()
+fin = Sys.time()
+inicio - fin
 #Parece que funciona
 
-distanci_jaccard=
+distanci_jaccard=diag(dim(setas)[1])
+inicio = Sys.time()
+distancia_jaccaed=distance(setas,method="jaccard")
+fin = Sys.time()
+inicio - fin
 
 #i observacion1, j observacion2, k caracteristica
 i=1
