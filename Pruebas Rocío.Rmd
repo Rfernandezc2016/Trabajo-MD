@@ -45,26 +45,34 @@ pairs(nuevos.datos.pca[,1:4])
 
 
 ANALISIS CON LA DISTANCIA DICE
-```{r PCA}
-kmeans(setas,30)
-pca=prcomp(distancia_dice)
-plot(pca)
-summary(pca)
-nuevos.datos.pca=pca$x[,1:13]
+```{r PCA1}
 
-pca.venenosas=which(setas_train[,1]==1)
-pca.novenenosas=which(setas_train[,1]==0)
+#revisar esto 
+k=kmeans(setas_train[,2:117],30)
+matriz_train_k=rbind(setas_train[,2:117],k$centers)
+matriz_distancia_k=distance(matriz_train_k,method="dice")
+dim(setas_train)
+dim(matriz_distancia_k[3,])
+pr=matriz_distancia_k[dim(setas_train)[1]:dim(matriz_distancia_k)[1],1:dim(setas_train)[1]]
+pca_prueba=prcomp(matriz_distancia_k[dim(setas_train)[1]:dim(matriz_distancia_k)[1],1:dim(setas_train)[1]])
+plot(pca_prueba)
+summary(pca_prueba)
+nuevos.datos.pca.prueba=pca_prueba$x[,1:4]
+dim(nuevos.datos.pca.prueba)
+dim(nuevos.datos.pca)
+pca.venenosas.prueba=which(setas_train[,1]==1)
+pca.novenenosas.prueba=which(setas_train[,1]==0)
 
-plot(nuevos.datos.pca)
-points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
-points(nuevos.datos.pca[pca.novenenosas,],col="purple",lwd=2)
+plot(nuevos.datos.pca.prueba)
+points(nuevos.datos.pca.prueba[pca.venenosas.prueba,],col="aquamarine",lwd=2)
+points(nuevos.datos.pca.prueba[pca.novenenosas.prueba,],col="purple",lwd=2)
 
-plot(nuevos.datos.pca)
-points(nuevos.datos.pca[pca.novenenosas,],col="purple",lwd=2)
-points(nuevos.datos.pca[pca.venenosas,],col="aquamarine",lwd=2)
+plot(nuevos.datos.pca.prueba)
+points(nuevos.datos.pca.prueba[pca.novenenosas.prueba,],col="purple",lwd=2)
+points(nuevos.datos.pca[pca.venenosas.prueba,],col="aquamarine",lwd=2)
 
 
-pairs(nuevos.datos.pca[,1:4])
+pairs(nuevos.datos.pca.prueba[,1:4])
 ```
 
 
@@ -113,14 +121,17 @@ dist.dice=function(i,j){
 distancia_dice=diag(dim(setas)[1])
 library(philentropy)
 inicio = Sys.time()
-distancia_dice=distance(setas,method="dice")
+distancia_dice=distance(setas[,2:117],method="dice")
+
 fin = Sys.time()
 fin - inicio
 #Parece que funciona
+dice_train=distance(setas_train[,2:117],method="dice")
 
-distanci_jaccard=diag(dim(setas)[1])
+
+distancia_jaccard=diag(dim(setas)[1])
 inicio = Sys.time()
-distancia_jaccaed=distance(setas,method="jaccard")
+distancia_jaccard=distance(setas,method="jaccard")
 fin = Sys.time()
 fin - inicio
 
