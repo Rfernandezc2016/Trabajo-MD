@@ -47,7 +47,7 @@ pairs(nuevos.datos.pca[,1:4])
 ANALISIS CON LA DISTANCIA DICE
 ```{r PCA1}
 
-#revisar esto 
+#revisar esto puede estar mal 
 k=kmeans(setas_train[,2:117],30)
 matriz_train_k=rbind(setas_train[,2:117],k$centers)
 matriz_distancia_k=distance(matriz_train_k,method="dice")
