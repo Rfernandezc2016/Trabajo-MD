@@ -1078,6 +1078,7 @@ distancia_dice=distance(setas_train[,2:117],method="dice")
 
 
 ```{r pca}
+
 library(kmed)
 #Cálculo de los medoides:
 k50=fastkmed(distancia_dice,ncluster=50)
@@ -1120,6 +1121,13 @@ table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
 #  Modelado
 
 ##  k-NN
+```{r knn}
+trainTest=rbind(setas_train[k50$medoid,],setas_test)
+distancia_trainTest=distance(trainTest,method="dice")
+distancia_trainTest=distancia_trainTest[1:50,-c(1:50)]
+dim(distancia_trainTest)
+
+```
 ##  Regresión Logística
 ##  Clustering
 ##  Arboles de Decisión
