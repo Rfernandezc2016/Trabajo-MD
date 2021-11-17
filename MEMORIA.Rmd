@@ -1049,6 +1049,68 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 
 ## Componentes principales
 
+```{r intento distancia dice,eval=FALSE}
+#i observacion1, j observacion2, k caracteristica
+i=1
+n=dim(setas_train)[1]
+k=dim(setas_train)[2]
+distancia_dice=diag(n)
+while(i<n){
+  j=i+1
+  while(j<=n) {
+    #Calculo de similitud
+    
+    
+    distancia_dice[i,j]=((2*a)/(a+(k-d)))
+    distancia_dice[j,i]=((2*a)/(a+(k-d)))
+    j=j+1
+  }
+  i=i+1
+}
+```
+
+
+```{r distancias,echo=TRUE}
+library(philentropy)
+#Distancia Dice
+distancia_dice=distance(setas_train[,2:117],method="dice")
+```
+
+
+```{r pca}
+library(kmed)
+#Cálculo de los medoides:
+k50=fastkmed(distancia_dice,ncluster=50)
+distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
+#Proporción de los medoides:
+table(setas_train$Venenosas[k50$medoid])
+#Análisis Componentes principales:
+pca.50=prcomp(distancia_medoides)
+plot(pca.50$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
+
+#Gráfico:
+##Indices de los medoides según toxicidad:
+comestible=which(setas_train[k50$medoid,1]==0)
+no.comestibles=which(setas_train[k50$medoid,1]==1)
+
+par(mfrow=c(1,2))
+plot(pca.50$x)
+points(pca.50$x[comestible,1:2],col="red",lwd=2)
+points(pca.50$x[no.comestibles,1:2],col="black",lwd=2)
+plot(pca.50$x)
+points(pca.50$x[no.comestibles,1:2],col="black",lwd=2)
+points(pca.50$x[comestible,1:2],col="red",lwd=2)
+
+
+
+```
+
+## Análisis Cluster
+
+```{r clsuter}
+clusters.datos=kmeans(pca.50$x,centers=5,nstart=25)
+table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
+```
 
 
 ##  Transformación de variables
