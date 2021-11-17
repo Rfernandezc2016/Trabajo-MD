@@ -32,6 +32,7 @@
   
 <link rel="prev" href="puesta-en-producción.html"/>
 
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,24 +50,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,40 +134,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> ¿ Objetivos (del negocio)?</a></li>
-<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a><ul>
-<li class="chapter" data-level="3.1" data-path="datos.html"><a href="datos.html#particiones."><i class="fa fa-check"></i><b>3.1</b> Particiones.</a></li>
+<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a></li>
+<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#particiones."><i class="fa fa-check"></i><b>4.1</b> Particiones.</a></li>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.2</b> EDA. Exploratory Data Analysis.</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.2.1</b> Letalidad:</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a><ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#letalidad"><i class="fa fa-check"></i><b>4.1.1</b> Letalidad:</a></li>
+<li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.3</b> Correlación entre las variables.</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-sombrero-forma_s"><i class="fa fa-check"></i><b>4.3.1</b> Forma del sombrero (Forma_S)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#cutícula"><i class="fa fa-check"></i><b>4.3.2</b> Cutícula</a></li>
+<li class="chapter" data-level="4.3.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-sombrero-color_s"><i class="fa fa-check"></i><b>4.3.3</b> Color del sombrero (Color_S)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#escamas"><i class="fa fa-check"></i><b>4.3.4</b> Escamas</a></li>
+<li class="chapter" data-level="4.3.5" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#olor"><i class="fa fa-check"></i><b>4.3.5</b> Olor</a></li>
+<li class="chapter" data-level="4.3.6" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#fijación-de-las-láminas-fijacion_l"><i class="fa fa-check"></i><b>4.3.6</b> Fijación de las láminas (Fijacion_L)</a></li>
+<li class="chapter" data-level="4.3.7" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#espacio-entre-láminas-espacio_l"><i class="fa fa-check"></i><b>4.3.7</b> Espacio entre láminas (Espacio_L)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#tamaño-de-las-láminas-tamaño_l"><i class="fa fa-check"></i><b>4.3.8</b> Tamaño de las láminas (Tamaño_L)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-de-las-láminas-color_l"><i class="fa fa-check"></i><b>4.3.9</b> Color de las láminas (Color_L)</a></li>
+<li class="chapter" data-level="4.3.10" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-tallo-forma_t"><i class="fa fa-check"></i><b>4.3.10</b> Forma del tallo (Forma_T)</a></li>
+<li class="chapter" data-level="4.3.11" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#tallo-raíz-tallo_raiz"><i class="fa fa-check"></i><b>4.3.11</b> Tallo-Raíz (Tallo_raiz)</a></li>
+<li class="chapter" data-level="4.3.12" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#superficie-del-tallo-por-encima-del-anillo-superficie_t1"><i class="fa fa-check"></i><b>4.3.12</b> Superficie del tallo por encima del anillo (Superficie_T1)</a></li>
+<li class="chapter" data-level="4.3.13" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#superficie-del-tallo-por-debajo-del-anillo-superficie_t2"><i class="fa fa-check"></i><b>4.3.13</b> Superficie del tallo por debajo del anillo (Superficie_T2)</a></li>
+<li class="chapter" data-level="4.3.14" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-tallo-por-encima-del-anillo-color_t1"><i class="fa fa-check"></i><b>4.3.14</b> Color del tallo por encima del anillo (Color_T1)</a></li>
+<li class="chapter" data-level="4.3.15" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-tallo-por-debajo-del-anillo-color_t2"><i class="fa fa-check"></i><b>4.3.15</b> Color del tallo por debajo del anillo (Color_T2)</a></li>
+<li class="chapter" data-level="4.3.16" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-volva-color_v"><i class="fa fa-check"></i><b>4.3.16</b> Color del volva (Color_V)</a></li>
+<li class="chapter" data-level="4.3.17" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#número-de-anillos-n_anillos"><i class="fa fa-check"></i><b>4.3.17</b> Número de anillos (N_anillos)</a></li>
+<li class="chapter" data-level="4.3.18" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#tipo-de-anillo-tipo_anillo"><i class="fa fa-check"></i><b>4.3.18</b> Tipo de anillo (Tipo_anillo)</a></li>
+<li class="chapter" data-level="4.3.19" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-de-las-esporas"><i class="fa fa-check"></i><b>4.3.19</b> Color de las esporas</a></li>
+<li class="chapter" data-level="4.3.20" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#población"><i class="fa fa-check"></i><b>4.3.20</b> Población</a></li>
+<li class="chapter" data-level="4.3.21" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#habitat"><i class="fa fa-check"></i><b>4.3.21</b> Habitat</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-sombrero-forma_s"><i class="fa fa-check"></i><b>4.2.1</b> Forma del sombrero (Forma_S)</a></li>
-<li class="chapter" data-level="4.2.2" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#cutícula"><i class="fa fa-check"></i><b>4.2.2</b> Cutícula</a></li>
-<li class="chapter" data-level="4.2.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-sombrero-color_s"><i class="fa fa-check"></i><b>4.2.3</b> Color del sombrero (Color_S)</a></li>
-<li class="chapter" data-level="4.2.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#escamas"><i class="fa fa-check"></i><b>4.2.4</b> Escamas</a></li>
-<li class="chapter" data-level="4.2.5" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#olor"><i class="fa fa-check"></i><b>4.2.5</b> Olor</a></li>
-<li class="chapter" data-level="4.2.6" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#fijación-de-las-láminas-fijacion_l"><i class="fa fa-check"></i><b>4.2.6</b> Fijación de las láminas (Fijacion_L)</a></li>
-<li class="chapter" data-level="4.2.7" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#espacio-entre-láminas-espacio_l"><i class="fa fa-check"></i><b>4.2.7</b> Espacio entre láminas (Espacio_L)</a></li>
-<li class="chapter" data-level="4.2.8" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#tamaño-de-las-láminas-tamaño_l"><i class="fa fa-check"></i><b>4.2.8</b> Tamaño de las láminas (Tamaño_L)</a></li>
-<li class="chapter" data-level="4.2.9" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-de-las-láminas-color_l"><i class="fa fa-check"></i><b>4.2.9</b> Color de las láminas (Color_L)</a></li>
-<li class="chapter" data-level="4.2.10" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#forma-del-tallo-forma_t"><i class="fa fa-check"></i><b>4.2.10</b> Forma del tallo (Forma_T)</a></li>
-<li class="chapter" data-level="4.2.11" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#tallo-raíz-tallo_raiz"><i class="fa fa-check"></i><b>4.2.11</b> Tallo-Raíz (Tallo_raiz)</a></li>
-<li class="chapter" data-level="4.2.12" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#superficie-del-tallo-por-encima-del-anillo-superficie_t1"><i class="fa fa-check"></i><b>4.2.12</b> Superficie del tallo por encima del anillo (Superficie_T1)</a></li>
-<li class="chapter" data-level="4.2.13" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#superficie-del-tallo-por-debajo-del-anillo-superficie_t2"><i class="fa fa-check"></i><b>4.2.13</b> Superficie del tallo por debajo del anillo (Superficie_T2)</a></li>
-<li class="chapter" data-level="4.2.14" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-tallo-por-encima-del-anillo-color_t1"><i class="fa fa-check"></i><b>4.2.14</b> Color del tallo por encima del anillo (Color_T1)</a></li>
-<li class="chapter" data-level="4.2.15" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-tallo-por-debajo-del-anillo-color_t2"><i class="fa fa-check"></i><b>4.2.15</b> Color del tallo por debajo del anillo (Color_T2)</a></li>
-<li class="chapter" data-level="4.2.16" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-del-volva-color_v"><i class="fa fa-check"></i><b>4.2.16</b> Color del volva (Color_V)</a></li>
-<li class="chapter" data-level="4.2.17" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#número-de-anillos-n_anillos"><i class="fa fa-check"></i><b>4.2.17</b> Número de anillos (N_anillos)</a></li>
-<li class="chapter" data-level="4.2.18" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#tipo-de-anillo-tipo_anillo"><i class="fa fa-check"></i><b>4.2.18</b> Tipo de anillo (Tipo_anillo)</a></li>
-<li class="chapter" data-level="4.2.19" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#color-de-las-esporas"><i class="fa fa-check"></i><b>4.2.19</b> Color de las esporas</a></li>
-<li class="chapter" data-level="4.2.20" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#población"><i class="fa fa-check"></i><b>4.2.20</b> Población</a></li>
-<li class="chapter" data-level="4.2.21" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#habitat"><i class="fa fa-check"></i><b>4.2.21</b> Habitat</a></li>
+<li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#componentes-principales"><i class="fa fa-check"></i><b>4.4</b> Componentes principales</a></li>
+<li class="chapter" data-level="4.5" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#análisis-cluster"><i class="fa fa-check"></i><b>4.5</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="4.6" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.6</b> Transformación de variables</a></li>
+<li class="chapter" data-level="4.7" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.7</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
-<li class="chapter" data-level="4.4" data-path="preprocesado-de-datos..html"><a href="preprocesado-de-datos..html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a><ul>
+<li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="modelado.html"><a href="modelado.html#k-nn"><i class="fa fa-check"></i><b>5.1</b> k-NN</a></li>
 <li class="chapter" data-level="5.2" data-path="modelado.html"><a href="modelado.html#regresión-logística"><i class="fa fa-check"></i><b>5.2</b> Regresión Logística</a></li>
 <li class="chapter" data-level="5.3" data-path="modelado.html"><a href="modelado.html#clustering"><i class="fa fa-check"></i><b>5.3</b> Clustering</a></li>
@@ -197,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="actualización-del-modelo" class="section level1">
+<div id="actualización-del-modelo" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Actualización del modelo…</h1>
 <p>Vuelta a empezar.</p>
 </div>
