@@ -46,9 +46,13 @@ pairs(nuevos.datos.pca[,1:4])
 
 ANALISIS CON LA DISTANCIA DICE
 ```{r PCA1}
+#con esto calculo los medoides pero no se que hacer con ellos
+library(kmed)
+k=fastkmed(dice_train,ncluster=30)
 
 #revisar esto puede estar mal 
-k=kmeans(setas_train[,2:117],30)
+library(kmed)
+k=fastkmed(distancia_dice,ncluster=30)
 matriz_train_k=rbind(setas_train[,2:117],k$centers)
 matriz_distancia_k=distance(matriz_train_k,method="dice")
 dim(setas_train)
