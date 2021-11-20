@@ -1131,14 +1131,25 @@ points(pca.50$x[no.comestibles,1:2],col="black",pch=19)
 plot(pca.50$x)
 points(pca.50$x[no.comestibles,1:2],col="black",pch=19)
 points(pca.50$x[comestible,1:2],col="red",pch=19)
-
-
-
 ```
 
 ## Análisis Cluster
 
 ```{r clsuter,echo=TRUE}
+#Números de clusters
+SSW <- vector(mode = "numeric", length = 15)
+n=dim(pca.50$x)[1]
+#Variabilidad de todos los datos, es decir, todos los datos como un único cluster
+SSW[1] <- (n - 1) * sum(apply(pca.50$x,2,var)) 
+
+#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
+for (i in 2:15) SSW[i] <- sum(kmeans(pca.50$x,centers=i,nstart=25)$withinss)
+
+#Dibujamos un gráfico con el resultado
+plot(1:15, SSW, type="b", xlab="Number of Clusters", ylab="Sum of squares within groups",pch=19, col="steelblue4")
+
+
+#Análisis cluster
 clusters.datos=kmeans(pca.50$x,centers=5,nstart=25)
 table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
 ```
@@ -1146,7 +1157,11 @@ table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
 
 ##  Transformación de variables
 
+Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente.
+
 ##  Imputacion de datos (datos faltantes)
+
+No se requiere de imputación de datos, pues no hay datos faltantes en ninguna de las variables.
 
 #  Modelado
 
