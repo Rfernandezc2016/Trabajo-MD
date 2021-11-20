@@ -835,6 +835,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="componentes-principales" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Componentes principales</h2>
+<p>Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla</p>
+<table>
+<thead>
+<tr class="header">
+<th>1</th>
+<th>0</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>c</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="preprocesado-de-datos..html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co">#i observacion1, j observacion2, k caracteristica</span></span>
 <span id="cb144-2"><a href="preprocesado-de-datos..html#cb144-2" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
 <span id="cb144-3"><a href="preprocesado-de-datos..html#cb144-3" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(setas_train)[<span class="dv">1</span>]</span>

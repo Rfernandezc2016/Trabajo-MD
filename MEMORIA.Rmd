@@ -17,6 +17,8 @@ Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librer
 ```{r librerias,echo=TRUE,warning=FALSE}
 library(ggplot2)
 library(psych)
+library(philentropy)
+library(kmed)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -1049,7 +1051,15 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 
 ## Componentes principales
 
-```{r intento distancia dice,eval=FALSE}
+Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla:
+
+ |1|0
+-|-|-
+1|a|b
+0|c|d
+
+Hacemos un intento calcular nuestra propia medida de similitud, pero vemos que el proceso es muy largo debido a la dimensión de la matriz resultante, por ellos buscamos alguna función predeterminada en R que sea capaz de hacerla.
+```{r intento medida de similitud dice,eval=FALSE}
 #i observacion1, j observacion2, k caracteristica
 i=1
 n=dim(setas_train)[1]
@@ -1059,8 +1069,8 @@ while(i<n){
   j=i+1
   while(j<=n) {
     #Calculo de similitud
-    
-    
+    a=sum(setas_train[i,2:k]*setas_train[j,2:k])
+    d=sum((1-setas_train[i,2:k])*(1-setas_train[j,2:k]))
     distancia_dice[i,j]=((2*a)/(a+(k-d)))
     distancia_dice[j,i]=((2*a)/(a+(k-d)))
     j=j+1
@@ -1069,17 +1079,17 @@ while(i<n){
 }
 ```
 
-
+La función que utilizaremos es *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*. Calcula exactamente:
+$$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
 ```{r distancias,echo=TRUE}
-library(philentropy)
 #Distancia Dice
 distancia_dice=distance(setas_train[,2:117],method="dice")
+
+dice=designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 ```
 
 
 ```{r pca}
-
-library(kmed)
 #Cálculo de los medoides:
 k50=fastkmed(distancia_dice,ncluster=50)
 distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
