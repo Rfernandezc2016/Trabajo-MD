@@ -1051,15 +1051,15 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 
 ## Componentes principales
 
-Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla:
+Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:
 
  |1|0
 -|-|-
 1|a|b
 0|c|d
 
-Hacemos un intento calcular nuestra propia medida de similitud, pero vemos que el proceso es muy largo debido a la dimensión de la matriz resultante, por ellos buscamos alguna función predeterminada en R que sea capaz de hacerla.
-```{r intento medida de similitud dice,eval=FALSE}
+Hacemos un intento de calcular nuestra propia medida de similitud mediante un algoritmo, pero vemos que el proceso es muy largo debido a la dimensión de la matriz de los datos, por ellos buscamos alguna función predeterminada en R que sea capaz de hacerla.
+```{r intento medida de similitud dice1,eval=FALSE}
 #i observacion1, j observacion2, k caracteristica
 i=1
 n=dim(setas_train)[1]
@@ -1079,26 +1079,46 @@ while(i<n){
 }
 ```
 
-La función que utilizaremos es *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*. Calcula exactamente:
-$$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
-```{r distancias,echo=TRUE}
-#Distancia Dice
-distancia_dice=distance(setas_train[,2:117],method="dice")
+Encontramos la función *designdist()* que nos permite definir nuestra propia medida de similitud. La cebezara de está función será
+$$designdist(datos,metodo,abcd)$$
+donde **datos** es nuestra matriz codificada de forma binaria, **metodo** escribiremos la expresión de la medida de similitud que queramos y **abcd=TRUE** usa la tabla de contingencia para datos binarios.
 
-dice=designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
+```{r intento medida de similitud dice1,eval=FALSE}
+designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 ```
 
+Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
+$$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
+```{r distancias,echo=TRUE,warning=FALSE}
+#Distancia Dice
+distancia_dice=distance(setas_train[,2:117],method="dice")
+```
 
-```{r pca}
+Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, para ellos calculamos una cierta cantidad de medoides que los calcularemos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
+
+```{r medoides,echo=TRUE}
 #Cálculo de los medoides:
 k50=fastkmed(distancia_dice,ncluster=50)
 distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
 #Proporción de los medoides:
 table(setas_train$Venenosas[k50$medoid])
+```
+Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para explicar las setas no venenosas mientras que solo 11 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.
+
+Con estos medoides podemos realizar un análisis de componente principales.
+```{r pca,echo=TRUE}
 #Análisis Componentes principales:
 pca.50=prcomp(distancia_medoides)
+plot(pca.50)
 plot(pca.50$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
+```
+Podemos ver  como la variabilidad de los datos se explica mayoritariamente por la primera componente principal  PC1, aunque nos quedaremos con las dos primeras.
 
+En la otra gráfica, vemos como los medoides que se encuentra con un valor de $PC1<0$ son setas no venenosas, si $PC1>1.5$ las setas son venenosas, mientras que en el intervalo $PC1\in(0,1.5)$ tenemos setas venenosas y no venenosas.
+
+Las dos gráficas siguientes son la misma que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro. Esto solo ocurre en un punto.
+
+```{r grafico pca alternativo,echo=TRUE}
 #Gráfico:
 ##Indices de los medoides según toxicidad:
 comestible=which(setas_train[k50$medoid,1]==0)
@@ -1106,11 +1126,11 @@ no.comestibles=which(setas_train[k50$medoid,1]==1)
 
 par(mfrow=c(1,2))
 plot(pca.50$x)
-points(pca.50$x[comestible,1:2],col="red",lwd=2)
-points(pca.50$x[no.comestibles,1:2],col="black",lwd=2)
+points(pca.50$x[comestible,1:2],col="red",pch=19)
+points(pca.50$x[no.comestibles,1:2],col="black",pch=19)
 plot(pca.50$x)
-points(pca.50$x[no.comestibles,1:2],col="black",lwd=2)
-points(pca.50$x[comestible,1:2],col="red",lwd=2)
+points(pca.50$x[no.comestibles,1:2],col="black",pch=19)
+points(pca.50$x[comestible,1:2],col="red",pch=19)
 
 
 
@@ -1118,7 +1138,7 @@ points(pca.50$x[comestible,1:2],col="red",lwd=2)
 
 ## Análisis Cluster
 
-```{r clsuter}
+```{r clsuter,echo=TRUE}
 clusters.datos=kmeans(pca.50$x,centers=5,nstart=25)
 table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
 ```
