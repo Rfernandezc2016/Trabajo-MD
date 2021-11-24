@@ -1098,7 +1098,7 @@ distancia_dice=distance(setas_train[,2:117],method="dice")
 Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, para ellos calculamos una cierta cantidad de medoides que los calcularemos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
 
 ```{r medoides,echo=TRUE}
-#Cálculo de los medoides:
+#Cálculo de los medoides: 
 k50=fastkmed(distancia_dice,ncluster=50)
 distanciaTrainMedoides=distancia_dice[,k50$medoid]
 distancia_medoides=distancia_dice[k50$medoid,k50$medoid]

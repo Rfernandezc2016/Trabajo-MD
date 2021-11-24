@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ANALISIS CLUSTER
-```{r cluster}
+```{r cluster} 
 clusters2.datos=kmeans(nuevos.datos.pca,centers=2,nstart=25)
 #Números de clusters
 SSW <- vector(mode = "numeric", length = 15)
