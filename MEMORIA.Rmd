@@ -1100,7 +1100,6 @@ Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos qu
 ```{r medoides,echo=TRUE}
 #Cálculo de los medoides: 
 k50=fastkmed(distancia_dice,ncluster=50)
-distanciaTrainMedoides=distancia_dice[,k50$medoid]
 distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
 #Proporción de los medoides:
 table(setas_train$Venenosas[k50$medoid])
@@ -1110,21 +1109,9 @@ Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para expl
 Con estos medoides podemos realizar un análisis de componente principales.
 ```{r pca,echo=TRUE}
 #Análisis Componentes principales:
-pca.train=prcomp(distanciaTrainMedoides)
-plot(pca.train)
-plot(pca.train$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
 pca.50=prcomp(distancia_medoides)
 plot(pca.50)
 plot(pca.50$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
-comestible=which(setas_train[,1]==0)
-no.comestibles=which(setas_train[,1]==1)
-par(mfrow=c(1,2))
-plot(pca.train$x)
-points(pca.train$x[comestible,1:2],col="black",pch=19)
-points(pca.train$x[no.comestibles,1:2],col="red",pch=19)
-plot(pca.train$x)
-points(pca.train$x[no.comestibles,1:2],col="red",pch=19)
-points(pca.train$x[comestible,1:2],col="black",pch=19)
 ```
 Podemos ver  como la variabilidad de los datos se explica mayoritariamente por la primera componente principal  PC1, aunque nos quedaremos con las dos primeras.
 
@@ -1140,16 +1127,16 @@ no.comestibles=which(setas_train[k50$medoid,1]==1)
 
 par(mfrow=c(1,2))
 plot(pca.50$x)
-points(pca.50$x[comestible,1:2],col="red",pch=19)
-points(pca.50$x[no.comestibles,1:2],col="black",pch=19)
+points(pca.50$x[comestible,1:2],col=1,pch=19)
+points(pca.50$x[no.comestibles,1:2],col=2,pch=19)
 plot(pca.50$x)
-points(pca.50$x[no.comestibles,1:2],col="black",pch=19)
-points(pca.50$x[comestible,1:2],col="red",pch=19)
+points(pca.50$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.50$x[comestible,1:2],col=1,pch=19)
 ```
 
 ## Análisis Cluster
 
-```{r clsuter,echo=TRUE}
+```{r cluster,echo=TRUE}
 #Números de clusters
 SSW <- vector(mode = "numeric", length = 15)
 n=dim(pca.50$x)[1]
@@ -1166,24 +1153,140 @@ plot(1:15, SSW, type="b", xlab="Number of Clusters", ylab="Sum of squares within
 #Análisis cluster
 clusters.datos=kmeans(pca.50$x,centers=5,nstart=25)
 table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
+```
+Vemos que tras realizar el análisis cluster con 5 grupos, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
+\vspace(3mm)
 
 
-#Números de clusters
-SSW <- vector(mode = "numeric", length = 15)
-n=dim(pca.train$x)[1]
-#Variabilidad de todos los datos, es decir, todos los datos como un único cluster
-SSW[1] <- (n - 1) * sum(apply(pca.train$x,2,var)) 
+Pero trabajar solo con los 50 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 50 medoides.
 
-#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
-for (i in 2:15) SSW[i] <- sum(kmeans(pca.train$x,centers=i,nstart=25)$withinss)
+```{r medoides a observaciones,echo=TRUE}
+distancia_trainM=distancia_dice[,k50$medoid]
 
-#Dibujamos un gráfico con el resultado
-plot(1:15, SSW, type="b", xlab="Number of Clusters", ylab="Sum of squares within groups",pch=19, col="steelblue4")
+#Análsiis de componentes principales
+pca.train=prcomp(distancia_trainM)
+plot(pca.train)
+plot(pca.train$x,col=setas_train$Venenosas+1,pch=19)
+
+#Gráfico alternativo
+comestible=which(setas_train[,1]==0)
+no.comestibles=which(setas_train[,1]==1)
+
+par(mfrow=c(1,2))
+plot(pca.train$x)
+points(pca.train$x[comestible,1:2],col=1,pch=19)
+points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
+plot(pca.train$x)
+points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.train$x[comestible,1:2],col=1,pch=19)
+```
+
+Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las stas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios serían 5 como ocurría en el análisis anterior, pero vamos a probar con un número mayor de cluster para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-1,0.5)$. 
+
+```{r cluster con distancia de los medoides,echo=TRUE}
+#Análisis cluster
+clusters.datos.train=kmeans(pca.train$x,centers=8,nstart=25)
+table(clusters.datos.train$cluster,setas_train$Venenosas[])
+
+##PREGUNTAR JAVIER/ISAAC
+clusplot(pca.train$x, clusters.datos.train$cluster, color=TRUE, shade=TRUE, labels=1,lines=0)
+```
+Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información.
+
+
+Esto nos indica que quizás no sean necesarios 50 medoides para realizar los análisis y podríamos obtener un resultado parecido con una cantidad menor. Por ellos vamos a probar a hacer todo pero con una cantidad más reducida de medoides. Tomamos un valor entre 10 y 20 medoides.
+
+```{r medoides 15,echo=TRUE}
+#Cálculo de los medoides: 
+k15=fastkmed(distancia_dice,ncluster=15)
+#Proporción de los medoides:
+table(setas_train$Venenosas[k15$medoid])
+
+distancia_trainM15=distancia_dice[,k15$medoid]
+
+#Análsiis de componentes principales
+pca.train15=prcomp(distancia_trainM15)
+plot(pca.train15)
+plot(pca.train15$x,col=setas_train$Venenosas+1,pch=19)
+
+#Gráfico alternativo
+comestible=which(setas_train[,1]==0)
+no.comestibles=which(setas_train[,1]==1)
+
+par(mfrow=c(1,2))
+plot(pca.train15$x)
+points(pca.train15$x[comestible,1:2],col=1,pch=19)
+points(pca.train15$x[no.comestibles,1:2],col=2,pch=19)
+plot(pca.train15$x)
+points(pca.train15$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.train15$x[comestible,1:2],col=1,pch=19)
 
 
 #Análisis cluster
-clusters.datos=kmeans(pca.train$x,centers=8,nstart=25)
-table(clusters.datos$cluster,setas_train$Venenosas[])
+clusters.datos.train15=kmeans(pca.train15$x,centers=8,nstart=25)
+table(clusters.datos.train15$cluster,setas_train$Venenosas[])
+```
+
+```{r medoides 10,echo=TRUE}
+#Cálculo de los medoides: 
+k10=fastkmed(distancia_dice,ncluster=10)
+#Proporción de los medoides:
+table(setas_train$Venenosas[k10$medoid])
+
+distancia_trainM10=distancia_dice[,k10$medoid]
+
+#Análsiis de componentes principales
+pca.train10=prcomp(distancia_trainM10)
+plot(pca.train10)
+plot(pca.train10$x,col=setas_train$Venenosas+1,pch=19)
+
+#Gráfico alternativo
+comestible=which(setas_train[,1]==0)
+no.comestibles=which(setas_train[,1]==1)
+
+par(mfrow=c(1,2))
+plot(pca.train10$x)
+points(pca.train10$x[comestible,1:2],col=1,pch=19)
+points(pca.train10$x[no.comestibles,1:2],col=2,pch=19)
+plot(pca.train10$x)
+points(pca.train10$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.train10$x[comestible,1:2],col=1,pch=19)
+
+
+#Análisis cluster
+clusters.datos.train10=kmeans(pca.train10$x,centers=8,nstart=25)
+table(clusters.datos.train10$cluster,setas_train$Venenosas[])
+```
+
+```{r medoides 20,echo=TRUE}
+#Cálculo de los medoides: 
+k20=fastkmed(distancia_dice,ncluster=20)
+#Proporción de los medoides:
+table(setas_train$Venenosas[k20$medoid])
+
+distancia_trainM20=distancia_dice[,k20$medoid]
+
+#Análsiis de componentes principales
+pca.train20=prcomp(distancia_trainM20)
+plot(pca.train20)
+plot(pca.train20$x,col=setas_train$Venenosas+1,pch=19)
+
+#Gráfico alternativo
+comestible=which(setas_train[,1]==0)
+no.comestibles=which(setas_train[,1]==1)
+
+par(mfrow=c(1,2))
+plot(pca.train20$x)
+points(pca.train20$x[comestible,1:2],col=1,pch=19)
+points(pca.train20$x[no.comestibles,1:2],col=2,pch=19)
+plot(pca.train20$x)
+points(pca.train20$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.train20$x[comestible,1:2],col=1,pch=19)
+
+
+#Análisis cluster
+clusters.datos.train20=kmeans(pca.train20$x,centers=8,nstart=25)
+table(clusters.datos.train20$cluster,setas_train$Venenosas[])
 ```
 
 

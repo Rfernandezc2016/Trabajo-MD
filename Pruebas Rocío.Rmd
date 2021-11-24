@@ -49,6 +49,9 @@ designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",terms="binary",abcd=TRUE)
 library(philentropy)
 distancia_dice=distance(setas[,2:117],method="dice")
 ```
+
+
+
 ```{r medoides,echo=TRUE}
 #Cálculo de los medoides:
 k50=fastkmed(distancia_dice,ncluster=18)
