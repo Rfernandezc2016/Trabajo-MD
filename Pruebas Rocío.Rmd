@@ -42,11 +42,41 @@ clusplot(setas, clusters8.datos$cluster, color=TRUE, shade=TRUE, labels=2,lines=
 
 CALCULO DE DISTANCIAS
 ```{r funcion distancia dice}
+library(vegan)
+designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",terms="binary",abcd=TRUE)
 
 #Matriz de distancia:
 library(philentropy)
 distancia_dice=distance(setas[,2:117],method="dice")
 ```
+```{r medoides,echo=TRUE}
+#Cálculo de los medoides:
+k50=fastkmed(distancia_dice,ncluster=18)
+distanciaTrainMedoides=distancia_dice[,k50$medoid]
+distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
+#Proporción de los medoides:
+table(setas_train$Venenosas[k50$medoid])
+```
+Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para explicar las setas no venenosas mientras que solo 11 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.
 
+Con estos medoides podemos realizar un análisis de componente principales.
+```{r pca,echo=TRUE}
+#Análisis Componentes principales:
+pca.train=prcomp(distanciaTrainMedoides)
+plot(pca.train)
+plot(pca.train$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
+pca.50=prcomp(distancia_medoides)
+plot(pca.50)
+plot(pca.50$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
+comestible=which(setas_train[,1]==0)
+no.comestibles=which(setas_train[,1]==1)
+par(mfrow=c(1,2))
+plot(pca.train$x)
+points(pca.train$x[comestible,1:2],col="black",pch=19)
+points(pca.train$x[no.comestibles,1:2],col="red",pch=19)
+plot(pca.train$x)
+points(pca.train$x[no.comestibles,1:2],col="red",pch=19)
+points(pca.train$x[comestible,1:2],col="black",pch=19)
+```
 
 
