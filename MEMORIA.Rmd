@@ -19,6 +19,7 @@ library(ggplot2)
 library(psych)
 library(philentropy)
 library(kmed)
+library(vegan)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -1084,7 +1085,7 @@ $$designdist(datos,metodo,abcd)$$
 donde **datos** es nuestra matriz codificada de forma binaria, **metodo** escribiremos la expresión de la medida de similitud que queramos y **abcd=TRUE** usa la tabla de contingencia para datos binarios.
 
 ```{r intento medida de similitud dice1,eval=FALSE}
-designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
+designdist(setas_train[1:10,10:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 ```
 
 Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
