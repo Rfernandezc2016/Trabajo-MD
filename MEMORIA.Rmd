@@ -1308,7 +1308,7 @@ No se requiere de imputación de datos, pues no hay datos faltantes en ninguna d
 
 El algoritmo clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
 
-```{r knn}
+```{r knn,echo=TRUE}
 trainTest=rbind(setas_train[k15$medoid,],setas_test)
 distancia_trainTest=distance(trainTest,method="dice")
 distancia_trainTest=distancia_trainTest[1:15,-c(1:15)]
