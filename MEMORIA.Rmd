@@ -22,6 +22,9 @@ library(kmed)
 library(vegan)
 library(class)
 library(cluster)
+library(rpart)
+library(rpart.plot)
+library(rattle)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -1341,7 +1344,7 @@ f1score = 2*precision*recall /(precision+recall)
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
 
-Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice las toxicidad de las setas con un grado de acierto muy alto, aunque comete un error del 0.0825%.
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice la toxicidad de las setas con un grado de acierto alto, aunque comete un error del 8.25%.
 
 Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano. 
 
@@ -1375,13 +1378,15 @@ legend("topright",
        legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
        fil = seq(2, round(k)+1))
 ```
-
+Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 14% y de una sensibilidad del casi 80% a un 70%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
 
 ##  Clustering
 ##  Arboles de Decisión
 
 ##  Bosques Aleatorios
 ##  Support Vector Machines
+
+
 ##  Redes Neuronales
 
 #  Evaluación
