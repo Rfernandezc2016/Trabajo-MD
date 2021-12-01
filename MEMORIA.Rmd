@@ -1387,8 +1387,6 @@ Observamos que para un número de vecinos mayor que 4, las medidas de precisión
 ##  Support Vector Machines
 
 
-##  Redes Neuronales
-
 #  Evaluación
 
 
