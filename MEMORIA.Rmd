@@ -21,6 +21,7 @@ library(philentropy)
 library(kmed)
 library(vegan)
 library(class)
+library(cluster)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -1336,25 +1337,43 @@ npv = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(pr
 # F1_score
 f1score = 2*precision*recall /(precision+recall)
 
-
 #Tabla de medidas de precisión
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
+
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice las toxicidad de las setas con un grado de acierto muy alto, aunque comete un error del 0.0825%.
+
+Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano. 
+
 ```{r knn cross-validation,echo=TRUE}
-prediccion_knn_cv =knn.cv(setas_train[k50$medoid,], k=1, cl=setas_train$Venenosas[k50$medoid])
-prediccion_knn_cv
+k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*10
 
-table(prediccion_knn_cv,setas_train$Venenosas[k50$medoid])
-k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*100
+#Matriz de las medidas de precision:
+medidas_presicision=matrix(nrow=round(k),ncol=7)
+nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+colnames(medidas_presicision)=nombres_medidas
+for (i in 1:round(k)){
+  prediccion_knn=knn(setas_train[k50$medoid,],setas_test,cl=setas_train$Venenosas[k50$medoid],k=i)
+  medidas_presicision[i,1] = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
+  medidas_presicision[i,2] = 1-medidas_presicision[i,1]
+  medidas_presicision[i,3] = sum((prediccion_knn == setas_test$Venenosas) & (setas_test$Venenosas == 1)) /sum(setas_test$Venenosas == 1)
+  medidas_presicision[i,4] =  sum(prediccion_knn == setas_test$Venenosas & setas_test$Venenosas == 0) / sum(setas_test$Venenosas == 0)
+  medidas_presicision[i,5] = sum( (prediccion_knn== setas_test$Venenosas) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+  medidas_presicision[i,6] = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(prediccion_knn == 0)
+  medidas_presicision[i,7] = 2*medidas_presicision[i,5]*medidas_presicision[i,3] /(medidas_presicision[i,5]+medidas_presicision[i,3])
+}
+medidas_presicision
 
-#probamos con 13 vecinos
-prediccion_knn_cv =knn.cv(setas_train[k50$medoid,], k=13, cl=setas_train$Venenosas[k50$medoid])
-prediccion_knn_cv
-
-table(prediccion_knn_cv,setas_train$Venenosas[k50$medoid])
-k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*100
-
-#Me ha dicho Javier que probemos con varios números y hagamos un gráfico con la accuracy, el error, etc. para ver cuál es mejor (entre 1 y 5 hace lo mismo, del 6 en adelante se equioca más)
+#Grafico de las medidas de precision
+plot(seq(1,round(k)),medidas_presicision[,1],main="Medidas de precision",type="n",xlab="Número de k vecinos",ylab="",ylim=c(0,1),xlim=c(1,round(k)+2))
+for (i in 1:7) {
+  points(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+  lines(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
+       fil = seq(2, round(k)+1))
 ```
 
 
