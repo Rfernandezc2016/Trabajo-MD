@@ -1340,7 +1340,15 @@ f1score = 2*precision*recall /(precision+recall)
 #Tabla de medidas de precisión
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
-##  Regresión Logística
+```{r knn cross-validation,echo=TRUE}
+prediccion_knn_cv =knn.cv(setas_train[k50$medoid,], k=1, cl=setas_train$Venenosas[k50$medoid])
+prediccion_knn_cv
+
+table(prediccion_knn_cv,setas_train$Venenosas[k50$medoid])
+k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*100
+```
+
+
 ##  Clustering
 ##  Arboles de Decisión
 
