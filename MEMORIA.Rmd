@@ -1320,17 +1320,17 @@ table(prediccion_knn,setas_test$Venenosas)
 accuracy = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
 error = 1-accuracy
 
-# Acierto sobre el total de las casas CARAS, sensitivity o recall
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
 sensitivity = sum((prediccion_knn == setas_test$Venenosas) & (setas_test$Venenosas == 1)) / sum(setas_test$Venenosas == 1)
 recall = sensitivity
 
-# Acierto sobre el total de las casas BARATAS
+# Acierto sobre el total de las setas COMESTIBLES
 specificity =  sum(prediccion_knn == setas_test$Venenosas & setas_test$Venenosas == 0) / sum(setas_test$Venenosas == 0)
 
-# Acierto cuando el predicho es CARO
+# Acierto cuando el predicho es VENENOSAS
 precision = sum( (prediccion_knn== setas_test$Venenosas) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
 
-# Acierto cuando el predicho es BARATO
+# Acierto cuando el predicho es COMESTIBLE
 npv = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(prediccion_knn == 0)
 
 # F1_score
