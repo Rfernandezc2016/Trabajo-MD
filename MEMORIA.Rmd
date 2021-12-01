@@ -1290,7 +1290,10 @@ clusters.datos.train20=kmeans(pca.train20$x,centers=8,nstart=25)
 table(clusters.datos.train20$cluster,setas_train$Venenosas[])
 ```
 
-Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 20. Por ello, nos quedaremos con 15 medoides, valor elegido arbitrariamente.
+Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 20. 
+
+
+A pesar de ellos, nos quedaremos con 50 medoides, para tener más información.
 
 
 
@@ -1309,19 +1312,11 @@ No se requiere de imputación de datos, pues no hay datos faltantes en ninguna d
 El algoritmo clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
 
 ```{r knn,echo=TRUE}
-trainTest=rbind(setas_train[k15$medoid,],setas_test)
-distancia_trainTest=distance(trainTest,method="dice")
-distancia_trainTest=distancia_trainTest[1:15,-c(1:15)]
-dim(distancia_trainTest)
-
-
-
 #Buscamos los vecinos más cercanos
-prediccion_knn=knn(setas_train[k15$medoid,],setas_test,cl=setas_train$Venenosas[k15$medoid],k=1)
+prediccion_knn=knn(setas_train[k50$medoid,],setas_test,cl=setas_train$Venenosas[k50$medoid],k=1)
 table(prediccion_knn,setas_test$Venenosas)
 
 # Medidas de precisión
-
 accuracy = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
 error = 1-accuracy
 
@@ -1340,11 +1335,15 @@ npv = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(pr
 
 # F1_score
 f1score = 2*precision*recall /(precision+recall)
+
+
+#Tabla de medidas de precisión
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
 ##  Regresión Logística
 ##  Clustering
 ##  Arboles de Decisión
+
 ##  Bosques Aleatorios
 ##  Support Vector Machines
 ##  Redes Neuronales
