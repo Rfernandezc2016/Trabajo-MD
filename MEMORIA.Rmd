@@ -1346,6 +1346,15 @@ prediccion_knn_cv
 
 table(prediccion_knn_cv,setas_train$Venenosas[k50$medoid])
 k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*100
+
+#probamos con 13 vecinos
+prediccion_knn_cv =knn.cv(setas_train[k50$medoid,], k=13, cl=setas_train$Venenosas[k50$medoid])
+prediccion_knn_cv
+
+table(prediccion_knn_cv,setas_train$Venenosas[k50$medoid])
+k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*100
+
+#Me ha dicho Javier que probemos con varios números y hagamos un gráfico con la accuracy, el error, etc. para ver cuál es mejor (entre 1 y 5 hace lo mismo, del 6 en adelante se equioca más)
 ```
 
 
