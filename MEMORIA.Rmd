@@ -1311,6 +1311,10 @@ No se requiere de imputación de datos, pues no hay datos faltantes en ninguna d
 
 #  Modelado
 
+```{r datos transformados,echo=TRUE}
+setas_50=distancia_dice[,k50$medoid]
+```
+
 ##  k-NN
 
 El algoritmo clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
@@ -1382,6 +1386,20 @@ Observamos que para un número de vecinos mayor que 4, las medidas de precisión
 
 ##  Clustering
 ##  Arboles de Decisión
+
+Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema.
+
+```{r arbol de decision,echo=TRUE}
+arbol=rpart(Venenosas~., data =setas_train[k50$medoid,])
+summary(arbol)
+
+#Grfico
+part.plot(arbol)
+
+#Error de predicción
+table(pred=predict(arbol,type="class"), obs=setas_train[k50$medoid,]$Venenosas)
+```
+
 
 ##  Bosques Aleatorios
 ##  Support Vector Machines
