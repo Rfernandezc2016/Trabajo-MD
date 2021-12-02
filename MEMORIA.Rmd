@@ -142,7 +142,7 @@ summary(datos.setas)
 ```
 Una de las variables, **Tipo_v** (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
 
-```{r eliminar variable}
+```{r eliminar variable,echo=TRUE}
 datos.setas=datos.setas[,-17]
 ```
 
@@ -1395,7 +1395,7 @@ arbol=rpart(Venenosas~., data =setas_train[k50$medoid,],method="class")
 summary(arbol)
 
 #Grfico
-part.plot(arbol)
+rpart.plot(arbol)
 
 #Error de predicción
 table(pred=predict(arbol,type="class"), obs=setas_train[k50$medoid,]$Venenosas)
@@ -1406,8 +1406,14 @@ error
 
 
 ##  Bosques Aleatorios
+
+
 ##  Support Vector Machines
 
+```{r svm,echo=TRUE}
+
+
+```
 
 #  Evaluación
 
