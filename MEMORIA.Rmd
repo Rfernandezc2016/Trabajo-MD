@@ -1385,12 +1385,13 @@ legend("topright",
 Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 14% y de una sensibilidad del casi 80% a un 70%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
 
 ##  Clustering
+
 ##  Arboles de Decisión
 
 Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema.
 
 ```{r arbol de decision,echo=TRUE}
-arbol=rpart(Venenosas~., data =setas_train[k50$medoid,])
+arbol=rpart(Venenosas~., data =setas_train[k50$medoid,],method="class")
 summary(arbol)
 
 #Grfico
@@ -1398,6 +1399,9 @@ part.plot(arbol)
 
 #Error de predicción
 table(pred=predict(arbol,type="class"), obs=setas_train[k50$medoid,]$Venenosas)
+n=dim(setas_train[k50$medoid,])[1]
+error=100 *(sum(predict(arbol, type = "class")!=setas_train[k50$medoid,]$Venenosas)/n)
+error
 ```
 
 
