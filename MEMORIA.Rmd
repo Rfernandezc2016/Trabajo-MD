@@ -1360,7 +1360,7 @@ f1score = 2*precision*recall /(precision+recall)
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
 
-Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice la toxicidad de las setas con un grado de acierto alto, aunque comete un error del 8.25%.
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.3%.
 
 Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano. 
 
@@ -1404,16 +1404,18 @@ Observamos que para un número de vecinos mayor que 4, las medidas de precisión
 Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema.
 
 ```{r arbol de decision,echo=TRUE}
-arbol=rpart(Venenosas~., data =setas_train[k50$medoid,],method="class")
+setas50_train.respuesta=data.frame(cbind(setas_train[,1],setas50_train))
+names(setas50_train.respuesta)[1]="Venenosas"
+arbol=rpart(Venenosas~., data=setas50_train.respuesta,method="class")
 summary(arbol)
 
 #Grfico
 rpart.plot(arbol)
 
 #Error de predicción
-table(pred=predict(arbol,type="class"), obs=setas_train[k50$medoid,]$Venenosas)
-n=dim(setas_train[k50$medoid,])[1]
-error=100 *(sum(predict(arbol, type = "class")!=setas_train[k50$medoid,]$Venenosas)/n)
+table(pred=predict(arbol,type="class"), obs=setas50_train.respuesta$Venenosas)
+n=dim(setas50_train.respuesta)[1]
+error=100 *(sum(predict(arbol, type = "class")!=setas50_train.respuesta$Venenosas)/n)
 error
 ```
 
