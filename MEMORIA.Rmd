@@ -1425,6 +1425,10 @@ error
 
 ##  Support Vector Machines
 
+Las máquinas de vectores soporte  (del inglés support-vector machines, SVM) son un conjunto de algoritmos de aprendizaje supervisado desarrollados por Vladimir Vapnik y su equipo en los laboratorios AT&T.
+
+Estos métodos están propiamente relacionados con problemas de clasificación y regresión. Dado un conjunto de ejemplos de entrenamiento podemos etiquetar las clases y entrenar una SVM para construir un modelo que prediga la clase de una nueva muestra.
+
 ```{r svm,echo=TRUE}
 svm_y=setas_train[,1]
 svm_x=setas50_train
