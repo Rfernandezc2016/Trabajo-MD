@@ -24,7 +24,7 @@ library(class)
 library(cluster)
 library(rpart)
 library(rpart.plot)
-library(rattle)
+library(e1071)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -1426,22 +1426,33 @@ error
 ##  Support Vector Machines
 
 ```{r svm,echo=TRUE}
-distancia_trainM=distancia_dice[,k50$medoid]
-dim(distancia_trainM)
-setas_train=setas[indices_train,]
-setas_test=setas[indices_test,]
-swm_y=setas_train[,1]
+svm_y=setas_train[,1]
+svm_x=setas50_train
 
-gamma_est=1/apply(distancia_trainM,2,sd)
+# Para estimar el gamma: 
+gamma_est=1/apply(setas50_train,2,sd)
+# Para estimar el coste: 
 norma2<-function(x) sqrt(sum(x^2))
-cost_est=apply(distancia_trainM,2,norma2)
-library(e1071)
-setas.svm1=svm(distancia_trainM,swm_y,type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
-test_med=rbind(setas_test[,2:117],setas_train[k50$medoid,2:117])
-distancia_test=distance(test_med,method="dice")
-distancia_test[1:1624,1625:1674]
-pred1=predict(setas.svm1,distancia_test[1:1624,1625:1674])
-table(pred1,setas_test[,1])
+cost_est=apply(setas50_train,2,norma2)
+#Ajustamos el modelo
+setas.svm=svm(svm_x,svm_y,type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
+#Predecimos
+prediccion_svm=predict(setas.svm,svm_x)
+table(prediccion_svm,svm_y)
+
+
+#Ajustamos los parámtros
+parametros=tune.svm(setas50_validacion, setas_validacion[,1], gamma=seq(5,8,by=0.5), cost=seq(10,50,by=10))
+attributes(parametros)
+
+# Calculamos el modelo con estos parámetros
+setas.svm_parametros=svm(svm_x, svm_y, type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
+
+# Predecimos
+prediccion_svm.parametros=predict(setas.svm_parametros, svm_x)
+
+# Calculamos la matriz de confusión
+table(prediccion_svm.parametros, svm_y)
 
 ```
 
