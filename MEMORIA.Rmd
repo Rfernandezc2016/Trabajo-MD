@@ -1312,7 +1312,9 @@ No se requiere de imputación de datos, pues no hay datos faltantes en ninguna d
 #  Modelado
 
 ```{r datos transformados,echo=TRUE}
-setas_50=distancia_dice[,k50$medoid]
+medoides_setas_test=rbind(setas_train[k50$medoid,],setas_test)
+distancia_medoides_test=distance(medoides_setas_test[,2:117],method="dice")
+setas50_test=distancia_medoides_test[-c(1:50),c(1:50)]
 ```
 
 ##  k-NN
@@ -1424,7 +1426,6 @@ library(e1071)
 setas.svm1=svm(distancia_trainM,swm_y,type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
 test_med=rbind(setas_test[,2:117],setas_train[k50$medoid,2:117])
 distancia_test=distance(test_med,method="dice")
-distancia_test[1,]
 distancia_test[1:1624,1625:1674]
 pred1=predict(setas.svm1,distancia_test[1:1624,1625:1674])
 table(pred1,setas_test[,1])
