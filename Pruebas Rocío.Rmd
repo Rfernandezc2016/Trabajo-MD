@@ -11,7 +11,33 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
+SvM
+```{r svm,echo=TRUE}
+distancia_trainM=distancia_dice[,k50$medoid]
+dim(distancia_trainM)
+setas_train=setas[indices_train,]
+setas_test=setas[indices_test,]
+swm_y=setas_train[,1]
+swm_y
 
+gamma_est=1/apply(distancia_trainM,2,sd)
+norma2<-function(x) sqrt(sum(x^2))
+cost_est=apply(distancia_trainM,2,norma2)
+library(e1071)
+setas.svm1=svm(distancia_trainM,swm_y,type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
+test_med=rbind(setas_test[,2:117],setas_train[k50$medoid,2:117])
+distancia_test=distance(test_med,method="dice")
+distancia_test[1,]
+distancia_test[1:1624,1625:1674]
+pred1=predict(setas.svm1,distancia_test[1:1624,1625:1674])
+pred1
+table(pred1,setas_test[,1])
+
+
+
+
+
+```
 
 
 
