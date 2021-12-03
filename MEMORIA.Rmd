@@ -1312,9 +1312,18 @@ No se requiere de imputación de datos, pues no hay datos faltantes en ninguna d
 #  Modelado
 
 ```{r datos transformados,echo=TRUE}
+#Datos train:
+setas50_train=distancia_dice[,k50$medoid]
+
+#Datos test:
 medoides_setas_test=rbind(setas_train[k50$medoid,],setas_test)
 distancia_medoides_test=distance(medoides_setas_test[,2:117],method="dice")
 setas50_test=distancia_medoides_test[-c(1:50),c(1:50)]
+
+#Datos validation:
+medoides_setas_validacion=rbind(setas_train[k50$medoid,],setas_validacion)
+distancia_medoides_validacion=distance(medoides_setas_validacion[,2:117],method="dice")
+setas50_validacion=distancia_medoides_validacion[-c(1:50),c(1:50)]
 ```
 
 ##  k-NN
