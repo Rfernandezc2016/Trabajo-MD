@@ -1303,13 +1303,7 @@ A pesar de ellos, nos quedaremos con 50 medoides, para tener más información.
 
 ##  Transformación de variables
 
-Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente.
-
-##  Imputacion de datos (datos faltantes)
-
-No se requiere de imputación de datos, pues no hay datos faltantes en ninguna de las variables.
-
-#  Modelado
+Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 50 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
 
 ```{r datos transformados,echo=TRUE}
 #Datos train:
@@ -1326,13 +1320,20 @@ distancia_medoides_validacion=distance(medoides_setas_validacion[,2:117],method=
 setas50_validacion=distancia_medoides_validacion[-c(1:50),c(1:50)]
 ```
 
+##  Imputacion de datos (datos faltantes)
+
+No se requiere de imputación de datos, pues no hay datos faltantes en ninguna de las variables.
+
+#  Modelado
+
 ##  k-NN
 
-El algoritmo clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
+El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
+
 
 ```{r knn,echo=TRUE}
 #Buscamos los vecinos más cercanos
-prediccion_knn=knn(setas_train[k50$medoid,],setas_test,cl=setas_train$Venenosas[k50$medoid],k=1)
+prediccion_knn=knn(setas50_train,setas50_test,cl=setas_train$Venenosas,k=1)
 table(prediccion_knn,setas_test$Venenosas)
 
 # Medidas de precisión
@@ -1364,7 +1365,7 @@ Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que
 Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano. 
 
 ```{r knn cross-validation,echo=TRUE}
-k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*10
+k=(dim(setas50_train)[1]^(4/(4+dim(setas50_train)[2])))*10
 
 #Matriz de las medidas de precision:
 medidas_presicision=matrix(nrow=round(k),ncol=7)
@@ -1393,7 +1394,8 @@ legend("topright",
        legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
        fil = seq(2, round(k)+1))
 ```
-Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 14% y de una sensibilidad del casi 80% a un 70%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
+Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 14% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
+
 
 ##  Clustering
 
