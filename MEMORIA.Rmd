@@ -1193,7 +1193,6 @@ Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zo
 clusters.datos.train=kmeans(pca.train$x,centers=8,nstart=25)
 table(clusters.datos.train$cluster,setas_train$Venenosas[])
 
-##PREGUNTAR JAVIER/ISAAC
 clusplot(pca.train$x, clusters.datos.train$cluster, color=TRUE, shade=TRUE, labels=1,lines=0)
 ```
 Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
