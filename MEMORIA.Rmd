@@ -1422,6 +1422,9 @@ error
 
 ##  Bosques Aleatorios
 
+```{r bosque aleatorio,echo=TRUE}
+
+```
 
 ##  Support Vector Machines
 
