@@ -10,6 +10,71 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+k-NN con los datos originiales codificados de forma binaria
+```{r knn,echo=TRUE}
+#Buscamos los vecinos más cercanos
+prediccion_knn=knn(setas_train[k50$medoid,],setas_test,cl=setas_train$Venenosas[k50$medoid],k=1)
+table(prediccion_knn,setas_test$Venenosas)
+
+# Medidas de precisión
+accuracy = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_knn == setas_test$Venenosas) & (setas_test$Venenosas == 1)) / sum(setas_test$Venenosas == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_knn == setas_test$Venenosas & setas_test$Venenosas == 0) / sum(setas_test$Venenosas == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion_knn== setas_test$Venenosas) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(prediccion_knn == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+```
+
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice la toxicidad de las setas con un grado de acierto alto, aunque comete un error del 8.25%.
+
+Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano. 
+
+```{r knn cross-validation,echo=TRUE}
+k=(dim(setas_train)[1]^(4/(4+dim(setas_train)[2])))*10
+
+#Matriz de las medidas de precision:
+medidas_presicision=matrix(nrow=round(k),ncol=7)
+nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+colnames(medidas_presicision)=nombres_medidas
+for (i in 1:round(k)){
+  prediccion_knn=knn(setas_train[k50$medoid,],setas_test,cl=setas_train$Venenosas[k50$medoid],k=i)
+  medidas_presicision[i,1] = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
+  medidas_presicision[i,2] = 1-medidas_presicision[i,1]
+  medidas_presicision[i,3] = sum((prediccion_knn == setas_test$Venenosas) & (setas_test$Venenosas == 1)) /sum(setas_test$Venenosas == 1)
+  medidas_presicision[i,4] =  sum(prediccion_knn == setas_test$Venenosas & setas_test$Venenosas == 0) / sum(setas_test$Venenosas == 0)
+  medidas_presicision[i,5] = sum( (prediccion_knn== setas_test$Venenosas) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+  medidas_presicision[i,6] = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(prediccion_knn == 0)
+  medidas_presicision[i,7] = 2*medidas_presicision[i,5]*medidas_presicision[i,3] /(medidas_presicision[i,5]+medidas_presicision[i,3])
+}
+medidas_presicision
+
+#Grafico de las medidas de precision
+plot(seq(1,round(k)),medidas_presicision[,1],main="Medidas de precision",type="n",xlab="Número de k vecinos",ylab="",ylim=c(0,1),xlim=c(1,round(k)+2))
+for (i in 1:7) {
+  points(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+  lines(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
+       fil = seq(2, round(k)+1))
+```
+
 
 SvM
 ```{r svm,echo=TRUE}
