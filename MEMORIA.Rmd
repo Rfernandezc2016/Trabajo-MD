@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #  Introducción
 
-Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en carracterísticas de hongos de la familia Agaricus y Lepiota.
+Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en características de hongos de la familia Agaricus y Lepiota.
 
 Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librerías:
 ```{r librerias,echo=TRUE,warning=FALSE}
@@ -29,7 +29,7 @@ library(e1071)
 
 # ¿ Objetivos (del negocio)?
 
-Nuestro objetivo será identifcar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
+Nuestro objetivo será identificar cada especie como una especie comestible o una especie venenosa/de comestibilidad desconocida.
 
 #  Datos 
 
@@ -148,7 +148,7 @@ datos.setas=datos.setas[,-17]
 
 Además, la variable **Fijacion_L** tendría solo dos niveles pues en el nivel descendente y entallado no aparecen en los datos y la variable **Espacio_L** también tiene dos niveles pues el nivel distante tampoco aparece, por ello las codificamos mediante unas variable binomiales.
 
-Codificamos el resto de las variables originales de forma que obtendremos también nuevas variables binomiales, excepto las variables relacionadas con el color que las codificaremos siguiendo la escala de colores.
+Codificamos el resto de las variables originales de forma que obtendremos también nuevas variables binomiales.
 ```{r codificación,echo=FALSE}
 #Variable respuesta: venenosa-1 comestible-0
 setas=data.frame(matrix(ncol=1))
@@ -1057,6 +1057,7 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 
 ## Componentes principales
 
+### Proceso previo
 Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:
 
  |1|0
@@ -1090,7 +1091,7 @@ $$designdist(datos,metodo,abcd)$$
 donde **datos** es nuestra matriz codificada de forma binaria, **metodo** escribiremos la expresión de la medida de similitud que queramos y **abcd=TRUE** usa la tabla de contingencia para datos binarios.
 
 ```{r intento medida de similitud dice1,eval=FALSE}
-designdist(setas_train[1:10,10:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
+designdist(setas_train[,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 ```
 
 Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
@@ -1100,12 +1101,12 @@ $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
 distancia_dice=distance(setas_train[,2:117],method="dice")
 ```
 
-Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, para ellos calculamos una cierta cantidad de medoides que los calcularemos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
+Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, para ellos calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
 
 ```{r medoides,echo=TRUE}
 #Cálculo de los medoides: 
 k50=fastkmed(distancia_dice,ncluster=50)
-distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
+
 #Proporción de los medoides:
 table(setas_train$Venenosas[k50$medoid])
 ```
@@ -1113,6 +1114,7 @@ Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para expl
 
 Con estos medoides podemos realizar un análisis de componente principales.
 ```{r pca,echo=TRUE}
+distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
 #Análisis Componentes principales:
 pca.50=prcomp(distancia_medoides)
 plot(pca.50)
@@ -1122,7 +1124,7 @@ Podemos ver  como la variabilidad de los datos se explica mayoritariamente por l
 
 En la otra gráfica, vemos como los medoides que se encuentra con un valor de $PC1<0$ son setas no venenosas, si $PC1>1.5$ las setas son venenosas, mientras que en el intervalo $PC1\in(0,1.5)$ tenemos setas venenosas y no venenosas.
 
-Las dos gráficas siguientes son la misma que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro. Esto solo ocurre en un punto.
+Las dos gráficas siguientes son las mismas que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro. Esto solo ocurre en un punto.
 
 ```{r grafico pca alternativo,echo=TRUE}
 #Gráfico:
@@ -1139,37 +1141,12 @@ points(pca.50$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.50$x[comestible,1:2],col=1,pch=19)
 ```
 
-## Análisis Cluster
-
-```{r cluster,echo=TRUE}
-#Números de clusters
-SSW <- vector(mode = "numeric", length = 15)
-n=dim(pca.50$x)[1]
-#Variabilidad de todos los datos, es decir, todos los datos como un único cluster
-SSW[1] <- (n - 1) * sum(apply(pca.50$x,2,var)) 
-
-#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
-for (i in 2:15) SSW[i] <- sum(kmeans(pca.50$x,centers=i,nstart=25)$withinss)
-
-#Dibujamos un gráfico con el resultado
-plot(1:15, SSW, type="b", xlab="Number of Clusters", ylab="Sum of squares within groups",pch=19, col="steelblue4")
-
-
-#Análisis cluster
-clusters.datos=kmeans(pca.50$x,centers=5,nstart=25)
-table(clusters.datos$cluster,setas_train$Venenosas[k50$medoid])
-```
-Vemos que tras realizar el análisis cluster con 5 grupos, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
-\vspace(3mm)
-
 
 Pero trabajar solo con los 50 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 50 medoides.
 
 ```{r medoides a observaciones,echo=TRUE}
-distancia_trainM=distancia_dice[,k50$medoid]
-
 #Análsiis de componentes principales
-pca.train=prcomp(distancia_trainM)
+pca.train=prcomp(distancia_dice[,k50$medoid])
 plot(pca.train)
 plot(pca.train$x,col=setas_train$Venenosas+1,pch=19)
 
@@ -1178,27 +1155,19 @@ comestible=which(setas_train[,1]==0)
 no.comestibles=which(setas_train[,1]==1)
 
 par(mfrow=c(1,2))
-plot(pca.train$x)
+plot(pca.train$x,type="n")
 points(pca.train$x[comestible,1:2],col=1,pch=19)
 points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
-plot(pca.train$x)
+plot(pca.train$x,type="n")
 points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train$x[comestible,1:2],col=1,pch=19)
 ```
 
 Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las stas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios serían 5 como ocurría en el análisis anterior, pero vamos a probar con un número mayor de cluster para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-1,0.5)$. 
 
-```{r cluster con distancia de los medoides,echo=TRUE}
-#Análisis cluster
-clusters.datos.train=kmeans(pca.train$x,centers=8,nstart=25)
-table(clusters.datos.train$cluster,setas_train$Venenosas[])
-
-clusplot(pca.train$x, clusters.datos.train$cluster, color=TRUE, shade=TRUE, labels=1,lines=0)
-```
-Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
 
 
-Esto nos indica que quizás no sean necesarios 50 medoides para realizar los análisis y podríamos obtener un resultado parecido con una cantidad menor. Por ello, vamos a probar a hacer todo pero con una cantidad más reducida de medoides. Tomamos un valor entre 10 y 20 medoides.
+Quizás no sean necesarios 50 medoides para realizar el análisis y podríamos obtener un resultado parecido con una cantidad menor. Por ello, vamos a probar a hacerlo pero con una cantidad más reducida de medoides. Tomamos un valor entre 10 y 20 medoides.
 
 ```{r medoides 15,echo=TRUE}
 #Cálculo de los medoides: 
@@ -1206,10 +1175,9 @@ k15=fastkmed(distancia_dice,ncluster=15)
 #Proporción de los medoides:
 table(setas_train$Venenosas[k15$medoid])
 
-distancia_trainM15=distancia_dice[,k15$medoid]
 
 #Análsiis de componentes principales
-pca.train15=prcomp(distancia_trainM15)
+pca.train15=prcomp(distancia_dice[,k15$medoid])
 plot(pca.train15)
 plot(pca.train15$x,col=setas_train$Venenosas+1,pch=19)
 
@@ -1224,11 +1192,6 @@ points(pca.train15$x[no.comestibles,1:2],col=2,pch=19)
 plot(pca.train15$x)
 points(pca.train15$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train15$x[comestible,1:2],col=1,pch=19)
-
-
-#Análisis cluster
-clusters.datos.train15=kmeans(pca.train15$x,centers=8,nstart=25)
-table(clusters.datos.train15$cluster,setas_train$Venenosas[])
 ```
 
 ```{r medoides 10,echo=TRUE}
@@ -1237,10 +1200,9 @@ k10=fastkmed(distancia_dice,ncluster=10)
 #Proporción de los medoides:
 table(setas_train$Venenosas[k10$medoid])
 
-distancia_trainM10=distancia_dice[,k10$medoid]
 
 #Análsiis de componentes principales
-pca.train10=prcomp(distancia_trainM10)
+pca.train10=prcomp(distancia_dice[,k10$medoid])
 plot(pca.train10)
 plot(pca.train10$x,col=setas_train$Venenosas+1,pch=19)
 
@@ -1255,11 +1217,6 @@ points(pca.train10$x[no.comestibles,1:2],col=2,pch=19)
 plot(pca.train10$x)
 points(pca.train10$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train10$x[comestible,1:2],col=1,pch=19)
-
-
-#Análisis cluster
-clusters.datos.train10=kmeans(pca.train10$x,centers=8,nstart=25)
-table(clusters.datos.train10$cluster,setas_train$Venenosas[])
 ```
 
 ```{r medoides 20,echo=TRUE}
@@ -1268,10 +1225,9 @@ k20=fastkmed(distancia_dice,ncluster=20)
 #Proporción de los medoides:
 table(setas_train$Venenosas[k20$medoid])
 
-distancia_trainM20=distancia_dice[,k20$medoid]
 
 #Análsiis de componentes principales
-pca.train20=prcomp(distancia_trainM20)
+pca.train20=prcomp(distancia_dice[,k20$medoid])
 plot(pca.train20)
 plot(pca.train20$x,col=setas_train$Venenosas+1,pch=19)
 
@@ -1286,17 +1242,10 @@ points(pca.train20$x[no.comestibles,1:2],col=2,pch=19)
 plot(pca.train20$x)
 points(pca.train20$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train20$x[comestible,1:2],col=1,pch=19)
-
-
-#Análisis cluster
-clusters.datos.train20=kmeans(pca.train20$x,centers=8,nstart=25)
-table(clusters.datos.train20$cluster,setas_train$Venenosas[])
 ```
 
 Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 20. 
-
-
-A pesar de ellos, nos quedaremos con 50 medoides, para tener más información.
+A pesar de ellos, nos quedaremos con la distancia de todas las observaciones a los 50 medoides, para tener más información.
 
 
 
@@ -1324,6 +1273,65 @@ setas50_validacion=distancia_medoides_validacion[-c(1:50),c(1:50)]
 No se requiere de imputación de datos, pues no hay datos faltantes en ninguna de las variables.
 
 #  Modelado
+
+
+## Análisis Cluster
+
+```{r cluster,echo=TRUE}
+#Números de clusters
+SSW <- vector(mode = "numeric", length = 15)
+n=dim(prcomp(setas50_train)$x)[1]
+#Variabilidad de todos los datos, es decir, todos los datos como un único cluster
+SSW[1] <- (n - 1) * sum(apply(prcomp(setas50_train)$x,2,var)) 
+
+#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
+for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas50_train)$x,centers=i,nstart=25)$withinss)
+
+#Dibujamos un gráfico con el resultado
+plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
+
+
+#Análisis cluster
+clusters.datos=kmeans(prcomp(setas50_train)$x,centers=5,nstart=25)
+table(clusters.datos$cluster,setas_train$Venenosas)
+
+
+#Gráfico de los cluster
+pca=prcomp(setas50_train)$x
+
+plot(prcomp(setas50_train)$x,main="Clusters",type="n")
+for(i in 1:dim(setas50_train)[1]){
+  points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
+```
+Vemos que tras realizar el análisis cluster con 5 grupos, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
+\vspace(3mm)
+
+
+
+```{r cluster con distancia de los medoides,echo=TRUE}
+#Análisis cluster
+clusters.datos.train=kmeans(prcomp(setas50_train)$x,centers=8,nstart=25)
+table(clusters.datos.train$cluster,setas_train$Venenosas)
+
+#Gráfico de los cluster
+plot(prcomp(setas50_train)$x,main="Clusters",type="n")
+for(i in 1:dim(setas50_train)[1]){
+  points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train$cluster[i]+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+```
+Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
+
+
+
 
 ##  k-NN
 
@@ -1393,7 +1401,7 @@ legend("topright",
        legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
        fil = seq(2, round(k)+1))
 ```
-Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 14% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
+Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
 
 
 ##  Clustering
