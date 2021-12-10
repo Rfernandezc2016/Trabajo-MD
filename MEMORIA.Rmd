@@ -25,6 +25,7 @@ library(cluster)
 library(rpart)
 library(rpart.plot)
 library(e1071)
+library(randomForest)
 ```
 
 # ¿ Objetivos (del negocio)?
@@ -1413,23 +1414,73 @@ Un árbol de decisión es un modelo de predicción utilizado en diversos ámbito
 ```{r arbol de decision,echo=TRUE}
 setas50_train.respuesta=data.frame(cbind(setas_train[,1],setas50_train))
 names(setas50_train.respuesta)[1]="Venenosas"
-arbol=rpart(Venenosas~., data=setas50_train.respuesta,method="class")
+arbol=rpart(as.factor(setas50_train.respuesta$Venenosas)~., data=setas50_train.respuesta,method="class")
 summary(arbol)
 
-#Grfico
+#Gráfico
 rpart.plot(arbol)
 
 #Error de predicción
 table(pred=predict(arbol,type="class"), obs=setas50_train.respuesta$Venenosas)
-n=dim(setas50_train.respuesta)[1]
-error=100 *(sum(predict(arbol, type = "class")!=setas50_train.respuesta$Venenosas)/n)
-error
+prediccion.arbol=round(predict(arbol,as.data.frame(setas50_test))[,2])
+table(prediccion.arbol,setas_test[,1])
+
+# Medidas de precisión
+accuracy = sum(prediccion.arbol == setas_test[,1])/nrow(setas_test)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion.arbol == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion.arbol == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion.arbol== setas_test[,1]) & (prediccion.arbol == 1))/ sum(prediccion.arbol == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion.arbol== setas_test[,1] & prediccion.arbol == 0) / sum(prediccion.arbol == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+
 ```
 
 
 ##  Bosques Aleatorios
 
 ```{r bosque aleatorio,echo=TRUE}
+setas.rf=randomForest(setas50_train, as.factor(setas50_train.respuesta$Venenosas), ntree=70, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
+prediccion.rf=predict(setas.rf, setas50_test)
+table(prediccion.rf,as.factor(setas_test))
+
+
+# Medidas de precisión
+accuracy = sum(prediccion.rf == setas_test[,1])/nrow(setas_test)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion.rf == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion.rf == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion.rf== setas_test[,1]) & (prediccion.rf == 1))/ sum(prediccion.rf == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion.rf== setas_test[,1] & prediccion.rf == 0) / sum(prediccion.rf == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 
 ```
 
@@ -1444,17 +1495,43 @@ svm_y=setas_train[,1]
 svm_x=setas50_train
 
 # Para estimar el gamma: 
-gamma_est=1/apply(setas50_train,2,sd)
+gamma_est=1/apply(setas50_validacion,2,sd)
 # Para estimar el coste: 
 norma2<-function(x) sqrt(sum(x^2))
-cost_est=apply(setas50_train,2,norma2)
+cost_est=apply(setas50_validacion,2,norma2)
 #Ajustamos el modelo
 setas.svm=svm(svm_x,svm_y,type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
 #Predecimos
-prediccion_svm=predict(setas.svm,svm_x)
-table(prediccion_svm,svm_y)
+prediccion_svm=predict(setas.svm,setas50_test)
+table(prediccion_svm,setas_test[,1])
 
 
+# Medidas de precisión
+accuracy = sum(prediccion_svm == setas50_train.respuesta$Venenosas)/nrow(setas50_train.respuesta)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_svm == setas50_train.respuesta$Venenosas) & (setas50_train.respuesta$Venenosas == 1)) / sum(setas50_train.respuesta$Venenosas == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_svm == setas50_train.respuesta$Venenosas & setas50_train.respuesta$Venenosas == 0) / sum(setas50_train.respuesta$Venenosas == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum((prediccion_svm== setas50_train.respuesta$Venenosas) & (prediccion_svm == 1))/ sum(prediccion_svm == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_svm== setas50_train.respuesta$Venenosas & prediccion_svm == 0) / sum(prediccion_svm == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+```
+
+
+```{r svm con ajuste de parametros,echo=TRUE}
 #Ajustamos los parámtros
 parametros=tune.svm(setas50_validacion, setas_validacion[,1], gamma=seq(5,8,by=0.5), cost=seq(10,50,by=10))
 attributes(parametros)
@@ -1463,10 +1540,10 @@ attributes(parametros)
 setas.svm_parametros=svm(svm_x, svm_y, type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
 
 # Predecimos
-prediccion_svm.parametros=predict(setas.svm_parametros, svm_x)
+prediccion_svm.parametros=predict(setas.svm_parametros, setas50_test)
 
 # Calculamos la matriz de confusión
-table(prediccion_svm.parametros, svm_y)
+table(prediccion_svm.parametros, setas_test[,1])
 
 ```
 
