@@ -1568,22 +1568,26 @@ Las máquinas de vectores soporte  (del inglés support-vector machines, SVM) so
 
 Estos métodos están propiamente relacionados con problemas de clasificación y regresión. Dado un conjunto de ejemplos de entrenamiento podemos etiquetar las clases y entrenar una SVM para construir un modelo que prediga la clase de una nueva muestra.
 
-```{r svm,echo=TRUE}
-svm_y=setas_train[,1]
-svm_x=setas50_train
+Para determinar el valor de gamma y el coste, usamos los datos que hemos reservado para validación y realizamos una estimación con ellos.
 
+```{r svm,echo=TRUE}
 # Para estimar el gamma: 
 gamma_est=1/apply(setas50_validacion,2,sd)
 # Para estimar el coste: 
 norma2<-function(x) sqrt(sum(x^2))
 cost_est=apply(setas50_validacion,2,norma2)
+
 #Ajustamos el modelo
-setas.svm=svm(svm_x,svm_y,type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
-#Predecimos
+setas.svm=svm(setas50_train,setas_train[,1],type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
+
+#Tabla comparativa
 prediccion_svm=predict(setas.svm,setas50_test)
 table(prediccion_svm,setas_test[,1])
+```
 
+La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
 
+```{r medidas de precision svm,echo=TRUE}
 # Medidas de precisión
 accuracy = sum(prediccion_svm == setas50_train.respuesta$Venenosas)/nrow(setas50_train.respuesta)
 error = 1-accuracy
@@ -1608,22 +1612,22 @@ f1score = 2*precision*recall /(precision+recall)
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
 
+Realizamos otro ajuste del modelo pero esta vez ajustando los parámetros a través de la función *tune.svm()*.
 
 ```{r svm con ajuste de parametros,echo=TRUE}
 #Ajustamos los parámtros
-parametros=tune.svm(setas50_validacion, setas_validacion[,1], gamma=seq(5,8,by=0.5), cost=seq(10,50,by=10))
+parametros=tune.svm(setas50_validacion, setas_validacion[,1], gamma=seq(5,8.5,by=0.5), cost=seq(10,30,by=10))
 attributes(parametros)
 
 # Calculamos el modelo con estos parámetros
-setas.svm_parametros=svm(svm_x, svm_y, type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
+setas.svm_parametros=svm(setas50_train,setas_train[,1], type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
 
-# Predecimos
+# Tabla comparativa
 prediccion_svm.parametros=predict(setas.svm_parametros, setas50_test)
-
-# Calculamos la matriz de confusión
 table(prediccion_svm.parametros, setas_test[,1])
-
 ```
+
+Obtenemos el mismo resultado que en el ajuste anterior, la perfección.
 
 #  Evaluación
 
