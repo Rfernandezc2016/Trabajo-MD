@@ -1458,7 +1458,7 @@ prediccion.rf=predict(setas.rf, setas50_test)
 table(prediccion.rf,as.factor(setas_test))
 ```
 
-Las medidas de precisión del modelo de bosques aleatorios son:
+Las medidas de precisión del modelo de bosques aleatorios son: 
 ```{r medidas de presicion bosques aleatorios,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion.rf == setas_test[,1])/nrow(setas_test)
