@@ -1454,24 +1454,27 @@ c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = s
 ```{r bosque aleatorio,echo=TRUE}
 setas.rf=randomForest(setas50_train, as.factor(setas50_train.respuesta$Venenosas), ntree=70, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
 prediccion.rf=predict(setas.rf, setas50_test)
+#Tabla comparativa
 table(prediccion.rf,as.factor(setas_test))
+```
 
-
-# Medidas de precisión
+Las medidas de precisión del modelo de bosques aleatorios son:
+```{r medidas de presicion bosques aleatorios,echo=TRUE}
+# Exactitud/Error
 accuracy = sum(prediccion.rf == setas_test[,1])/nrow(setas_test)
 error = 1-accuracy
 
-# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+# Sensibilidad: acierto sobre el total de las setas VENENOSAS
 sensitivity = sum((prediccion.rf == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
 recall = sensitivity
 
-# Acierto sobre el total de las setas COMESTIBLES
+# Especifidad: acierto sobre el total de las setas COMESTIBLES
 specificity =  sum(prediccion.rf == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
 
-# Acierto cuando el predicho es VENENOSAS
+# Precisión: acierto cuando el predicho es VENENOSAS
 precision = sum( (prediccion.rf== setas_test[,1]) & (prediccion.rf == 1))/ sum(prediccion.rf == 1)
 
-# Acierto cuando el predicho es COMESTIBLE
+# NPV: acierto cuando el predicho es COMESTIBLE
 npv = sum(prediccion.rf== setas_test[,1] & prediccion.rf == 0) / sum(prediccion.rf == 0)
 
 # F1_score
