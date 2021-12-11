@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Este conjunto de datos incluye descripciones de muestras hipotéticas basándose en características de hongos de la familia Agaricus y Lepiota.
 
 Para visualizar mejor nuestro análisis necesitamos cargar las siguientes librerías:
-```{r librerias,echo=TRUE,warning=FALSE}
+```{r librerias,echo=TRUE,warning=FALSE,error=FALSE,message=FALSE}
 library(ggplot2)
 library(psych)
 library(philentropy)
@@ -1061,13 +1061,13 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 ### Proceso previo
 Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:
 
- |1|0
+  |1|0
 -|-|-
 1|a|b
 0|c|d
 
 Hacemos un intento de calcular nuestra propia medida de similitud mediante un algoritmo, pero vemos que el proceso es muy largo debido a la dimensión de la matriz de los datos, por ellos buscamos alguna función predeterminada en R que sea capaz de hacerla.
-```{r intento medida de similitud dice1,eval=FALSE}
+```{r intento medida de similitud dice,eval=FALSE}
 #i observacion1, j observacion2, k caracteristica
 i=1
 n=dim(setas_train)[1]
@@ -1292,6 +1292,7 @@ for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas50_train)$x,centers=i,nstart=25
 #Dibujamos un gráfico con el resultado
 plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
 ```
+
 En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
 
 ```{r analisis cluster 5,echo=TRUE}
@@ -1465,6 +1466,7 @@ legend("topright",
        legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
        fil = seq(2, round(k)+1))
 ```
+
 Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo vemos muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
 
 
@@ -1589,21 +1591,21 @@ La tabla nos dice que el modelo predice a la perfección los datos. Las medidas 
 
 ```{r medidas de precision svm,echo=TRUE}
 # Medidas de precisión
-accuracy = sum(prediccion_svm == setas50_train.respuesta$Venenosas)/nrow(setas50_train.respuesta)
+accuracy = sum(prediccion_svm == setas_test[,1])/nrow(setas_test[,1])
 error = 1-accuracy
 
 # Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
-sensitivity = sum((prediccion_svm == setas50_train.respuesta$Venenosas) & (setas50_train.respuesta$Venenosas == 1)) / sum(setas50_train.respuesta$Venenosas == 1)
+sensitivity = sum((prediccion_svm == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
 recall = sensitivity
 
 # Acierto sobre el total de las setas COMESTIBLES
-specificity =  sum(prediccion_svm == setas50_train.respuesta$Venenosas & setas50_train.respuesta$Venenosas == 0) / sum(setas50_train.respuesta$Venenosas == 0)
+specificity =  sum(prediccion_svm == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
 
 # Acierto cuando el predicho es VENENOSAS
-precision = sum((prediccion_svm== setas50_train.respuesta$Venenosas) & (prediccion_svm == 1))/ sum(prediccion_svm == 1)
+precision = sum((prediccion_svm== setas_test[,1]) & (prediccion_svm == 1))/ sum(prediccion_svm == 1)
 
 # Acierto cuando el predicho es COMESTIBLE
-npv = sum(prediccion_svm== setas50_train.respuesta$Venenosas & prediccion_svm == 0) / sum(prediccion_svm == 0)
+npv = sum(prediccion_svm== setas_test[,1] & prediccion_svm == 0) / sum(prediccion_svm == 0)
 
 # F1_score
 f1score = 2*precision*recall /(precision+recall)
