@@ -1478,16 +1478,21 @@ names(setas50_train.respuesta)[1]="Venenosas"
 arbol=rpart(as.factor(setas50_train.respuesta$Venenosas)~., data=setas50_train.respuesta,method="class")
 summary(arbol)
 
-#Gráfico
+#Árbol de decisión:
 rpart.plot(arbol)
+
+#Tabla comparativa:
+setas50_test.data=as.data.frame(setas50_test)
+colnames(setas50_test.data)=colnames(setas50_train.respuesta)[2:51]
+prediccion.arbol=round(predict(arbol,setas50_test.data)[,2])
+table(prediccion.arbol,setas_test[,1])
 ```
 
-```{r medidas de precision arbol de decision,echo=TRUE}
-#Error de predicción
-table(pred=predict(arbol,type="class"), obs=setas50_train.respuesta$Venenosas)
-prediccion.arbol=round(predict(arbol,as.data.frame(setas50_test))[,2])
-table(prediccion.arbol,setas_test[,1])
+El gráfico resultante no es interpretable pues nuestro datos están basado en la distancia de las observaciones a los medoides que hemos calculado anteriormente, pero podemos decir que los medoides que toma como más importantes son las observaciones 638, 51 y 713.
 
+En la tabla podemos ver que a la hora de predecir nuestro árbol de decisión comete cierto error, a continuación analizamos ese error con distintas medidas de precisión.
+
+```{r medidas de precision arbol de decision,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion.arbol == setas_test[,1])/nrow(setas_test)
 error = 1-accuracy
@@ -1512,6 +1517,8 @@ f1score = 2*precision*recall /(precision+recall)
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 
 ```
+
+El error que se comete es superior que en el caso del modelo k-NN con el vecino más próximo, pero sigue siendo un error aceptable para el modelo, por lo que podemos determinar que el árbol de decisión predice casi todas las setas correctamente.
 
 
 ##  Bosques Aleatorios
