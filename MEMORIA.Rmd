@@ -1142,7 +1142,6 @@ points(pca.50$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.50$x[comestible,1:2],col=1,pch=19)
 ```
 
-
 Pero trabajar solo con los 50 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 50 medoides.
 
 ```{r medoides a observaciones,echo=TRUE}
@@ -1278,6 +1277,8 @@ No se requiere de imputación de datos, pues no hay datos faltantes en ninguna d
 
 ## Análisis Cluster
 
+El análisis cluster es un conjunto de técnicas multivariantes utilizadas para clasificar a un conjunto de individuos en grupos homogéneos.
+
 ```{r cluster,echo=TRUE}
 #Números de clusters
 SSW <- vector(mode = "numeric", length = 15)
@@ -1290,16 +1291,20 @@ for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas50_train)$x,centers=i,nstart=25
 
 #Dibujamos un gráfico con el resultado
 plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
+```
+En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
 
-
+```{r analisis cluster 5,echo=TRUE}
 #Análisis cluster
 clusters.datos=kmeans(prcomp(setas50_train)$x,centers=5,nstart=25)
 table(clusters.datos$cluster,setas_train$Venenosas)
+```
+Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas, por ejemplo el cluster que reparte las setas de la forma 612-475 es menos especifíco que los cluster que reparten 843-6, 1056-6 y 11-1097.
 
-
-#Gráfico de los cluster
+```{r grafico cluster 5,echo=TRUE}
 pca=prcomp(setas50_train)$x
 
+#Gráfico de los cluster
 plot(prcomp(setas50_train)$x,main="Clusters",type="n")
 for(i in 1:dim(setas50_train)[1]){
   points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
@@ -1308,16 +1313,45 @@ legend("topright",
        inset = 0.01, 
        legend = c(1:5),
        fil = seq(2,6))
+
+
+#Gráfico por tipo de setas:
+par(mfrow=c(1,2))
+plot(prcomp(setas50_train)$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas50_train)[1]){
+  if(setas_train[i,1]==0){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
+plot(prcomp(setas50_train)$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas50_train)[1]){
+  if(setas_train[i,1]==1){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
 ```
-Vemos que tras realizar el análisis cluster con 5 grupos, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
-\vspace(3mm)
+
+En estos gráficos podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
 
 
+Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.
 
-```{r cluster con distancia de los medoides,echo=TRUE}
+```{r analisis cluster 8,echo=TRUE}
 #Análisis cluster
 clusters.datos.train=kmeans(prcomp(setas50_train)$x,centers=8,nstart=25)
 table(clusters.datos.train$cluster,setas_train$Venenosas)
+```
+
+```{r grafico cluster 8,echo=TRUE}
+pca=prcomp(setas50_train)$x
 
 #Gráfico de los cluster
 plot(prcomp(setas50_train)$x,main="Clusters",type="n")
@@ -1328,7 +1362,32 @@ legend("topright",
        inset = 0.01, 
        legend = c(1:8),
        fil = seq(2,9))
+
+
+#Gráfico por tipo de setas:
+par(mfrow=c(1,2))
+plot(prcomp(setas50_train)$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas50_train)[1]){
+  if(setas_train[i,1]==0){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+plot(prcomp(setas50_train)$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas50_train)[1]){
+  if(setas_train[i,1]==1){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
 ```
+
 Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
 
 
@@ -1343,8 +1402,12 @@ El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según 
 #Buscamos los vecinos más cercanos
 prediccion_knn=knn(setas50_train,setas50_test,cl=setas_train$Venenosas,k=1)
 table(prediccion_knn,setas_test$Venenosas)
+```
 
-# Medidas de precisión
+La predicción con el 1-vecino más próximo, es bastante buena, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.
+
+```{r medidas de precision knn,echo=TRUE}
+# Exactitud/Error
 accuracy = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
 error = 1-accuracy
 
@@ -1368,9 +1431,9 @@ f1score = 2*precision*recall /(precision+recall)
 c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
 ```
 
-Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es bastante bueno, es decir, que predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.3%.
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.3%.
 
-Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano. 
+Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.
 
 ```{r knn cross-validation,echo=TRUE}
 k=(dim(setas50_train)[1]^(4/(4+dim(setas50_train)[2])))*10
@@ -1402,7 +1465,7 @@ legend("topright",
        legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
        fil = seq(2, round(k)+1))
 ```
-Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo veo muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
+Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo vemos muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
 
 
 ##  Arboles de Decisión
@@ -1417,13 +1480,15 @@ summary(arbol)
 
 #Gráfico
 rpart.plot(arbol)
+```
 
+```{r medidas de precision arbol de decision,echo=TRUE}
 #Error de predicción
 table(pred=predict(arbol,type="class"), obs=setas50_train.respuesta$Venenosas)
 prediccion.arbol=round(predict(arbol,as.data.frame(setas50_test))[,2])
 table(prediccion.arbol,setas_test[,1])
 
-# Medidas de precisión
+# Exactitud/Error
 accuracy = sum(prediccion.arbol == setas_test[,1])/nrow(setas_test)
 error = 1-accuracy
 
@@ -1459,7 +1524,7 @@ table(prediccion.rf,as.factor(setas_test))
 ```
 
 Las medidas de precisión del modelo de bosques aleatorios son: 
-```{r medidas de presicion bosques aleatorios,echo=TRUE}
+```{r medidas de precision bosques aleatorios,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion.rf == setas_test[,1])/nrow(setas_test)
 error = 1-accuracy
