@@ -1587,7 +1587,7 @@ prediccion_svm=predict(setas.svm,setas50_test)
 table(prediccion_svm,setas_test[,1])
 ```
 
-La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
+La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla. Esto se puede deber a un número de vectores soporte que utiliza para ajustar demasiado alto, lo que implicaría un sobreajuste de los datos.
 
 ```{r medidas de precision svm,echo=TRUE}
 # Medidas de precisión
