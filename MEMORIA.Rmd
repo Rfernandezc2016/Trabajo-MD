@@ -1097,7 +1097,7 @@ designdist(setas_train[,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 
 Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
 $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
-```{r distancias,echo=TRUE,warning=FALSE}
+```{r distancias,echo=TRUE,warning=FALSE,message=FALSE}
 #Distancia Dice
 distancia_dice=distance(setas_train[,2:117],method="dice")
 ```
@@ -1163,7 +1163,7 @@ points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train$x[comestible,1:2],col=1,pch=19)
 ```
 
-Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las stas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios serían 5 como ocurría en el análisis anterior, pero vamos a probar con un número mayor de cluster para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-1,0.5)$. 
+Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían 5, para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-1,0.5)$. 
 
 
 
@@ -1253,7 +1253,7 @@ A pesar de ellos, nos quedaremos con la distancia de todas las observaciones a l
 
 Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 50 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
 
-```{r datos transformados,echo=TRUE}
+```{r datos transformados,echo=TRUE,warning=FALSE,message=FALSE}
 #Datos train:
 setas50_train=distancia_dice[,k50$medoid]
 
