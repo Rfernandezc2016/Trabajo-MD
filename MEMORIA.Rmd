@@ -819,6 +819,12 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])
 ```
 Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
+```{r quitamos olor,echo=TRUE}
+setas_train=setas_train[,-(23:28)]
+setas_train=setas_train[,-(24:25)]
+```
+
+A PARTIR DE AQUÍ QUITAMOS EL OLOR
 
 ### Fijación de las láminas (Fijacion_L)
 
@@ -1099,7 +1105,7 @@ Finalmente nos decantaremos por la función *distance()* de la librería **_phil
 $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
 ```{r distancias,echo=TRUE,warning=FALSE,message=FALSE}
 #Distancia Dice
-distancia_dice=distance(setas_train[,2:117],method="dice")
+distancia_dice=distance(setas_train[,2:dim(setas_train)[2]],method="dice")
 ```
 
 Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, para ellos calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
