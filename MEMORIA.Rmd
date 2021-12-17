@@ -819,12 +819,6 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])
 ```
 Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
-```{r quitamos olor,echo=TRUE}
-setas_train=setas_train[,-(23:28)]
-setas_train=setas_train[,-(24:25)]
-```
-
-A PARTIR DE AQUÍ QUITAMOS EL OLOR
 
 ### Fijación de las láminas (Fijacion_L)
 
@@ -1681,7 +1675,6 @@ c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = s
 ```
 
 
-## Redes neuronales
 
 #  Evaluación
 
@@ -1692,4 +1685,9 @@ c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = s
 OJO!!! al inicio del estudio, necesitamos reservar parte de la bases de datos para esta etapa. Nos referiremos a esa parte como "los datos guardados en un cajón". Normalmente esta etapa se hace "el último día de clase".
 
 #  Actualización del modelo...
-Vuelta a empezar.
+
+
+```{r quitamos olor,echo=TRUE}
+setas_train=setas_train[,-(23:28)]
+setas_train=setas_train[,-(24:25)]
+```
