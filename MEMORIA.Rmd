@@ -1366,7 +1366,7 @@ El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según 
 
 ```{r knn,echo=TRUE}
 #Buscamos los vecinos más cercanos
-prediccion_knn=knn(setas_train,setas_test,cl=setas_train$Letalidad,k=1)
+prediccion_knn=knn(setas60_train,setas60_test,cl=setas_train$Letalidad,k=1)
 table(prediccion_knn,setas_test$Letalidad)
 ```
 
@@ -1409,9 +1409,9 @@ k=(dim(setas60_train)[1]^(4/(4+dim(setas60_train)[2])))*10
 medidas_presicision=matrix(nrow=round(k),ncol=7)
 nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
 colnames(medidas_presicision)=nombres_medidas
+
 for (i in 1:round(k)){
-  
-  prediccion_knn=knn(setas_train,setas_test,cl=setas_train$Letalidad,k=i)
+  prediccion_knn=knn(setas_train[k60$medoid,],setas_test,cl=setas_train$Letalidad[k60$medoid],k=i)
   medidas_presicision[i,1] = sum(prediccion_knn == setas_test$Letalidad)/nrow(setas_test)
   medidas_presicision[i,2] = 1-medidas_presicision[i,1]
   medidas_presicision[i,3] = sum((prediccion_knn == setas_test$Letalidad) & (setas_test$Letalidad == 1)) /sum(setas_test$Letalidad == 1)
@@ -1434,7 +1434,7 @@ legend("topright",
        fil = seq(2, round(k)+1))
 ```
 
-Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo vemos muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
+Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo vemos muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 11% de error a un 16% y de una sensibilidad del casi 77% a un 67%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
 
 
 ##  Arboles de Decisión
@@ -1457,7 +1457,7 @@ prediccion.arbol=round(predict(arbol,setas60_test.data)[,2])
 table(prediccion.arbol,setas_test[,1])
 ```
 
-El gráfico resultante no es interpretable pues nuestro datos están basado en la distancia de las observaciones a los medoides que hemos calculado anteriormente, pero podemos decir que los medoides que toma como más importantes son las observaciones 638, 51 y 713.
+El gráfico resultante podemos interpretarlo basándonos en cuánto se parece una seta a los medoides más importantes como son las observaciones 638, 51 y 749.
 
 En la tabla podemos ver que a la hora de predecir nuestro árbol de decisión comete cierto error, a continuación analizamos ese error con distintas medidas de precisión.
 
@@ -1487,7 +1487,7 @@ medidas.arboles=c(accuracy = accuracy, error = error, sensitivity = sensitivity,
 medidas.arboles
 ```
 
-El error que se comete es superior que en el caso del modelo k-NN con el vecino más próximo, pero sigue siendo un error aceptable para el modelo, por lo que podemos determinar que el árbol de decisión predice casi todas las setas correctamente.
+El error que se comete es inferior que en el caso del modelo k-NN con el vecino más próximo, pero sigue siendo un error aceptable para el modelo, por lo que podemos determinar que el árbol de decisión predice casi todas las setas correctamente.
 
 
 ##  Bosques Aleatorios
