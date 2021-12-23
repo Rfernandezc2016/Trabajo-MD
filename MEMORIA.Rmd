@@ -1087,50 +1087,113 @@ distancia_dice=distance(setas_train[,2:dim(setas_train)[2]],method="dice")
 
 Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
 
+Para seleccionar el número de medoides adecuado, hacemos cross-validation probandoo primero con una cantidad muy pequeña de medoides.
+```{r medoides menos de 10,echo=TRUE}
+i=1
+datos=matrix(nrow=9,ncol=3)
+colnames(datos)=c("0","1","Proporción de la varianza acumulada explicada")
+rownames(datos)=seq(1,9,1)
+while(i<10){
+  #Cálculo de los medoides: 
+  k=fastkmed(distancia_dice,ncluster=i)
+  #Proporción de los medoides:
+  table(setas_train$Letalidad[k$medoid])
+  proporcion=c(sum(setas_train[k$medoid,1]==0),sum(setas_train[k$medoid,1]==1))
+  
+  #Análsiis de componentes principales
+  pca.traink=prcomp(distancia_dice[k$medoid,k$medoid])
+  #Varianza explicada
+  varianza.explicada=pca.traink$sdev^2/sum(pca.traink$sdev^2)
+  if(proporcion[2]==0){
+    #Proporción de la varianza acumulada explicada por la primers componente principal
+    varianza.explicada.acumulada=varianza.explicada[1]
+  }
+  else{
+    #Proporción de la varianza acumulada explicada por las dos primeras componentes principales
+    varianza.explicada.acumulada=varianza.explicada[1]+varianza.explicada[2]
+  }
+  #Almacenamos los datos
+  datos[i,]=c(proporcion,varianza.explicada.acumulada)
+i=i+1
+}
+datos
+```
+Podemos ver que a partir de 4 meodides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medodides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.
+
+Ahora vamos a probar a hacerlo con una cantidad distintas de medoides, desde 10 medoides hasta 250 aumentando de diez en diez. Nos quedaremos con aquella que tenga mayor proporcion acumulada pero sin sacrificar información sobre los datos.
+
+```{r medoides mas de 10,echo=TRUE}
+i=10
+datos=matrix(nrow=25,ncol=3)
+colnames(datos)=c("0","1","Proporción de la varianza acumulada explicada")
+rownames(datos)=seq(10,250,10)
+while(i<=250){
+  #Cálculo de los medoides: 
+  k=fastkmed(distancia_dice,ncluster=i)
+  #Proporción de los medoides:
+  table(setas_train$Letalidad[k$medoid])
+  proporcion=c(sum(setas_train[k$medoid,1]==0),sum(setas_train[k$medoid,1]==1))
+  
+  
+  #Análsiis de componentes principales
+  pca.traink=prcomp(distancia_dice[k$medoid,k$medoid])
+  #Varianza explicada
+  varianza.explicada=pca.traink$sdev^2/sum(pca.traink$sdev^2)
+  #Proporción de la varianza acumulada explicada por las dos primeras componentes principales
+  varianza.explicada.acumulada=varianza.explicada[1]+varianza.explicada[2]
+  
+  
+  #Almacenamos los datos
+  datos[i/10,]=c(proporcion,varianza.explicada.acumulada)
+  
+i=i+10
+}
+datos
+```
+
+Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 250, pero debemos fijarnos en la proporción de la varianza acumulada explicada por las dos primeras componentes y vemos que obtenemos la más alta con 20 medoides, a pesar de ello, nos quedaremos con la distancia de todas las observaciones a los 60 medoides, la segunda proporcion acumulada más alta, para tener más información.
+
+
 ```{r medoides,echo=TRUE}
 #Cálculo de los medoides: 
-k50=fastkmed(distancia_dice,ncluster=50)
-
-#Proporción de los medoides:
-table(setas_train$Letalidad[k50$medoid])
+k60=fastkmed(distancia_dice,ncluster=60)
 ```
-Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para explicar las setas no venenosas mientras que solo 11 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.
+Podemos ver que de los 60 medoides que hemos calculado, necesitamos 48 para explicar las setas no venenosas mientras que solo 12 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.
 
-Con estos medoides podemos realizar un análisis de componente principales.
+Con estos medoides volvemos a realizar el análisis de componente principales para ahora estudiarlo más detenidamente.
 ```{r pca,echo=TRUE}
-distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
+distancia_medoides=distancia_dice[k60$medoid,k60$medoid]
 #Análisis Componentes principales:
-pca.50=prcomp(distancia_medoides)
-summary(pca.50)
-plot(pca.50$x,col=setas_train$Letalidad[k50$medoid]+1,pch=19)
+pca.60=prcomp(distancia_medoides)
+summary(pca.60)
+plot(pca.60$x,col=setas_train$Letalidad[k60$medoid]+1,pch=19)
 ```
-Podemos ver  como la variabilidad de los datos se explica mayoritariamente por la primera componente principal  PC1, aunque nos quedaremos con las dos primeras.
 
-En la otra gráfica, vemos como los medoides que se encuentra con un valor de $PC1<0$ son setas no venenosas, si $PC1>1.5$ las setas son venenosas, mientras que en el intervalo $PC1\in(0,1.5)$ tenemos setas venenosas y no venenosas.
+En la otra gráfica, vemos como los medoides que se encuentra con un valor de $PC1<0$ son setas no venenosas, si $PC1>2$ las setas son venenosas, mientras que en el intervalo $PC1\in(0,2)$ tenemos setas venenosas y no venenosas.
 
 Las dos gráficas siguientes son las mismas que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro. Esto solo ocurre en un punto.
 
 ```{r grafico pca alternativo,echo=TRUE}
 #Gráfico:
 ##Indices de los medoides según toxicidad:
-comestible=which(setas_train[k50$medoid,1]==0)
-no.comestibles=which(setas_train[k50$medoid,1]==1)
+comestible=which(setas_train[k60$medoid,1]==0)
+no.comestibles=which(setas_train[k60$medoid,1]==1)
 
 par(mfrow=c(1,2))
-plot(pca.50$x)
-points(pca.50$x[comestible,1:2],col=1,pch=19)
-points(pca.50$x[no.comestibles,1:2],col=2,pch=19)
-plot(pca.50$x)
-points(pca.50$x[no.comestibles,1:2],col=2,pch=19)
-points(pca.50$x[comestible,1:2],col=1,pch=19)
+plot(pca.60$x)
+points(pca.60$x[comestible,1:2],col=1,pch=19)
+points(pca.60$x[no.comestibles,1:2],col=2,pch=19)
+plot(pca.60$x)
+points(pca.60$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.60$x[comestible,1:2],col=1,pch=19)
 ```
 
-Pero trabajar solo con los 50 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 50 medoides.
+Pero trabajar solo con los 60 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 60 medoides.
 
 ```{r medoides a observaciones,echo=TRUE}
 #Análsiis de componentes principales
-pca.train=prcomp(distancia_dice[,k50$medoid])
-plot(pca.train)
+pca.train=prcomp(distancia_dice[,k60$medoid])
+summary(pca.train)
 plot(pca.train$x,col=setas_train$Letalidad+1,pch=19)
 
 #Gráfico alternativo
@@ -1146,68 +1209,28 @@ points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train$x[comestible,1:2],col=1,pch=19)
 ```
 
-Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían 5, para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-1,0.5)$. 
+Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían por lo menos 4 o 5, para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-1,0.5)$. 
 
-
-
-Quizás no sean necesarios 50 medoides para realizar el análisis y podríamos obtener un resultado parecido con otra cantidad. Probamos con una cantidad muy pequeña.
-```{r medoides menos de 10,echo=TRUE}
-i=1
-while(i<=10){
-  #Cálculo de los medoides: 
-  k=fastkmed(distancia_dice,ncluster=i)
-  #Proporción de los medoides:
-  table(setas_train$Letalidad[k$medoid])
-  
-  #Análsiis de componentes principales
-  pca.traink=prcomp(distancia_dice[,k$medoid])
-  summary(pca.traink)
-  plot(pca.traink$x,col=setas_train$Letalidad+1,pch=19,main=paste("Número de medoides ",as.character(i)))
-i=i+1
-}
-```
-Podemos ver que a partir de 4 meodides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medodides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.
-
-Ahora vamos a probar a hacerlo con una cantidad distintas de medoides, desde 10 medoides hasta 250 aumentando de diez en diez.
-
-```{r medoides mas de 10,echo=TRUE}
-i=10
-while(i<=250){
-  #Cálculo de los medoides: 
-  k=fastkmed(distancia_dice,ncluster=i)
-  #Proporción de los medoides:
-  table(setas_train$Letalidad[k$medoid])
-  
-  #Análsiis de componentes principales
-  pca.traink=prcomp(distancia_dice[,k$medoid])
-  plot(pca.traink,main=paste("Número de medoides ",as.character(i)))
-  plot(pca.traink$x,col=setas_train$Letalidad+1,pch=19,main=paste("Número de medoides ",as.character(i)))
-i=i+10
-}
-```
-
-Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 250, pero debemos fijarnos en la proporción de la varianza acumulada explicada por las dos primeras componentes y vemos que obtenemos la más alta con 60 medoides
-Por de ello, nos quedaremos con la distancia de todas las observaciones a los 60 medoides, para tener más información.
 
 
 
 ##  Transformación de variables
 
-Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 50 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
+Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
 
 ```{r datos transformados,echo=TRUE,warning=FALSE,message=FALSE}
 #Datos train:
-setas50_train=distancia_dice[,k50$medoid]
+setas60_train=distancia_dice[,k60$medoid]
 
 #Datos test:
-medoides_setas_test=rbind(setas_train[k50$medoid,],setas_test)
+medoides_setas_test=rbind(setas_train[k60$medoid,],setas_test)
 distancia_medoides_test=distance(medoides_setas_test[,2:117],method="dice")
-setas50_test=distancia_medoides_test[-c(1:50),c(1:50)]
+setas60_test=distancia_medoides_test[-c(1:60),c(1:60)]
 
 #Datos validation:
-medoides_setas_validacion=rbind(setas_train[k50$medoid,],setas_validacion)
+medoides_setas_validacion=rbind(setas_train[k60$medoid,],setas_validacion)
 distancia_medoides_validacion=distance(medoides_setas_validacion[,2:117],method="dice")
-setas50_validacion=distancia_medoides_validacion[-c(1:50),c(1:50)]
+setas60_validacion=distancia_medoides_validacion[-c(1:60),c(1:60)]
 ```
 
 ##  Imputacion de datos (datos faltantes)
@@ -1224,12 +1247,12 @@ El análisis cluster es un conjunto de técnicas multivariantes utilizadas para 
 ```{r cluster,echo=TRUE}
 #Números de clusters
 SSW <- vector(mode = "numeric", length = 15)
-n=dim(prcomp(setas50_train)$x)[1]
+n=dim(prcomp(setas60_train)$x)[1]
 #Variabilidad de todos los datos, es decir, todos los datos como un único cluster
-SSW[1] <- (n - 1) * sum(apply(prcomp(setas50_train)$x,2,var)) 
+SSW[1] <- (n - 1) * sum(apply(prcomp(setas60_train)$x,2,var)) 
 
 #Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
-for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas50_train)$x,centers=i,nstart=25)$withinss)
+for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas60_train)$x,centers=i,nstart=25)$withinss)
 
 #Dibujamos un gráfico con el resultado
 plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
@@ -1239,17 +1262,17 @@ En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros d
 
 ```{r analisis cluster 5,echo=TRUE}
 #Análisis cluster
-clusters.datos=kmeans(prcomp(setas50_train)$x,centers=5,nstart=25)
-table(clusters.datos$cluster,setas_train$Venenosas)
+clusters.datos=kmeans(prcomp(setas60_train)$x,centers=5,nstart=25)
+table(clusters.datos$cluster,setas_train$Letalidad)
 ```
-Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas, por ejemplo el cluster que reparte las setas de la forma 612-475 es menos especifíco que los cluster que reparten 843-6, 1056-6 y 11-1097.
+Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas, por ejemplo el cluster que reparte las setas de la forma 624-486 es menos especifíco que los cluster que reparten 835-4, 1059-5 y 4-1089.
 
 ```{r grafico cluster 5,echo=TRUE}
-pca=prcomp(setas50_train)$x
+pca=prcomp(setas60_train)$x
 
 #Gráfico de los cluster
-plot(prcomp(setas50_train)$x,main="Clusters",type="n")
-for(i in 1:dim(setas50_train)[1]){
+plot(prcomp(setas60_train)$x,main="Clusters",type="n")
+for(i in 1:dim(setas60_train)[1]){
   points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
 }
 legend("topright",   
@@ -1260,8 +1283,8 @@ legend("topright",
 
 #Gráfico por tipo de setas:
 par(mfrow=c(1,2))
-plot(prcomp(setas50_train)$x,main="Clusters: setas comestibles",type="n")
-for(i in 1:dim(setas50_train)[1]){
+plot(prcomp(setas60_train)$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas60_train)[1]){
   if(setas_train[i,1]==0){
     points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
   }
@@ -1270,8 +1293,8 @@ legend("topright",
        inset = 0.01, 
        legend = c(1:5),
        fil = seq(2,6))
-plot(prcomp(setas50_train)$x,main="Clusters: setas venenosas",type="n")
-for(i in 1:dim(setas50_train)[1]){
+plot(prcomp(setas60_train)$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas60_train)[1]){
   if(setas_train[i,1]==1){
     points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
   }
@@ -1289,16 +1312,16 @@ Vamos a realizar otro análisis cluster pero aumentando el número de cluster co
 
 ```{r analisis cluster 8,echo=TRUE}
 #Análisis cluster
-clusters.datos.train=kmeans(prcomp(setas50_train)$x,centers=8,nstart=25)
-table(clusters.datos.train$cluster,setas_train$Venenosas)
+clusters.datos.train=kmeans(prcomp(setas60_train)$x,centers=8,nstart=25)
+table(clusters.datos.train$cluster,setas_train$Letalidad)
 ```
 
 ```{r grafico cluster 8,echo=TRUE}
-pca=prcomp(setas50_train)$x
+pca=prcomp(setas60_train)$x
 
 #Gráfico de los cluster
-plot(prcomp(setas50_train)$x,main="Clusters",type="n")
-for(i in 1:dim(setas50_train)[1]){
+plot(prcomp(setas60_train)$x,main="Clusters",type="n")
+for(i in 1:dim(setas60_train)[1]){
   points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train$cluster[i]+1)
 }
 legend("topright",   
@@ -1309,8 +1332,8 @@ legend("topright",
 
 #Gráfico por tipo de setas:
 par(mfrow=c(1,2))
-plot(prcomp(setas50_train)$x,main="Clusters: setas comestibles",type="n")
-for(i in 1:dim(setas50_train)[1]){
+plot(prcomp(setas60_train)$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas60_train)[1]){
   if(setas_train[i,1]==0){
     points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train$cluster[i]+1)
   }
@@ -1319,8 +1342,8 @@ legend("topright",
        inset = 0.01, 
        legend = c(1:8),
        fil = seq(2,9))
-plot(prcomp(setas50_train)$x,main="Clusters: setas venenosas",type="n")
-for(i in 1:dim(setas50_train)[1]){
+plot(prcomp(setas60_train)$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas60_train)[1]){
   if(setas_train[i,1]==1){
     points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train$cluster[i]+1)
   }
@@ -1331,7 +1354,7 @@ legend("topright",
        fil = seq(2,9))
 ```
 
-Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
+Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, aparece un cluster que clasifica correctamente la toxicidad de la setas dentro de la maraña de datos pero el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
 
 
 
@@ -1343,35 +1366,36 @@ El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según 
 
 ```{r knn,echo=TRUE}
 #Buscamos los vecinos más cercanos
-prediccion_knn=knn(setas50_train,setas50_test,cl=setas_train$Venenosas,k=1)
-table(prediccion_knn,setas_test$Venenosas)
+prediccion_knn=knn(setas_train,setas_test,cl=setas_train$Letalidad,k=1)
+table(prediccion_knn,setas_test$Letalidad)
 ```
 
 La predicción con el 1-vecino más próximo, es bastante buena, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.
 
 ```{r medidas de precision knn,echo=TRUE}
 # Exactitud/Error
-accuracy = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
+accuracy = sum(prediccion_knn == setas_test$Letalidad)/nrow(setas_test)
 error = 1-accuracy
 
 # Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
-sensitivity = sum((prediccion_knn == setas_test$Venenosas) & (setas_test$Venenosas == 1)) / sum(setas_test$Venenosas == 1)
+sensitivity = sum((prediccion_knn == setas_test$Letalidad) & (setas_test$Letalidad == 1)) / sum(setas_test$Letalidad == 1)
 recall = sensitivity
 
 # Acierto sobre el total de las setas COMESTIBLES
-specificity =  sum(prediccion_knn == setas_test$Venenosas & setas_test$Venenosas == 0) / sum(setas_test$Venenosas == 0)
+specificity =  sum(prediccion_knn == setas_test$Letalidad & setas_test$Letalidad == 0) / sum(setas_test$Letalidad == 0)
 
 # Acierto cuando el predicho es VENENOSAS
-precision = sum( (prediccion_knn== setas_test$Venenosas) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+precision = sum( (prediccion_knn== setas_test$Letalidad) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
 
 # Acierto cuando el predicho es COMESTIBLE
-npv = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(prediccion_knn == 0)
+npv = sum(prediccion_knn == setas_test$Letalidad & prediccion_knn == 0) / sum(prediccion_knn == 0)
 
 # F1_score
 f1score = 2*precision*recall /(precision+recall)
 
 #Tabla de medidas de precisión
-c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.knn=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.knn
 ```
 
 Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.3%.
@@ -1379,20 +1403,21 @@ Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que
 Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.
 
 ```{r knn cross-validation,echo=TRUE}
-k=(dim(setas50_train)[1]^(4/(4+dim(setas50_train)[2])))*10
+k=(dim(setas60_train)[1]^(4/(4+dim(setas60_train)[2])))*10
 
 #Matriz de las medidas de precision:
 medidas_presicision=matrix(nrow=round(k),ncol=7)
 nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
 colnames(medidas_presicision)=nombres_medidas
 for (i in 1:round(k)){
-  prediccion_knn=knn(setas_train[k50$medoid,],setas_test,cl=setas_train$Venenosas[k50$medoid],k=i)
-  medidas_presicision[i,1] = sum(prediccion_knn == setas_test$Venenosas)/nrow(setas_test)
+  
+  prediccion_knn=knn(setas_train,setas_test,cl=setas_train$Letalidad,k=i)
+  medidas_presicision[i,1] = sum(prediccion_knn == setas_test$Letalidad)/nrow(setas_test)
   medidas_presicision[i,2] = 1-medidas_presicision[i,1]
-  medidas_presicision[i,3] = sum((prediccion_knn == setas_test$Venenosas) & (setas_test$Venenosas == 1)) /sum(setas_test$Venenosas == 1)
-  medidas_presicision[i,4] =  sum(prediccion_knn == setas_test$Venenosas & setas_test$Venenosas == 0) / sum(setas_test$Venenosas == 0)
-  medidas_presicision[i,5] = sum( (prediccion_knn== setas_test$Venenosas) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
-  medidas_presicision[i,6] = sum(prediccion_knn == setas_test$Venenosas & prediccion_knn == 0) / sum(prediccion_knn == 0)
+  medidas_presicision[i,3] = sum((prediccion_knn == setas_test$Letalidad) & (setas_test$Letalidad == 1)) /sum(setas_test$Letalidad == 1)
+  medidas_presicision[i,4] =  sum(prediccion_knn == setas_test$Letalidad & setas_test$Letalidad == 0) / sum(setas_test$Letalidad == 0)
+  medidas_presicision[i,5] = sum( (prediccion_knn== setas_test$Letalidad) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+  medidas_presicision[i,6] = sum(prediccion_knn == setas_test$Letalidad & prediccion_knn == 0) / sum(prediccion_knn == 0)
   medidas_presicision[i,7] = 2*medidas_presicision[i,5]*medidas_presicision[i,3] /(medidas_presicision[i,5]+medidas_presicision[i,3])
 }
 medidas_presicision
@@ -1417,18 +1442,18 @@ Observamos que para un número de vecinos mayor que 4, las medidas de precisión
 Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema.
 
 ```{r arbol de decision,echo=TRUE}
-setas50_train.respuesta=data.frame(cbind(setas_train[,1],setas50_train))
-names(setas50_train.respuesta)[1]="Venenosas"
-arbol=rpart(as.factor(setas50_train.respuesta$Venenosas)~., data=setas50_train.respuesta,method="class")
-summary(arbol)
+setas60_train.respuesta=data.frame(cbind(setas_train[,1],setas60_train))
+names(setas60_train.respuesta)[1]="Letalidad"
 
 #Árbol de decisión:
+arbol=rpart(as.factor(setas60_train.respuesta$Letalidad)~., data=setas60_train.respuesta,method="class")
+summary(arbol)
 rpart.plot(arbol)
 
 #Tabla comparativa:
-setas50_test.data=as.data.frame(setas50_test)
-colnames(setas50_test.data)=colnames(setas50_train.respuesta)[2:51]
-prediccion.arbol=round(predict(arbol,setas50_test.data)[,2])
+setas60_test.data=as.data.frame(setas60_test)
+colnames(setas60_test.data)=colnames(setas60_train.respuesta)[2:61]
+prediccion.arbol=round(predict(arbol,setas60_test.data)[,2])
 table(prediccion.arbol,setas_test[,1])
 ```
 
@@ -1458,8 +1483,8 @@ npv = sum(prediccion.arbol== setas_test[,1] & prediccion.arbol == 0) / sum(predi
 f1score = 2*precision*recall /(precision+recall)
 
 #Tabla de medidas de precisión
-c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
-
+medidas.arboles=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.arboles
 ```
 
 El error que se comete es superior que en el caso del modelo k-NN con el vecino más próximo, pero sigue siendo un error aceptable para el modelo, por lo que podemos determinar que el árbol de decisión predice casi todas las setas correctamente.
@@ -1471,10 +1496,10 @@ Random forest es una combinación de árboles predictores tal que cada árbol de
 
 ```{r bosque aleatorio,echo=TRUE}
 set.seed(34735)
-setas.rf=randomForest(setas50_train, as.factor(setas50_train.respuesta$Venenosas), ntree=70, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
+setas.rf=randomForest(setas60_train, as.factor(setas60_train.respuesta$Letalidad), ntree=100, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
 
 #Tabla comparativa
-prediccion.rf=predict(setas.rf, setas50_test.data)
+prediccion.rf=predict(setas.rf, setas60_test.data)
 table(prediccion.rf,as.factor(setas_test[,1]))
 ```
 
@@ -1501,8 +1526,8 @@ npv = sum(prediccion.rf== setas_test[,1] & prediccion.rf == 0) / sum(prediccion.
 f1score = 2*precision*recall /(precision+recall)
 
 #Tabla de medidas de precisión
-c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
-
+medidas.bosques=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.bosques
 ```
 
 El error que se comete mejora respecto a los dos algoritmo anteriores.
@@ -1517,16 +1542,16 @@ Para determinar el valor de gamma y el coste, usamos los datos que hemos reserva
 
 ```{r svm,echo=TRUE}
 # Para estimar el gamma: 
-gamma_est=1/apply(setas50_validacion,2,sd)
+gamma_est=1/apply(setas60_validacion,2,sd)
 # Para estimar el coste: 
 norma2<-function(x) sqrt(sum(x^2))
-cost_est=apply(setas50_validacion,2,norma2)
+cost_est=apply(setas60_validacion,2,norma2)
 
 #Ajustamos el modelo
-setas.svm=svm(setas50_train,setas_train[,1],type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
+setas.svm=svm(setas60_train,setas_train[,1],type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
 
 #Tabla comparativa
-prediccion_svm=predict(setas.svm,setas50_test)
+prediccion_svm=predict(setas.svm,setas60_test)
 table(prediccion_svm,setas_test[,1])
 ```
 
@@ -1554,21 +1579,22 @@ npv = sum(prediccion_svm== setas_test[,1] & prediccion_svm == 0) / sum(prediccio
 f1score = 2*precision*recall /(precision+recall)
 
 #Tabla de medidas de precisión
-c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmradial=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmradial
 ```
 
 Realizamos otro ajuste del modelo pero esta vez ajustando los parámetros a través de la función *tune.svm()*.
 
-```{r svm con ajuste de parametros,echo=TRUE}
+```{r svm con ajuste de parametros,echo=FALSE}
 #Ajustamos los parámtros
-parametros=tune.svm(setas50_validacion, setas_validacion[,1], gamma=seq(5,8.5,by=0.5), cost=seq(10,30,by=10))
+parametros=tune.svm(setas60_validacion, setas_validacion[,1], gamma=seq(5,8.5,by=0.5), cost=seq(10,30,by=10))
 attributes(parametros)
 
 # Calculamos el modelo con estos parámetros
-setas.svm_parametros=svm(setas50_train,setas_train[,1], type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
+setas.svm_parametros=svm(setas60_train,setas_train[,1], type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
 
 # Tabla comparativa
-prediccion_svm.parametros=predict(setas.svm_parametros, setas50_test)
+prediccion_svm.parametros=predict(setas.svm_parametros, setas60_test)
 table(prediccion_svm.parametros, setas_test[,1])
 ```
 
@@ -1579,13 +1605,13 @@ Si realizamos el ajuste de SVM pero establecemos que el kernel es lineal, obtene
 ```{r svm lineal,echo=TRUE}
 # Para estimar el coste: 
 norma2<-function(x) sqrt(sum(x^2))
-cost_est=apply(setas50_validacion,2,norma2)
+cost_est=apply(setas60_validacion,2,norma2)
 
 #Ajustamos el modelo
-setas.svm.lineal=svm(setas50_train,setas_train[,1],type="C-classification",kernel="linear",cost=mean(cost_est),scale=F)
+setas.svm.lineal=svm(setas60_train,setas_train[,1],type="C-classification",kernel="linear",cost=mean(cost_est),scale=F)
 
 #Tabla comparativa
-prediccion_svm.lineal=predict(setas.svm.lineal,setas50_test)
+prediccion_svm.lineal=predict(setas.svm.lineal,setas60_test)
 table(prediccion_svm.lineal,setas_test[,1])
 ```
 
@@ -1613,23 +1639,517 @@ npv = sum(prediccion_svm.lineal== setas_test[,1] & prediccion_svm.lineal == 0) /
 f1score = 2*precision*recall /(precision+recall)
 
 #Tabla de medidas de precisión
-c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmlineal=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmlineal
 ```
 
 
 
 #  Evaluación
 
-
-#  Visualización y Presentación de Resultados
-
-#  Puesta en producción
-OJO!!! al inicio del estudio, necesitamos reservar parte de la bases de datos para esta etapa. Nos referiremos a esa parte como "los datos guardados en un cajón". Normalmente esta etapa se hace "el último día de clase".
+Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de similitud vemos lo siguiente
+```{r comparacion medidas de precision,echo=TRUE}
+medidas.precision=matrix(c(medidas.knn,medidas.arboles,medidas.bosques,medidas.svmradial,medidas.svmlineal),nrow=5,byrow=TRUE)
+colnames(medidas.precision)=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+rownames(medidas.precision)=c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal")
+medidas.precision
+```
 
 #  Actualización del modelo...
 
-Variable OLOR
+## Datos sin variable **Olor**
+Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis anterior quitando esta variable.
 ```{r quitamos olor,echo=TRUE}
-setas_train=setas_train[,-(23:28)]
-setas_train=setas_train[,-(24:25)]
+setas_train.sin.olor=setas[indices_train,-c(23:31)]
+setas_test.sin.olor=setas[indices_test,-c(23:31)]
+setas_validacion.sin.olor=setas[indices_validacion,-c(23:31)]
+```
+
+Calculamos la medida de similitud
+
+```{r distancias sin olor,echo=TRUE,warning=FALSE,message=FALSE}
+#Distancia Dice
+distancia_dice.sin.olor=distance(setas_train.sin.olor[,2:dim(setas_train.sin.olor)[2]],method="dice")
+```
+
+Para seleccionar el número de medoides adecuado, hacemos cross-validation pero como sabemos que quizas el número de medoides adecuado está cuando son más de 10, probamos directamente. Nos quedaremos con aquella que tenga mayor proporcion acumulada pero sin sacrificar información sobre los datos.
+
+```{r medoides mas de 10 sin olor,echo=TRUE}
+i=10
+datos=matrix(nrow=25,ncol=3)
+colnames(datos)=c("0","1","Proporción de la varianza acumulada explicada")
+rownames(datos)=seq(10,250,10)
+while(i<=250){
+  #Cálculo de los medoides: 
+  k=fastkmed(distancia_dice.sin.olor,ncluster=i)
+  #Proporción de los medoides:
+  table(setas_train.sin.olor$Letalidad[k$medoid])
+  proporcion=c(sum(setas_train.sin.olor[k$medoid,1]==0),sum(setas_train.sin.olor[k$medoid,1]==1))
+  
+  
+  #Análsiis de componentes principales
+  pca.traink=prcomp(distancia_dice.sin.olor[,k$medoid])
+  #Varianza explicada
+  varianza.explicada=pca.traink$sdev^2/sum(pca.traink$sdev^2)
+  #Proporción de la varianza acumulada explicada por las dos primeras componentes principales
+  varianza.explicada.acumulada=varianza.explicada[1]+varianza.explicada[2]
+  
+  
+  #Almacenamos los datos
+  datos[i/10,]=c(proporcion,varianza.explicada.acumulada)
+  
+i=i+10
+}
+datos
+```
+
+Los resultados son bastantes parecidos al análisis en el que incluimos la variable **Olor**, por tanto, nos seguimos quedando con la distancia de todas las observaciones a los 60 medoides, la segunda proporcion acumulada más alta, para tener más información.
+
+
+```{r medoides sin olor,echo=TRUE}
+#Cálculo de los medoides: 
+k60=fastkmed(distancia_dice.sin.olor,ncluster=60)
+```
+Podemos ver que de los 60 medoides que hemos calculado, necesitamos 45 para explicar las setas no venenosas mientras que solo 15 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.
+
+Con estos medoides volvemos a realizar el análisis de componente principales para ahora estudiarlo más detenidamente.
+```{r pca sin olor,echo=TRUE}
+distancia_medoides.sin.olor=distancia_dice.sin.olor[,k60$medoid]
+#Análisis Componentes principales:
+pca.60=prcomp(distancia_medoides.sin.olor)
+summary(pca.60)
+
+#Gráfico 
+comestible=which(setas_train.sin.olor[,1]==0)
+no.comestibles=which(setas_train.sin.olor[,1]==1)
+
+par(mfrow=c(1,2))
+plot(pca.60$x,type="n")
+points(pca.60$x[comestible,1:2],col=1,pch=19)
+points(pca.60$x[no.comestibles,1:2],col=2,pch=19)
+plot(pca.60$x,type="n")
+points(pca.60$x[no.comestibles,1:2],col=2,pch=19)
+points(pca.60$x[comestible,1:2],col=1,pch=19)
+```
+
+
+Observamos una gran maraña de puntos donde solo podemos ver dos grupos bien diferenciados del resto.
+
+
+Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
+
+```{r datos transformados sin olor,echo=TRUE,warning=FALSE,message=FALSE}
+#Datos train:
+setas60_train.sin.olor=distancia_dice.sin.olor[,k60$medoid]
+
+#Datos test:
+medoides_setas_test.sin.olor=rbind(setas_train.sin.olor[k60$medoid,],setas_test.sin.olor)
+distancia_medoides_test.sin.olor=distance(medoides_setas_test.sin.olor[,2:dim(setas_test.sin.olor)[2]],method="dice")
+setas60_test.sin.olor=distancia_medoides_test.sin.olor[-c(1:60),c(1:60)]
+
+#Datos validation:
+medoides_setas_validacion.sin.olor=rbind(setas_train.sin.olor[k60$medoid,],setas_validacion.sin.olor)
+distancia_medoides_validacion.sin.olor=distance(medoides_setas_validacion.sin.olor[,2:dim(setas_validacion.sin.olor)[2]],method="dice")
+setas60_validacion.sin.olor=distancia_medoides_validacion.sin.olor[-c(1:60),c(1:60)]
+```
+
+
+### Análisis Cluster
+
+El análisis cluster es un conjunto de técnicas multivariantes utilizadas para clasificar a un conjunto de individuos en grupos homogéneos.
+
+```{r cluster,echo=TRUE}
+#Números de clusters
+SSW <- vector(mode = "numeric", length = 15)
+n=dim(prcomp(setas60_train.sin.olor)$x)[1]
+#Variabilidad de todos los datos, es decir, todos los datos como un único cluster
+SSW[1] <- (n - 1) * sum(apply(prcomp(setas60_train.sin.olor)$x,2,var)) 
+
+#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
+for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas60_train.sin.olor)$x,centers=i,nstart=25)$withinss)
+
+#Dibujamos un gráfico con el resultado
+plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
+```
+
+En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
+
+```{r analisis cluster 5,echo=TRUE}
+#Análisis cluster
+clusters.datos.sin.olor=kmeans(prcomp(setas60_train.sin.olor)$x,centers=5,nstart=25)
+table(clusters.datos.sin.olor$cluster,setas_train.sin.olor$Letalidad)
+```
+Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas.
+
+```{r grafico cluster 5,echo=TRUE}
+pca=prcomp(setas60_train.sin.olor)$x
+
+#Gráfico de los cluster
+plot(prcomp(setas60_train.sin.olor)$x,main="Clusters",type="n")
+for(i in 1:dim(setas60_train.sin.olor)[1]){
+  points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
+
+
+#Gráfico por tipo de setas:
+par(mfrow=c(1,2))
+plot(prcomp(setas60_train.sin.olor)$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas60_train.sin.olor)[1]){
+  if(setas_train.sin.olor[i,1]==0){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
+plot(prcomp(setas60_train.sin.olor)$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas60_train.sin.olor)[1]){
+  if(setas_train.sin.olor[i,1]==1){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
+```
+
+En estos gráficos podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
+
+
+Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.
+
+```{r analisis cluster 8,echo=TRUE}
+#Análisis cluster
+clusters.datos.train.sin.olor=kmeans(prcomp(setas60_train.sin.olor)$x,centers=8,nstart=25)
+table(clusters.datos.train.sin.olor$cluster,setas_train.sin.olor$Letalidad)
+```
+
+```{r grafico cluster 8,echo=TRUE}
+pca=prcomp(setas60_train.sin.olor)$x
+
+#Gráfico de los cluster
+plot(prcomp(setas60_train.sin.olor)$x,main="Clusters",type="n")
+for(i in 1:dim(setas60_train.sin.olor)[1]){
+  points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train.sin.olor$cluster[i]+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+
+
+#Gráfico por tipo de setas:
+par(mfrow=c(1,2))
+plot(prcomp(setas60_train.sin.olor)$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas60_train.sin.olor)[1]){
+  if(setas_train.sin.olor[i,1]==0){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train.sin.olor$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+plot(prcomp(setas60_train.sin.olor)$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas60_train.sin.olor)[1]){
+  if(setas_train.sin.olor[i,1]==1){
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.train.sin.olor$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+```
+
+Vemos que tras realizar el análisis cluster con 8 grupos, notamos un empeoramiento de la predicción, por lo que nos quedamos con el análsis cluster con $k=5$.
+
+
+
+###  k-NN
+
+
+```{r knn,echo=TRUE}
+#Buscamos los vecinos más cercanos
+prediccion_knn.sin.olor=knn(setas60_train.sin.olor,setas60_test.sin.olor,cl=setas_train.sin.olor$Letalidad,k=1)
+table(prediccion_knn.sin.olor,setas_test.sin.olor$Letalidad)
+```
+
+La predicción con el 1-vecino más próximo, es bastante buena, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.
+
+```{r medidas de precision knn,echo=TRUE}
+# Exactitud/Error
+accuracy = sum(prediccion_knn.sin.olor == setas_test.sin.olor$Letalidad)/nrow(setas_test.sin.olor)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_knn.sin.olor == setas_test.sin.olor$Letalidad) & (setas_test.sin.olor$Letalidad == 1)) / sum(setas_test.sin.olor$Letalidad == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_knn.sin.olor == setas_test.sin.olor$Letalidad & setas_test.sin.olor$Letalidad == 0) / sum(setas_test.sin.olor$Letalidad == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion_knn.sin.olor== setas_test.sin.olor$Letalidad) & (prediccion_knn.sin.olor == 1))/ sum(prediccion_knn.sin.olor == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_knn.sin.olor == setas_test.sin.olor$Letalidad & prediccion_knn.sin.olor == 0) / sum(prediccion_knn.sin.olor == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.knn.sin.olor=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.knn.sin.olor
+```
+
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.3%.
+
+Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.
+
+```{r knn cross-validation,echo=TRUE}
+k=(dim(setas60_train)[1]^(4/(4+dim(setas60_train)[2])))*10
+
+#Matriz de las medidas de precision:
+medidas_presicision=matrix(nrow=round(k),ncol=7)
+nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+colnames(medidas_presicision)=nombres_medidas
+for (i in 1:round(k)){
+  
+  prediccion_knn=knn(setas_train[k60$medoid,],setas_test,cl=setas_train$Letalidad[k60$medoid],k=i)
+  medidas_presicision[i,1] = sum(prediccion_knn == setas_test$Letalidad)/nrow(setas_test)
+  medidas_presicision[i,2] = 1-medidas_presicision[i,1]
+  medidas_presicision[i,3] = sum((prediccion_knn == setas_test$Letalidad) & (setas_test$Letalidad == 1)) /sum(setas_test$Letalidad == 1)
+  medidas_presicision[i,4] =  sum(prediccion_knn == setas_test$Letalidad & setas_test$Letalidad == 0) / sum(setas_test$Letalidad == 0)
+  medidas_presicision[i,5] = sum( (prediccion_knn== setas_test$Letalidad) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+  medidas_presicision[i,6] = sum(prediccion_knn == setas_test$Letalidad & prediccion_knn == 0) / sum(prediccion_knn == 0)
+  medidas_presicision[i,7] = 2*medidas_presicision[i,5]*medidas_presicision[i,3] /(medidas_presicision[i,5]+medidas_presicision[i,3])
+}
+medidas_presicision
+
+#Grafico de las medidas de precision
+plot(seq(1,round(k)),medidas_presicision[,1],main="Medidas de precision",type="n",xlab="Número de k vecinos",ylab="",ylim=c(0,1),xlim=c(1,round(k)+2))
+for (i in 1:7) {
+  points(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+  lines(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
+       fil = seq(2, round(k)+1))
+```
+
+Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo vemos muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.
+
+
+###  Arboles de Decisión
+
+Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema.
+
+```{r arbol de decision,echo=TRUE}
+setas60_train.respuesta=data.frame(cbind(setas_train[,1],setas60_train))
+names(setas60_train.respuesta)[1]="Letalidad"
+
+#Árbol de decisión:
+arbol=rpart(as.factor(setas60_train.respuesta$Letalidad)~., data=setas60_train.respuesta,method="class")
+summary(arbol)
+rpart.plot(arbol)
+
+#Tabla comparativa:
+setas60_test.data=as.data.frame(setas60_test)
+colnames(setas60_test.data)=colnames(setas60_train.respuesta)[2:61]
+prediccion.arbol=round(predict(arbol,setas60_test.data)[,2])
+table(prediccion.arbol,setas_test[,1])
+```
+
+El gráfico resultante no es interpretable pues nuestro datos están basado en la distancia de las observaciones a los medoides que hemos calculado anteriormente, pero podemos decir que los medoides que toma como más importantes son las observaciones 638, 51 y 713.
+
+En la tabla podemos ver que a la hora de predecir nuestro árbol de decisión comete cierto error, a continuación analizamos ese error con distintas medidas de precisión.
+
+```{r medidas de precision arbol de decision,echo=TRUE}
+# Exactitud/Error
+accuracy = sum(prediccion.arbol == setas_test[,1])/nrow(setas_test)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion.arbol == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion.arbol == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion.arbol== setas_test[,1]) & (prediccion.arbol == 1))/ sum(prediccion.arbol == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion.arbol== setas_test[,1] & prediccion.arbol == 0) / sum(prediccion.arbol == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.arboles=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.arboles
+```
+
+El error que se comete es superior que en el caso del modelo k-NN con el vecino más próximo, pero sigue siendo un error aceptable para el modelo, por lo que podemos determinar que el árbol de decisión predice casi todas las setas correctamente.
+
+
+###  Bosques Aleatorios
+
+Random forest es una combinación de árboles predictores tal que cada árbol depende de los valores de un vector aleatorio probado independientemente y con la misma distribución para cada uno de estos. Es una modificación sustancial de bagging que construye una larga colección de árboles no correlacionados y luego los promedia.
+
+```{r bosque aleatorio,echo=TRUE}
+set.seed(34735)
+setas.rf=randomForest(setas60_train, as.factor(setas60_train.respuesta$Letalidad), ntree=100, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
+
+#Tabla comparativa
+prediccion.rf=predict(setas.rf, setas60_test.data)
+table(prediccion.rf,as.factor(setas_test[,1]))
+```
+
+La predicción es casi perfecta, pues solo se equivoca clasificando tres setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión. 
+```{r medidas de precision bosques aleatorios,echo=TRUE}
+# Exactitud/Error
+accuracy = sum(prediccion.rf == setas_test[,1])/nrow(setas_test)
+error = 1-accuracy
+
+# Sensibilidad: acierto sobre el total de las setas VENENOSAS
+sensitivity = sum((prediccion.rf == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
+recall = sensitivity
+
+# Especifidad: acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion.rf == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
+
+# Precisión: acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion.rf== setas_test[,1]) & (prediccion.rf == 1))/ sum(prediccion.rf == 1)
+
+# NPV: acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion.rf== setas_test[,1] & prediccion.rf == 0) / sum(prediccion.rf == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.bosques=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.bosques
+```
+
+El error que se comete mejora respecto a los dos algoritmo anteriores.
+
+###  Support Vector Machines
+
+Las máquinas de vectores soporte  (del inglés support-vector machines, SVM) son un conjunto de algoritmos de aprendizaje supervisado desarrollados por Vladimir Vapnik y su equipo en los laboratorios AT&T.
+
+Estos métodos están propiamente relacionados con problemas de clasificación y regresión. Dado un conjunto de ejemplos de entrenamiento podemos etiquetar las clases y entrenar una SVM para construir un modelo que prediga la clase de una nueva muestra.
+
+Para determinar el valor de gamma y el coste, usamos los datos que hemos reservado para validación y realizamos una estimación con ellos.
+
+```{r svm,echo=TRUE}
+# Para estimar el gamma: 
+gamma_est=1/apply(setas60_validacion,2,sd)
+# Para estimar el coste: 
+norma2<-function(x) sqrt(sum(x^2))
+cost_est=apply(setas60_validacion,2,norma2)
+
+#Ajustamos el modelo
+setas.svm=svm(setas60_train,setas_train[,1],type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
+
+#Tabla comparativa
+prediccion_svm=predict(setas.svm,setas60_test)
+table(prediccion_svm,setas_test[,1])
+```
+
+La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
+
+```{r medidas de precision svm,echo=TRUE}
+# Medidas de precisión
+accuracy = sum(prediccion_svm == setas_test[,1])/nrow(setas_test)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_svm == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_svm == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum((prediccion_svm== setas_test[,1]) & (prediccion_svm == 1))/ sum(prediccion_svm == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_svm== setas_test[,1] & prediccion_svm == 0) / sum(prediccion_svm == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.svmradial=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmradial
+```
+
+Realizamos otro ajuste del modelo pero esta vez ajustando los parámetros a través de la función *tune.svm()*.
+
+```{r svm con ajuste de parametros,echo=FALSE}
+#Ajustamos los parámtros
+parametros=tune.svm(setas60_validacion, setas_validacion[,1], gamma=seq(5,8.5,by=0.5), cost=seq(10,30,by=10))
+attributes(parametros)
+
+# Calculamos el modelo con estos parámetros
+setas.svm_parametros=svm(setas60_train,setas_train[,1], type="C-classification", kernel="radial", gamma= parametros$best.parameters[1], cost= parametros$best.parameters[2], scale=F)
+
+# Tabla comparativa
+prediccion_svm.parametros=predict(setas.svm_parametros, setas60_test)
+table(prediccion_svm.parametros, setas_test[,1])
+```
+
+Obtenemos el mismo resultado que en el ajuste anterior, la perfección.
+
+Si realizamos el ajuste de SVM pero establecemos que el kernel es lineal, obtenemos lo siguiente:
+
+```{r svm lineal,echo=TRUE}
+# Para estimar el coste: 
+norma2<-function(x) sqrt(sum(x^2))
+cost_est=apply(setas60_validacion,2,norma2)
+
+#Ajustamos el modelo
+setas.svm.lineal=svm(setas60_train,setas_train[,1],type="C-classification",kernel="linear",cost=mean(cost_est),scale=F)
+
+#Tabla comparativa
+prediccion_svm.lineal=predict(setas.svm.lineal,setas60_test)
+table(prediccion_svm.lineal,setas_test[,1])
+```
+
+Podemos ver que respecto al kernel radial, las predicciones empeoran. Esto lo podemos observar en las medidas de precisión.
+
+```{r medidas de precision svm lineal,echo=TRUE}
+# Medidas de precisión
+accuracy = sum(prediccion_svm.lineal == setas_test[,1])/nrow(setas_test)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_svm.lineal == setas_test[,1]) & (setas_test[,1] == 1)) / sum(setas_test[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_svm.lineal == setas_test[,1] & setas_test[,1] == 0) / sum(setas_test[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum((prediccion_svm.lineal== setas_test[,1]) & (prediccion_svm.lineal == 1))/ sum(prediccion_svm.lineal == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_svm.lineal== setas_test[,1] & prediccion_svm.lineal == 0) / sum(prediccion_svm.lineal == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.svmlineal=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmlineal
 ```
