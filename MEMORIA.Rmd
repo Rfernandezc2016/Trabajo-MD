@@ -713,10 +713,12 @@ dim(setas)
 
 ##  Particiones.
 
+Repartimos nuestro de la siguiente forma para tener un conjunto de datos para entrenamiento de nuestros modelos, para testear los modelos ajustados mediante los datos de entrenamiento y para validación. Asignamos un 60% para entrenamiento y un 20% respectivamente para test y validación.
+
 ```{r particiones}
-n_totales=dim(datos.setas)[1]
-n_train=floor(n_totales*0.6) # el 60% de los datos los utilizamos para entrenar los modelos
-n_test=floor(n_totales*0.2) # el 20% para test
+n_totales=dim(setas)[1]
+n_train=floor(n_totales*0.6) 
+n_test=floor(n_totales*0.2) 
 n_validacion=n_totales-n_train-n_test
 
 set.seed(34735)
@@ -737,16 +739,15 @@ setas_validacion=setas[indices_validacion,]
 ##  EDA. Exploratory Data Analysis.
 
 ### Letalidad:
-La variable **letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
+La variable **Letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
 ```{r proporcion, echo=TRUE}
 #Tabla:
-table(setas_train$Venenosas)
+table(setas$Letalidad)
 #Tabla de frecuencias:
-prop.table(table(setas_train$Venenosas))
+prop.table(table(setas$Letalidad))
 #Gráfico
-barplot(table(setas_train$Venenosas),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
+barplot(table(setas$Letalidad),main="Letalidad",ylab="Número de setas",col=c("blue","magenta"),names.arg=c("Comestible","Venenosa"))
 ```
-
 
 
 ##  Correlación entre las variables.
@@ -760,9 +761,6 @@ Vamos a comprobar si existe alguna correlación entre las distintas variables.
 table(datos.setas$Letalidad,datos.setas$Forma_S)
 #Gráfico letalidad~forma del sombrero
 barplot(table(datos.setas$Letalidad,datos.setas$Forma_S),main="Letalidad vs Forma del sombrero",xlab="Forma",ylab="Número de setas",names.arg=c("Campana", "Cónica", "Plana", "Nudosa", "Hundida", "Convexa"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Forma_S))
 ```
 
 
@@ -773,9 +771,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Forma_S))
 table(datos.setas$Letalidad,datos.setas$Cuticula)
 #Gráfico letalidad~cuticula
 barplot(table(datos.setas$Letalidad,datos.setas$Cuticula),main="Letalidad vs Cuticula",xlab="Cuticula",ylab="Número de setas",names.arg=c("Fibroso", "Con surcos", "Lisa", "Escamosa"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Cuticula))
 ```
 
 
@@ -786,9 +781,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Cuticula))
 table(datos.setas$Letalidad,datos.setas$Color_S)
 #Gráfico letalidad~color del sombrero
 barplot(table(datos.setas$Letalidad,datos.setas$Color_S),main="Letalidad vs Color del sombrero",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela", "Rojo", "Gris","Marrón","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Color_S))
 ```
 
 
@@ -799,9 +791,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Color_S))
 table(datos.setas$Letalidad,datos.setas$Escamas)
 #Gráfico letalidad~escamas
 barplot(table(datos.setas$Letalidad,datos.setas$Escamas),main="Letalidad vs Escamas",xlab="Escamas",ylab="Número de setas",names.arg=c("Sin escamas", "Con escamas"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Escamas))
 ```
 
 
@@ -812,14 +801,11 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Escamas))
 table(datos.setas$Letalidad,datos.setas$Olor)
 #Gráfico letalidad~olor
 barplot(table(datos.setas$Letalidad,datos.setas$Olor),main="Letalidad vs Olor",xlab="Olor",ylab="Número de setas",names.arg=c("Almendra", "Creosota","Asqueroso","Anís","Mohoso","Ninguno","Acre","Picante","Pescado"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Olor))
 ```
-Podemos observar que la variable **olor** se distribuye entre los distintos tipos de olor de forma binaria, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 97% de que sea comestible. 
+Podemos observar que la variable **Olor** se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 96.6% de que sea comestible. 
 ```{r proporcion olor,echo=TRUE}
 #Proporción según olor sea ninguno
-prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])
+prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])*100
 ```
 Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
@@ -831,11 +817,8 @@ Entonces modríamos cambiar la codificación hecha anteriormente y tener solo un
 table(datos.setas$Letalidad,datos.setas$Fijacion_L)
 #Gráfico letalidad~fijación de las láminas
 barplot(table(datos.setas$Letalidad,datos.setas$Fijacion_L),main="Letalidad vs Fijación de las láminas",xlab="Fijación",ylab="Número de setas",names.arg=c("Adjunto", "Libre"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Fijacion_L))
 ```
-Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 94% frente a un 6%, comestible o venenosa, respectivamente.
+Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 91.4% frente a un 8.6%, comestible o venenosa, respectivamente.
 ```{r proporcion fijacion,echo=TRUE}
 #Proporción según fijacion sea adjunto
 prop.table(table(datos.setas$Letalidad,datos.setas$Fijacion_L)[,1])*100
@@ -852,11 +835,8 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Fijacion_L)[,2])*100
 table(datos.setas$Letalidad,datos.setas$Espacio_L)
 #Gráfico letalidad~espacio entre láminas
 barplot(table(datos.setas$Letalidad,datos.setas$Espacio_L),main="Letalidad vs Espacio entre láminas",xlab="Espacio",ylab="Número de setas",names.arg=c("Cerca", "Atestado"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Espacio_L))
 ```
-Podemos ver que ocurre algo parecido que en la variable **fijacion_L**, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 92% frente a un 8%, comestible o venenosa, respectivamente.
+Podemos ver que ocurre algo parecido que en la variable **Fijacion_L**, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 91.5% frente a un 8.5%, comestible o venenosa, respectivamente.
 ```{r proporcion espacio,echo=TRUE}
 #Proporción según espacio sea cerca
 prop.table(table(datos.setas$Letalidad,datos.setas$Espacio_L)[,1])*100
@@ -873,9 +853,6 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Espacio_L)[,2])*100
 table(datos.setas$Letalidad,datos.setas$Tamaño_L)
 #Gráfico letalidad~tamaño de las láminas
 barplot(table(datos.setas$Letalidad,datos.setas$Tamaño_L),main="Letalidad vs Tamaño de las láminas",xlab="Tamaño",ylab="Número de setas",names.arg=c("Ancho", "Estrecho"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Tamaño_L))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según el tamaño de las láminas en el caso de que sea ancha es del 30% frente a 70%, respectivamente, mientras que si es estrecho la proporción cambia a un 11.5% frente a un 88.5%, respectivamente.
 ```{r proporcion tamaño,echo=TRUE}
@@ -894,9 +871,6 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Tamaño_L)[,2])*100
 table(datos.setas$Letalidad,datos.setas$Color_L)
 #Gráfico letalidad~color de las láminas
 barplot(table(datos.setas$Letalidad,datos.setas$Color_L),main="Letalidad vs Color de las láminas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Rojo","Gris","Chocolate","Negro","Marrón","Naranja","Rosa","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Color_L))
 ```
 
 
@@ -907,9 +881,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Color_L))
 table(datos.setas$Letalidad,datos.setas$Forma_T)
 #Gráfico letalidad~forma del tallo
 barplot(table(datos.setas$Letalidad,datos.setas$Forma_T),main="Letalidad vs Forma del tallo",xlab="Tallo",ylab="Número de setas",names.arg=c("Agrandado", "Afilado"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Forma_T))
 ```
 Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo
 ```{r proporcion forma,echo=TRUE}
@@ -928,9 +899,6 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Forma_T)[,2])*100
 table(datos.setas$Letalidad,datos.setas$Tallo_raiz)
 #Gráfico letalidad~tallo-raiz
 barplot(table(datos.setas$Letalidad,datos.setas$Tallo_raiz),main="Letalidad vs Tallo-Raiz",xlab="Tallo-Raiz",ylab="Número de setas",names.arg=c("Faltante", "Bulboso","Club","Igual","Enraizado"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Tallo_raiz))
 ```
 
 
@@ -941,9 +909,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Tallo_raiz))
 table(datos.setas$Letalidad,datos.setas$Superficie_T1)
 #Gráfico letalidad~superficie del tallo por encima del anillo
 barplot(table(datos.setas$Letalidad,datos.setas$Superficie_T1),main="Letalidad vs Tallo por encima del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Superficie_T1))
 ```
 
 
@@ -954,9 +919,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Superficie_T1))
 table(datos.setas$Letalidad,datos.setas$Superficie_T2)
 #Gráfico letalidad~superficie del tallo por debajo del anillo
 barplot(table(datos.setas$Letalidad,datos.setas$Superficie_T2),main="Letalidad vs Tallo por debajo del anillo",xlab="Superficie",ylab="Número de setas",names.arg=c("Fibroso", "Sedoso","Liso","Escamoso"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Superficie_T2))
 ```
 
 
@@ -967,9 +929,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Superficie_T2))
 table(datos.setas$Letalidad,datos.setas$Color_T1)
 #Gráfico letalidad~color del tallo por encima del anillo
 barplot(table(datos.setas$Letalidad,datos.setas$Color_T1),main="Letalidad vs Tallo por encima del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Color_T1))
 ```
 
 
@@ -980,9 +939,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Color_T1))
 table(datos.setas$Letalidad,datos.setas$Color_T2)
 #Gráfico letalidad~color del tallo por debajo del anillo
 barplot(table(datos.setas$Letalidad,datos.setas$Color_T2),main="Letalidad vs Tallo por debajo del anillos",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Canela","Rojo","Gris","Marrón","Naranja","Rosa","Blanco","Amarillo"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Color_T2))
 ```
 
 
@@ -993,9 +949,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Color_T2))
 table(datos.setas$Letalidad,datos.setas$Color_V)
 #Gráfico letalidad~color del volva
 barplot(table(datos.setas$Letalidad,datos.setas$Color_V),main="Letalidad vs Volva",xlab="Color",ylab="Número de setas",names.arg=c("Marrón", "Naranja","Blanco","Amarillo"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Color_V))
 ```
 
 
@@ -1005,10 +958,7 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Color_V))
 #Tabla de frecuencias letalidad~numero de anillos
 table(datos.setas$Letalidad,datos.setas$N_anillos)
 #Gráfico letalidad~numero de anillos
-barplot(table(datos.setas$Letalidad,datos.setas$N_anillos),main="Letalidad vs Anillos",xlab="Número",ylab="Número de setas",names.arg=c("Ninguno", "Uno","Dos"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$N_anillos))
+barplot(table(datos.setas$Letalidad,datos.setas$N_anillos),main="Letalidad vs Anillos",xlab="Número",ylab="Número de setas",names.arg=c("Ninguno","Uno","Dos"),col=c("blue","magenta"))
 ```
 
 
@@ -1019,9 +969,6 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$N_anillos))
 table(datos.setas$Letalidad,datos.setas$Tipo_anillo)
 #Gráfico letalidad~tipo de anillo
 barplot(table(datos.setas$Letalidad,datos.setas$Tipo_anillo),main="Letalidad vs Anillo",xlab="Tipo",ylab="Número de setas",names.arg=c("Evanescente", "Abocinado","Grande","Ninguno","Colgante"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Tipo_anillo))
 ```
 
 
@@ -1032,11 +979,8 @@ chisq.test(table(datos.setas$Letalidad,datos.setas$Tipo_anillo))
 table(datos.setas$Letalidad,datos.setas$Color_esporas)
 #Gráfico letalidad~color de las esporas
 barplot(table(datos.setas$Letalidad,datos.setas$Color_esporas),main="Letalidad vs Esporas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Chocolate","Negro","Marrón","Naranja","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
-
-#Test de independencia:
-chisq.test(table(datos.setas$Letalidad,datos.setas$Color_esporas))
 ```
-Podemos observar que aquellas setas que tengan el color de las esporas *ante, naranja, morado o amarillo* son comestibles.
+Podemos observar que aquellas setas que tengan el color de las esporas ante, naranja, morado o amarillo son comestibles, si son verde son totalmente venenosas, y el resto de colores se reparten entre venenosas y comestibles.
 
 
 ### Población
@@ -1065,12 +1009,12 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 ### Proceso previo
 Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:
 
-  |1|0
+-|1|0
 -|-|-
 1|a|b
 0|c|d
 
-Hacemos un intento de calcular nuestra propia medida de similitud mediante un algoritmo, pero vemos que el proceso es muy largo debido a la dimensión de la matriz de los datos, por ellos buscamos alguna función predeterminada en R que sea capaz de hacerla.
+Hacemos un intento de calcular nuestra propia medida de similitud mediante un algoritmo programado por nosotros mismos.
 ```{r intento medida de similitud dice,eval=FALSE}
 #i observacion1, j observacion2, k caracteristica
 i=1
@@ -1091,12 +1035,47 @@ while(i<n){
 }
 ```
 
+Pero vemos que el proceso es muy largo debido a la dimensión de la matriz de los datos, por ello buscamos alguna función predeterminada en R que sea capaz de hacerla.
+
 Encontramos la función *designdist()* que nos permite definir nuestra propia medida de similitud. La cebezara de está función será
 $$designdist(datos,metodo,abcd)$$
 donde **datos** es nuestra matriz codificada de forma binaria, **metodo** escribiremos la expresión de la medida de similitud que queramos y **abcd=TRUE** usa la tabla de contingencia para datos binarios.
 
 ```{r intento medida de similitud dice1,eval=FALSE}
-designdist(setas_train[,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
+designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
+```
+
+Usando esta función la medida de similitud que calcula no es la correcta, lo comprobamos calculando la medida de similitud de las 10 primeras observaciones con la observación que ocupa la primera línea en nuestros datos de entrenamiento, usando el algoritmo que hemos programo anteriormente.
+
+```{r comparacion de medidas de similitud,echo=TRUE}
+# Nuestro algoritmo de calculo de la medida de similitud
+#i observacion1, j observacion2, k caracteristica
+i=1
+n=10
+k=dim(setas_train)[2]
+distancia_dice=diag(n)
+#Distancia de la observacion 1 al resto de observaciones.
+while(i<n){
+  j=i+1
+  while(j<=n) {
+    #Calculo de similitud
+    a=sum(setas_train[i,2:k]*setas_train[j,2:k])
+    d=sum((1-setas_train[i,2:k])*(1-setas_train[j,2:k]))
+    distancia_dice[i,j]=((2*a)/(a+(k-d)))
+    distancia_dice[j,i]=((2*a)/(a+(k-d)))
+    j=j+1
+  }
+  i=i+1
+}
+#Cambiamos los nombres a las columnas y filas por los números de las observaciones correspondientes.
+colnames(distancia_dice)=indices_train[1:10]
+rownames(distancia_dice)=indices_train[1:10]
+
+distancia_dice
+
+
+#Función de R
+designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 ```
 
 Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
@@ -1106,14 +1085,14 @@ $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
 distancia_dice=distance(setas_train[,2:dim(setas_train)[2]],method="dice")
 ```
 
-Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, para ellos calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
+Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
 
 ```{r medoides,echo=TRUE}
 #Cálculo de los medoides: 
 k50=fastkmed(distancia_dice,ncluster=50)
 
 #Proporción de los medoides:
-table(setas_train$Venenosas[k50$medoid])
+table(setas_train$Letalidad[k50$medoid])
 ```
 Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para explicar las setas no venenosas mientras que solo 11 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.
 
@@ -1122,8 +1101,8 @@ Con estos medoides podemos realizar un análisis de componente principales.
 distancia_medoides=distancia_dice[k50$medoid,k50$medoid]
 #Análisis Componentes principales:
 pca.50=prcomp(distancia_medoides)
-plot(pca.50)
-plot(pca.50$x,col=setas_train$Venenosas[k50$medoid]+1,pch=19)
+summary(pca.50)
+plot(pca.50$x,col=setas_train$Letalidad[k50$medoid]+1,pch=19)
 ```
 Podemos ver  como la variabilidad de los datos se explica mayoritariamente por la primera componente principal  PC1, aunque nos quedaremos con las dos primeras.
 
@@ -1152,7 +1131,7 @@ Pero trabajar solo con los 50 medoides podemos perder mucha información, por el
 #Análsiis de componentes principales
 pca.train=prcomp(distancia_dice[,k50$medoid])
 plot(pca.train)
-plot(pca.train$x,col=setas_train$Venenosas+1,pch=19)
+plot(pca.train$x,col=setas_train$Letalidad+1,pch=19)
 
 #Gráfico alternativo
 comestible=which(setas_train[,1]==0)
@@ -1171,85 +1150,44 @@ Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zo
 
 
 
-Quizás no sean necesarios 50 medoides para realizar el análisis y podríamos obtener un resultado parecido con una cantidad menor. Por ello, vamos a probar a hacerlo pero con una cantidad más reducida de medoides. Tomamos un valor entre 10 y 20 medoides.
+Quizás no sean necesarios 50 medoides para realizar el análisis y podríamos obtener un resultado parecido con otra cantidad. Probamos con una cantidad muy pequeña.
+```{r medoides menos de 10,echo=TRUE}
+i=1
+while(i<=10){
+  #Cálculo de los medoides: 
+  k=fastkmed(distancia_dice,ncluster=i)
+  #Proporción de los medoides:
+  table(setas_train$Letalidad[k$medoid])
+  
+  #Análsiis de componentes principales
+  pca.traink=prcomp(distancia_dice[,k$medoid])
+  summary(pca.traink)
+  plot(pca.traink$x,col=setas_train$Letalidad+1,pch=19,main=paste("Número de medoides ",as.character(i)))
+i=i+1
+}
+```
+Podemos ver que a partir de 4 meodides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medodides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.
 
-```{r medoides 15,echo=TRUE}
-#Cálculo de los medoides: 
-k15=fastkmed(distancia_dice,ncluster=15)
-#Proporción de los medoides:
-table(setas_train$Venenosas[k15$medoid])
+Ahora vamos a probar a hacerlo con una cantidad distintas de medoides, desde 10 medoides hasta 250 aumentando de diez en diez.
 
-
-#Análsiis de componentes principales
-pca.train15=prcomp(distancia_dice[,k15$medoid])
-plot(pca.train15)
-plot(pca.train15$x,col=setas_train$Venenosas+1,pch=19)
-
-#Gráfico alternativo
-comestible=which(setas_train[,1]==0)
-no.comestibles=which(setas_train[,1]==1)
-
-par(mfrow=c(1,2))
-plot(pca.train15$x)
-points(pca.train15$x[comestible,1:2],col=1,pch=19)
-points(pca.train15$x[no.comestibles,1:2],col=2,pch=19)
-plot(pca.train15$x)
-points(pca.train15$x[no.comestibles,1:2],col=2,pch=19)
-points(pca.train15$x[comestible,1:2],col=1,pch=19)
+```{r medoides mas de 10,echo=TRUE}
+i=10
+while(i<=250){
+  #Cálculo de los medoides: 
+  k=fastkmed(distancia_dice,ncluster=i)
+  #Proporción de los medoides:
+  table(setas_train$Letalidad[k$medoid])
+  
+  #Análsiis de componentes principales
+  pca.traink=prcomp(distancia_dice[,k$medoid])
+  plot(pca.traink,main=paste("Número de medoides ",as.character(i)))
+  plot(pca.traink$x,col=setas_train$Letalidad+1,pch=19,main=paste("Número de medoides ",as.character(i)))
+i=i+10
+}
 ```
 
-```{r medoides 10,echo=TRUE}
-#Cálculo de los medoides: 
-k10=fastkmed(distancia_dice,ncluster=10)
-#Proporción de los medoides:
-table(setas_train$Venenosas[k10$medoid])
-
-
-#Análsiis de componentes principales
-pca.train10=prcomp(distancia_dice[,k10$medoid])
-plot(pca.train10)
-plot(pca.train10$x,col=setas_train$Venenosas+1,pch=19)
-
-#Gráfico alternativo
-comestible=which(setas_train[,1]==0)
-no.comestibles=which(setas_train[,1]==1)
-
-par(mfrow=c(1,2))
-plot(pca.train10$x)
-points(pca.train10$x[comestible,1:2],col=1,pch=19)
-points(pca.train10$x[no.comestibles,1:2],col=2,pch=19)
-plot(pca.train10$x)
-points(pca.train10$x[no.comestibles,1:2],col=2,pch=19)
-points(pca.train10$x[comestible,1:2],col=1,pch=19)
-```
-
-```{r medoides 20,echo=TRUE}
-#Cálculo de los medoides: 
-k20=fastkmed(distancia_dice,ncluster=20)
-#Proporción de los medoides:
-table(setas_train$Venenosas[k20$medoid])
-
-
-#Análsiis de componentes principales
-pca.train20=prcomp(distancia_dice[,k20$medoid])
-plot(pca.train20)
-plot(pca.train20$x,col=setas_train$Venenosas+1,pch=19)
-
-#Gráfico alternativo
-comestible=which(setas_train[,1]==0)
-no.comestibles=which(setas_train[,1]==1)
-
-par(mfrow=c(1,2))
-plot(pca.train20$x)
-points(pca.train20$x[comestible,1:2],col=1,pch=19)
-points(pca.train20$x[no.comestibles,1:2],col=2,pch=19)
-plot(pca.train20$x)
-points(pca.train20$x[no.comestibles,1:2],col=2,pch=19)
-points(pca.train20$x[comestible,1:2],col=1,pch=19)
-```
-
-Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 20. 
-A pesar de ellos, nos quedaremos con la distancia de todas las observaciones a los 50 medoides, para tener más información.
+Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 250, pero debemos fijarnos en la proporción de la varianza acumulada explicada por las dos primeras componentes y vemos que obtenemos la más alta con 60 medoides
+Por de ello, nos quedaremos con la distancia de todas las observaciones a los 60 medoides, para tener más información.
 
 
 
