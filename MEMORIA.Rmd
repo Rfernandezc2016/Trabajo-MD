@@ -1653,7 +1653,7 @@ Por tanto descartaría usar un SVM con kernel lineal.
 
 #  Evaluación
 
-Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de similitud vemos lo siguiente
+Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de precisión vemos lo siguiente
 ```{r comparacion medidas de precision,echo=TRUE}
 medidas.precision=matrix(c(medidas.knn,medidas.arboles,medidas.bosques,medidas.svmradial,medidas.svmlineal),nrow=5,byrow=TRUE)
 colnames(medidas.precision)=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
@@ -1789,14 +1789,14 @@ plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de
 
 En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
 
-```{r analisis cluster 5,echo=TRUE}
+```{r analisis cluster 5 sin olor,echo=TRUE}
 #Análisis cluster
 clusters.datos.sin.olor=kmeans(prcomp(setas60_train.sin.olor)$x,centers=5,nstart=25)
 table(clusters.datos.sin.olor$cluster,setas_train.sin.olor$Letalidad)
 ```
 Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas.
 
-```{r grafico cluster 5,echo=TRUE}
+```{r grafico cluster 5 sin olor,echo=TRUE}
 pca=prcomp(setas60_train.sin.olor)$x
 
 #Gráfico de los cluster
@@ -1839,13 +1839,13 @@ En estos gráficos podemos ver lo que hemos comentado antes, tenemos bastante bi
 
 Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.
 
-```{r analisis cluster 8,echo=TRUE}
+```{r analisis cluster 8 sin olor,echo=TRUE}
 #Análisis cluster
 clusters.datos.train.sin.olor=kmeans(prcomp(setas60_train.sin.olor)$x,centers=8,nstart=25)
 table(clusters.datos.train.sin.olor$cluster,setas_train.sin.olor$Letalidad)
 ```
 Dos cluster agrupan exclusivamente setas venenosas y solo uno setas comestibles, los otros 5 cluster hay setas de ambas toxicidad.
-```{r grafico cluster 8,echo=TRUE}
+```{r grafico cluster 8 sin olor,echo=TRUE}
 pca=prcomp(setas60_train.sin.olor)$x
 
 #Gráfico de los cluster
@@ -1890,7 +1890,7 @@ Vemos que tras realizar el análisis cluster con 8 grupos, notamos un empeoramie
 ###  k-NN
 
 
-```{r knn,echo=TRUE}
+```{r knn sin olor,echo=TRUE}
 #Buscamos los vecinos más cercanos
 prediccion_knn.sin.olor=knn(setas60_train.sin.olor,setas60_test.sin.olor,cl=setas_train.sin.olor$Letalidad,k=1)
 table(prediccion_knn.sin.olor,setas_test.sin.olor$Letalidad)
@@ -1898,7 +1898,7 @@ table(prediccion_knn.sin.olor,setas_test.sin.olor$Letalidad)
 
 La predicción con el 1-vecino más próximo, es bastante buena, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.
 
-```{r medidas de precision knn,echo=TRUE}
+```{r medidas de precision knn sin olor,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion_knn.sin.olor == setas_test.sin.olor$Letalidad)/nrow(setas_test.sin.olor)
 error = 1-accuracy
@@ -1928,7 +1928,7 @@ Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que
 
 Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.
 
-```{r knn cross-validation,echo=TRUE}
+```{r knn cross-validation sin olor,echo=TRUE}
 k=(dim(setas60_train.sin.olor)[1]^(4/(4+dim(setas60_train.sin.olor)[2])))*10
 
 #Matriz de las medidas de precision:
@@ -1967,7 +1967,7 @@ Observamos que al ir aumentando el número de k-vecinos el error va aumentando p
 ###  Arboles de Decisión
 
 
-```{r arbol de decision,echo=TRUE}
+```{r arbol de decision sin olor,echo=TRUE}
 setas60_train.respuesta.sin.olor=data.frame(cbind(setas_train.sin.olor[,1],setas60_train.sin.olor))
 names(setas60_train.respuesta.sin.olor)[1]="Letalidad"
 
@@ -1985,7 +1985,7 @@ El gráfico resultante podemos interpretarlo basándonos en cuánto se parece un
 
 En la tabla podemos ver que a la hora de predecir nuestro árbol de decisión comete cierto error, a continuación analizamos ese error con distintas medidas de precisión.
 
-```{r medidas de precision arbol de decision,echo=TRUE}
+```{r medidas de precision arbol de decision sin olor,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion.arbol.sin.olor == setas_test[,1])/nrow(setas_test.sin.olor)
 error = 1-accuracy
@@ -2017,7 +2017,7 @@ El error que se comete es superior,5%, que en el caso del modelo k-NN con el vec
 ###  Bosques Aleatorios
 
 
-```{r bosque aleatorio,echo=TRUE}
+```{r bosque aleatorio sin olor,echo=TRUE}
 set.seed(34735)
 setas.rf.sin.olor=randomForest(setas60_train.sin.olor, as.factor(setas60_train.respuesta.sin.olor$Letalidad), ntree=100, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
 
@@ -2027,7 +2027,7 @@ table(prediccion.rf.sin.olor,as.factor(setas_test.sin.olor[,1]))
 ```
 
 La predicción se equivoca clasificando 9 setas, empeora respecto la predicción con la variable **Olor**. Analizamos la precisión de los bosques aleatorios con las medidas de precisión. 
-```{r medidas de precision bosques aleatorios,echo=TRUE}
+```{r medidas de precision bosques aleatorios sin olor,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion.rf.sin.olor == setas_test.sin.olor[,1])/nrow(setas_test.sin.olor)
 error = 1-accuracy
@@ -2059,7 +2059,7 @@ El error que se comete mejora respecto al algoritmo anterior, pero es superior a
 
 Para determinar el valor de gamma y el coste, usamos los datos que hemos reservado para validación y realizamos una estimación con ellos.
 
-```{r svm,echo=TRUE}
+```{r svm sin olor,echo=TRUE}
 # Para estimar el gamma: 
 gamma_est=1/apply(setas60_validacion.sin.olor,2,sd)
 # Para estimar el coste: 
@@ -2076,7 +2076,7 @@ table(prediccion_svm.sin.olor,setas_test.sin.olor[,1])
 
 La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
 
-```{r medidas de precision svm,echo=TRUE}
+```{r medidas de precision svm sin olor,echo=TRUE}
 # Medidas de precisión
 accuracy = sum(prediccion_svm.sin.olor == setas_test.sin.olor[,1])/nrow(setas_test.sin.olor)
 error = 1-accuracy
@@ -2105,7 +2105,7 @@ medidas.svmradial.sin.olor
 
 Si realizamos el ajuste de SVM pero establecemos que el kernel es lineal, obtenemos lo siguiente:
 
-```{r svm lineal,echo=TRUE}
+```{r svm lineal sin olor,echo=TRUE}
 # Para estimar el coste: 
 norma2<-function(x) sqrt(sum(x^2))
 cost_est=apply(setas60_validacion.sin.olor,2,norma2)
@@ -2120,7 +2120,7 @@ table(prediccion_svm.lineal.sin.olor,setas_test.sin.olor[,1])
 
 Podemos ver que respecto al kernel radial, las predicciones empeoran. Esto lo podemos observar en las medidas de precisión.
 
-```{r medidas de precision svm lineal,echo=TRUE}
+```{r medidas de precision svm lineal sin olor,echo=TRUE}
 # Medidas de precisión
 accuracy = sum(prediccion_svm.lineal.sin.olor == setas_test.sin.olor[,1])/nrow(setas_test.sin.olor)
 error = 1-accuracy
@@ -2150,11 +2150,462 @@ Por tanto descartaría usar un SVM con kernel lineal.
 
 ###  Evaluación
 
-Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de similitud vemos lo siguiente
-```{r comparacion medidas de precision,echo=TRUE}
+Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de precisión vemos lo siguiente
+```{r comparacion medidas de precision sin olor,echo=TRUE}
 medidas.precision.sin.olor=matrix(c(medidas.knn.sin.olor,medidas.arboles.sin.olor,medidas.bosques.sin.olor,medidas.svmradial.sin.olor,medidas.svmlineal.sin.olor),nrow=5,byrow=TRUE)
 colnames(medidas.precision.sin.olor)=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
 rownames(medidas.precision.sin.olor)=c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal")
 medidas.precision.sin.olor
 ```
 El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test. La misma conclusión hemos llegado tras finalizar el análisis de los datos con la variable **Olor**.
+
+
+## Datos con variable **Olor=n**
+Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis a los datos dejando solo los que tengan **Olor=n**.
+```{r olor ninguno,echo=TRUE}
+setas.olor=setas[which(setas[,29]==1),]
+setas.olor=setas.olor[,-c(23:31)]
+rownames(setas.olor)=seq(1,dim(setas.olor)[1])
+table(setas.olor$Letalidad)
+```
+Pero vemos que no hay la misma proporción de setas que tengan olor ninguno que sean comestibles o venenosas, por ello vamos a reducir los datos con los que vamos a trabajar a partir de ahora.
+```{r datos setas olor,echo=TRUE}
+setas.olor.comestible=sample(dim(setas.olor)[1],sum(setas.olor$Letalidad==1))
+setas.olor.venenosa=which(setas.olor$Letalidad==1)
+setas.olor.nueva=rbind(setas.olor[setas.olor.comestible,],setas.olor[setas.olor.venenosa,])
+```
+Ahora hacemos las particiones con el mismo porcentaje, es decir, 60% para entrenamiento, 20% para test y validacion
+
+```{r particiones olor}
+n_totales=dim(setas.olor.nueva)[1]
+n_train=floor(n_totales*0.6) 
+n_test=floor(n_totales*0.2) 
+n_validacion=n_totales-n_train-n_test
+
+set.seed(34735)
+
+indices_totales=seq(1:n_totales)
+indices_train=sort(sample(indices_totales,n_train))
+indices_test=sort(sample(indices_totales[-indices_train],n_test))
+indices_validacion=indices_totales[-c(indices_train,indices_test)]
+
+setas_train.olor=setas.olor.nueva[indices_train,]
+setas_test.olor=setas.olor.nueva[indices_test,]
+setas_validacion.olor=setas.olor.nueva[indices_validacion,]
+```
+
+Como se ha reducido la dimensión de nuestros datos ya no hace falta calcular los medoides para tomarlos como puntos de referencia, ahora podemos aplicar todos los análisis a nuestros datos sin tener que hacer ninguna transformación.
+
+
+Aplicamos el análisis de componentes principales a nuestros datos
+```{r pca sin olor,echo=TRUE}
+#Análisis Componentes principales:
+pca=prcomp(setas_train.olor)
+summary(pca)
+pairs(pca$x[,1:8],col=setas_train.olor$Letalidad+1,pch=19)
+plot(pca$x,col=setas_train.olor$Letalidad+1,pch=19)
+
+```
+
+Con solo las dos primeras componentes principales solo explicamos un 40% de la variabilidad de los datos, para llegar al nivel que teníamos en análsis anteriores necesitariamos 8 componentes princiaples, pero podemos ver que están bastante bien separadas las setas venenosas de las comestibles.
+
+En la gráfica que enfrenta las dos primeras componentes principales vemos que las setas venenosas están ubicadas en $P1\in (-3,-2)\cup(1,2)$ aunque hay unas pocas por medio de las comestibles.
+
+
+### Análisis Cluster
+
+Aplicamos el análsis cluster a nuestros datos con el objetivo de tener grupos de setas que contengas solo setas venenosas o comestibles, pero primero vemos por cross-validation el número adecuado de cluster a aplicar.
+
+```{r cluster sin olor,echo=TRUE}
+#Números de clusters
+SSW <- vector(mode = "numeric", length = 15)
+n=dim(prcomp(setas_validacion.olor)$x)[1]
+#Variabilidad de todos los datos, es decir, todos los datos como un único cluster
+SSW[1] <- (n - 1) * sum(apply(prcomp(setas_validacion.olor)$x,2,var)) 
+
+#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters
+for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas_validacion.olor)$x,centers=i,nstart=25)$withinss)
+
+#Dibujamos un gráfico con el resultado
+plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
+```
+
+En el gráfico podemos observar que a partir del aplicar 6 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
+
+```{r analisis cluster 6,echo=TRUE}
+#Análisis cluster
+clusters.datos.olor=kmeans(pca$x,centers=6,nstart=25)
+table(clusters.datos.olor$cluster,setas_train.olor$Letalidad)
+```
+Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas.
+
+```{r grafico cluster 6,echo=TRUE}
+#Gráfico de los cluster
+plot(pca$x,main="Clusters",type="n")
+for(i in 1:dim(setas_train.olor)[1]){
+  points(pca$x[i,1],pca$x[i,2],pch=19,col=clusters.datos.olor$cluster[i]+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:5),
+       fil = seq(2,6))
+
+
+#Gráfico por tipo de setas:
+par(mfrow=c(1,2))
+plot(pca$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas_train.olor)[1]){
+  if(setas_train.olor[i,1]==0){
+    points(pca$x[i,1],pca$x[i,2],pch=19,col=clusters.datos.olor$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:6),
+       fil = seq(2,7))
+plot(pca$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas_train.olor)[1]){
+  if(setas_train.olor[i,1]==1){
+    points(pca$x[i,1],pca$x[i,2],pch=19,col=clusters.datos.olor$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:6),
+       fil = seq(2,7))
+```
+
+Hemos conseguido una muy buena clasificación de las setas, solos dos cluster tienen setas mezcladas, quizás aumentando el número de cluster podamos clasificar correctamente estas pocas setas.
+
+
+```{r analisis cluster 8,echo=TRUE}
+#Análisis cluster
+clusters.datos.train.olor=kmeans(pca$x,centers=8,nstart=25)
+table(clusters.datos.train.olor$cluster,setas_train.olor$Letalidad)
+```
+Conseguimos que cada cluster solo contenga un tipo de seta.
+```{r grafico cluster 8,echo=TRUE}
+
+#Gráfico de los cluster
+plot(pca$x,main="Clusters",type="n")
+for(i in 1:dim(setas_train.olor)[1]){
+  points(pca$x[i,1],pca$x[i,2],pch=19,col=clusters.datos.train.olor$cluster[i]+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+
+
+#Gráfico por tipo de setas:
+par(mfrow=c(1,2))
+plot(pca$x,main="Clusters: setas comestibles",type="n")
+for(i in 1:dim(setas_train.olor)[1]){
+  if(setas_train.olor[i,1]==0){
+    points(pca$x[i,1],pca$x[i,2],pch=19,col=clusters.datos.train.olor$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+plot(pca$x,main="Clusters: setas venenosas",type="n")
+for(i in 1:dim(setas_train.olor)[1]){
+  if(setas_train.olor[i,1]==1){
+    points(pca$x[i,1],pca$x[i,2],pch=19,col=clusters.datos.train.olor$cluster[i]+1)
+  }
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c(1:8),
+       fil = seq(2,9))
+```
+
+
+
+###  k-NN
+
+
+```{r knn,echo=TRUE}
+#Buscamos los vecinos más cercanos
+prediccion_knn.olor=knn(setas_train.olor,setas_test.olor,cl=setas_train.olor$Letalidad,k=1)
+table(prediccion_knn.olor,setas_test.olor$Letalidad)
+```
+
+La predicción con el 1-vecino más próximo, es perfecta, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.
+
+```{r medidas de precision knn,echo=TRUE}
+# Exactitud/Error
+accuracy = sum(prediccion_knn.olor == setas_test.olor$Letalidad)/nrow(setas_test.olor)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_knn.olor == setas_test.olor$Letalidad) & (setas_test.olor$Letalidad == 1)) / sum(setas_test.olor$Letalidad == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_knn.olor == setas_test.olor$Letalidad & setas_test.olor$Letalidad == 0) / sum(setas_test.olor$Letalidad == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion_knn.olor== setas_test.olor$Letalidad) & (prediccion_knn.olor == 1))/ sum(prediccion_knn.olor == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_knn.olor == setas_test.olor$Letalidad & prediccion_knn.olor == 0) / sum(prediccion_knn.olor == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.knn.olor=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.knn.olor
+```
+
+
+Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si a caso obtuviesemos resultados parecidos.
+
+```{r knn cross-validation,echo=TRUE}
+k=(dim(setas_train.olor)[1]^(4/(4+dim(setas_train.olor)[2])))*10
+
+#Matriz de las medidas de precision:
+medidas_presicision=matrix(nrow=round(k),ncol=7)
+nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+colnames(medidas_presicision)=nombres_medidas
+rownames(medidas_presicision)=seq(1,round(k),1)
+for (i in 1:round(k)){
+  
+  prediccion_knn=knn(setas_train.olor,setas_test.olor,cl=setas_train.olor$Letalidad,k=i)
+  medidas_presicision[i,1] = sum(prediccion_knn == setas_test.olor$Letalidad)/nrow(setas_test.olor)
+  medidas_presicision[i,2] = 1-medidas_presicision[i,1]
+  medidas_presicision[i,3] = sum((prediccion_knn == setas_test.olor$Letalidad) & (setas_test.olor$Letalidad == 1)) /sum(setas_test.olor$Letalidad == 1)
+  medidas_presicision[i,4] =  sum(prediccion_knn == setas_test.olor$Letalidad & setas_test.olor$Letalidad == 0) / sum(setas_test.olor$Letalidad == 0)
+  medidas_presicision[i,5] = sum( (prediccion_knn== setas_test.olor$Letalidad) & (prediccion_knn == 1))/ sum(prediccion_knn == 1)
+  medidas_presicision[i,6] = sum(prediccion_knn == setas_test.olor$Letalidad & prediccion_knn == 0) / sum(prediccion_knn == 0)
+  medidas_presicision[i,7] = 2*medidas_presicision[i,5]*medidas_presicision[i,3] /(medidas_presicision[i,5]+medidas_presicision[i,3])
+}
+medidas_presicision
+
+#Grafico de las medidas de precision
+plot(seq(1,round(k)),medidas_presicision[,1],main="Medidas de precision",type="n",xlab="Número de k vecinos",ylab="",ylim=c(0,1),xlim=c(1,round(k)+2))
+for (i in 1:7) {
+  points(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+  lines(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
+}
+legend("topright",   
+       inset = 0.01, 
+       legend = c("Ac","Er", "Se","Sp","Pr","NPV","F1"),
+       fil = seq(2, round(k)+1))
+```
+
+Observamos que al ir aumentando el número de k-vecinos el error va aumentando pero sigue siendo muy pequeño, el mayor error cometido con el número de k-vecinos probado es de 2%, pero solo se equivoca en una seta, el error es tan "grande" a comparación de otro análisis por la dimensión de nuestros datos.
+
+
+###  Arboles de Decisión
+
+
+```{r arbol de decision,echo=TRUE}
+#Árbol de decisión:
+arbol.olor=rpart(as.factor(setas_train.olor$Letalidad)~., data=setas_train.olor,method="class")
+summary(arbol.olor)
+rpart.plot(arbol.olor)
+
+#Tabla comparativa:
+prediccion.arbol.olor=round(predict(arbol.olor,setas_test.olor)[,2])
+table(prediccion.arbol.olor,setas_test.olor[,1])
+```
+El gráfico resultante lo interpretamos que si la seta tiene el tallo afilado, será no venenosas mientras que si lo tiene agrandado se fija después en como es la población si la población no es **Varias** la clasifica como venenosa y el resto se fija en como es la variable **TR_faltante**. Entonces las variables más importantes son **Agrandado/Afilado, CE_negro y CT1_blanco**.
+
+En la tabla podemos ver que a la hora de predecir nuestro árbol de decisión comete cierto error, a continuación analizamos ese error con distintas medidas de precisión.
+
+```{r medidas de precision arbol de decision,echo=TRUE}
+# Exactitud/Error
+accuracy = sum(prediccion.arbol.olor == setas_test.olor[,1])/nrow(setas_test.olor)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion.arbol.olor == setas_test.olor[,1]) & (setas_test.olor[,1] == 1)) / sum(setas_test.olor[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion.arbol.olor == setas_test.olor[,1] & setas_test.olor[,1] == 0) / sum(setas_test.olor[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion.arbol.olor== setas_test.olor[,1]) & (prediccion.arbol.olor == 1))/ sum(prediccion.arbol.olor == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion.arbol.olor== setas_test.olor[,1] & prediccion.arbol.olor == 0) / sum(prediccion.arbol.olor == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.arboles.olor=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.arboles.olor
+```
+
+El error que se comete es 4%, pero solo se equivoca en dos setas, así que el modelo predice bastante bien.
+
+
+###  Bosques Aleatorios
+
+
+```{r bosque aleatorio,echo=TRUE}
+set.seed(34735)
+setas.rf.olor=randomForest(setas_train.olor[,-1], as.factor(setas_train.olor$Letalidad), ntree=100, importance=FALSE, proximity=TRUE, mtry=4, replace=FALSE,method="class")
+
+#Tabla comparativa
+prediccion.rf.olor=predict(setas.rf.olor, setas_test.olor)
+table(prediccion.rf.olor,as.factor(setas_test.olor[,1]))
+```
+
+La predicción no se equivoca clasificando ninguna setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión. 
+```{r medidas de precision bosques aleatorios,echo=TRUE}
+# Exactitud/Error
+accuracy = sum(prediccion.rf.olor == setas_test.olor[,1])/nrow(setas_test.olor)
+error = 1-accuracy
+
+# Sensibilidad: acierto sobre el total de las setas VENENOSAS
+sensitivity = sum((prediccion.rf.olor == setas_test.olor[,1]) & (setas_test.olor[,1] == 1)) / sum(setas_test.olor[,1] == 1)
+recall = sensitivity
+
+# Especifidad: acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion.rf.olor == setas_test.olor[,1] & setas_test.olor[,1] == 0) / sum(setas_test.olor[,1] == 0)
+
+# Precisión: acierto cuando el predicho es VENENOSAS
+precision = sum( (prediccion.rf.olor== setas_test.olor[,1]) & (prediccion.rf.olor == 1))/ sum(prediccion.rf.olor == 1)
+
+# NPV: acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion.rf.olor== setas_test.olor[,1] & prediccion.rf.olor == 0) / sum(prediccion.rf.olor == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.bosques.olor=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.bosques.olor
+```
+
+
+###  Support Vector Machines
+
+Para determinar el valor de gamma y el coste, usamos los datos que hemos reservado para validación y realizamos una estimación con ellos.
+
+```{r svm,echo=TRUE}
+# Para estimar el gamma: 
+gamma_est=1/apply(setas_validacion.olor[,-1],2,sd)
+# Para estimar el coste: 
+norma2<-function(x) sqrt(sum(x^2))
+cost_est=apply(setas_validacion.olor[,-1],2,norma2)
+for(i in 1:(dim(setas_validacion.olor)[2]-1)){
+  if(gamma_est[i]==Inf){
+    gamma_est[i]=0
+  }
+  if(cost_est[i]==Inf){
+    cost_est[i]=0
+  }
+}
+
+#Ajustamos el modelo
+setas.svm.olor=svm(setas_train.olor[,-1],setas_train.olor[,1],type="C-classification",kernel="radial",gamma=mean(gamma_est),cost=mean(cost_est),scale=F)
+
+#Tabla comparativa
+prediccion_svm.olor=predict(setas.svm.olor,setas_test.olor[,-1])
+table(prediccion_svm.olor,setas_test.olor[,1])
+
+```
+
+La tabla nos dice que el modelo predice a la perfección los datos pero el modelo está sobre ajustado, pues requiere de 142 vectores soporte cuando el número de observaciones es 144. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
+
+```{r medidas de precision svm,echo=TRUE}
+# Medidas de precisión
+accuracy = sum(prediccion_svm.olor == setas_test.olor[,1])/nrow(setas_test.olor)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_svm.olor == setas_test.olor[,1]) & (setas_test.olor[,1] == 1)) / sum(setas_test.olor[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_svm.olor == setas_test.olor[,1] & setas_test.olor[,1] == 0) / sum(setas_test.olor[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum((prediccion_svm.olor== setas_test.olor[,1]) & (prediccion_svm.olor == 1))/ sum(prediccion_svm.olor == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_svm.olor== setas_test.olor[,1] & prediccion_svm.olor == 0) / sum(prediccion_svm.olor == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.svmradial.olor=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmradial.olor
+```
+
+
+Si realizamos el ajuste de SVM pero establecemos que el kernel es lineal, obtenemos lo siguiente:
+
+```{r svm lineal,echo=TRUE}
+# Para estimar el coste: 
+norma2<-function(x) sqrt(sum(x^2))
+cost_est=apply(setas_validacion.olor[,-1],2,norma2)
+
+#Ajustamos el modelo
+setas.svm.lineal.olor=svm(setas_train.olor[,-1],setas_train.olor[,1],type="C-classification",kernel="linear",cost=mean(cost_est),scale=F)
+
+#Tabla comparativa
+prediccion_svm.lineal.olor=predict(setas.svm.lineal.olor,setas_test.olor[,-1])
+table(prediccion_svm.lineal.olor,setas_test.olor[,1])
+```
+
+Podemos ver que respecto al kernel radial, las predicciones son las mismas pero necesita de menos vectores soportes para ajustar el modelo.
+
+```{r medidas de precision svm lineal,echo=TRUE}
+# Medidas de precisión
+accuracy = sum(prediccion_svm.lineal.olor == setas_test.olor[,1])/nrow(setas_test.olor)
+error = 1-accuracy
+
+# Acierto sobre el total de las setas VENENOSAS, sensitivity o recall
+sensitivity = sum((prediccion_svm.lineal.olor == setas_test.olor[,1]) & (setas_test.olor[,1] == 1)) / sum(setas_test.olor[,1] == 1)
+recall = sensitivity
+
+# Acierto sobre el total de las setas COMESTIBLES
+specificity =  sum(prediccion_svm.lineal.olor == setas_test.olor[,1] & setas_test.olor[,1] == 0) / sum(setas_test.olor[,1] == 0)
+
+# Acierto cuando el predicho es VENENOSAS
+precision = sum((prediccion_svm.lineal.olor== setas_test.olor[,1]) & (prediccion_svm.lineal.olor == 1))/ sum(prediccion_svm.lineal.olor == 1)
+
+# Acierto cuando el predicho es COMESTIBLE
+npv = sum(prediccion_svm.lineal.olor== setas_test.olor[,1] & prediccion_svm.lineal.olor == 0) / sum(prediccion_svm.lineal.olor == 0)
+
+# F1_score
+f1score = 2*precision*recall /(precision+recall)
+
+#Tabla de medidas de precisión
+medidas.svmlineal.olor=c(accuracy = accuracy, error = error, sensitivity = sensitivity, specificity = specificity, precision = precision, npv = npv, f1=f1score)
+medidas.svmlineal.olor
+```
+Por tanto descartaría usar un SVM con kernel lineal.
+
+
+###  Evaluación
+
+Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de precisión vemos lo siguiente
+```{r comparacion medidas de precision,echo=TRUE}
+medidas.precision.olor=matrix(c(medidas.knn.olor,medidas.arboles.olor,medidas.bosques.olor,medidas.svmradial.olor,medidas.svmlineal.olor),nrow=5,byrow=TRUE)
+colnames(medidas.precision.olor)=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+rownames(medidas.precision.olor)=c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal")
+medidas.precision.olor
+```
+El mejor modelo para aplicar a nuestros datos es puede ser el k-NN con el vecino más próximo, los bosques aleatorio o el SVM con el kernel lineal, pues predice a la perfección los datos tanto los de entrenamiento como los de test. La conclusión a la que hemos llegado tras finalizar el análisis de los datos difiere un poco del resto de conclusiones.
+
+
+
+##  Evaluación de los tres análisis
+
+Por lo tanto si comparamos todos los modelos de los tres análsis que hemos aplicado usando las medidas de precisión vemos lo siguiente
+```{r comparacion medidas de precision,echo=TRUE}
+medidas.precision.todas=matrix(c(medidas.knn,medidas.arboles,medidas.bosques,medidas.svmradial,medidas.svmlineal,medidas.knn.sin.olor,medidas.arboles.sin.olor,medidas.bosques.sin.olor,medidas.svmradial.sin.olor,medidas.svmlineal.sin.olor,medidas.knn.olor,medidas.arboles.olor,medidas.bosques.olor,medidas.svmradial.olor,medidas.svmlineal.olor),nrow=5,byrow=TRUE)
+colnames(medidas.precision.todas)=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
+rownames(medidas.precision.todas)=rep(c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal"),3)
+medidas.precision.todas
+```
