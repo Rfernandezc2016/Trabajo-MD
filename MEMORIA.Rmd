@@ -1802,7 +1802,7 @@ pca=prcomp(setas60_train.sin.olor)$x
 #Gráfico de los cluster
 plot(prcomp(setas60_train.sin.olor)$x,main="Clusters",type="n")
 for(i in 1:dim(setas60_train.sin.olor)[1]){
-  points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+  points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.sin.olor$cluster[i]+1)
 }
 legend("topright",   
        inset = 0.01, 
@@ -1815,7 +1815,7 @@ par(mfrow=c(1,2))
 plot(prcomp(setas60_train.sin.olor)$x,main="Clusters: setas comestibles",type="n")
 for(i in 1:dim(setas60_train.sin.olor)[1]){
   if(setas_train.sin.olor[i,1]==0){
-    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.sin.olor$cluster[i]+1)
   }
 }
 legend("topright",   
@@ -1825,7 +1825,7 @@ legend("topright",
 plot(prcomp(setas60_train.sin.olor)$x,main="Clusters: setas venenosas",type="n")
 for(i in 1:dim(setas60_train.sin.olor)[1]){
   if(setas_train.sin.olor[i,1]==1){
-    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos$cluster[i]+1)
+    points(pca[i,1],pca[i,2],pch=19,col=clusters.datos.sin.olor$cluster[i]+1)
   }
 }
 legend("topright",   
@@ -1844,7 +1844,7 @@ Vamos a realizar otro análisis cluster pero aumentando el número de cluster co
 clusters.datos.train.sin.olor=kmeans(prcomp(setas60_train.sin.olor)$x,centers=8,nstart=25)
 table(clusters.datos.train.sin.olor$cluster,setas_train.sin.olor$Letalidad)
 ```
-Dos cluster agrupan exclusivamente setas venenosas y solo uno setas comestibles, los otros 5 cluster hay setas de ambas toxicidad.
+Dos cluster agrupan exclusivamente setas venenosas, los otros 6 cluster hay setas de ambas toxicidad.
 ```{r grafico cluster 8 sin olor,echo=TRUE}
 pca=prcomp(setas60_train.sin.olor)$x
 
@@ -2074,7 +2074,7 @@ prediccion_svm.sin.olor=predict(setas.svm.sin.olor,setas60_test.sin.olor)
 table(prediccion_svm.sin.olor,setas_test.sin.olor[,1])
 ```
 
-La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
+La tabla nos dice que el modelo predice a la perfección los datos, podría estar sobreajustado. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
 
 ```{r medidas de precision svm sin olor,echo=TRUE}
 # Medidas de precisión
@@ -2157,7 +2157,7 @@ colnames(medidas.precision.sin.olor)=c("accuracy", "error", "sensitivity", "spec
 rownames(medidas.precision.sin.olor)=c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal")
 medidas.precision.sin.olor
 ```
-El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test. La misma conclusión hemos llegado tras finalizar el análisis de los datos con la variable **Olor**.
+El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test, pero como hemos dicho antes, podría estar sobreajustado, por ello nos quedmos con el modelo k-NN.
 
 
 ## Datos con variable **Olor=n**
@@ -2209,7 +2209,7 @@ plot(pca$x,col=setas_train.olor$Letalidad+1,pch=19)
 
 Con solo las dos primeras componentes principales solo explicamos un 40% de la variabilidad de los datos, para llegar al nivel que teníamos en análsis anteriores necesitariamos 8 componentes princiaples, pero podemos ver que están bastante bien separadas las setas venenosas de las comestibles.
 
-En la gráfica que enfrenta las dos primeras componentes principales vemos que las setas venenosas están ubicadas en $P1\in (-3,-2)\cup(1,2)$ aunque hay unas pocas por medio de las comestibles.
+En la gráfica que enfrenta las dos primeras componentes principales vemos que las setas venenosas están ubicadas en $P1\in (-2,-1)\cup(2,3)$ aunque hay unas pocas por medio de las comestibles.
 
 
 ### Análisis Cluster
@@ -2237,7 +2237,6 @@ En el gráfico podemos observar que a partir del aplicar 6 clusters a nuestros d
 clusters.datos.olor=kmeans(pca$x,centers=6,nstart=25)
 table(clusters.datos.olor$cluster,setas_train.olor$Letalidad)
 ```
-Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas.
 
 ```{r grafico cluster 6 olor,echo=TRUE}
 #Gráfico de los cluster
@@ -2332,7 +2331,7 @@ prediccion_knn.olor=knn(setas_train.olor,setas_test.olor,cl=setas_train.olor$Let
 table(prediccion_knn.olor,setas_test.olor$Letalidad)
 ```
 
-La predicción con el 1-vecino más próximo, es perfecta, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.
+La predicción con el 1-vecino más próximo, se equivoca en dos setas. Vamos a realizar un análisis con distintas medidas de precisión.
 
 ```{r medidas de precision knn olor,echo=TRUE}
 # Exactitud/Error
@@ -2396,7 +2395,7 @@ legend("topright",
        fil = seq(2, round(k)+1))
 ```
 
-Observamos que al ir aumentando el número de k-vecinos el error va aumentando pero sigue siendo muy pequeño, el mayor error cometido con el número de k-vecinos probado es de 2%, pero solo se equivoca en una seta, el error es tan "grande" a comparación de otro análisis por la dimensión de nuestros datos.
+Observamos que al ir aumentando el número de k-vecinos el error va aumentando pero sigue siendo muy pequeño, el mayor error cometido con el número de k-vecinos probado es de 4%, pero solo se equivoca en una seta, el error es tan "grande" a comparación de otro análisis por la dimensión de nuestros datos.
 
 
 ###  Arboles de Decisión
@@ -2442,7 +2441,7 @@ medidas.arboles.olor=c(accuracy = accuracy, error = error, sensitivity = sensiti
 medidas.arboles.olor
 ```
 
-El error que se comete es 4%, pero solo se equivoca en dos setas, así que el modelo predice bastante bien.
+El error que se comete es 12%, pero solo se equivoca en dos setas, así que el modelo predice bastante bien.
 
 
 ###  Bosques Aleatorios
@@ -2457,7 +2456,7 @@ prediccion.rf.olor=predict(setas.rf.olor, setas_test.olor)
 table(prediccion.rf.olor,as.factor(setas_test.olor[,1]))
 ```
 
-La predicción no se equivoca clasificando ninguna setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión. 
+La predicción se equivoca clasificando 4 setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión. 
 ```{r medidas de precision bosques aleatorios olor,echo=TRUE}
 # Exactitud/Error
 accuracy = sum(prediccion.rf.olor == setas_test.olor[,1])/nrow(setas_test.olor)
@@ -2513,7 +2512,7 @@ table(prediccion_svm.olor,setas_test.olor[,1])
 
 ```
 
-La tabla nos dice que el modelo predice a la perfección los datos pero el modelo está sobre ajustado, pues requiere de 142 vectores soporte cuando el número de observaciones es 144. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
+La tabla nos dice que el modelo predice casi la perfección los datos pero el modelo está sobre ajustado, pues requiere de 144 vectores soporte cuando el número de observaciones es 144. Las medidas de precisión van a aportar el error cometido.
 
 ```{r medidas de precision svm olor,echo=TRUE}
 # Medidas de precisión
@@ -2557,7 +2556,7 @@ prediccion_svm.lineal.olor=predict(setas.svm.lineal.olor,setas_test.olor[,-1])
 table(prediccion_svm.lineal.olor,setas_test.olor[,1])
 ```
 
-Podemos ver que respecto al kernel radial, las predicciones son las mismas pero necesita de menos vectores soportes para ajustar el modelo.
+Podemos ver que respecto al kernel radial, las predicciones son parecidas pero necesita de menos vectores soportes para ajustar el modelo.
 
 ```{r medidas de precision svm lineal olor,echo=TRUE}
 # Medidas de precisión
@@ -2596,7 +2595,7 @@ colnames(medidas.precision.olor)=c("accuracy", "error", "sensitivity", "specific
 rownames(medidas.precision.olor)=c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal")
 medidas.precision.olor
 ```
-El mejor modelo para aplicar a nuestros datos es puede ser el k-NN con el vecino más próximo, los bosques aleatorio o el SVM con el kernel lineal, pues predice a la perfección los datos tanto los de entrenamiento como los de test. La conclusión a la que hemos llegado tras finalizar el análisis de los datos difiere un poco del resto de conclusiones.
+El mejor modelo para aplicar a nuestros datos es puede ser el k-NN con el vecino más próximo o el SVM con el kernel lineal, pues predice bastante bien los datos tanto los de entrenamiento como los de test, solo se comete un error del 4%. La conclusión a la que hemos llegado tras finalizar el análisis de los datos difiere un poco del resto de conclusiones.
 
 
 
