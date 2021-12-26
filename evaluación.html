@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="modelado.html"/>
-<link rel="next" href="visualización-y-presentación-de-resultados.html"/>
+<link rel="next" href="actualización-del-modelo.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -182,9 +182,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="modelado.html"><a href="modelado.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="evaluación.html"><a href="evaluación.html"><i class="fa fa-check"></i><b>6</b> Evaluación</a></li>
-<li class="chapter" data-level="7" data-path="visualización-y-presentación-de-resultados.html"><a href="visualización-y-presentación-de-resultados.html"><i class="fa fa-check"></i><b>7</b> Visualización y Presentación de Resultados</a></li>
-<li class="chapter" data-level="8" data-path="puesta-en-producción.html"><a href="puesta-en-producción.html"><i class="fa fa-check"></i><b>8</b> Puesta en producción</a></li>
-<li class="chapter" data-level="9" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html"><i class="fa fa-check"></i><b>9</b> Actualización del modelo…</a></li>
+<li class="chapter" data-level="7" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html"><i class="fa fa-check"></i><b>7</b> Actualización del modelo…</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#datos-sin-variable-olor"><i class="fa fa-check"></i><b>7.1</b> Datos sin variable <strong>Olor</strong></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#análisis-cluster-1"><i class="fa fa-check"></i><b>7.1.1</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="7.1.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#k-nn-1"><i class="fa fa-check"></i><b>7.1.2</b> k-NN</a></li>
+<li class="chapter" data-level="7.1.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#arboles-de-decisión-1"><i class="fa fa-check"></i><b>7.1.3</b> Arboles de Decisión</a></li>
+<li class="chapter" data-level="7.1.4" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#bosques-aleatorios-1"><i class="fa fa-check"></i><b>7.1.4</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="7.1.5" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#support-vector-machines-1"><i class="fa fa-check"></i><b>7.1.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="7.1.6" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-1"><i class="fa fa-check"></i><b>7.1.6</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#datos-con-variable-olorn"><i class="fa fa-check"></i><b>7.2</b> Datos con variable <strong>Olor=n</strong></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#análisis-cluster-2"><i class="fa fa-check"></i><b>7.2.1</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="7.2.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#k-nn-2"><i class="fa fa-check"></i><b>7.2.2</b> k-NN</a></li>
+<li class="chapter" data-level="7.2.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#arboles-de-decisión-2"><i class="fa fa-check"></i><b>7.2.3</b> Arboles de Decisión</a></li>
+<li class="chapter" data-level="7.2.4" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#bosques-aleatorios-2"><i class="fa fa-check"></i><b>7.2.4</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="7.2.5" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#support-vector-machines-2"><i class="fa fa-check"></i><b>7.2.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="7.2.6" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-2"><i class="fa fa-check"></i><b>7.2.6</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-de-los-tres-análisis"><i class="fa fa-check"></i><b>7.3</b> Evaluación de los tres análisis</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -204,6 +223,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="evaluación" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Evaluación</h1>
+<p>Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de precisión vemos lo siguiente</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="evaluación.html#cb162-1" aria-hidden="true" tabindex="-1"></a>medidas.precision<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(medidas.knn,medidas.arboles,medidas.bosques,medidas.svmradial,medidas.svmlineal),<span class="at">nrow=</span><span class="dv">5</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb162-2"><a href="evaluación.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(medidas.precision)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;error&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>, <span class="st">&quot;precision&quot;</span>, <span class="st">&quot;npv&quot;</span>, <span class="st">&quot;f1score&quot;</span>)</span>
+<span id="cb162-3"><a href="evaluación.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(medidas.precision)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;k-NN&quot;</span>,<span class="st">&quot;Arboles de decision&quot;</span>,<span class="st">&quot;Bosques aleatorios&quot;</span>,<span class="st">&quot;SVM radial&quot;</span>,<span class="st">&quot;SVM lineal&quot;</span>)</span>
+<span id="cb162-4"><a href="evaluación.html#cb162-4" aria-hidden="true" tabindex="-1"></a>medidas.precision</span></code></pre></div>
+<pre><code>##                      accuracy       error sensitivity specificity precision
+## k-NN                0.9981527 0.001847291   0.9987277   0.9976134 0.9974587
+## Arboles de decision 0.9378079 0.062192118   0.9503817   0.9260143 0.9233622
+## Bosques aleatorios  0.9987685 0.001231527   1.0000000   0.9976134 0.9974619
+## SVM radial          1.0000000 0.000000000   1.0000000   1.0000000 1.0000000
+## SVM lineal          0.9575123 0.042487685   0.9452926   0.9689737 0.9661899
+##                           npv   f1score
+## k-NN                0.9988053 0.9980928
+## Arboles de decision 0.9521472 0.9366771
+## Bosques aleatorios  1.0000000 0.9987294
+## SVM radial          1.0000000 1.0000000
+## SVM lineal          0.9497076 0.9556270</code></pre>
+<p>El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test.</p>
 </div>
             </section>
 
@@ -211,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="modelado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualización-y-presentación-de-resultados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="actualización-del-modelo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

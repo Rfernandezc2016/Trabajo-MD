@@ -182,9 +182,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="modelado.html"><a href="modelado.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="evaluación.html"><a href="evaluación.html"><i class="fa fa-check"></i><b>6</b> Evaluación</a></li>
-<li class="chapter" data-level="7" data-path="visualización-y-presentación-de-resultados.html"><a href="visualización-y-presentación-de-resultados.html"><i class="fa fa-check"></i><b>7</b> Visualización y Presentación de Resultados</a></li>
-<li class="chapter" data-level="8" data-path="puesta-en-producción.html"><a href="puesta-en-producción.html"><i class="fa fa-check"></i><b>8</b> Puesta en producción</a></li>
-<li class="chapter" data-level="9" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html"><i class="fa fa-check"></i><b>9</b> Actualización del modelo…</a></li>
+<li class="chapter" data-level="7" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html"><i class="fa fa-check"></i><b>7</b> Actualización del modelo…</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#datos-sin-variable-olor"><i class="fa fa-check"></i><b>7.1</b> Datos sin variable <strong>Olor</strong></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#análisis-cluster-1"><i class="fa fa-check"></i><b>7.1.1</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="7.1.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#k-nn-1"><i class="fa fa-check"></i><b>7.1.2</b> k-NN</a></li>
+<li class="chapter" data-level="7.1.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#arboles-de-decisión-1"><i class="fa fa-check"></i><b>7.1.3</b> Arboles de Decisión</a></li>
+<li class="chapter" data-level="7.1.4" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#bosques-aleatorios-1"><i class="fa fa-check"></i><b>7.1.4</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="7.1.5" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#support-vector-machines-1"><i class="fa fa-check"></i><b>7.1.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="7.1.6" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-1"><i class="fa fa-check"></i><b>7.1.6</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#datos-con-variable-olorn"><i class="fa fa-check"></i><b>7.2</b> Datos con variable <strong>Olor=n</strong></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#análisis-cluster-2"><i class="fa fa-check"></i><b>7.2.1</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="7.2.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#k-nn-2"><i class="fa fa-check"></i><b>7.2.2</b> k-NN</a></li>
+<li class="chapter" data-level="7.2.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#arboles-de-decisión-2"><i class="fa fa-check"></i><b>7.2.3</b> Arboles de Decisión</a></li>
+<li class="chapter" data-level="7.2.4" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#bosques-aleatorios-2"><i class="fa fa-check"></i><b>7.2.4</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="7.2.5" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#support-vector-machines-2"><i class="fa fa-check"></i><b>7.2.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="7.2.6" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-2"><i class="fa fa-check"></i><b>7.2.6</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-de-los-tres-análisis"><i class="fa fa-check"></i><b>7.3</b> Evaluación de los tres análisis</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -206,254 +225,237 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">5</span> Modelado</h1>
 <div id="análisis-cluster" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Análisis Cluster</h2>
-<p>El análisis cluster es un conjunto de técnicas multivariantes utilizadas para clasificar a un conjunto de individuos en grupos homogéneos.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="modelado.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Números de clusters</span></span>
-<span id="cb123-2"><a href="modelado.html#cb123-2" aria-hidden="true" tabindex="-1"></a>SSW <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> <span class="dv">15</span>)</span>
-<span id="cb123-3"><a href="modelado.html#cb123-3" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x)[<span class="dv">1</span>]</span>
-<span id="cb123-4"><a href="modelado.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Variabilidad de todos los datos, es decir, todos los datos como un único cluster</span></span>
-<span id="cb123-5"><a href="modelado.html#cb123-5" aria-hidden="true" tabindex="-1"></a>SSW[<span class="dv">1</span>] <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">apply</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="dv">2</span>,var)) </span>
-<span id="cb123-6"><a href="modelado.html#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-7"><a href="modelado.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters</span></span>
-<span id="cb123-8"><a href="modelado.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>) SSW[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">centers=</span>i,<span class="at">nstart=</span><span class="dv">25</span>)<span class="sc">$</span>withinss)</span>
-<span id="cb123-9"><a href="modelado.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-10"><a href="modelado.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Dibujamos un gráfico con el resultado</span></span>
-<span id="cb123-11"><a href="modelado.html#cb123-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, SSW, <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Número de clusters&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Suma de cuadrados de los grupos&quot;</span>,<span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;steelblue4&quot;</span>)</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/cluster-1.png" width="672" /></p>
+<p>El análisis cluster es un conjunto de técnicas multivariantes utilizadas para clasificar a un conjunto de individuos en grupos homogéneos. Para determinar el número de grupos, realizamos cross-validation con nuestros datos de validación.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="modelado.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Números de clusters</span></span>
+<span id="cb126-2"><a href="modelado.html#cb126-2" aria-hidden="true" tabindex="-1"></a>SSW <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> <span class="dv">15</span>)</span>
+<span id="cb126-3"><a href="modelado.html#cb126-3" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(<span class="fu">prcomp</span>(setas60_validacion)<span class="sc">$</span>x)[<span class="dv">1</span>]</span>
+<span id="cb126-4"><a href="modelado.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Variabilidad de todos los datos, es decir, todos los datos como un único cluster</span></span>
+<span id="cb126-5"><a href="modelado.html#cb126-5" aria-hidden="true" tabindex="-1"></a>SSW[<span class="dv">1</span>] <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">apply</span>(<span class="fu">prcomp</span>(setas60_validacion)<span class="sc">$</span>x,<span class="dv">2</span>,var)) </span>
+<span id="cb126-6"><a href="modelado.html#cb126-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="modelado.html#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Variabilidad de cada modelo, desde 2 clusters hasta 15 clusters</span></span>
+<span id="cb126-8"><a href="modelado.html#cb126-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>) SSW[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas60_validacion)<span class="sc">$</span>x,<span class="at">centers=</span>i,<span class="at">nstart=</span><span class="dv">25</span>)<span class="sc">$</span>withinss)</span>
+<span id="cb126-9"><a href="modelado.html#cb126-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-10"><a href="modelado.html#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Dibujamos un gráfico con el resultado</span></span>
+<span id="cb126-11"><a href="modelado.html#cb126-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, SSW, <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Número de clusters&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Suma de cuadrados de los grupos&quot;</span>,<span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;steelblue4&quot;</span>)</span></code></pre></div>
+<p><img src="MEMORIA_files/figure-html/crossvalidation%20cluster-1.png" width="672" /></p>
 <p>En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="modelado.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis cluster</span></span>
-<span id="cb124-2"><a href="modelado.html#cb124-2" aria-hidden="true" tabindex="-1"></a>clusters.datos<span class="ot">=</span><span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">centers=</span><span class="dv">5</span>,<span class="at">nstart=</span><span class="dv">25</span>)</span>
-<span id="cb124-3"><a href="modelado.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clusters.datos<span class="sc">$</span>cluster,setas_train<span class="sc">$</span>Letalidad)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="modelado.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis cluster</span></span>
+<span id="cb127-2"><a href="modelado.html#cb127-2" aria-hidden="true" tabindex="-1"></a>clusters.datos<span class="ot">=</span><span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">centers=</span><span class="dv">5</span>,<span class="at">nstart=</span><span class="dv">25</span>)</span>
+<span id="cb127-3"><a href="modelado.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clusters.datos<span class="sc">$</span>cluster,setas_train<span class="sc">$</span>Letalidad)</span></code></pre></div>
 <pre><code>##    
 ##        0    1
-##   1    0  768
-##   2  612  475
-##   3 1056    6
-##   4   11 1097
-##   5  843    6</code></pre>
-<p>Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas, por ejemplo el cluster que reparte las setas de la forma 612-475 es menos especifíco que los cluster que reparten 843-6, 1056-6 y 11-1097.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="modelado.html#cb126-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x</span>
-<span id="cb126-2"><a href="modelado.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="modelado.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico de los cluster</span></span>
-<span id="cb126-4"><a href="modelado.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb126-5"><a href="modelado.html#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]){</span>
-<span id="cb126-6"><a href="modelado.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb126-7"><a href="modelado.html#cb126-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb126-8"><a href="modelado.html#cb126-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb126-9"><a href="modelado.html#cb126-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb126-10"><a href="modelado.html#cb126-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb126-11"><a href="modelado.html#cb126-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span></code></pre></div>
+##   1  624  486
+##   2  835    4
+##   3 1059    5
+##   4    4 1089
+##   5    0  768</code></pre>
+<p>Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas, por ejemplo el cluster que reparte las setas de la forma 624-486 es menos especifíco que los cluster que reparten 835-4, 1059-5 y 4-1089.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="modelado.html#cb129-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x</span>
+<span id="cb129-2"><a href="modelado.html#cb129-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-3"><a href="modelado.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico de los cluster</span></span>
+<span id="cb129-4"><a href="modelado.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb129-5"><a href="modelado.html#cb129-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]){</span>
+<span id="cb129-6"><a href="modelado.html#cb129-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb129-7"><a href="modelado.html#cb129-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb129-8"><a href="modelado.html#cb129-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb129-9"><a href="modelado.html#cb129-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb129-10"><a href="modelado.html#cb129-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb129-11"><a href="modelado.html#cb129-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/grafico%20cluster%205-1.png" width="672" /></p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="modelado.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico por tipo de setas:</span></span>
-<span id="cb127-2"><a href="modelado.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb127-3"><a href="modelado.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas comestibles&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb127-4"><a href="modelado.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]){</span>
-<span id="cb127-5"><a href="modelado.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>){</span>
-<span id="cb127-6"><a href="modelado.html#cb127-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb127-7"><a href="modelado.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb127-8"><a href="modelado.html#cb127-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb127-9"><a href="modelado.html#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb127-10"><a href="modelado.html#cb127-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb127-11"><a href="modelado.html#cb127-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb127-12"><a href="modelado.html#cb127-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span>
-<span id="cb127-13"><a href="modelado.html#cb127-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas venenosas&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb127-14"><a href="modelado.html#cb127-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]){</span>
-<span id="cb127-15"><a href="modelado.html#cb127-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>){</span>
-<span id="cb127-16"><a href="modelado.html#cb127-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb127-17"><a href="modelado.html#cb127-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb127-18"><a href="modelado.html#cb127-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb127-19"><a href="modelado.html#cb127-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb127-20"><a href="modelado.html#cb127-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb127-21"><a href="modelado.html#cb127-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb127-22"><a href="modelado.html#cb127-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/grafico%20cluster%205-2.png" width="672" /></p>
-<p>En estos gráficos podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="modelado.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico por tipo de setas:</span></span>
+<span id="cb130-2"><a href="modelado.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb130-3"><a href="modelado.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas comestibles&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb130-4"><a href="modelado.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]){</span>
+<span id="cb130-5"><a href="modelado.html#cb130-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>){</span>
+<span id="cb130-6"><a href="modelado.html#cb130-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb130-7"><a href="modelado.html#cb130-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb130-8"><a href="modelado.html#cb130-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb130-9"><a href="modelado.html#cb130-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb130-10"><a href="modelado.html#cb130-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb130-11"><a href="modelado.html#cb130-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb130-12"><a href="modelado.html#cb130-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span>
+<span id="cb130-13"><a href="modelado.html#cb130-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas venenosas&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb130-14"><a href="modelado.html#cb130-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]){</span>
+<span id="cb130-15"><a href="modelado.html#cb130-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>){</span>
+<span id="cb130-16"><a href="modelado.html#cb130-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb130-17"><a href="modelado.html#cb130-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb130-18"><a href="modelado.html#cb130-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb130-19"><a href="modelado.html#cb130-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb130-20"><a href="modelado.html#cb130-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb130-21"><a href="modelado.html#cb130-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb130-22"><a href="modelado.html#cb130-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span></code></pre></div>
+<p><img src="MEMORIA_files/figure-html/grafico%20cluster%205-2.png" width="672" />
+El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.</p>
 <p>Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="modelado.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis cluster</span></span>
-<span id="cb128-2"><a href="modelado.html#cb128-2" aria-hidden="true" tabindex="-1"></a>clusters.datos.train<span class="ot">=</span><span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">centers=</span><span class="dv">8</span>,<span class="at">nstart=</span><span class="dv">25</span>)</span>
-<span id="cb128-3"><a href="modelado.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clusters.datos.train<span class="sc">$</span>cluster,setas_train<span class="sc">$</span>Letalidad)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="modelado.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis cluster</span></span>
+<span id="cb131-2"><a href="modelado.html#cb131-2" aria-hidden="true" tabindex="-1"></a>clusters.datos.train<span class="ot">=</span><span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">centers=</span><span class="dv">8</span>,<span class="at">nstart=</span><span class="dv">25</span>)</span>
+<span id="cb131-3"><a href="modelado.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clusters.datos.train<span class="sc">$</span>cluster,setas_train<span class="sc">$</span>Letalidad)</span></code></pre></div>
 <pre><code>##    
 ##        0    1
-##   1  464   12
-##   2  127  264
-##   3    3  542
-##   4  430  204
-##   5 1044    0
-##   6   16  562
-##   7  438    0
-##   8    0  768</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="modelado.html#cb130-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x</span>
-<span id="cb130-2"><a href="modelado.html#cb130-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-3"><a href="modelado.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico de los cluster</span></span>
-<span id="cb130-4"><a href="modelado.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb130-5"><a href="modelado.html#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]){</span>
-<span id="cb130-6"><a href="modelado.html#cb130-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos.train<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb130-7"><a href="modelado.html#cb130-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb130-8"><a href="modelado.html#cb130-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb130-9"><a href="modelado.html#cb130-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb130-10"><a href="modelado.html#cb130-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
-<span id="cb130-11"><a href="modelado.html#cb130-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span></code></pre></div>
+##   1  124  270
+##   2    4  569
+##   3  452    3
+##   4  435  203
+##   5  463    7
+##   6    0  768
+##   7 1044    0
+##   8    0  532</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="modelado.html#cb133-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x</span>
+<span id="cb133-2"><a href="modelado.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="modelado.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico de los cluster</span></span>
+<span id="cb133-4"><a href="modelado.html#cb133-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb133-5"><a href="modelado.html#cb133-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]){</span>
+<span id="cb133-6"><a href="modelado.html#cb133-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos.train<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb133-7"><a href="modelado.html#cb133-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb133-8"><a href="modelado.html#cb133-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb133-9"><a href="modelado.html#cb133-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb133-10"><a href="modelado.html#cb133-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb133-11"><a href="modelado.html#cb133-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/grafico%20cluster%208-1.png" width="672" /></p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="modelado.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico por tipo de setas:</span></span>
-<span id="cb131-2"><a href="modelado.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb131-3"><a href="modelado.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas comestibles&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb131-4"><a href="modelado.html#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]){</span>
-<span id="cb131-5"><a href="modelado.html#cb131-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>){</span>
-<span id="cb131-6"><a href="modelado.html#cb131-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos.train<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb131-7"><a href="modelado.html#cb131-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb131-8"><a href="modelado.html#cb131-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb131-9"><a href="modelado.html#cb131-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb131-10"><a href="modelado.html#cb131-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb131-11"><a href="modelado.html#cb131-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
-<span id="cb131-12"><a href="modelado.html#cb131-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span>
-<span id="cb131-13"><a href="modelado.html#cb131-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas50_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas venenosas&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb131-14"><a href="modelado.html#cb131-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]){</span>
-<span id="cb131-15"><a href="modelado.html#cb131-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>){</span>
-<span id="cb131-16"><a href="modelado.html#cb131-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos.train<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb131-17"><a href="modelado.html#cb131-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb131-18"><a href="modelado.html#cb131-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb131-19"><a href="modelado.html#cb131-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb131-20"><a href="modelado.html#cb131-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb131-21"><a href="modelado.html#cb131-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
-<span id="cb131-22"><a href="modelado.html#cb131-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="modelado.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico por tipo de setas:</span></span>
+<span id="cb134-2"><a href="modelado.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb134-3"><a href="modelado.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas comestibles&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb134-4"><a href="modelado.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]){</span>
+<span id="cb134-5"><a href="modelado.html#cb134-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>){</span>
+<span id="cb134-6"><a href="modelado.html#cb134-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos.train<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb134-7"><a href="modelado.html#cb134-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb134-8"><a href="modelado.html#cb134-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb134-9"><a href="modelado.html#cb134-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb134-10"><a href="modelado.html#cb134-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb134-11"><a href="modelado.html#cb134-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb134-12"><a href="modelado.html#cb134-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span>
+<span id="cb134-13"><a href="modelado.html#cb134-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters: setas venenosas&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb134-14"><a href="modelado.html#cb134-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]){</span>
+<span id="cb134-15"><a href="modelado.html#cb134-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(setas_train[i,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>){</span>
+<span id="cb134-16"><a href="modelado.html#cb134-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">points</span>(pca[i,<span class="dv">1</span>],pca[i,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clusters.datos.train<span class="sc">$</span>cluster[i]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb134-17"><a href="modelado.html#cb134-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb134-18"><a href="modelado.html#cb134-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb134-19"><a href="modelado.html#cb134-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb134-20"><a href="modelado.html#cb134-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb134-21"><a href="modelado.html#cb134-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb134-22"><a href="modelado.html#cb134-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/grafico%20cluster%208-2.png" width="672" /></p>
-<p>Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.</p>
+<p>Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas que buscamos pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, aparece un cluster que clasifica correctamente la toxicidad de la setas dentro de la maraña de datos pero el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.</p>
+<p>Con este análisis también vemos que a pesar de haber aumentado el número de cluster, no conseguimos una clasificación perfecta, por ello sacamos la conclusión no vamos a clasificar todas las setas correctamente y cometeremos un cierto error.</p>
 </div>
 <div id="k-nn" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> k-NN</h2>
 <p>El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="modelado.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Buscamos los vecinos más cercanos</span></span>
-<span id="cb132-2"><a href="modelado.html#cb132-2" aria-hidden="true" tabindex="-1"></a>prediccion_knn<span class="ot">=</span><span class="fu">knn</span>(setas50_train,setas50_test,<span class="at">cl=</span>setas_train<span class="sc">$</span>Letalidad,<span class="at">k=</span><span class="dv">1</span>)</span>
-<span id="cb132-3"><a href="modelado.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_knn,setas_test<span class="sc">$</span>Letalidad)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="modelado.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Buscamos los vecinos más cercanos</span></span>
+<span id="cb135-2"><a href="modelado.html#cb135-2" aria-hidden="true" tabindex="-1"></a>prediccion_knn<span class="ot">=</span><span class="fu">knn</span>(setas60_train,setas60_test,<span class="at">cl=</span>setas_train<span class="sc">$</span>Letalidad,<span class="at">k=</span><span class="dv">1</span>)</span>
+<span id="cb135-3"><a href="modelado.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_knn,setas_test<span class="sc">$</span>Letalidad)</span></code></pre></div>
 <pre><code>##               
 ## prediccion_knn   0   1
-##              0 836   3
-##              1   2 783</code></pre>
+##              0 836   1
+##              1   2 785</code></pre>
 <p>La predicción con el 1-vecino más próximo, es bastante buena, lo podemos ver a simple vista en la tabla. Pero vamos a realizar un análisis con distintas medidas de precisión.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="modelado.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
-<span id="cb134-2"><a href="modelado.html#cb134-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad)<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb134-3"><a href="modelado.html#cb134-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb134-4"><a href="modelado.html#cb134-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-5"><a href="modelado.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
-<span id="cb134-6"><a href="modelado.html#cb134-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb134-7"><a href="modelado.html#cb134-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb134-8"><a href="modelado.html#cb134-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-9"><a href="modelado.html#cb134-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb134-10"><a href="modelado.html#cb134-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb134-11"><a href="modelado.html#cb134-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-12"><a href="modelado.html#cb134-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb134-13"><a href="modelado.html#cb134-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>( (prediccion_knn<span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (prediccion_knn <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb134-14"><a href="modelado.html#cb134-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-15"><a href="modelado.html#cb134-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb134-16"><a href="modelado.html#cb134-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> prediccion_knn <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb134-17"><a href="modelado.html#cb134-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-18"><a href="modelado.html#cb134-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb134-19"><a href="modelado.html#cb134-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb134-20"><a href="modelado.html#cb134-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-21"><a href="modelado.html#cb134-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb134-22"><a href="modelado.html#cb134-22" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="modelado.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
+<span id="cb137-2"><a href="modelado.html#cb137-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad)<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb137-3"><a href="modelado.html#cb137-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb137-4"><a href="modelado.html#cb137-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-5"><a href="modelado.html#cb137-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
+<span id="cb137-6"><a href="modelado.html#cb137-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb137-7"><a href="modelado.html#cb137-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb137-8"><a href="modelado.html#cb137-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-9"><a href="modelado.html#cb137-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb137-10"><a href="modelado.html#cb137-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb137-11"><a href="modelado.html#cb137-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-12"><a href="modelado.html#cb137-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb137-13"><a href="modelado.html#cb137-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>( (prediccion_knn<span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (prediccion_knn <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb137-14"><a href="modelado.html#cb137-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-15"><a href="modelado.html#cb137-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb137-16"><a href="modelado.html#cb137-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> prediccion_knn <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb137-17"><a href="modelado.html#cb137-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-18"><a href="modelado.html#cb137-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb137-19"><a href="modelado.html#cb137-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb137-20"><a href="modelado.html#cb137-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-21"><a href="modelado.html#cb137-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb137-22"><a href="modelado.html#cb137-22" aria-hidden="true" tabindex="-1"></a>medidas.knn<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb137-23"><a href="modelado.html#cb137-23" aria-hidden="true" tabindex="-1"></a>medidas.knn</span></code></pre></div>
 <pre><code>##    accuracy       error sensitivity specificity   precision         npv 
-## 0.996921182 0.003078818 0.996183206 0.997613365 0.997452229 0.996424315 
+## 0.998152709 0.001847291 0.998727735 0.997613365 0.997458704 0.998805257 
 ##          f1 
-## 0.996817314</code></pre>
-<p>Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.3%.</p>
+## 0.998092816</code></pre>
+<p>Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.1%.</p>
 <p>Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="modelado.html#cb136-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">=</span>(<span class="fu">dim</span>(setas50_train)[<span class="dv">1</span>]<span class="sc">^</span>(<span class="dv">4</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">+</span><span class="fu">dim</span>(setas50_train)[<span class="dv">2</span>])))<span class="sc">*</span><span class="dv">10</span></span>
-<span id="cb136-2"><a href="modelado.html#cb136-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-3"><a href="modelado.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Matriz de las medidas de precision:</span></span>
-<span id="cb136-4"><a href="modelado.html#cb136-4" aria-hidden="true" tabindex="-1"></a>medidas_presicision<span class="ot">=</span><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="fu">round</span>(k),<span class="at">ncol=</span><span class="dv">7</span>)</span>
-<span id="cb136-5"><a href="modelado.html#cb136-5" aria-hidden="true" tabindex="-1"></a>nombres_medidas<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;error&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>, <span class="st">&quot;precision&quot;</span>, <span class="st">&quot;npv&quot;</span>, <span class="st">&quot;f1score&quot;</span>)</span>
-<span id="cb136-6"><a href="modelado.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(medidas_presicision)<span class="ot">=</span>nombres_medidas</span>
-<span id="cb136-7"><a href="modelado.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(k)){</span>
-<span id="cb136-8"><a href="modelado.html#cb136-8" aria-hidden="true" tabindex="-1"></a>  prediccion_knn<span class="ot">=</span><span class="fu">knn</span>(setas_train[k50<span class="sc">$</span>medoid,],setas_test,<span class="at">cl=</span>setas_train<span class="sc">$</span>Letalidad[k50<span class="sc">$</span>medoid],<span class="at">k=</span>i)</span>
-<span id="cb136-9"><a href="modelado.html#cb136-9" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad)<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb136-10"><a href="modelado.html#cb136-10" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">2</span>] <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>medidas_presicision[i,<span class="dv">1</span>]</span>
-<span id="cb136-11"><a href="modelado.html#cb136-11" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">3</span>] <span class="ot">=</span> <span class="fu">sum</span>((prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span><span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb136-12"><a href="modelado.html#cb136-12" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">4</span>] <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb136-13"><a href="modelado.html#cb136-13" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">5</span>] <span class="ot">=</span> <span class="fu">sum</span>( (prediccion_knn<span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (prediccion_knn <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb136-14"><a href="modelado.html#cb136-14" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">6</span>] <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> prediccion_knn <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb136-15"><a href="modelado.html#cb136-15" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">7</span>] <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>medidas_presicision[i,<span class="dv">5</span>]<span class="sc">*</span>medidas_presicision[i,<span class="dv">3</span>] <span class="sc">/</span>(medidas_presicision[i,<span class="dv">5</span>]<span class="sc">+</span>medidas_presicision[i,<span class="dv">3</span>])</span>
-<span id="cb136-16"><a href="modelado.html#cb136-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb136-17"><a href="modelado.html#cb136-17" aria-hidden="true" tabindex="-1"></a>medidas_presicision</span></code></pre></div>
-<pre><code>##        accuracy      error sensitivity specificity precision       npv
-##  [1,] 0.9174877 0.08251232  0.84096692   0.9892601 0.9865672 0.8689727
-##  [2,] 0.8971675 0.10283251  0.79516539   0.9928401 0.9904913 0.8378651
-##  [3,] 0.8934729 0.10652709  0.78371501   0.9964200 0.9951535 0.8308458
-##  [4,] 0.8947044 0.10529557  0.78371501   0.9988067 0.9983793 0.8311817
-##  [5,] 0.8602217 0.13977833  0.71119593   1.0000000 1.0000000 0.7868545
-##  [6,] 0.8294335 0.17056650  0.64758270   1.0000000 1.0000000 0.7515695
-##  [7,] 0.7961823 0.20381773  0.57888041   1.0000000 1.0000000 0.7168520
-##  [8,] 0.7580049 0.24199507  0.50000000   1.0000000 1.0000000 0.6807474
-##  [9,] 0.7315271 0.26847291  0.44529262   1.0000000 1.0000000 0.6577708
-## [10,] 0.6970443 0.30295567  0.37404580   1.0000000 1.0000000 0.6300752
-## [11,] 0.6791872 0.32081281  0.33715013   1.0000000 1.0000000 0.6166299
-## [12,] 0.6447044 0.35529557  0.26590331   1.0000000 1.0000000 0.5922261
-## [13,] 0.6200739 0.37992611  0.21501272   1.0000000 1.0000000 0.5759450
-## [14,] 0.6003695 0.39963054  0.17430025   1.0000000 1.0000000 0.5635508
-## [15,] 0.5775862 0.42241379  0.12722646   1.0000000 1.0000000 0.5498688
-## [16,] 0.5683498 0.43165025  0.10814249   1.0000000 1.0000000 0.5445094
-## [17,] 0.5529557 0.44704433  0.07633588   1.0000000 1.0000000 0.5358056
-## [18,] 0.5387931 0.46120690  0.04707379   1.0000000 1.0000000 0.5280403
-## [19,] 0.5357143 0.46428571  0.04071247   1.0000000 1.0000000 0.5263819
-##          f1score
-##  [1,] 0.90796703
-##  [2,] 0.88214538
-##  [3,] 0.87686833
-##  [4,] 0.87811832
-##  [5,] 0.83122677
-##  [6,] 0.78610039
-##  [7,] 0.73327961
-##  [8,] 0.66666667
-##  [9,] 0.61619718
-## [10,] 0.54444444
-## [11,] 0.50428164
-## [12,] 0.42010050
-## [13,] 0.35392670
-## [14,] 0.29685807
-## [15,] 0.22573363
-## [16,] 0.19517796
-## [17,] 0.14184397
-## [18,] 0.08991495
-## [19,] 0.07823961</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="modelado.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grafico de las medidas de precision</span></span>
-<span id="cb138-2"><a href="modelado.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)),medidas_presicision[,<span class="dv">1</span>],<span class="at">main=</span><span class="st">&quot;Medidas de precision&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Número de k vecinos&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)<span class="sc">+</span><span class="dv">2</span>))</span>
-<span id="cb138-3"><a href="modelado.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
-<span id="cb138-4"><a href="modelado.html#cb138-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)),medidas_presicision[,i],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span>i<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb138-5"><a href="modelado.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)),medidas_presicision[,i],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span>i<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb138-6"><a href="modelado.html#cb138-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb138-7"><a href="modelado.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
-<span id="cb138-8"><a href="modelado.html#cb138-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
-<span id="cb138-9"><a href="modelado.html#cb138-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Ac&quot;</span>,<span class="st">&quot;Er&quot;</span>, <span class="st">&quot;Se&quot;</span>,<span class="st">&quot;Sp&quot;</span>,<span class="st">&quot;Pr&quot;</span>,<span class="st">&quot;NPV&quot;</span>,<span class="st">&quot;F1&quot;</span>),</span>
-<span id="cb138-10"><a href="modelado.html#cb138-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">round</span>(k)<span class="sc">+</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="modelado.html#cb139-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">=</span>(<span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]<span class="sc">^</span>(<span class="dv">4</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">+</span><span class="fu">dim</span>(setas60_train)[<span class="dv">2</span>])))<span class="sc">*</span><span class="dv">10</span></span>
+<span id="cb139-2"><a href="modelado.html#cb139-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-3"><a href="modelado.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Matriz de las medidas de precision hasta 17 k-vecinos</span></span>
+<span id="cb139-4"><a href="modelado.html#cb139-4" aria-hidden="true" tabindex="-1"></a>medidas_presicision<span class="ot">=</span><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="fu">round</span>(k),<span class="at">ncol=</span><span class="dv">7</span>)</span>
+<span id="cb139-5"><a href="modelado.html#cb139-5" aria-hidden="true" tabindex="-1"></a>nombres_medidas<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;error&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>, <span class="st">&quot;precision&quot;</span>, <span class="st">&quot;npv&quot;</span>, <span class="st">&quot;f1score&quot;</span>)</span>
+<span id="cb139-6"><a href="modelado.html#cb139-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(medidas_presicision)<span class="ot">=</span>nombres_medidas</span>
+<span id="cb139-7"><a href="modelado.html#cb139-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(medidas_presicision)<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k),<span class="dv">1</span>)</span>
+<span id="cb139-8"><a href="modelado.html#cb139-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-9"><a href="modelado.html#cb139-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-10"><a href="modelado.html#cb139-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(k)){</span>
+<span id="cb139-11"><a href="modelado.html#cb139-11" aria-hidden="true" tabindex="-1"></a>  prediccion_knn<span class="ot">=</span><span class="fu">knn</span>(setas60_train,setas60_test,<span class="at">cl=</span>setas_train<span class="sc">$</span>Letalidad,<span class="at">k=</span>i)</span>
+<span id="cb139-12"><a href="modelado.html#cb139-12" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad)<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb139-13"><a href="modelado.html#cb139-13" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">2</span>] <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>medidas_presicision[i,<span class="dv">1</span>]</span>
+<span id="cb139-14"><a href="modelado.html#cb139-14" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">3</span>] <span class="ot">=</span> <span class="fu">sum</span>((prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span><span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb139-15"><a href="modelado.html#cb139-15" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">4</span>] <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test<span class="sc">$</span>Letalidad <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb139-16"><a href="modelado.html#cb139-16" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">5</span>] <span class="ot">=</span> <span class="fu">sum</span>( (prediccion_knn<span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad) <span class="sc">&amp;</span> (prediccion_knn <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb139-17"><a href="modelado.html#cb139-17" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">6</span>] <span class="ot">=</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> setas_test<span class="sc">$</span>Letalidad <span class="sc">&amp;</span> prediccion_knn <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_knn <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb139-18"><a href="modelado.html#cb139-18" aria-hidden="true" tabindex="-1"></a>  medidas_presicision[i,<span class="dv">7</span>] <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>medidas_presicision[i,<span class="dv">5</span>]<span class="sc">*</span>medidas_presicision[i,<span class="dv">3</span>]<span class="sc">/</span>(medidas_presicision[i,<span class="dv">5</span>]<span class="sc">+</span>medidas_presicision[i,<span class="dv">3</span>])</span>
+<span id="cb139-19"><a href="modelado.html#cb139-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb139-20"><a href="modelado.html#cb139-20" aria-hidden="true" tabindex="-1"></a>medidas_presicision</span></code></pre></div>
+<pre><code>##     accuracy       error sensitivity specificity precision       npv   f1score
+## 1  0.9981527 0.001847291   0.9987277   0.9976134 0.9974587 0.9988053 0.9980928
+## 2  0.9950739 0.004926108   0.9961832   0.9940334 0.9936548 0.9964115 0.9949174
+## 3  0.9926108 0.007389163   0.9949109   0.9904535 0.9898734 0.9952038 0.9923858
+## 4  0.9956897 0.004310345   0.9987277   0.9928401 0.9924147 0.9987995 0.9955612
+## 5  0.9956897 0.004310345   0.9974555   0.9940334 0.9936629 0.9976048 0.9955556
+## 6  0.9938424 0.006157635   0.9936387   0.9940334 0.9936387 0.9940334 0.9936387
+## 7  0.9938424 0.006157635   0.9949109   0.9928401 0.9923858 0.9952153 0.9936468
+## 8  0.9907635 0.009236453   0.9898219   0.9916468 0.9910828 0.9904648 0.9904519
+## 9  0.9913793 0.008620690   0.9910941   0.9916468 0.9910941 0.9916468 0.9910941
+## 10 0.9913793 0.008620690   0.9910941   0.9916468 0.9910941 0.9916468 0.9910941
+## 11 0.9907635 0.009236453   0.9898219   0.9916468 0.9910828 0.9904648 0.9904519
+## 12 0.9907635 0.009236453   0.9898219   0.9916468 0.9910828 0.9904648 0.9904519
+## 13 0.9883005 0.011699507   0.9860051   0.9904535 0.9897829 0.9869203 0.9878904
+## 14 0.9858374 0.014162562   0.9847328   0.9868735 0.9859873 0.9856973 0.9853596
+## 15 0.9864532 0.013546798   0.9834606   0.9892601 0.9884910 0.9845606 0.9859694
+## 16 0.9852217 0.014778325   0.9809160   0.9892601 0.9884615 0.9822275 0.9846743
+## 17 0.9864532 0.013546798   0.9847328   0.9880668 0.9872449 0.9857143 0.9859873</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="modelado.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grafico de las medidas de precision</span></span>
+<span id="cb141-2"><a href="modelado.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)),medidas_presicision[,<span class="dv">1</span>],<span class="at">main=</span><span class="st">&quot;Medidas de precision&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Número de k vecinos&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)<span class="sc">+</span><span class="dv">2</span>))</span>
+<span id="cb141-3"><a href="modelado.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb141-4"><a href="modelado.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)),medidas_presicision[,i],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span>i<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb141-5"><a href="modelado.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">round</span>(k)),medidas_presicision[,i],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span>i<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb141-6"><a href="modelado.html#cb141-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb141-7"><a href="modelado.html#cb141-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,   </span>
+<span id="cb141-8"><a href="modelado.html#cb141-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
+<span id="cb141-9"><a href="modelado.html#cb141-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Ac&quot;</span>,<span class="st">&quot;Er&quot;</span>, <span class="st">&quot;Se&quot;</span>,<span class="st">&quot;Sp&quot;</span>,<span class="st">&quot;Pr&quot;</span>,<span class="st">&quot;NPV&quot;</span>,<span class="st">&quot;F1&quot;</span>),</span>
+<span id="cb141-10"><a href="modelado.html#cb141-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">round</span>(k)<span class="sc">+</span><span class="dv">1</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/knn%20cross-validation-1.png" width="672" /></p>
-<p>Observamos que para un número de vecinos mayor que 4, las medidas de precisión van empeorando, lo vemos muy claramente en el la medida de error y de sensibilidad, pasa de haber solo un 10% de error a un 13% y de una sensibilidad del casi 80% a un 71%. Luego cualquier número de vecino que eligamos menor de 5, obtendremos unas medidas bastante parecidas. Entonces como dijimos en el caso del vecino más cercano, el grado de acierto al predecir es alto.</p>
+<p>Observamos que al ir aumentando el número de k-vecinos el error va aumentando pero sigue siendo muy pequeño, el mayor error cometido con el número de k-vecinos probado es de 1,4%, bastante despreciable como para descartar este modelo por ello.</p>
 </div>
 <div id="arboles-de-decisión" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Arboles de Decisión</h2>
 <p>Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="modelado.html#cb139-1" aria-hidden="true" tabindex="-1"></a>setas50_train.respuesta<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(setas_train[,<span class="dv">1</span>],setas50_train))</span>
-<span id="cb139-2"><a href="modelado.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(setas50_train.respuesta)[<span class="dv">1</span>]<span class="ot">=</span><span class="st">&quot;Letalidad&quot;</span></span>
-<span id="cb139-3"><a href="modelado.html#cb139-3" aria-hidden="true" tabindex="-1"></a>arbol<span class="ot">=</span><span class="fu">rpart</span>(<span class="fu">as.factor</span>(setas50_train.respuesta<span class="sc">$</span>Letalidad)<span class="sc">~</span>., <span class="at">data=</span>setas50_train.respuesta,<span class="at">method=</span><span class="st">&quot;class&quot;</span>)</span>
-<span id="cb139-4"><a href="modelado.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(arbol)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="modelado.html#cb142-1" aria-hidden="true" tabindex="-1"></a>setas60_train.respuesta<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(setas_train[,<span class="dv">1</span>],setas60_train))</span>
+<span id="cb142-2"><a href="modelado.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(setas60_train.respuesta)[<span class="dv">1</span>]<span class="ot">=</span><span class="st">&quot;Letalidad&quot;</span></span>
+<span id="cb142-3"><a href="modelado.html#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-4"><a href="modelado.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Árbol de decisión:</span></span>
+<span id="cb142-5"><a href="modelado.html#cb142-5" aria-hidden="true" tabindex="-1"></a>arbol<span class="ot">=</span><span class="fu">rpart</span>(<span class="fu">as.factor</span>(setas60_train.respuesta<span class="sc">$</span>Letalidad)<span class="sc">~</span>., <span class="at">data=</span>setas60_train.respuesta,<span class="at">method=</span><span class="st">&quot;class&quot;</span>)</span>
+<span id="cb142-6"><a href="modelado.html#cb142-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(arbol)</span></code></pre></div>
 <pre><code>## Call:
-## rpart(formula = as.factor(setas50_train.respuesta$Letalidad) ~ 
-##     ., data = setas50_train.respuesta, method = &quot;class&quot;)
+## rpart(formula = as.factor(setas60_train.respuesta$Letalidad) ~ 
+##     ., data = setas60_train.respuesta, method = &quot;class&quot;)
 ##   n= 4874 
 ## 
 ##           CP nsplit  rel error    xerror        xstd
 ## 1 0.72023810      0 1.00000000 1.0000000 0.014832389
-## 2 0.03656463      1 0.27976190 0.2797619 0.010143391
-## 3 0.02806122      2 0.24319728 0.2240646 0.009217646
-## 4 0.01743197      5 0.15731293 0.1547619 0.007802951
-## 5 0.01488095      6 0.13988095 0.1322279 0.007254798
-## 6 0.01296769      7 0.12500000 0.1271259 0.007122805
-## 7 0.01147959      9 0.09906463 0.1147959 0.006789995
-## 8 0.01000000     10 0.08758503 0.1058673 0.006535449
+## 2 0.04676871      1 0.27976190 0.2797619 0.010143391
+## 3 0.04081633      2 0.23299320 0.2555272 0.009759411
+## 4 0.01785714      3 0.19217687 0.1994048 0.008753451
+## 5 0.01147959      4 0.17431973 0.1649660 0.008034621
+## 6 0.01000000      9 0.09438776 0.1232993 0.007021683
 ## 
 ## Variable importance
-##  v638   v51  v713  v749 v4491 v1373 v3944 v3945 v3221 v3900 v2951 v1626 v1799 
-##    16    16    13    11    11    11     2     2     2     2     1     1     1 
-## v1602 v1709 v1638 v1811  v808 v1909 v1441 v1076 v1489 v2019 v2766 
-##     1     1     1     1     1     1     1     1     1     1     1 
+##  v638   v51  v749  v713 v1373 v1152 v4818 v4537 v1693 v1121 v4131 v1799 v1638 
+##    16    16    14    13    12    12     2     1     1     1     1     1     1 
+## v1989 v1358 v1787 v4862 v1709 v1869 v2951 v2435 
+##     1     1     1     1     1     1     1     1 
 ## 
 ## Node number 1: 4874 observations,    complexity param=0.7202381
 ##   predicted class=0  expected loss=0.4825605  P(node) =1
@@ -461,414 +463,396 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    probabilities: 0.517 0.483 
 ##   left son=2 (2994 obs) right son=3 (1880 obs)
 ##   Primary splits:
-##       v638  &lt; 0.6108108 to the left,  improve=1340.4800, (0 missing)
-##       v51   &lt; 0.6108108 to the left,  improve=1330.1000, (0 missing)
-##       v713  &lt; 0.6108108 to the left,  improve=1143.0300, (0 missing)
-##       v4491 &lt; 0.6443609 to the left,  improve= 954.3761, (0 missing)
-##       v1489 &lt; 0.5732575 to the left,  improve= 881.4827, (0 missing)
+##       v638  &lt; 0.6108108 to the left,  improve=1340.480, (0 missing)
+##       v51   &lt; 0.6108108 to the left,  improve=1330.100, (0 missing)
+##       v713  &lt; 0.6108108 to the left,  improve=1143.030, (0 missing)
+##       v4537 &lt; 0.5615616 to the right, improve=1041.929, (0 missing)
+##       v1152 &lt; 0.6343402 to the left,  improve=1034.149, (0 missing)
 ##   Surrogate splits:
 ##       v51   &lt; 0.6108108 to the left,  agree=0.995, adj=0.988, (0 split)
 ##       v713  &lt; 0.6108108 to the left,  agree=0.932, adj=0.823, (0 split)
-##       v4491 &lt; 0.6443609 to the left,  agree=0.903, adj=0.749, (0 split)
 ##       v749  &lt; 0.5470085 to the left,  agree=0.895, adj=0.729, (0 split)
+##       v1152 &lt; 0.6343402 to the left,  agree=0.894, adj=0.724, (0 split)
 ##       v1373 &lt; 0.5470085 to the left,  agree=0.887, adj=0.706, (0 split)
 ## 
-## Node number 2: 2994 observations,    complexity param=0.03656463
+## Node number 2: 2994 observations,    complexity param=0.04676871
 ##   predicted class=0  expected loss=0.1887108  P(node) =0.6142799
 ##     class counts:  2429   565
 ##    probabilities: 0.811 0.189 
-##   left son=4 (2782 obs) right son=5 (212 obs)
+##   left son=4 (2604 obs) right son=5 (390 obs)
 ##   Primary splits:
-##       v3900 &lt; 0.4928571 to the right, improve=120.6115, (0 missing)
+##       v4818 &lt; 0.451952  to the right, improve=183.4793, (0 missing)
+##       v4131 &lt; 0.5067568 to the right, improve=175.4449, (0 missing)
 ##       v2951 &lt; 0.2327327 to the right, improve=116.2098, (0 missing)
-##       v3221 &lt; 0.3137255 to the right, improve=115.1618, (0 missing)
 ##       v1369 &lt; 0.3867521 to the left,  improve=114.3779, (0 missing)
 ##       v1993 &lt; 0.3971471 to the left,  improve=113.5999, (0 missing)
 ##   Surrogate splits:
-##       v3221 &lt; 0.3801587 to the right, agree=0.958, adj=0.406, (0 split)
-##       v3945 &lt; 0.4281046 to the right, agree=0.956, adj=0.377, (0 split)
-##       v3944 &lt; 0.3801587 to the right, agree=0.955, adj=0.368, (0 split)
-##       v2951 &lt; 0.1779279 to the right, agree=0.936, adj=0.099, (0 split)
-##       v3094 &lt; 0.8141026 to the left,  agree=0.933, adj=0.047, (0 split)
+##       v4131 &lt; 0.5067568 to the right, agree=0.929, adj=0.451, (0 split)
+##       v3944 &lt; 0.3621849 to the right, agree=0.900, adj=0.233, (0 split)
+##       v4537 &lt; 0.5424837 to the right, agree=0.897, adj=0.208, (0 split)
+##       v749  &lt; 0.1315789 to the right, agree=0.881, adj=0.085, (0 split)
+##       v2951 &lt; 0.1945946 to the right, agree=0.878, adj=0.062, (0 split)
 ## 
-## Node number 3: 1880 observations,    complexity param=0.01743197
+## Node number 3: 1880 observations,    complexity param=0.01785714
 ##   predicted class=1  expected loss=0.04946809  P(node) =0.3857201
 ##     class counts:    93  1787
 ##    probabilities: 0.049 0.951 
-##   left son=6 (41 obs) right son=7 (1839 obs)
+##   left son=6 (42 obs) right son=7 (1838 obs)
 ##   Primary splits:
-##       v1076 &lt; 0.5588235 to the left,  improve=75.73966, (0 missing)
-##       v4491 &lt; 0.5492063 to the left,  improve=64.44555, (0 missing)
+##       v1152 &lt; 0.507563  to the left,  improve=77.62919, (0 missing)
+##       v4537 &lt; 0.7472178 to the right, improve=73.91652, (0 missing)
 ##       v1489 &lt; 0.5199147 to the left,  improve=49.58558, (0 missing)
+##       v2435 &lt; 0.8055556 to the right, improve=47.64144, (0 missing)
 ##       v2850 &lt; 0.5615616 to the left,  improve=40.34677, (0 missing)
-##       v1614 &lt; 0.5409357 to the left,  improve=30.84934, (0 missing)
 ##   Surrogate splits:
-##       v1489 &lt; 0.451952  to the left,  agree=0.988, adj=0.439, (0 split)
-##       v51   &lt; 0.5945946 to the left,  agree=0.982, adj=0.195, (0 split)
-##       v713  &lt; 0.5405405 to the left,  agree=0.982, adj=0.171, (0 split)
-##       v2850 &lt; 0.451952  to the left,  agree=0.982, adj=0.171, (0 split)
-##       v2551 &lt; 0.7606838 to the right, agree=0.981, adj=0.122, (0 split)
+##       v4537 &lt; 0.7472178 to the right, agree=0.994, adj=0.714, (0 split)
+##       v2435 &lt; 0.8055556 to the right, agree=0.991, adj=0.619, (0 split)
+##       v1489 &lt; 0.451952  to the left,  agree=0.987, adj=0.429, (0 split)
+##       v2850 &lt; 0.451952  to the left,  agree=0.984, adj=0.262, (0 split)
+##       v51   &lt; 0.5945946 to the left,  agree=0.982, adj=0.190, (0 split)
 ## 
-## Node number 4: 2782 observations,    complexity param=0.02806122
-##   predicted class=0  expected loss=0.1495327  P(node) =0.5707838
-##     class counts:  2366   416
-##    probabilities: 0.850 0.150 
-##   left son=8 (1954 obs) right son=9 (828 obs)
+## Node number 4: 2604 observations,    complexity param=0.01147959
+##   predicted class=0  expected loss=0.1209677  P(node) =0.5342634
+##     class counts:  2289   315
+##    probabilities: 0.879 0.121 
+##   left son=8 (1483 obs) right son=9 (1121 obs)
 ##   Primary splits:
-##       v638  &lt; 0.4027027 to the right, improve=106.75290, (0 missing)
-##       v51   &lt; 0.4027027 to the right, improve= 90.81071, (0 missing)
-##       v1369 &lt; 0.3867521 to the left,  improve= 77.95269, (0 missing)
-##       v1993 &lt; 0.413229  to the left,  improve= 74.77820, (0 missing)
-##       v1626 &lt; 0.3971471 to the left,  improve= 72.64450, (0 missing)
+##       v638  &lt; 0.4547297 to the right, improve=66.22533, (0 missing)
+##       v2951 &lt; 0.2111111 to the right, improve=58.00380, (0 missing)
+##       v51   &lt; 0.4547297 to the right, improve=53.20137, (0 missing)
+##       v1369 &lt; 0.3867521 to the left,  improve=46.33612, (0 missing)
+##       v1993 &lt; 0.413229  to the left,  improve=44.37572, (0 missing)
 ##   Surrogate splits:
-##       v51   &lt; 0.4027027 to the right, agree=0.934, adj=0.778, (0 split)
-##       v713  &lt; 0.3506757 to the right, agree=0.873, adj=0.572, (0 split)
-##       v4491 &lt; 0.4796992 to the right, agree=0.730, adj=0.093, (0 split)
-##       v2766 &lt; 0.7332859 to the left,  agree=0.721, adj=0.062, (0 split)
-##       v3094 &lt; 0.5530146 to the right, agree=0.709, adj=0.023, (0 split)
+##       v51   &lt; 0.4547297 to the right, agree=0.893, adj=0.752, (0 split)
+##       v713  &lt; 0.428475  to the right, agree=0.783, adj=0.496, (0 split)
+##       v4131 &lt; 0.5779014 to the right, agree=0.705, adj=0.316, (0 split)
+##       v4537 &lt; 0.7746032 to the left,  agree=0.688, adj=0.276, (0 split)
+##       v2766 &lt; 0.725976  to the left,  agree=0.641, adj=0.166, (0 split)
 ## 
-## Node number 5: 212 observations,    complexity param=0.01296769
-##   predicted class=1  expected loss=0.2971698  P(node) =0.0434961
-##     class counts:    63   149
-##    probabilities: 0.297 0.703 
-##   left son=10 (127 obs) right son=11 (85 obs)
+## Node number 5: 390 observations,    complexity param=0.04081633
+##   predicted class=1  expected loss=0.3589744  P(node) =0.08001641
+##     class counts:   140   250
+##    probabilities: 0.359 0.641 
+##   left son=10 (106 obs) right son=11 (284 obs)
 ##   Primary splits:
-##       v3221 &lt; 0.3327731 to the right, improve=25.06054, (0 missing)
-##       v3944 &lt; 0.3621849 to the right, improve=25.06054, (0 missing)
-##       v3900 &lt; 0.3497615 to the right, improve=25.06054, (0 missing)
-##       v3945 &lt; 0.4920509 to the right, improve=25.06054, (0 missing)
-##       v2106 &lt; 0.3423423 to the left,  improve=21.81702, (0 missing)
+##       v1799 &lt; 0.3423423 to the left,  improve=102.6701, (0 missing)
+##       v749  &lt; 0.2327327 to the left,  improve=101.8730, (0 missing)
+##       v1989 &lt; 0.2268848 to the left,  improve=101.7845, (0 missing)
+##       v1787 &lt; 0.2802276 to the left,  improve=101.7845, (0 missing)
+##       v1811 &lt; 0.2268848 to the left,  improve=101.7845, (0 missing)
 ##   Surrogate splits:
-##       v3944 &lt; 0.3621849 to the right, agree=1.000, adj=1.000, (0 split)
-##       v3900 &lt; 0.3497615 to the right, agree=1.000, adj=1.000, (0 split)
-##       v3945 &lt; 0.4920509 to the right, agree=1.000, adj=1.000, (0 split)
-##       v713  &lt; 0.5587838 to the left,  agree=0.934, adj=0.835, (0 split)
-##       v2240 &lt; 0.5470085 to the left,  agree=0.925, adj=0.812, (0 split)
+##       v1989 &lt; 0.2875375 to the left,  agree=0.985, adj=0.943, (0 split)
+##       v1358 &lt; 0.3598862 to the left,  agree=0.977, adj=0.915, (0 split)
+##       v749  &lt; 0.2327327 to the left,  agree=0.972, adj=0.896, (0 split)
+##       v1121 &lt; 0.2875375 to the left,  agree=0.972, adj=0.896, (0 split)
+##       v1787 &lt; 0.2802276 to the left,  agree=0.969, adj=0.887, (0 split)
 ## 
-## Node number 6: 41 observations
-##   predicted class=0  expected loss=0  P(node) =0.008411982
-##     class counts:    41     0
+## Node number 6: 42 observations
+##   predicted class=0  expected loss=0  P(node) =0.008617152
+##     class counts:    42     0
 ##    probabilities: 1.000 0.000 
 ## 
-## Node number 7: 1839 observations
-##   predicted class=1  expected loss=0.02827624  P(node) =0.3773082
-##     class counts:    52  1787
+## Node number 7: 1838 observations
+##   predicted class=1  expected loss=0.02774755  P(node) =0.377103
+##     class counts:    51  1787
 ##    probabilities: 0.028 0.972 
 ## 
-## Node number 8: 1954 observations,    complexity param=0.01147959
-##   predicted class=0  expected loss=0.0593654  P(node) =0.4009027
-##     class counts:  1838   116
-##    probabilities: 0.941 0.059 
-##   left son=16 (1921 obs) right son=17 (33 obs)
-##   Primary splits:
-##       v2951 &lt; 0.2111111 to the right, improve=48.47284, (0 missing)
-##       v2551 &lt; 0.5       to the right, improve=26.64284, (0 missing)
-##       v638  &lt; 0.4547297 to the right, improve=17.00953, (0 missing)
-##       v1993 &lt; 0.413229  to the left,  improve=13.66701, (0 missing)
-##       v2315 &lt; 0.402834  to the left,  improve=13.35626, (0 missing)
+## Node number 8: 1483 observations
+##   predicted class=0  expected loss=0.0229265  P(node) =0.3042675
+##     class counts:  1449    34
+##    probabilities: 0.977 0.023 
 ## 
-## Node number 9: 828 observations,    complexity param=0.02806122
-##   predicted class=0  expected loss=0.3623188  P(node) =0.169881
-##     class counts:   528   300
-##    probabilities: 0.638 0.362 
-##   left son=18 (504 obs) right son=19 (324 obs)
+## Node number 9: 1121 observations,    complexity param=0.01147959
+##   predicted class=0  expected loss=0.250669  P(node) =0.2299959
+##     class counts:   840   281
+##    probabilities: 0.749 0.251 
+##   left son=18 (1031 obs) right son=19 (90 obs)
 ##   Primary splits:
-##       v3944 &lt; 0.5615616 to the right, improve=124.06900, (0 missing)
-##       v1626 &lt; 0.5323887 to the right, improve=102.95330, (0 missing)
-##       v3945 &lt; 0.6711712 to the right, improve=100.30040, (0 missing)
-##       v1614 &lt; 0.428475  to the right, improve= 89.84562, (0 missing)
-##       v2584 &lt; 0.5843455 to the right, improve= 86.74496, (0 missing)
+##       v4862 &lt; 0.6882591 to the left,  improve=59.05920, (0 missing)
+##       v2584 &lt; 0.5323887 to the right, improve=55.59564, (0 missing)
+##       v1638 &lt; 0.4935897 to the left,  improve=47.77612, (0 missing)
+##       v1369 &lt; 0.4401709 to the left,  improve=46.38079, (0 missing)
+##       v1626 &lt; 0.5843455 to the right, improve=43.23114, (0 missing)
 ##   Surrogate splits:
-##       v1626 &lt; 0.5323887 to the right, agree=0.905, adj=0.756, (0 split)
-##       v3945 &lt; 0.6711712 to the right, agree=0.894, adj=0.728, (0 split)
-##       v3221 &lt; 0.5067568 to the right, agree=0.876, adj=0.682, (0 split)
-##       v1909 &lt; 0.428475  to the right, agree=0.861, adj=0.645, (0 split)
-##       v1441 &lt; 0.428475  to the right, agree=0.860, adj=0.642, (0 split)
+##       v2584 &lt; 0.5323887 to the right, agree=0.946, adj=0.333, (0 split)
+##       v3422 &lt; 0.5323887 to the right, agree=0.939, adj=0.244, (0 split)
+##       v2362 &lt; 0.5       to the right, agree=0.928, adj=0.100, (0 split)
+##       v1827 &lt; 0.4935989 to the right, agree=0.923, adj=0.044, (0 split)
+##       v1152 &lt; 0.6989489 to the left,  agree=0.923, adj=0.044, (0 split)
 ## 
-## Node number 10: 127 observations,    complexity param=0.01296769
-##   predicted class=1  expected loss=0.496063  P(node) =0.02605663
-##     class counts:    63    64
-##    probabilities: 0.496 0.504 
-##   left son=20 (61 obs) right son=21 (66 obs)
+## Node number 10: 106 observations
+##   predicted class=0  expected loss=0.04716981  P(node) =0.02174805
+##     class counts:   101     5
+##    probabilities: 0.953 0.047 
+## 
+## Node number 11: 284 observations
+##   predicted class=1  expected loss=0.1373239  P(node) =0.05826836
+##     class counts:    39   245
+##    probabilities: 0.137 0.863 
+## 
+## Node number 18: 1031 observations,    complexity param=0.01147959
+##   predicted class=0  expected loss=0.2027158  P(node) =0.2115306
+##     class counts:   822   209
+##    probabilities: 0.797 0.203 
+##   left son=36 (993 obs) right son=37 (38 obs)
 ##   Primary splits:
-##       v2951 &lt; 0.2875375 to the right, improve=59.61728, (0 missing)
-##       v749  &lt; 0.4206514 to the right, improve=27.54101, (0 missing)
-##       v1424 &lt; 0.4206514 to the right, improve=27.54101, (0 missing)
-##       v1373 &lt; 0.4324324 to the right, improve=27.54101, (0 missing)
-##       v1489 &lt; 0.5067568 to the right, improve=26.51829, (0 missing)
+##       v2951 &lt; 0.2674603 to the right, improve=37.78867, (0 missing)
+##       v1369 &lt; 0.3867521 to the left,  improve=30.47815, (0 missing)
+##       v4818 &lt; 0.5067568 to the right, improve=30.32054, (0 missing)
+##       v1626 &lt; 0.5843455 to the right, improve=29.38331, (0 missing)
+##       v4537 &lt; 0.8600954 to the left,  improve=28.57896, (0 missing)
 ##   Surrogate splits:
-##       v749  &lt; 0.4206514 to the right, agree=0.819, adj=0.623, (0 split)
-##       v1424 &lt; 0.4206514 to the right, agree=0.819, adj=0.623, (0 split)
-##       v1373 &lt; 0.4324324 to the right, agree=0.819, adj=0.623, (0 split)
-##       v1489 &lt; 0.5067568 to the right, agree=0.811, adj=0.607, (0 split)
-##       v1693 &lt; 0.4324324 to the right, agree=0.803, adj=0.590, (0 split)
+##       v4537 &lt; 0.8600954 to the left,  agree=0.979, adj=0.421, (0 split)
 ## 
-## Node number 11: 85 observations
-##   predicted class=1  expected loss=0  P(node) =0.01743947
-##     class counts:     0    85
-##    probabilities: 0.000 1.000 
+## Node number 19: 90 observations
+##   predicted class=1  expected loss=0.2  P(node) =0.01846533
+##     class counts:    18    72
+##    probabilities: 0.200 0.800 
 ## 
-## Node number 16: 1921 observations
-##   predicted class=0  expected loss=0.04476835  P(node) =0.3941321
-##     class counts:  1835    86
-##    probabilities: 0.955 0.045 
-## 
-## Node number 17: 33 observations
-##   predicted class=1  expected loss=0.09090909  P(node) =0.00677062
-##     class counts:     3    30
-##    probabilities: 0.091 0.909 
-## 
-## Node number 18: 504 observations,    complexity param=0.01488095
-##   predicted class=0  expected loss=0.1428571  P(node) =0.1034058
-##     class counts:   432    72
-##    probabilities: 0.857 0.143 
-##   left son=36 (459 obs) right son=37 (45 obs)
+## Node number 36: 993 observations,    complexity param=0.01147959
+##   predicted class=0  expected loss=0.1762336  P(node) =0.2037341
+##     class counts:   818   175
+##    probabilities: 0.824 0.176 
+##   left son=72 (396 obs) right son=73 (597 obs)
 ##   Primary splits:
-##       v2019 &lt; 0.6363023 to the right, improve=55.00156, (0 missing)
-##       v2766 &lt; 0.6363023 to the right, improve=48.24636, (0 missing)
-##       v2839 &lt; 0.5323887 to the right, improve=41.91914, (0 missing)
-##       v2584 &lt; 0.5843455 to the right, improve=36.63196, (0 missing)
-##       v713  &lt; 0.3765182 to the left,  improve=34.57366, (0 missing)
+##       v1638 &lt; 0.4935897 to the left,  improve=36.35883, (0 missing)
+##       v808  &lt; 0.4590643 to the left,  improve=31.25419, (0 missing)
+##       v1369 &lt; 0.402834  to the left,  improve=24.34351, (0 missing)
+##       v4862 &lt; 0.6363023 to the left,  improve=23.89162, (0 missing)
+##       v1373 &lt; 0.3598862 to the left,  improve=23.03469, (0 missing)
 ##   Surrogate splits:
-##       v2766 &lt; 0.6363023 to the right, agree=0.988, adj=0.867, (0 split)
-##       v2839 &lt; 0.5323887 to the right, agree=0.964, adj=0.600, (0 split)
-##       v2551 &lt; 0.6363023 to the right, agree=0.958, adj=0.533, (0 split)
-##       v2584 &lt; 0.5843455 to the right, agree=0.958, adj=0.533, (0 split)
-##       v3094 &lt; 0.5323887 to the right, agree=0.948, adj=0.422, (0 split)
+##       v808  &lt; 0.4401709 to the left,  agree=0.941, adj=0.851, (0 split)
+##       v749  &lt; 0.3867521 to the left,  agree=0.917, adj=0.793, (0 split)
+##       v1373 &lt; 0.3867521 to the left,  agree=0.914, adj=0.785, (0 split)
+##       v1693 &lt; 0.3867521 to the left,  agree=0.869, adj=0.672, (0 split)
+##       v1121 &lt; 0.3598862 to the left,  agree=0.857, adj=0.641, (0 split)
 ## 
-## Node number 19: 324 observations,    complexity param=0.02806122
-##   predicted class=1  expected loss=0.2962963  P(node) =0.06647517
-##     class counts:    96   228
-##    probabilities: 0.296 0.704 
-##   left son=38 (70 obs) right son=39 (254 obs)
+## Node number 37: 38 observations
+##   predicted class=1  expected loss=0.1052632  P(node) =0.007796471
+##     class counts:     4    34
+##    probabilities: 0.105 0.895 
+## 
+## Node number 72: 396 observations
+##   predicted class=0  expected loss=0.01010101  P(node) =0.08124744
+##     class counts:   392     4
+##    probabilities: 0.990 0.010 
+## 
+## Node number 73: 597 observations,    complexity param=0.01147959
+##   predicted class=0  expected loss=0.2864322  P(node) =0.1224867
+##     class counts:   426   171
+##    probabilities: 0.714 0.286 
+##   left son=146 (437 obs) right son=147 (160 obs)
 ##   Primary splits:
-##       v1799 &lt; 0.3423423 to the left,  improve=88.43395, (0 missing)
-##       v1709 &lt; 0.3971471 to the left,  improve=86.20078, (0 missing)
-##       v1602 &lt; 0.2469636 to the left,  improve=84.87984, (0 missing)
-##       v1358 &lt; 0.3423423 to the left,  improve=84.66338, (0 missing)
-##       v1993 &lt; 0.3971471 to the left,  improve=82.08786, (0 missing)
+##       v749  &lt; 0.428475  to the right, improve=126.80130, (0 missing)
+##       v1869 &lt; 0.428475  to the right, improve=101.37780, (0 missing)
+##       v1373 &lt; 0.428475  to the right, improve= 97.91515, (0 missing)
+##       v1626 &lt; 0.5323887 to the right, improve= 95.47279, (0 missing)
+##       v1693 &lt; 0.428475  to the right, improve= 92.78431, (0 missing)
 ##   Surrogate splits:
-##       v1602 &lt; 0.2469636 to the left,  agree=0.994, adj=0.971, (0 split)
-##       v1709 &lt; 0.3867521 to the left,  agree=0.994, adj=0.971, (0 split)
-##       v1638 &lt; 0.3971471 to the left,  agree=0.988, adj=0.943, (0 split)
-##       v1811 &lt; 0.2896743 to the left,  agree=0.988, adj=0.943, (0 split)
-##       v808  &lt; 0.3423423 to the left,  agree=0.988, adj=0.943, (0 split)
+##       v1373 &lt; 0.428475  to the right, agree=0.941, adj=0.781, (0 split)
+##       v1693 &lt; 0.428475  to the right, agree=0.926, adj=0.725, (0 split)
+##       v1638 &lt; 0.5323887 to the right, agree=0.866, adj=0.500, (0 split)
+##       v1709 &lt; 0.5323887 to the right, agree=0.853, adj=0.450, (0 split)
+##       v1869 &lt; 0.428475  to the right, agree=0.853, adj=0.450, (0 split)
 ## 
-## Node number 20: 61 observations
-##   predicted class=0  expected loss=0  P(node) =0.01251539
-##     class counts:    61     0
-##    probabilities: 1.000 0.000 
+## Node number 146: 437 observations
+##   predicted class=0  expected loss=0.08924485  P(node) =0.08965942
+##     class counts:   398    39
+##    probabilities: 0.911 0.089 
 ## 
-## Node number 21: 66 observations
-##   predicted class=1  expected loss=0.03030303  P(node) =0.01354124
-##     class counts:     2    64
-##    probabilities: 0.030 0.970 
-## 
-## Node number 36: 459 observations
-##   predicted class=0  expected loss=0.06971678  P(node) =0.09417316
-##     class counts:   427    32
-##    probabilities: 0.930 0.070 
-## 
-## Node number 37: 45 observations
-##   predicted class=1  expected loss=0.1111111  P(node) =0.009232663
-##     class counts:     5    40
-##    probabilities: 0.111 0.889 
-## 
-## Node number 38: 70 observations
-##   predicted class=0  expected loss=0  P(node) =0.01436192
-##     class counts:    70     0
-##    probabilities: 1.000 0.000 
-## 
-## Node number 39: 254 observations
-##   predicted class=1  expected loss=0.1023622  P(node) =0.05211325
-##     class counts:    26   228
-##    probabilities: 0.102 0.898</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="modelado.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Árbol de decisión:</span></span>
-<span id="cb141-2"><a href="modelado.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(arbol)</span></code></pre></div>
+## Node number 147: 160 observations
+##   predicted class=1  expected loss=0.175  P(node) =0.03282725
+##     class counts:    28   132
+##    probabilities: 0.175 0.825</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="modelado.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(arbol)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/arbol%20de%20decision-1.png" width="672" /></p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="modelado.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa:</span></span>
-<span id="cb142-2"><a href="modelado.html#cb142-2" aria-hidden="true" tabindex="-1"></a>setas50_test.data<span class="ot">=</span><span class="fu">as.data.frame</span>(setas50_test)</span>
-<span id="cb142-3"><a href="modelado.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(setas50_test.data)<span class="ot">=</span><span class="fu">colnames</span>(setas50_train.respuesta)[<span class="dv">2</span><span class="sc">:</span><span class="dv">51</span>]</span>
-<span id="cb142-4"><a href="modelado.html#cb142-4" aria-hidden="true" tabindex="-1"></a>prediccion.arbol<span class="ot">=</span><span class="fu">round</span>(<span class="fu">predict</span>(arbol,setas50_test.data)[,<span class="dv">2</span>])</span>
-<span id="cb142-5"><a href="modelado.html#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion.arbol,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="modelado.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa:</span></span>
+<span id="cb145-2"><a href="modelado.html#cb145-2" aria-hidden="true" tabindex="-1"></a>setas60_test.data<span class="ot">=</span><span class="fu">as.data.frame</span>(setas60_test)</span>
+<span id="cb145-3"><a href="modelado.html#cb145-3" aria-hidden="true" tabindex="-1"></a>prediccion.arbol<span class="ot">=</span><span class="fu">round</span>(<span class="fu">predict</span>(arbol,setas60_test.data)[,<span class="dv">2</span>])</span>
+<span id="cb145-4"><a href="modelado.html#cb145-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion.arbol,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##                 
 ## prediccion.arbol   0   1
-##                0 800  57
-##                1  38 729</code></pre>
-<p>El gráfico resultante no es interpretable pues nuestro datos están basado en la distancia de las observaciones a los medoides que hemos calculado anteriormente, pero podemos decir que los medoides que toma como más importantes son las observaciones 638, 51 y 713.</p>
+##                0 776  39
+##                1  62 747</code></pre>
+<p>El gráfico resultante podemos interpretarlo basándonos en cuánto se parece una seta a los medoides más importantes como son las observaciones 638, 51 y 749.</p>
 <p>En la tabla podemos ver que a la hora de predecir nuestro árbol de decisión comete cierto error, a continuación analizamos ese error con distintas medidas de precisión.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="modelado.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
-<span id="cb144-2"><a href="modelado.html#cb144-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb144-3"><a href="modelado.html#cb144-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb144-4"><a href="modelado.html#cb144-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-5"><a href="modelado.html#cb144-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
-<span id="cb144-6"><a href="modelado.html#cb144-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion.arbol <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb144-7"><a href="modelado.html#cb144-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb144-8"><a href="modelado.html#cb144-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-9"><a href="modelado.html#cb144-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb144-10"><a href="modelado.html#cb144-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb144-11"><a href="modelado.html#cb144-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-12"><a href="modelado.html#cb144-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb144-13"><a href="modelado.html#cb144-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>( (prediccion.arbol<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion.arbol <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb144-14"><a href="modelado.html#cb144-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-15"><a href="modelado.html#cb144-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb144-16"><a href="modelado.html#cb144-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion.arbol<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion.arbol <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb144-17"><a href="modelado.html#cb144-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-18"><a href="modelado.html#cb144-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb144-19"><a href="modelado.html#cb144-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb144-20"><a href="modelado.html#cb144-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-21"><a href="modelado.html#cb144-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb144-22"><a href="modelado.html#cb144-22" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="modelado.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
+<span id="cb147-2"><a href="modelado.html#cb147-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb147-3"><a href="modelado.html#cb147-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb147-4"><a href="modelado.html#cb147-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-5"><a href="modelado.html#cb147-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
+<span id="cb147-6"><a href="modelado.html#cb147-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion.arbol <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb147-7"><a href="modelado.html#cb147-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb147-8"><a href="modelado.html#cb147-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-9"><a href="modelado.html#cb147-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb147-10"><a href="modelado.html#cb147-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb147-11"><a href="modelado.html#cb147-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-12"><a href="modelado.html#cb147-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb147-13"><a href="modelado.html#cb147-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>( (prediccion.arbol<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion.arbol <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb147-14"><a href="modelado.html#cb147-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-15"><a href="modelado.html#cb147-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb147-16"><a href="modelado.html#cb147-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion.arbol<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion.arbol <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion.arbol <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb147-17"><a href="modelado.html#cb147-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-18"><a href="modelado.html#cb147-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb147-19"><a href="modelado.html#cb147-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb147-20"><a href="modelado.html#cb147-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-21"><a href="modelado.html#cb147-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb147-22"><a href="modelado.html#cb147-22" aria-hidden="true" tabindex="-1"></a>medidas.arboles<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb147-23"><a href="modelado.html#cb147-23" aria-hidden="true" tabindex="-1"></a>medidas.arboles</span></code></pre></div>
 <pre><code>##    accuracy       error sensitivity specificity   precision         npv 
-##  0.94150246  0.05849754  0.92748092  0.95465394  0.95045632  0.93348891 
+##  0.93780788  0.06219212  0.95038168  0.92601432  0.92336218  0.95214724 
 ##          f1 
-##  0.93882807</code></pre>
-<p>El error que se comete es superior que en el caso del modelo k-NN con el vecino más próximo, pero sigue siendo un error aceptable para el modelo, por lo que podemos determinar que el árbol de decisión predice casi todas las setas correctamente.</p>
+##  0.93667712</code></pre>
+<p>El error que se comete es superior, 6%, que en el caso del modelo k-NN con el vecino más próximo, por lo que podemos determinar que el árbol de decisión predice peor.</p>
 </div>
 <div id="bosques-aleatorios" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Bosques Aleatorios</h2>
 <p>Random forest es una combinación de árboles predictores tal que cada árbol depende de los valores de un vector aleatorio probado independientemente y con la misma distribución para cada uno de estos. Es una modificación sustancial de bagging que construye una larga colección de árboles no correlacionados y luego los promedia.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="modelado.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">34735</span>)</span>
-<span id="cb146-2"><a href="modelado.html#cb146-2" aria-hidden="true" tabindex="-1"></a>setas.rf<span class="ot">=</span><span class="fu">randomForest</span>(setas50_train, <span class="fu">as.factor</span>(setas50_train.respuesta<span class="sc">$</span>Letalidad), <span class="at">ntree=</span><span class="dv">70</span>, <span class="at">importance=</span><span class="cn">FALSE</span>, <span class="at">proximity=</span><span class="cn">TRUE</span>, <span class="at">mtry=</span><span class="dv">4</span>, <span class="at">replace=</span><span class="cn">FALSE</span>,<span class="at">method=</span><span class="st">&quot;class&quot;</span>)</span>
-<span id="cb146-3"><a href="modelado.html#cb146-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-4"><a href="modelado.html#cb146-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
-<span id="cb146-5"><a href="modelado.html#cb146-5" aria-hidden="true" tabindex="-1"></a>prediccion.rf<span class="ot">=</span><span class="fu">predict</span>(setas.rf, setas50_test.data)</span>
-<span id="cb146-6"><a href="modelado.html#cb146-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion.rf,<span class="fu">as.factor</span>(setas_test[,<span class="dv">1</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="modelado.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">34735</span>)</span>
+<span id="cb149-2"><a href="modelado.html#cb149-2" aria-hidden="true" tabindex="-1"></a>setas.rf<span class="ot">=</span><span class="fu">randomForest</span>(setas60_train, <span class="fu">as.factor</span>(setas60_train.respuesta<span class="sc">$</span>Letalidad), <span class="at">ntree=</span><span class="dv">100</span>, <span class="at">importance=</span><span class="cn">FALSE</span>, <span class="at">proximity=</span><span class="cn">TRUE</span>, <span class="at">mtry=</span><span class="dv">4</span>, <span class="at">replace=</span><span class="cn">FALSE</span>,<span class="at">method=</span><span class="st">&quot;class&quot;</span>)</span>
+<span id="cb149-3"><a href="modelado.html#cb149-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-4"><a href="modelado.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
+<span id="cb149-5"><a href="modelado.html#cb149-5" aria-hidden="true" tabindex="-1"></a>prediccion.rf<span class="ot">=</span><span class="fu">predict</span>(setas.rf, setas60_test.data)</span>
+<span id="cb149-6"><a href="modelado.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion.rf,<span class="fu">as.factor</span>(setas_test[,<span class="dv">1</span>]))</span></code></pre></div>
 <pre><code>##              
 ## prediccion.rf   0   1
-##             0 837   0
-##             1   1 786</code></pre>
+##             0 836   0
+##             1   2 786</code></pre>
 <p>La predicción es casi perfecta, pues solo se equivoca clasificando tres setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="modelado.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
-<span id="cb148-2"><a href="modelado.html#cb148-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb148-3"><a href="modelado.html#cb148-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb148-4"><a href="modelado.html#cb148-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-5"><a href="modelado.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensibilidad: acierto sobre el total de las setas VENENOSAS</span></span>
-<span id="cb148-6"><a href="modelado.html#cb148-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb148-7"><a href="modelado.html#cb148-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb148-8"><a href="modelado.html#cb148-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-9"><a href="modelado.html#cb148-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Especifidad: acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb148-10"><a href="modelado.html#cb148-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb148-11"><a href="modelado.html#cb148-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-12"><a href="modelado.html#cb148-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Precisión: acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb148-13"><a href="modelado.html#cb148-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>( (prediccion.rf<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion.rf <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb148-14"><a href="modelado.html#cb148-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-15"><a href="modelado.html#cb148-15" aria-hidden="true" tabindex="-1"></a><span class="co"># NPV: acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb148-16"><a href="modelado.html#cb148-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion.rf<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion.rf <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb148-17"><a href="modelado.html#cb148-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-18"><a href="modelado.html#cb148-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb148-19"><a href="modelado.html#cb148-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb148-20"><a href="modelado.html#cb148-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-21"><a href="modelado.html#cb148-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb148-22"><a href="modelado.html#cb148-22" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span></code></pre></div>
-<pre><code>##     accuracy        error  sensitivity  specificity    precision          npv 
-## 0.9993842365 0.0006157635 1.0000000000 0.9988066826 0.9987293520 1.0000000000 
-##           f1 
-## 0.9993642721</code></pre>
-<p>El error que se comete mejora respecto a los dos algoritmo anteriores.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="modelado.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
+<span id="cb151-2"><a href="modelado.html#cb151-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb151-3"><a href="modelado.html#cb151-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb151-4"><a href="modelado.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-5"><a href="modelado.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensibilidad: acierto sobre el total de las setas VENENOSAS</span></span>
+<span id="cb151-6"><a href="modelado.html#cb151-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb151-7"><a href="modelado.html#cb151-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb151-8"><a href="modelado.html#cb151-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-9"><a href="modelado.html#cb151-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Especifidad: acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb151-10"><a href="modelado.html#cb151-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb151-11"><a href="modelado.html#cb151-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-12"><a href="modelado.html#cb151-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Precisión: acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb151-13"><a href="modelado.html#cb151-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>( (prediccion.rf<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion.rf <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb151-14"><a href="modelado.html#cb151-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-15"><a href="modelado.html#cb151-15" aria-hidden="true" tabindex="-1"></a><span class="co"># NPV: acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb151-16"><a href="modelado.html#cb151-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion.rf<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion.rf <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb151-17"><a href="modelado.html#cb151-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-18"><a href="modelado.html#cb151-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb151-19"><a href="modelado.html#cb151-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb151-20"><a href="modelado.html#cb151-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-21"><a href="modelado.html#cb151-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb151-22"><a href="modelado.html#cb151-22" aria-hidden="true" tabindex="-1"></a>medidas.bosques<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb151-23"><a href="modelado.html#cb151-23" aria-hidden="true" tabindex="-1"></a>medidas.bosques</span></code></pre></div>
+<pre><code>##    accuracy       error sensitivity specificity   precision         npv 
+## 0.998768473 0.001231527 1.000000000 0.997613365 0.997461929 1.000000000 
+##          f1 
+## 0.998729352</code></pre>
+<p>El error que se comete mejora respecto al algoritmo anterior, pero es parecido al error cometido por el modelo k-NN.</p>
 </div>
 <div id="support-vector-machines" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Support Vector Machines</h2>
 <p>Las máquinas de vectores soporte (del inglés support-vector machines, SVM) son un conjunto de algoritmos de aprendizaje supervisado desarrollados por Vladimir Vapnik y su equipo en los laboratorios AT&amp;T.</p>
 <p>Estos métodos están propiamente relacionados con problemas de clasificación y regresión. Dado un conjunto de ejemplos de entrenamiento podemos etiquetar las clases y entrenar una SVM para construir un modelo que prediga la clase de una nueva muestra.</p>
 <p>Para determinar el valor de gamma y el coste, usamos los datos que hemos reservado para validación y realizamos una estimación con ellos.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="modelado.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el gamma: </span></span>
-<span id="cb150-2"><a href="modelado.html#cb150-2" aria-hidden="true" tabindex="-1"></a>gamma_est<span class="ot">=</span><span class="dv">1</span><span class="sc">/</span><span class="fu">apply</span>(setas50_validacion,<span class="dv">2</span>,sd)</span>
-<span id="cb150-3"><a href="modelado.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el coste: </span></span>
-<span id="cb150-4"><a href="modelado.html#cb150-4" aria-hidden="true" tabindex="-1"></a>norma2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb150-5"><a href="modelado.html#cb150-5" aria-hidden="true" tabindex="-1"></a>cost_est<span class="ot">=</span><span class="fu">apply</span>(setas50_validacion,<span class="dv">2</span>,norma2)</span>
-<span id="cb150-6"><a href="modelado.html#cb150-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-7"><a href="modelado.html#cb150-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
-<span id="cb150-8"><a href="modelado.html#cb150-8" aria-hidden="true" tabindex="-1"></a>setas.svm<span class="ot">=</span><span class="fu">svm</span>(setas50_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;radial&quot;</span>,<span class="at">gamma=</span><span class="fu">mean</span>(gamma_est),<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
-<span id="cb150-9"><a href="modelado.html#cb150-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-10"><a href="modelado.html#cb150-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
-<span id="cb150-11"><a href="modelado.html#cb150-11" aria-hidden="true" tabindex="-1"></a>prediccion_svm<span class="ot">=</span><span class="fu">predict</span>(setas.svm,setas50_test)</span>
-<span id="cb150-12"><a href="modelado.html#cb150-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modelado.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el gamma: </span></span>
+<span id="cb153-2"><a href="modelado.html#cb153-2" aria-hidden="true" tabindex="-1"></a>gamma_est<span class="ot">=</span><span class="dv">1</span><span class="sc">/</span><span class="fu">apply</span>(setas60_validacion,<span class="dv">2</span>,sd)</span>
+<span id="cb153-3"><a href="modelado.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el coste: </span></span>
+<span id="cb153-4"><a href="modelado.html#cb153-4" aria-hidden="true" tabindex="-1"></a>norma2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb153-5"><a href="modelado.html#cb153-5" aria-hidden="true" tabindex="-1"></a>cost_est<span class="ot">=</span><span class="fu">apply</span>(setas60_validacion,<span class="dv">2</span>,norma2)</span>
+<span id="cb153-6"><a href="modelado.html#cb153-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-7"><a href="modelado.html#cb153-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
+<span id="cb153-8"><a href="modelado.html#cb153-8" aria-hidden="true" tabindex="-1"></a>setas.svm<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;radial&quot;</span>,<span class="at">gamma=</span><span class="fu">mean</span>(gamma_est),<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
+<span id="cb153-9"><a href="modelado.html#cb153-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-10"><a href="modelado.html#cb153-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
+<span id="cb153-11"><a href="modelado.html#cb153-11" aria-hidden="true" tabindex="-1"></a>prediccion_svm<span class="ot">=</span><span class="fu">predict</span>(setas.svm,setas60_test)</span>
+<span id="cb153-12"><a href="modelado.html#cb153-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##               
 ## prediccion_svm   0   1
 ##              0 838   0
 ##              1   0 786</code></pre>
 <p>La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="modelado.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
-<span id="cb152-2"><a href="modelado.html#cb152-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb152-3"><a href="modelado.html#cb152-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb152-4"><a href="modelado.html#cb152-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-5"><a href="modelado.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
-<span id="cb152-6"><a href="modelado.html#cb152-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb152-7"><a href="modelado.html#cb152-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb152-8"><a href="modelado.html#cb152-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-9"><a href="modelado.html#cb152-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb152-10"><a href="modelado.html#cb152-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb152-11"><a href="modelado.html#cb152-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-12"><a href="modelado.html#cb152-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb152-13"><a href="modelado.html#cb152-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb152-14"><a href="modelado.html#cb152-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-15"><a href="modelado.html#cb152-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb152-16"><a href="modelado.html#cb152-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb152-17"><a href="modelado.html#cb152-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-18"><a href="modelado.html#cb152-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb152-19"><a href="modelado.html#cb152-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb152-20"><a href="modelado.html#cb152-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-21"><a href="modelado.html#cb152-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb152-22"><a href="modelado.html#cb152-22" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modelado.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
+<span id="cb155-2"><a href="modelado.html#cb155-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb155-3"><a href="modelado.html#cb155-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb155-4"><a href="modelado.html#cb155-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-5"><a href="modelado.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
+<span id="cb155-6"><a href="modelado.html#cb155-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb155-7"><a href="modelado.html#cb155-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb155-8"><a href="modelado.html#cb155-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-9"><a href="modelado.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb155-10"><a href="modelado.html#cb155-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb155-11"><a href="modelado.html#cb155-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-12"><a href="modelado.html#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb155-13"><a href="modelado.html#cb155-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb155-14"><a href="modelado.html#cb155-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-15"><a href="modelado.html#cb155-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb155-16"><a href="modelado.html#cb155-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb155-17"><a href="modelado.html#cb155-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-18"><a href="modelado.html#cb155-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb155-19"><a href="modelado.html#cb155-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb155-20"><a href="modelado.html#cb155-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-21"><a href="modelado.html#cb155-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb155-22"><a href="modelado.html#cb155-22" aria-hidden="true" tabindex="-1"></a>medidas.svmradial<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb155-23"><a href="modelado.html#cb155-23" aria-hidden="true" tabindex="-1"></a>medidas.svmradial</span></code></pre></div>
 <pre><code>##    accuracy       error sensitivity specificity   precision         npv 
 ##           1           0           1           1           1           1 
 ##          f1 
 ##           1</code></pre>
 <p>Realizamos otro ajuste del modelo pero esta vez ajustando los parámetros a través de la función <em>tune.svm()</em>.</p>
-<pre><code>## $names
-## [1] &quot;best.parameters&quot;  &quot;best.performance&quot; &quot;method&quot;           &quot;nparcomb&quot;        
-## [5] &quot;train.ind&quot;        &quot;sampling&quot;         &quot;performances&quot;     &quot;best.model&quot;      
-## 
-## $class
-## [1] &quot;tune&quot;</code></pre>
-<pre><code>##                          
-## prediccion_svm.parametros   0   1
-##                         0 838   0
-##                         1   0 786</code></pre>
-<p>Obtenemos el mismo resultado que en el ajuste anterior, la perfección.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="modelado.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos los parámtros</span></span>
+<span id="cb157-2"><a href="modelado.html#cb157-2" aria-hidden="true" tabindex="-1"></a>parametros<span class="ot">=</span><span class="fu">tune.svm</span>(setas60_validacion, setas_validacion[,<span class="dv">1</span>], <span class="at">gamma=</span><span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">9</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">cost=</span><span class="fu">seq</span>(<span class="dv">19</span>,<span class="dv">27</span>,<span class="at">by=</span><span class="dv">1</span>))</span>
+<span id="cb157-3"><a href="modelado.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(parametros)</span>
+<span id="cb157-4"><a href="modelado.html#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-5"><a href="modelado.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos el modelo con estos parámetros</span></span>
+<span id="cb157-6"><a href="modelado.html#cb157-6" aria-hidden="true" tabindex="-1"></a>setas.svm_parametros<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>], <span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>, <span class="at">kernel=</span><span class="st">&quot;radial&quot;</span>, <span class="at">gamma=</span> parametros<span class="sc">$</span>best.parameters[<span class="dv">1</span>], <span class="at">cost=</span> parametros<span class="sc">$</span>best.parameters[<span class="dv">2</span>], <span class="at">scale=</span>F)</span>
+<span id="cb157-7"><a href="modelado.html#cb157-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-8"><a href="modelado.html#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla comparativa</span></span>
+<span id="cb157-9"><a href="modelado.html#cb157-9" aria-hidden="true" tabindex="-1"></a>prediccion_svm.parametros<span class="ot">=</span><span class="fu">predict</span>(setas.svm_parametros, setas60_test)</span>
+<span id="cb157-10"><a href="modelado.html#cb157-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.parametros, setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<p>El método no converge, por lo que toma el menor valor de ambos parámetros, lo que daría un resultado exactamente igual que usando una estimación para el parámetro gamma y cost.</p>
 <p>Si realizamos el ajuste de SVM pero establecemos que el kernel es lineal, obtenemos lo siguiente:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="modelado.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el coste: </span></span>
-<span id="cb156-2"><a href="modelado.html#cb156-2" aria-hidden="true" tabindex="-1"></a>norma2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb156-3"><a href="modelado.html#cb156-3" aria-hidden="true" tabindex="-1"></a>cost_est<span class="ot">=</span><span class="fu">apply</span>(setas50_validacion,<span class="dv">2</span>,norma2)</span>
-<span id="cb156-4"><a href="modelado.html#cb156-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-5"><a href="modelado.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
-<span id="cb156-6"><a href="modelado.html#cb156-6" aria-hidden="true" tabindex="-1"></a>setas.svm.lineal<span class="ot">=</span><span class="fu">svm</span>(setas50_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;linear&quot;</span>,<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
-<span id="cb156-7"><a href="modelado.html#cb156-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-8"><a href="modelado.html#cb156-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
-<span id="cb156-9"><a href="modelado.html#cb156-9" aria-hidden="true" tabindex="-1"></a>prediccion_svm.lineal<span class="ot">=</span><span class="fu">predict</span>(setas.svm.lineal,setas50_test)</span>
-<span id="cb156-10"><a href="modelado.html#cb156-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.lineal,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelado.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el coste: </span></span>
+<span id="cb158-2"><a href="modelado.html#cb158-2" aria-hidden="true" tabindex="-1"></a>norma2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb158-3"><a href="modelado.html#cb158-3" aria-hidden="true" tabindex="-1"></a>cost_est<span class="ot">=</span><span class="fu">apply</span>(setas60_validacion,<span class="dv">2</span>,norma2)</span>
+<span id="cb158-4"><a href="modelado.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-5"><a href="modelado.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
+<span id="cb158-6"><a href="modelado.html#cb158-6" aria-hidden="true" tabindex="-1"></a>setas.svm.lineal<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;linear&quot;</span>,<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
+<span id="cb158-7"><a href="modelado.html#cb158-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-8"><a href="modelado.html#cb158-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
+<span id="cb158-9"><a href="modelado.html#cb158-9" aria-hidden="true" tabindex="-1"></a>prediccion_svm.lineal<span class="ot">=</span><span class="fu">predict</span>(setas.svm.lineal,setas60_test)</span>
+<span id="cb158-10"><a href="modelado.html#cb158-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.lineal,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##                      
 ## prediccion_svm.lineal   0   1
-##                     0 828  36
-##                     1  10 750</code></pre>
+##                     0 812  43
+##                     1  26 743</code></pre>
 <p>Podemos ver que respecto al kernel radial, las predicciones empeoran. Esto lo podemos observar en las medidas de precisión.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelado.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
-<span id="cb158-2"><a href="modelado.html#cb158-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb158-3"><a href="modelado.html#cb158-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb158-4"><a href="modelado.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="modelado.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
-<span id="cb158-6"><a href="modelado.html#cb158-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb158-7"><a href="modelado.html#cb158-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb158-8"><a href="modelado.html#cb158-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-9"><a href="modelado.html#cb158-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb158-10"><a href="modelado.html#cb158-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb158-11"><a href="modelado.html#cb158-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-12"><a href="modelado.html#cb158-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb158-13"><a href="modelado.html#cb158-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb158-14"><a href="modelado.html#cb158-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-15"><a href="modelado.html#cb158-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb158-16"><a href="modelado.html#cb158-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb158-17"><a href="modelado.html#cb158-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-18"><a href="modelado.html#cb158-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb158-19"><a href="modelado.html#cb158-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb158-20"><a href="modelado.html#cb158-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-21"><a href="modelado.html#cb158-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb158-22"><a href="modelado.html#cb158-22" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelado.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
+<span id="cb160-2"><a href="modelado.html#cb160-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb160-3"><a href="modelado.html#cb160-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb160-4"><a href="modelado.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-5"><a href="modelado.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
+<span id="cb160-6"><a href="modelado.html#cb160-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb160-7"><a href="modelado.html#cb160-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb160-8"><a href="modelado.html#cb160-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-9"><a href="modelado.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb160-10"><a href="modelado.html#cb160-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb160-11"><a href="modelado.html#cb160-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-12"><a href="modelado.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb160-13"><a href="modelado.html#cb160-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb160-14"><a href="modelado.html#cb160-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-15"><a href="modelado.html#cb160-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb160-16"><a href="modelado.html#cb160-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb160-17"><a href="modelado.html#cb160-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-18"><a href="modelado.html#cb160-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb160-19"><a href="modelado.html#cb160-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb160-20"><a href="modelado.html#cb160-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-21"><a href="modelado.html#cb160-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb160-22"><a href="modelado.html#cb160-22" aria-hidden="true" tabindex="-1"></a>medidas.svmlineal<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb160-23"><a href="modelado.html#cb160-23" aria-hidden="true" tabindex="-1"></a>medidas.svmlineal</span></code></pre></div>
 <pre><code>##    accuracy       error sensitivity specificity   precision         npv 
-##  0.97167488  0.02832512  0.95419847  0.98806683  0.98684211  0.95833333 
+##  0.95751232  0.04248768  0.94529262  0.96897375  0.96618986  0.94970760 
 ##          f1 
-##  0.97024580</code></pre>
+##  0.95562701</code></pre>
+<p>Por tanto descartaría usar un SVM con kernel lineal.</p>
 </div>
 </div>
             </section>

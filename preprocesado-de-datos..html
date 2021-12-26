@@ -182,9 +182,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="modelado.html"><a href="modelado.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="evaluación.html"><a href="evaluación.html"><i class="fa fa-check"></i><b>6</b> Evaluación</a></li>
-<li class="chapter" data-level="7" data-path="visualización-y-presentación-de-resultados.html"><a href="visualización-y-presentación-de-resultados.html"><i class="fa fa-check"></i><b>7</b> Visualización y Presentación de Resultados</a></li>
-<li class="chapter" data-level="8" data-path="puesta-en-producción.html"><a href="puesta-en-producción.html"><i class="fa fa-check"></i><b>8</b> Puesta en producción</a></li>
-<li class="chapter" data-level="9" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html"><i class="fa fa-check"></i><b>9</b> Actualización del modelo…</a></li>
+<li class="chapter" data-level="7" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html"><i class="fa fa-check"></i><b>7</b> Actualización del modelo…</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#datos-sin-variable-olor"><i class="fa fa-check"></i><b>7.1</b> Datos sin variable <strong>Olor</strong></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#análisis-cluster-1"><i class="fa fa-check"></i><b>7.1.1</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="7.1.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#k-nn-1"><i class="fa fa-check"></i><b>7.1.2</b> k-NN</a></li>
+<li class="chapter" data-level="7.1.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#arboles-de-decisión-1"><i class="fa fa-check"></i><b>7.1.3</b> Arboles de Decisión</a></li>
+<li class="chapter" data-level="7.1.4" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#bosques-aleatorios-1"><i class="fa fa-check"></i><b>7.1.4</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="7.1.5" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#support-vector-machines-1"><i class="fa fa-check"></i><b>7.1.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="7.1.6" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-1"><i class="fa fa-check"></i><b>7.1.6</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#datos-con-variable-olorn"><i class="fa fa-check"></i><b>7.2</b> Datos con variable <strong>Olor=n</strong></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#análisis-cluster-2"><i class="fa fa-check"></i><b>7.2.1</b> Análisis Cluster</a></li>
+<li class="chapter" data-level="7.2.2" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#k-nn-2"><i class="fa fa-check"></i><b>7.2.2</b> k-NN</a></li>
+<li class="chapter" data-level="7.2.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#arboles-de-decisión-2"><i class="fa fa-check"></i><b>7.2.3</b> Arboles de Decisión</a></li>
+<li class="chapter" data-level="7.2.4" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#bosques-aleatorios-2"><i class="fa fa-check"></i><b>7.2.4</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="7.2.5" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#support-vector-machines-2"><i class="fa fa-check"></i><b>7.2.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="7.2.6" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-2"><i class="fa fa-check"></i><b>7.2.6</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="actualización-del-modelo.html"><a href="actualización-del-modelo.html#evaluación-de-los-tres-análisis"><i class="fa fa-check"></i><b>7.3</b> Evaluación de los tres análisis</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -825,146 +844,258 @@ donde <strong>datos</strong> es nuestra matriz codificada de forma binaria, <str
 <span class="math display">\[d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}\]</span></p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="preprocesado-de-datos..html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distancia Dice</span></span>
 <span id="cb110-2"><a href="preprocesado-de-datos..html#cb110-2" aria-hidden="true" tabindex="-1"></a>distancia_dice<span class="ot">=</span><span class="fu">distance</span>(setas_train[,<span class="dv">2</span><span class="sc">:</span><span class="fu">dim</span>(setas_train)[<span class="dv">2</span>]],<span class="at">method=</span><span class="st">&quot;dice&quot;</span>)</span></code></pre></div>
-<p>Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de <em>kmeans()</em>, <em>fastkmed()</em> escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="preprocesado-de-datos..html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cálculo de los medoides: </span></span>
-<span id="cb111-2"><a href="preprocesado-de-datos..html#cb111-2" aria-hidden="true" tabindex="-1"></a>k50<span class="ot">=</span><span class="fu">fastkmed</span>(distancia_dice,<span class="at">ncluster=</span><span class="dv">50</span>)</span>
-<span id="cb111-3"><a href="preprocesado-de-datos..html#cb111-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-4"><a href="preprocesado-de-datos..html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción de los medoides:</span></span>
-<span id="cb111-5"><a href="preprocesado-de-datos..html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(setas_train<span class="sc">$</span>Letalidad[k50<span class="sc">$</span>medoid])</span></code></pre></div>
+<p>Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de <em>kmeans()</em>, <em>fastkmed()</em> escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.</p>
+<p>Para seleccionar el número de medoides adecuado, hacemos cross-validation aplicando después un análisis de componente principales, probamos primero con una cantidad muy pequeña de medoides.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="preprocesado-de-datos..html#cb111-1" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb111-2"><a href="preprocesado-de-datos..html#cb111-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">=</span><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">9</span>,<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb111-3"><a href="preprocesado-de-datos..html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(datos)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;Proporción de la varianza acumulada explicada&quot;</span>)</span>
+<span id="cb111-4"><a href="preprocesado-de-datos..html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(datos)<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">1</span>)</span>
+<span id="cb111-5"><a href="preprocesado-de-datos..html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i<span class="sc">&lt;</span><span class="dv">10</span>){</span>
+<span id="cb111-6"><a href="preprocesado-de-datos..html#cb111-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Cálculo de los medoides: </span></span>
+<span id="cb111-7"><a href="preprocesado-de-datos..html#cb111-7" aria-hidden="true" tabindex="-1"></a>  k<span class="ot">=</span><span class="fu">fastkmed</span>(distancia_dice,<span class="at">ncluster=</span>i)</span>
+<span id="cb111-8"><a href="preprocesado-de-datos..html#cb111-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Proporción de los medoides:</span></span>
+<span id="cb111-9"><a href="preprocesado-de-datos..html#cb111-9" aria-hidden="true" tabindex="-1"></a>  proporcion<span class="ot">=</span><span class="fu">c</span>(<span class="fu">sum</span>(setas_train[k<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>),<span class="fu">sum</span>(setas_train[k<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>))</span>
+<span id="cb111-10"><a href="preprocesado-de-datos..html#cb111-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb111-11"><a href="preprocesado-de-datos..html#cb111-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Análsiis de componentes principales</span></span>
+<span id="cb111-12"><a href="preprocesado-de-datos..html#cb111-12" aria-hidden="true" tabindex="-1"></a>  pca.traink<span class="ot">=</span><span class="fu">prcomp</span>(distancia_dice[k<span class="sc">$</span>medoid,k<span class="sc">$</span>medoid])</span>
+<span id="cb111-13"><a href="preprocesado-de-datos..html#cb111-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Varianza explicada</span></span>
+<span id="cb111-14"><a href="preprocesado-de-datos..html#cb111-14" aria-hidden="true" tabindex="-1"></a>  varianza.explicada<span class="ot">=</span>pca.traink<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca.traink<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb111-15"><a href="preprocesado-de-datos..html#cb111-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(proporcion[<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span>){</span>
+<span id="cb111-16"><a href="preprocesado-de-datos..html#cb111-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Proporción de la varianza acumulada explicada por la primera componente principal</span></span>
+<span id="cb111-17"><a href="preprocesado-de-datos..html#cb111-17" aria-hidden="true" tabindex="-1"></a>    varianza.explicada.acumulada<span class="ot">=</span>varianza.explicada[<span class="dv">1</span>]</span>
+<span id="cb111-18"><a href="preprocesado-de-datos..html#cb111-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb111-19"><a href="preprocesado-de-datos..html#cb111-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb111-20"><a href="preprocesado-de-datos..html#cb111-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Proporción de la varianza acumulada explicada por las dos primeras componentes principales</span></span>
+<span id="cb111-21"><a href="preprocesado-de-datos..html#cb111-21" aria-hidden="true" tabindex="-1"></a>    varianza.explicada.acumulada<span class="ot">=</span>varianza.explicada[<span class="dv">1</span>]<span class="sc">+</span>varianza.explicada[<span class="dv">2</span>]</span>
+<span id="cb111-22"><a href="preprocesado-de-datos..html#cb111-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb111-23"><a href="preprocesado-de-datos..html#cb111-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Almacenamos los datos</span></span>
+<span id="cb111-24"><a href="preprocesado-de-datos..html#cb111-24" aria-hidden="true" tabindex="-1"></a>  datos[i,]<span class="ot">=</span><span class="fu">c</span>(proporcion,varianza.explicada.acumulada)</span>
+<span id="cb111-25"><a href="preprocesado-de-datos..html#cb111-25" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span>i<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb111-26"><a href="preprocesado-de-datos..html#cb111-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb111-27"><a href="preprocesado-de-datos..html#cb111-27" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div>
+<pre><code>##   0 1 Proporción de la varianza acumulada explicada
+## 1 1 0                                           NaN
+## 2 2 0                                     1.0000000
+## 3 3 0                                     0.8251352
+## 4 3 1                                     0.9489239
+## 5 3 2                                     0.9373949
+## 6 4 2                                     0.9634858
+## 7 4 3                                     0.9430637
+## 8 5 3                                     0.9066387
+## 9 6 3                                     0.9029409</code></pre>
+<p>Podemos ver que a partir de 4 meodides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medodides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.</p>
+<p>Ahora vamos a probar a hacerlo con una cantidad distintas de medoides, desde 10 medoides hasta 250 aumentando de diez en diez. Nos quedaremos con aquella que tenga mayor proporción acumulada pero sin sacrificar información sobre los datos.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="preprocesado-de-datos..html#cb113-1" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">10</span></span>
+<span id="cb113-2"><a href="preprocesado-de-datos..html#cb113-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">=</span><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">25</span>,<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb113-3"><a href="preprocesado-de-datos..html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(datos)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;Proporción de la varianza acumulada explicada&quot;</span>)</span>
+<span id="cb113-4"><a href="preprocesado-de-datos..html#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(datos)<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">250</span>,<span class="dv">10</span>)</span>
+<span id="cb113-5"><a href="preprocesado-de-datos..html#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i<span class="sc">&lt;=</span><span class="dv">250</span>){</span>
+<span id="cb113-6"><a href="preprocesado-de-datos..html#cb113-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Cálculo de los medoides: </span></span>
+<span id="cb113-7"><a href="preprocesado-de-datos..html#cb113-7" aria-hidden="true" tabindex="-1"></a>  k<span class="ot">=</span><span class="fu">fastkmed</span>(distancia_dice,<span class="at">ncluster=</span>i)</span>
+<span id="cb113-8"><a href="preprocesado-de-datos..html#cb113-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Proporción de los medoides:</span></span>
+<span id="cb113-9"><a href="preprocesado-de-datos..html#cb113-9" aria-hidden="true" tabindex="-1"></a>  proporcion<span class="ot">=</span><span class="fu">c</span>(<span class="fu">sum</span>(setas_train[k<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>),<span class="fu">sum</span>(setas_train[k<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>))</span>
+<span id="cb113-10"><a href="preprocesado-de-datos..html#cb113-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb113-11"><a href="preprocesado-de-datos..html#cb113-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb113-12"><a href="preprocesado-de-datos..html#cb113-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Análsiis de componentes principales</span></span>
+<span id="cb113-13"><a href="preprocesado-de-datos..html#cb113-13" aria-hidden="true" tabindex="-1"></a>  pca.traink<span class="ot">=</span><span class="fu">prcomp</span>(distancia_dice[k<span class="sc">$</span>medoid,k<span class="sc">$</span>medoid])</span>
+<span id="cb113-14"><a href="preprocesado-de-datos..html#cb113-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Varianza explicada</span></span>
+<span id="cb113-15"><a href="preprocesado-de-datos..html#cb113-15" aria-hidden="true" tabindex="-1"></a>  varianza.explicada<span class="ot">=</span>pca.traink<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca.traink<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb113-16"><a href="preprocesado-de-datos..html#cb113-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Proporción de la varianza acumulada explicada por las dos primeras componentes principales</span></span>
+<span id="cb113-17"><a href="preprocesado-de-datos..html#cb113-17" aria-hidden="true" tabindex="-1"></a>  varianza.explicada.acumulada<span class="ot">=</span>varianza.explicada[<span class="dv">1</span>]<span class="sc">+</span>varianza.explicada[<span class="dv">2</span>]</span>
+<span id="cb113-18"><a href="preprocesado-de-datos..html#cb113-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb113-19"><a href="preprocesado-de-datos..html#cb113-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb113-20"><a href="preprocesado-de-datos..html#cb113-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Almacenamos los datos</span></span>
+<span id="cb113-21"><a href="preprocesado-de-datos..html#cb113-21" aria-hidden="true" tabindex="-1"></a>  datos[i<span class="sc">/</span><span class="dv">10</span>,]<span class="ot">=</span><span class="fu">c</span>(proporcion,varianza.explicada.acumulada)</span>
+<span id="cb113-22"><a href="preprocesado-de-datos..html#cb113-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb113-23"><a href="preprocesado-de-datos..html#cb113-23" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span>i<span class="sc">+</span><span class="dv">10</span></span>
+<span id="cb113-24"><a href="preprocesado-de-datos..html#cb113-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb113-25"><a href="preprocesado-de-datos..html#cb113-25" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div>
+<pre><code>##       0  1 Proporción de la varianza acumulada explicada
+## 10    7  3                                     0.8977660
+## 20   14  6                                     0.8523337
+## 30   21  9                                     0.7861202
+## 40   31  9                                     0.8140190
+## 50   39 11                                     0.7971339
+## 60   48 12                                     0.8206506
+## 70   57 13                                     0.8040234
+## 80   63 17                                     0.7998742
+## 90   70 20                                     0.7996294
+## 100  77 23                                     0.7918298
+## 110  83 27                                     0.7883319
+## 120  91 29                                     0.7913152
+## 130  98 32                                     0.7951365
+## 140 106 34                                     0.7812759
+## 150 115 35                                     0.7911513
+## 160 124 36                                     0.7901510
+## 170 134 36                                     0.7928057
+## 180 141 39                                     0.7909774
+## 190 150 40                                     0.7925705
+## 200 163 37                                     0.7903846
+## 210 175 35                                     0.7996704
+## 220 179 41                                     0.7902806
+## 230 191 39                                     0.7844039
+## 240 201 39                                     0.7815717
+## 250 209 41                                     0.7813508</code></pre>
+<p>Los resultados son bastantes parecidos, vemos primero que la proporción acumulada va disminuyendo al ir aumentando el número de medoides pero vemos justamente cuando el número es 60 vuelve a aumentar, por ello nos quedamos con ese número de medoides.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="preprocesado-de-datos..html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cálculo de los medoides: </span></span>
+<span id="cb115-2"><a href="preprocesado-de-datos..html#cb115-2" aria-hidden="true" tabindex="-1"></a>k60<span class="ot">=</span><span class="fu">fastkmed</span>(distancia_dice,<span class="at">ncluster=</span><span class="dv">60</span>)</span>
+<span id="cb115-3"><a href="preprocesado-de-datos..html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(setas_train<span class="sc">$</span>Letalidad[k60<span class="sc">$</span>medoid])</span></code></pre></div>
 <pre><code>## 
 ##  0  1 
-## 39 11</code></pre>
-<p>Podemos ver que de los 50 medoides que hemos calculado, necesitamos 19 para explicar las setas no venenosas mientras que solo 11 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.</p>
-<p>Con estos medoides podemos realizar un análisis de componente principales.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="preprocesado-de-datos..html#cb113-1" aria-hidden="true" tabindex="-1"></a>distancia_medoides<span class="ot">=</span>distancia_dice[k50<span class="sc">$</span>medoid,k50<span class="sc">$</span>medoid]</span>
-<span id="cb113-2"><a href="preprocesado-de-datos..html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis Componentes principales:</span></span>
-<span id="cb113-3"><a href="preprocesado-de-datos..html#cb113-3" aria-hidden="true" tabindex="-1"></a>pca<span class="fl">.50</span><span class="ot">=</span><span class="fu">prcomp</span>(distancia_medoides)</span>
-<span id="cb113-4"><a href="preprocesado-de-datos..html#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca<span class="fl">.50</span>)</span></code></pre></div>
+## 48 12</code></pre>
+<p>Podemos ver que de los 60 medoides que hemos calculado, necesitamos 48 para explicar las setas no venenosas mientras que solo 12 para las venenosas. La proporción se mantiene cogiendo un número distinto de medoides, siendo entre un 70%-80% de los medoides setas no venenosas.</p>
+<p>Con estos medoides volvemos a realizar el análisis de componente principales para ahora estudiarlo más detenidamente.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="preprocesado-de-datos..html#cb117-1" aria-hidden="true" tabindex="-1"></a>distancia_medoides<span class="ot">=</span>distancia_dice[k60<span class="sc">$</span>medoid,k60<span class="sc">$</span>medoid]</span>
+<span id="cb117-2"><a href="preprocesado-de-datos..html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis Componentes principales:</span></span>
+<span id="cb117-3"><a href="preprocesado-de-datos..html#cb117-3" aria-hidden="true" tabindex="-1"></a>pca<span class="fl">.60</span><span class="ot">=</span><span class="fu">prcomp</span>(distancia_medoides)</span>
+<span id="cb117-4"><a href="preprocesado-de-datos..html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca<span class="fl">.60</span>)</span></code></pre></div>
 <pre><code>## Importance of components:
-##                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
-## Standard deviation     0.9798 0.3860 0.28349 0.23333 0.18453 0.16084 0.15232
-## Proportion of Variance 0.6901 0.1071 0.05777 0.03913 0.02447 0.01859 0.01668
-## Cumulative Proportion  0.6901 0.7971 0.85490 0.89403 0.91851 0.93710 0.95378
+##                           PC1     PC2     PC3     PC4     PC5     PC6     PC7
+## Standard deviation     1.1087 0.34987 0.25644 0.23866 0.20065 0.18852 0.17883
+## Proportion of Variance 0.7463 0.07432 0.03993 0.03458 0.02444 0.02158 0.01942
+## Cumulative Proportion  0.7463 0.82065 0.86058 0.89516 0.91960 0.94118 0.96060
 ##                            PC8     PC9    PC10    PC11    PC12    PC13    PC14
-## Standard deviation     0.12749 0.10410 0.10201 0.08601 0.06908 0.05885 0.05529
-## Proportion of Variance 0.01168 0.00779 0.00748 0.00532 0.00343 0.00249 0.00220
-## Cumulative Proportion  0.96546 0.97325 0.98073 0.98605 0.98948 0.99197 0.99417
+## Standard deviation     0.12967 0.10563 0.09664 0.08732 0.07433 0.06568 0.05138
+## Proportion of Variance 0.01021 0.00677 0.00567 0.00463 0.00335 0.00262 0.00160
+## Cumulative Proportion  0.97081 0.97758 0.98325 0.98788 0.99124 0.99386 0.99546
 ##                           PC15    PC16    PC17    PC18    PC19    PC20    PC21
-## Standard deviation     0.04279 0.03950 0.03529 0.03144 0.02871 0.02358 0.01832
-## Proportion of Variance 0.00132 0.00112 0.00089 0.00071 0.00059 0.00040 0.00024
-## Cumulative Proportion  0.99548 0.99660 0.99750 0.99821 0.99880 0.99920 0.99944
-##                           PC22    PC23    PC24     PC25     PC26    PC27
-## Standard deviation     0.01606 0.01458 0.01209 0.009752 0.005562 0.00419
-## Proportion of Variance 0.00019 0.00015 0.00011 0.000070 0.000020 0.00001
-## Cumulative Proportion  0.99963 0.99978 0.99989 0.999950 0.999980 0.99999
-##                            PC28     PC29      PC30      PC31      PC32
-## Standard deviation     0.003474 0.002075 2.367e-05 4.287e-16 6.887e-17
-## Proportion of Variance 0.000010 0.000000 0.000e+00 0.000e+00 0.000e+00
-## Cumulative Proportion  1.000000 1.000000 1.000e+00 1.000e+00 1.000e+00
+## Standard deviation     0.04188 0.04048 0.03690 0.02822 0.02382 0.02180 0.01812
+## Proportion of Variance 0.00106 0.00099 0.00083 0.00048 0.00034 0.00029 0.00020
+## Cumulative Proportion  0.99653 0.99752 0.99835 0.99883 0.99918 0.99946 0.99966
+##                           PC22    PC23    PC24     PC25     PC26     PC27
+## Standard deviation     0.01386 0.01284 0.00958 0.006961 0.005477 0.004669
+## Proportion of Variance 0.00012 0.00010 0.00006 0.000030 0.000020 0.000010
+## Cumulative Proportion  0.99978 0.99988 0.99994 0.999970 0.999980 1.000000
+##                            PC28      PC29     PC30      PC31      PC32
+## Standard deviation     0.002317 4.032e-05 4.13e-16 8.321e-17 8.321e-17
+## Proportion of Variance 0.000000 0.000e+00 0.00e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000000 1.000e+00 1.00e+00 1.000e+00 1.000e+00
 ##                             PC33      PC34      PC35      PC36      PC37
-## Standard deviation     6.887e-17 6.887e-17 6.887e-17 6.887e-17 6.887e-17
+## Standard deviation     8.321e-17 8.321e-17 8.321e-17 8.321e-17 8.321e-17
 ## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
 ## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
 ##                             PC38      PC39      PC40      PC41      PC42
-## Standard deviation     6.887e-17 6.887e-17 6.887e-17 6.887e-17 6.887e-17
+## Standard deviation     8.321e-17 8.321e-17 8.321e-17 8.321e-17 8.321e-17
 ## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
 ## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
 ##                             PC43      PC44      PC45      PC46      PC47
-## Standard deviation     6.887e-17 6.887e-17 6.887e-17 6.887e-17 6.887e-17
+## Standard deviation     8.321e-17 8.321e-17 8.321e-17 8.321e-17 8.321e-17
 ## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
 ## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
-##                             PC48      PC49      PC50
-## Standard deviation     6.887e-17 6.887e-17 6.887e-17
+##                             PC48      PC49      PC50      PC51      PC52
+## Standard deviation     8.321e-17 8.321e-17 8.321e-17 8.321e-17 8.321e-17
+## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC53      PC54      PC55      PC56      PC57
+## Standard deviation     8.321e-17 8.321e-17 8.321e-17 8.321e-17 8.321e-17
+## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC58      PC59      PC60
+## Standard deviation     8.321e-17 8.321e-17 8.321e-17
 ## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00
 ## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="preprocesado-de-datos..html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.50</span><span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad[k50<span class="sc">$</span>medoid]<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/pca-1.png" width="672" />
-Podemos ver como la variabilidad de los datos se explica mayoritariamente por la primera componente principal PC1, aunque nos quedaremos con las dos primeras.</p>
-<p>En la otra gráfica, vemos como los medoides que se encuentra con un valor de <span class="math inline">\(PC1&lt;0\)</span> son setas no venenosas, si <span class="math inline">\(PC1&gt;1.5\)</span> las setas son venenosas, mientras que en el intervalo <span class="math inline">\(PC1\in(0,1.5)\)</span> tenemos setas venenosas y no venenosas.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="preprocesado-de-datos..html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.60</span><span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad[k60<span class="sc">$</span>medoid]<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
+<p><img src="MEMORIA_files/figure-html/pca-1.png" width="672" /></p>
+<p>En la otra gráfica, vemos como los medoides que se encuentra con un valor de <span class="math inline">\(PC1&lt;0\)</span> son setas no venenosas, si <span class="math inline">\(PC1&gt;2\)</span> las setas son venenosas, mientras que en el intervalo <span class="math inline">\(PC1\in(0,2)\)</span> tenemos setas venenosas y no venenosas.</p>
 <p>Las dos gráficas siguientes son las mismas que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro. Esto solo ocurre en un punto.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="preprocesado-de-datos..html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico:</span></span>
-<span id="cb116-2"><a href="preprocesado-de-datos..html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Indices de los medoides según toxicidad:</span></span>
-<span id="cb116-3"><a href="preprocesado-de-datos..html#cb116-3" aria-hidden="true" tabindex="-1"></a>comestible<span class="ot">=</span><span class="fu">which</span>(setas_train[k50<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>)</span>
-<span id="cb116-4"><a href="preprocesado-de-datos..html#cb116-4" aria-hidden="true" tabindex="-1"></a>no.comestibles<span class="ot">=</span><span class="fu">which</span>(setas_train[k50<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb116-5"><a href="preprocesado-de-datos..html#cb116-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-6"><a href="preprocesado-de-datos..html#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb116-7"><a href="preprocesado-de-datos..html#cb116-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.50</span><span class="sc">$</span>x)</span>
-<span id="cb116-8"><a href="preprocesado-de-datos..html#cb116-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.50</span><span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb116-9"><a href="preprocesado-de-datos..html#cb116-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.50</span><span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb116-10"><a href="preprocesado-de-datos..html#cb116-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.50</span><span class="sc">$</span>x)</span>
-<span id="cb116-11"><a href="preprocesado-de-datos..html#cb116-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.50</span><span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb116-12"><a href="preprocesado-de-datos..html#cb116-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.50</span><span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="preprocesado-de-datos..html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico:</span></span>
+<span id="cb120-2"><a href="preprocesado-de-datos..html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Indices de los medoides según toxicidad:</span></span>
+<span id="cb120-3"><a href="preprocesado-de-datos..html#cb120-3" aria-hidden="true" tabindex="-1"></a>comestible<span class="ot">=</span><span class="fu">which</span>(setas_train[k60<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb120-4"><a href="preprocesado-de-datos..html#cb120-4" aria-hidden="true" tabindex="-1"></a>no.comestibles<span class="ot">=</span><span class="fu">which</span>(setas_train[k60<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb120-5"><a href="preprocesado-de-datos..html#cb120-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-6"><a href="preprocesado-de-datos..html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb120-7"><a href="preprocesado-de-datos..html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.60</span><span class="sc">$</span>x)</span>
+<span id="cb120-8"><a href="preprocesado-de-datos..html#cb120-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.60</span><span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb120-9"><a href="preprocesado-de-datos..html#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.60</span><span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb120-10"><a href="preprocesado-de-datos..html#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.60</span><span class="sc">$</span>x)</span>
+<span id="cb120-11"><a href="preprocesado-de-datos..html#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.60</span><span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb120-12"><a href="preprocesado-de-datos..html#cb120-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca<span class="fl">.60</span><span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/grafico%20pca%20alternativo-1.png" width="672" /></p>
-<p>Pero trabajar solo con los 50 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 50 medoides.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="preprocesado-de-datos..html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análsiis de componentes principales</span></span>
-<span id="cb117-2"><a href="preprocesado-de-datos..html#cb117-2" aria-hidden="true" tabindex="-1"></a>pca.train<span class="ot">=</span><span class="fu">prcomp</span>(distancia_dice[,k50<span class="sc">$</span>medoid])</span>
-<span id="cb117-3"><a href="preprocesado-de-datos..html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train)</span></code></pre></div>
+<p>Pero trabajar solo con los 60 medoides podemos perder mucha información, por ellos rehacemos todo lo anterior pero ahora aplicaremos el análisis de componentes principales a la distancia de todas las observaciones con los 60 medoides.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="preprocesado-de-datos..html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análsiis de componentes principales</span></span>
+<span id="cb121-2"><a href="preprocesado-de-datos..html#cb121-2" aria-hidden="true" tabindex="-1"></a>pca.train<span class="ot">=</span><span class="fu">prcomp</span>(distancia_dice[,k60<span class="sc">$</span>medoid])</span>
+<span id="cb121-3"><a href="preprocesado-de-datos..html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca.train)</span></code></pre></div>
+<pre><code>## Importance of components:
+##                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
+## Standard deviation     1.0171 0.4650 0.31570 0.21035 0.16805 0.16003 0.13357
+## Proportion of Variance 0.6742 0.1409 0.06496 0.02884 0.01841 0.01669 0.01163
+## Cumulative Proportion  0.6742 0.8151 0.88003 0.90887 0.92727 0.94396 0.95559
+##                            PC8     PC9    PC10    PC11    PC12    PC13    PC14
+## Standard deviation     0.12372 0.10251 0.08653 0.08476 0.07233 0.06329 0.06211
+## Proportion of Variance 0.00997 0.00685 0.00488 0.00468 0.00341 0.00261 0.00251
+## Cumulative Proportion  0.96556 0.97241 0.97729 0.98197 0.98538 0.98800 0.99051
+##                           PC15    PC16    PC17    PC18    PC19    PC20    PC21
+## Standard deviation     0.05924 0.04662 0.04442 0.03932 0.03631 0.03240 0.02856
+## Proportion of Variance 0.00229 0.00142 0.00129 0.00101 0.00086 0.00068 0.00053
+## Cumulative Proportion  0.99280 0.99421 0.99550 0.99651 0.99737 0.99805 0.99858
+##                           PC22    PC23    PC24    PC25    PC26    PC27     PC28
+## Standard deviation     0.02533 0.02180 0.01987 0.01635 0.01170 0.01148 0.008459
+## Proportion of Variance 0.00042 0.00031 0.00026 0.00017 0.00009 0.00009 0.000050
+## Cumulative Proportion  0.99900 0.99931 0.99957 0.99974 0.99983 0.99992 0.999960
+##                            PC29     PC30      PC31      PC32      PC33
+## Standard deviation     0.007581 6.59e-05 5.434e-15 3.426e-15 1.026e-15
+## Proportion of Variance 0.000040 0.00e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000000 1.00e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC34      PC35      PC36      PC37      PC38
+## Standard deviation     7.238e-16 6.064e-16 4.771e-16 4.039e-16 3.609e-16
+## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC39      PC40     PC41      PC42      PC43
+## Standard deviation     2.875e-16 2.685e-16 2.33e-16 1.906e-16 1.595e-16
+## Proportion of Variance 0.000e+00 0.000e+00 0.00e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.00e+00 1.000e+00 1.000e+00
+##                             PC44      PC45      PC46      PC47      PC48
+## Standard deviation     1.595e-16 1.446e-16 9.842e-17 7.135e-17 7.135e-17
+## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC49      PC50      PC51      PC52      PC53
+## Standard deviation     7.135e-17 7.135e-17 7.135e-17 7.135e-17 7.135e-17
+## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC54      PC55      PC56      PC57      PC58
+## Standard deviation     7.135e-17 7.135e-17 7.135e-17 7.135e-17 4.181e-17
+## Proportion of Variance 0.000e+00 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.000e+00 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                            PC59      PC60
+## Standard deviation     3.94e-17 2.391e-17
+## Proportion of Variance 0.00e+00 0.000e+00
+## Cumulative Proportion  1.00e+00 1.000e+00</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="preprocesado-de-datos..html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train<span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/medoides%20a%20observaciones-1.png" width="672" /></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="preprocesado-de-datos..html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train<span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="preprocesado-de-datos..html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico alternativo</span></span>
+<span id="cb124-2"><a href="preprocesado-de-datos..html#cb124-2" aria-hidden="true" tabindex="-1"></a>comestible<span class="ot">=</span><span class="fu">which</span>(setas_train[,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb124-3"><a href="preprocesado-de-datos..html#cb124-3" aria-hidden="true" tabindex="-1"></a>no.comestibles<span class="ot">=</span><span class="fu">which</span>(setas_train[,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb124-4"><a href="preprocesado-de-datos..html#cb124-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-5"><a href="preprocesado-de-datos..html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb124-6"><a href="preprocesado-de-datos..html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train<span class="sc">$</span>x,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb124-7"><a href="preprocesado-de-datos..html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb124-8"><a href="preprocesado-de-datos..html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb124-9"><a href="preprocesado-de-datos..html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train<span class="sc">$</span>x,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb124-10"><a href="preprocesado-de-datos..html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb124-11"><a href="preprocesado-de-datos..html#cb124-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/medoides%20a%20observaciones-2.png" width="672" /></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="preprocesado-de-datos..html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico alternativo</span></span>
-<span id="cb119-2"><a href="preprocesado-de-datos..html#cb119-2" aria-hidden="true" tabindex="-1"></a>comestible<span class="ot">=</span><span class="fu">which</span>(setas_train[,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>)</span>
-<span id="cb119-3"><a href="preprocesado-de-datos..html#cb119-3" aria-hidden="true" tabindex="-1"></a>no.comestibles<span class="ot">=</span><span class="fu">which</span>(setas_train[,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb119-4"><a href="preprocesado-de-datos..html#cb119-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-5"><a href="preprocesado-de-datos..html#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb119-6"><a href="preprocesado-de-datos..html#cb119-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train<span class="sc">$</span>x,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb119-7"><a href="preprocesado-de-datos..html#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb119-8"><a href="preprocesado-de-datos..html#cb119-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb119-9"><a href="preprocesado-de-datos..html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.train<span class="sc">$</span>x,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb119-10"><a href="preprocesado-de-datos..html#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb119-11"><a href="preprocesado-de-datos..html#cb119-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/medoides%20a%20observaciones-3.png" width="672" /></p>
-<p>Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían 5, para intentar clasificar lo mejor posible la nube de puntos de <span class="math inline">\(PC1\in(-1,2)\)</span> y <span class="math inline">\(PC2\in(-1,0.5)\)</span>.</p>
-<p>Quizás no sean necesarios 50 medoides para realizar el análisis y podríamos obtener un resultado parecido con otra cantidad. Probamos con una cantidad muy pequeña.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="preprocesado-de-datos..html#cb120-1" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb120-2"><a href="preprocesado-de-datos..html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i<span class="sc">&lt;=</span><span class="dv">10</span>){</span>
-<span id="cb120-3"><a href="preprocesado-de-datos..html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Cálculo de los medoides: </span></span>
-<span id="cb120-4"><a href="preprocesado-de-datos..html#cb120-4" aria-hidden="true" tabindex="-1"></a>  k<span class="ot">=</span><span class="fu">fastkmed</span>(distancia_dice,<span class="at">ncluster=</span>i)</span>
-<span id="cb120-5"><a href="preprocesado-de-datos..html#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Proporción de los medoides:</span></span>
-<span id="cb120-6"><a href="preprocesado-de-datos..html#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(setas_train<span class="sc">$</span>Letalidad[k<span class="sc">$</span>medoid])</span>
-<span id="cb120-7"><a href="preprocesado-de-datos..html#cb120-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb120-8"><a href="preprocesado-de-datos..html#cb120-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Análsiis de componentes principales</span></span>
-<span id="cb120-9"><a href="preprocesado-de-datos..html#cb120-9" aria-hidden="true" tabindex="-1"></a>  pca.traink<span class="ot">=</span><span class="fu">prcomp</span>(distancia_dice[,k<span class="sc">$</span>medoid])</span>
-<span id="cb120-10"><a href="preprocesado-de-datos..html#cb120-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(pca.traink)</span>
-<span id="cb120-11"><a href="preprocesado-de-datos..html#cb120-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(pca.traink<span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Número de medoides &quot;</span>,<span class="fu">as.character</span>(i)))</span>
-<span id="cb120-12"><a href="preprocesado-de-datos..html#cb120-12" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span>i<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb120-13"><a href="preprocesado-de-datos..html#cb120-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-1.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-2.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-3.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-4.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-5.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-6.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-7.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-8.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-9.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20menos%20de%2010-10.png" width="672" />
-Podemos ver que a partir de 4 meodides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medodides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.</p>
-<p>Ahora vamos a probar a hacerlo con una cantidad distintas de medoides, desde 10 medoides hasta 250 aumentando de diez en diez.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="preprocesado-de-datos..html#cb121-1" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">10</span></span>
-<span id="cb121-2"><a href="preprocesado-de-datos..html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i<span class="sc">&lt;=</span><span class="dv">250</span>){</span>
-<span id="cb121-3"><a href="preprocesado-de-datos..html#cb121-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Cálculo de los medoides: </span></span>
-<span id="cb121-4"><a href="preprocesado-de-datos..html#cb121-4" aria-hidden="true" tabindex="-1"></a>  k<span class="ot">=</span><span class="fu">fastkmed</span>(distancia_dice,<span class="at">ncluster=</span>i)</span>
-<span id="cb121-5"><a href="preprocesado-de-datos..html#cb121-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Proporción de los medoides:</span></span>
-<span id="cb121-6"><a href="preprocesado-de-datos..html#cb121-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(setas_train<span class="sc">$</span>Letalidad[k<span class="sc">$</span>medoid])</span>
-<span id="cb121-7"><a href="preprocesado-de-datos..html#cb121-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb121-8"><a href="preprocesado-de-datos..html#cb121-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Análsiis de componentes principales</span></span>
-<span id="cb121-9"><a href="preprocesado-de-datos..html#cb121-9" aria-hidden="true" tabindex="-1"></a>  pca.traink<span class="ot">=</span><span class="fu">prcomp</span>(distancia_dice[,k<span class="sc">$</span>medoid])</span>
-<span id="cb121-10"><a href="preprocesado-de-datos..html#cb121-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(pca.traink,<span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Número de medoides &quot;</span>,<span class="fu">as.character</span>(i)))</span>
-<span id="cb121-11"><a href="preprocesado-de-datos..html#cb121-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(pca.traink<span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Número de medoides &quot;</span>,<span class="fu">as.character</span>(i)))</span>
-<span id="cb121-12"><a href="preprocesado-de-datos..html#cb121-12" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span>i<span class="sc">+</span><span class="dv">10</span></span>
-<span id="cb121-13"><a href="preprocesado-de-datos..html#cb121-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-1.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-2.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-3.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-4.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-5.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-6.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-7.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-8.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-9.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-10.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-11.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-12.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-13.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-14.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-15.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-16.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-17.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-18.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-19.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-20.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-21.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-22.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-23.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-24.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-25.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-26.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-27.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-28.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-29.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-30.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-31.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-32.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-33.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-34.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-35.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-36.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-37.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-38.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-39.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-40.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-41.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-42.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-43.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-44.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-45.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-46.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-47.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-48.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-49.png" width="672" /><img src="MEMORIA_files/figure-html/medoides%20mas%20de%2010-50.png" width="672" /></p>
-<p>Los resultados son bastantes parecidos cuando cogemos una cantidad de medoides entre 10 y 250, pero debemos fijarnos en la proporción de la varianza acumulada explicada por las dos primeras componentes y vemos que obtenemos la más alta con 60 medoides
-Por de ello, nos quedaremos con la distancia de todas las observaciones a los 60 medoides, para tener más información.</p>
+<p>Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. La única direfencia con el análsis anterior es las coordenads de cada seta han cambiado ligeramente, hasta ver el punto de haber dado un giro de 180 grados. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían por lo menos 4 o 5, para intentar clasificar lo mejor posible la nube de puntos de <span class="math inline">\(PC1\in(-1,2)\)</span> y <span class="math inline">\(PC2\in(-1,0.5)\)</span>.</p>
 </div>
 </div>
 <div id="transformación-de-variables" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Transformación de variables</h2>
-<p>Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 50 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="preprocesado-de-datos..html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos train:</span></span>
-<span id="cb122-2"><a href="preprocesado-de-datos..html#cb122-2" aria-hidden="true" tabindex="-1"></a>setas50_train<span class="ot">=</span>distancia_dice[,k50<span class="sc">$</span>medoid]</span>
-<span id="cb122-3"><a href="preprocesado-de-datos..html#cb122-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-4"><a href="preprocesado-de-datos..html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos test:</span></span>
-<span id="cb122-5"><a href="preprocesado-de-datos..html#cb122-5" aria-hidden="true" tabindex="-1"></a>medoides_setas_test<span class="ot">=</span><span class="fu">rbind</span>(setas_train[k50<span class="sc">$</span>medoid,],setas_test)</span>
-<span id="cb122-6"><a href="preprocesado-de-datos..html#cb122-6" aria-hidden="true" tabindex="-1"></a>distancia_medoides_test<span class="ot">=</span><span class="fu">distance</span>(medoides_setas_test[,<span class="dv">2</span><span class="sc">:</span><span class="dv">117</span>],<span class="at">method=</span><span class="st">&quot;dice&quot;</span>)</span>
-<span id="cb122-7"><a href="preprocesado-de-datos..html#cb122-7" aria-hidden="true" tabindex="-1"></a>setas50_test<span class="ot">=</span>distancia_medoides_test[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>),<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)]</span>
-<span id="cb122-8"><a href="preprocesado-de-datos..html#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-9"><a href="preprocesado-de-datos..html#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos validation:</span></span>
-<span id="cb122-10"><a href="preprocesado-de-datos..html#cb122-10" aria-hidden="true" tabindex="-1"></a>medoides_setas_validacion<span class="ot">=</span><span class="fu">rbind</span>(setas_train[k50<span class="sc">$</span>medoid,],setas_validacion)</span>
-<span id="cb122-11"><a href="preprocesado-de-datos..html#cb122-11" aria-hidden="true" tabindex="-1"></a>distancia_medoides_validacion<span class="ot">=</span><span class="fu">distance</span>(medoides_setas_validacion[,<span class="dv">2</span><span class="sc">:</span><span class="dv">117</span>],<span class="at">method=</span><span class="st">&quot;dice&quot;</span>)</span>
-<span id="cb122-12"><a href="preprocesado-de-datos..html#cb122-12" aria-hidden="true" tabindex="-1"></a>setas50_validacion<span class="ot">=</span>distancia_medoides_validacion[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>),<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)]</span></code></pre></div>
+<p>Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="preprocesado-de-datos..html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos train:</span></span>
+<span id="cb125-2"><a href="preprocesado-de-datos..html#cb125-2" aria-hidden="true" tabindex="-1"></a>setas60_train<span class="ot">=</span>distancia_dice[,k60<span class="sc">$</span>medoid]</span>
+<span id="cb125-3"><a href="preprocesado-de-datos..html#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-4"><a href="preprocesado-de-datos..html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos test:</span></span>
+<span id="cb125-5"><a href="preprocesado-de-datos..html#cb125-5" aria-hidden="true" tabindex="-1"></a>medoides_setas_test<span class="ot">=</span><span class="fu">rbind</span>(setas_train[k60<span class="sc">$</span>medoid,],setas_test)</span>
+<span id="cb125-6"><a href="preprocesado-de-datos..html#cb125-6" aria-hidden="true" tabindex="-1"></a>distancia_medoides_test<span class="ot">=</span><span class="fu">distance</span>(medoides_setas_test[,<span class="dv">2</span><span class="sc">:</span><span class="dv">117</span>],<span class="at">method=</span><span class="st">&quot;dice&quot;</span>)</span>
+<span id="cb125-7"><a href="preprocesado-de-datos..html#cb125-7" aria-hidden="true" tabindex="-1"></a>setas60_test<span class="ot">=</span>distancia_medoides_test[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>),<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)]</span>
+<span id="cb125-8"><a href="preprocesado-de-datos..html#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(setas60_test)<span class="ot">=</span><span class="fu">colnames</span>(setas60_train)</span>
+<span id="cb125-9"><a href="preprocesado-de-datos..html#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(setas60_test)<span class="ot">=</span><span class="fu">rownames</span>(setas_test)</span>
+<span id="cb125-10"><a href="preprocesado-de-datos..html#cb125-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-11"><a href="preprocesado-de-datos..html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos validation:</span></span>
+<span id="cb125-12"><a href="preprocesado-de-datos..html#cb125-12" aria-hidden="true" tabindex="-1"></a>medoides_setas_validacion<span class="ot">=</span><span class="fu">rbind</span>(setas_train[k60<span class="sc">$</span>medoid,],setas_validacion)</span>
+<span id="cb125-13"><a href="preprocesado-de-datos..html#cb125-13" aria-hidden="true" tabindex="-1"></a>distancia_medoides_validacion<span class="ot">=</span><span class="fu">distance</span>(medoides_setas_validacion[,<span class="dv">2</span><span class="sc">:</span><span class="dv">117</span>],<span class="at">method=</span><span class="st">&quot;dice&quot;</span>)</span>
+<span id="cb125-14"><a href="preprocesado-de-datos..html#cb125-14" aria-hidden="true" tabindex="-1"></a>setas60_validacion<span class="ot">=</span>distancia_medoides_validacion[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>),<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)]</span>
+<span id="cb125-15"><a href="preprocesado-de-datos..html#cb125-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(setas60_validacion)<span class="ot">=</span><span class="fu">colnames</span>(setas60_train)</span>
+<span id="cb125-16"><a href="preprocesado-de-datos..html#cb125-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(setas60_validacion)<span class="ot">=</span><span class="fu">rownames</span>(setas_validacion)</span></code></pre></div>
 </div>
 <div id="imputacion-de-datos-datos-faltantes" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Imputacion de datos (datos faltantes)</h2>
