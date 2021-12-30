@@ -224,10 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="evaluación" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Evaluación</h1>
 <p>Por lo tanto si comparamos todos los modelos que hemos aplicado usando las medidas de precisión vemos lo siguiente</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="evaluación.html#cb162-1" aria-hidden="true" tabindex="-1"></a>medidas.precision<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(medidas.knn,medidas.arboles,medidas.bosques,medidas.svmradial,medidas.svmlineal),<span class="at">nrow=</span><span class="dv">5</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
-<span id="cb162-2"><a href="evaluación.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(medidas.precision)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;error&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>, <span class="st">&quot;precision&quot;</span>, <span class="st">&quot;npv&quot;</span>, <span class="st">&quot;f1score&quot;</span>)</span>
-<span id="cb162-3"><a href="evaluación.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(medidas.precision)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;k-NN&quot;</span>,<span class="st">&quot;Arboles de decision&quot;</span>,<span class="st">&quot;Bosques aleatorios&quot;</span>,<span class="st">&quot;SVM radial&quot;</span>,<span class="st">&quot;SVM lineal&quot;</span>)</span>
-<span id="cb162-4"><a href="evaluación.html#cb162-4" aria-hidden="true" tabindex="-1"></a>medidas.precision</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="evaluación.html#cb166-1" aria-hidden="true" tabindex="-1"></a>medidas.precision<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(medidas.knn,medidas.arboles,medidas.bosques,medidas.svmradial,medidas.svmlineal),<span class="at">nrow=</span><span class="dv">5</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb166-2"><a href="evaluación.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(medidas.precision)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;error&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>, <span class="st">&quot;precision&quot;</span>, <span class="st">&quot;npv&quot;</span>, <span class="st">&quot;f1score&quot;</span>)</span>
+<span id="cb166-3"><a href="evaluación.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(medidas.precision)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;k-NN&quot;</span>,<span class="st">&quot;Arboles de decision&quot;</span>,<span class="st">&quot;Bosques aleatorios&quot;</span>,<span class="st">&quot;SVM radial&quot;</span>,<span class="st">&quot;SVM lineal&quot;</span>)</span>
+<span id="cb166-4"><a href="evaluación.html#cb166-4" aria-hidden="true" tabindex="-1"></a>medidas.precision</span></code></pre></div>
 <pre><code>##                      accuracy       error sensitivity specificity precision
 ## k-NN                0.9981527 0.001847291   0.9987277   0.9976134 0.9974587
 ## Arboles de decision 0.9378079 0.062192118   0.9503817   0.9260143 0.9233622
@@ -240,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Bosques aleatorios  1.0000000 0.9987294
 ## SVM radial          1.0000000 1.0000000
 ## SVM lineal          0.9497076 0.9556270</code></pre>
-<p>El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test.</p>
+<p>El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test, pero el modelo de bosques aleatorios también es un buen modelo para aplicar ya que tiene una sensibilidad del 100%.</p>
 </div>
             </section>
 

@@ -284,8 +284,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb130-20"><a href="modelado.html#cb130-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">inset =</span> <span class="fl">0.01</span>, </span>
 <span id="cb130-21"><a href="modelado.html#cb130-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
 <span id="cb130-22"><a href="modelado.html#cb130-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/grafico%20cluster%205-2.png" width="672" />
-El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.</p>
+<p><img src="MEMORIA_files/figure-html/grafico%20cluster%205-2.png" width="672" /></p>
+<p>El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.</p>
 <p>Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="modelado.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis cluster</span></span>
 <span id="cb131-2"><a href="modelado.html#cb131-2" aria-hidden="true" tabindex="-1"></a>clusters.datos.train<span class="ot">=</span><span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas60_train)<span class="sc">$</span>x,<span class="at">centers=</span><span class="dv">8</span>,<span class="at">nstart=</span><span class="dv">25</span>)</span>
@@ -376,7 +376,7 @@ El objetivo de los gráficos que están a par es ver que debería estar cada col
 ## 0.998152709 0.001847291 0.998727735 0.997613365 0.997458704 0.998805257 
 ##          f1 
 ## 0.998092816</code></pre>
-<p>Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.1%.</p>
+<p>Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajuste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.1%.</p>
 <p>Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="modelado.html#cb139-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">=</span>(<span class="fu">dim</span>(setas60_train)[<span class="dv">1</span>]<span class="sc">^</span>(<span class="dv">4</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">+</span><span class="fu">dim</span>(setas60_train)[<span class="dv">2</span>])))<span class="sc">*</span><span class="dv">10</span></span>
 <span id="cb139-2"><a href="modelado.html#cb139-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -718,7 +718,7 @@ El objetivo de los gráficos que están a par es ver que debería estar cada col
 ## prediccion.rf   0   1
 ##             0 836   0
 ##             1   2 786</code></pre>
-<p>La predicción es casi perfecta, pues solo se equivoca clasificando tres setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión.</p>
+<p>La predicción es casi perfecta, pues solo se equivoca clasificando muy pocas setas. Analizamos la precisión de los bosques aleatorios con las medidas de precisión.</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="modelado.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exactitud/Error</span></span>
 <span id="cb151-2"><a href="modelado.html#cb151-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion.rf <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
 <span id="cb151-3"><a href="modelado.html#cb151-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
@@ -761,98 +761,102 @@ El objetivo de los gráficos que están a par es ver que debería estar cada col
 <span id="cb153-6"><a href="modelado.html#cb153-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-7"><a href="modelado.html#cb153-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
 <span id="cb153-8"><a href="modelado.html#cb153-8" aria-hidden="true" tabindex="-1"></a>setas.svm<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;radial&quot;</span>,<span class="at">gamma=</span><span class="fu">mean</span>(gamma_est),<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
-<span id="cb153-9"><a href="modelado.html#cb153-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-10"><a href="modelado.html#cb153-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
-<span id="cb153-11"><a href="modelado.html#cb153-11" aria-hidden="true" tabindex="-1"></a>prediccion_svm<span class="ot">=</span><span class="fu">predict</span>(setas.svm,setas60_test)</span>
-<span id="cb153-12"><a href="modelado.html#cb153-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<span id="cb153-9"><a href="modelado.html#cb153-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Vectores soporte</span></span>
+<span id="cb153-10"><a href="modelado.html#cb153-10" aria-hidden="true" tabindex="-1"></a>setas.svm<span class="sc">$</span>tot.nSV</span></code></pre></div>
+<pre><code>## [1] 977</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modelado.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
+<span id="cb155-2"><a href="modelado.html#cb155-2" aria-hidden="true" tabindex="-1"></a>prediccion_svm<span class="ot">=</span><span class="fu">predict</span>(setas.svm,setas60_test)</span>
+<span id="cb155-3"><a href="modelado.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##               
 ## prediccion_svm   0   1
 ##              0 838   0
 ##              1   0 786</code></pre>
-<p>La tabla nos dice que el modelo predice a la perfección los datos. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modelado.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
-<span id="cb155-2"><a href="modelado.html#cb155-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb155-3"><a href="modelado.html#cb155-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb155-4"><a href="modelado.html#cb155-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-5"><a href="modelado.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
-<span id="cb155-6"><a href="modelado.html#cb155-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb155-7"><a href="modelado.html#cb155-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb155-8"><a href="modelado.html#cb155-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-9"><a href="modelado.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb155-10"><a href="modelado.html#cb155-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb155-11"><a href="modelado.html#cb155-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-12"><a href="modelado.html#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb155-13"><a href="modelado.html#cb155-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb155-14"><a href="modelado.html#cb155-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-15"><a href="modelado.html#cb155-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb155-16"><a href="modelado.html#cb155-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb155-17"><a href="modelado.html#cb155-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-18"><a href="modelado.html#cb155-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb155-19"><a href="modelado.html#cb155-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb155-20"><a href="modelado.html#cb155-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-21"><a href="modelado.html#cb155-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb155-22"><a href="modelado.html#cb155-22" aria-hidden="true" tabindex="-1"></a>medidas.svmradial<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
-<span id="cb155-23"><a href="modelado.html#cb155-23" aria-hidden="true" tabindex="-1"></a>medidas.svmradial</span></code></pre></div>
+<p>La tabla nos dice que el modelo predice a la perfección los datos, utiliza 977. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="modelado.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
+<span id="cb157-2"><a href="modelado.html#cb157-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb157-3"><a href="modelado.html#cb157-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb157-4"><a href="modelado.html#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-5"><a href="modelado.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
+<span id="cb157-6"><a href="modelado.html#cb157-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb157-7"><a href="modelado.html#cb157-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb157-8"><a href="modelado.html#cb157-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-9"><a href="modelado.html#cb157-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb157-10"><a href="modelado.html#cb157-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb157-11"><a href="modelado.html#cb157-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-12"><a href="modelado.html#cb157-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb157-13"><a href="modelado.html#cb157-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb157-14"><a href="modelado.html#cb157-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-15"><a href="modelado.html#cb157-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb157-16"><a href="modelado.html#cb157-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb157-17"><a href="modelado.html#cb157-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-18"><a href="modelado.html#cb157-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb157-19"><a href="modelado.html#cb157-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb157-20"><a href="modelado.html#cb157-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-21"><a href="modelado.html#cb157-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb157-22"><a href="modelado.html#cb157-22" aria-hidden="true" tabindex="-1"></a>medidas.svmradial<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb157-23"><a href="modelado.html#cb157-23" aria-hidden="true" tabindex="-1"></a>medidas.svmradial</span></code></pre></div>
 <pre><code>##    accuracy       error sensitivity specificity   precision         npv 
 ##           1           0           1           1           1           1 
 ##          f1 
 ##           1</code></pre>
 <p>Realizamos otro ajuste del modelo pero esta vez ajustando los parámetros a través de la función <em>tune.svm()</em>.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="modelado.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos los parámtros</span></span>
-<span id="cb157-2"><a href="modelado.html#cb157-2" aria-hidden="true" tabindex="-1"></a>parametros<span class="ot">=</span><span class="fu">tune.svm</span>(setas60_validacion, setas_validacion[,<span class="dv">1</span>], <span class="at">gamma=</span><span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">9</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">cost=</span><span class="fu">seq</span>(<span class="dv">19</span>,<span class="dv">27</span>,<span class="at">by=</span><span class="dv">1</span>))</span>
-<span id="cb157-3"><a href="modelado.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(parametros)</span>
-<span id="cb157-4"><a href="modelado.html#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-5"><a href="modelado.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos el modelo con estos parámetros</span></span>
-<span id="cb157-6"><a href="modelado.html#cb157-6" aria-hidden="true" tabindex="-1"></a>setas.svm_parametros<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>], <span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>, <span class="at">kernel=</span><span class="st">&quot;radial&quot;</span>, <span class="at">gamma=</span> parametros<span class="sc">$</span>best.parameters[<span class="dv">1</span>], <span class="at">cost=</span> parametros<span class="sc">$</span>best.parameters[<span class="dv">2</span>], <span class="at">scale=</span>F)</span>
-<span id="cb157-7"><a href="modelado.html#cb157-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-8"><a href="modelado.html#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla comparativa</span></span>
-<span id="cb157-9"><a href="modelado.html#cb157-9" aria-hidden="true" tabindex="-1"></a>prediccion_svm.parametros<span class="ot">=</span><span class="fu">predict</span>(setas.svm_parametros, setas60_test)</span>
-<span id="cb157-10"><a href="modelado.html#cb157-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.parametros, setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modelado.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos los parámtros</span></span>
+<span id="cb159-2"><a href="modelado.html#cb159-2" aria-hidden="true" tabindex="-1"></a>parametros<span class="ot">=</span><span class="fu">tune.svm</span>(setas60_validacion, setas_validacion[,<span class="dv">1</span>], <span class="at">gamma=</span><span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">9</span>,<span class="at">by=</span><span class="fl">0.5</span>), <span class="at">cost=</span><span class="fu">seq</span>(<span class="dv">19</span>,<span class="dv">27</span>,<span class="at">by=</span><span class="dv">1</span>))</span>
+<span id="cb159-3"><a href="modelado.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(parametros)</span>
+<span id="cb159-4"><a href="modelado.html#cb159-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-5"><a href="modelado.html#cb159-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos el modelo con estos parámetros</span></span>
+<span id="cb159-6"><a href="modelado.html#cb159-6" aria-hidden="true" tabindex="-1"></a>setas.svm_parametros<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>], <span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>, <span class="at">kernel=</span><span class="st">&quot;radial&quot;</span>, <span class="at">gamma=</span> parametros<span class="sc">$</span>best.parameters[<span class="dv">1</span>], <span class="at">cost=</span> parametros<span class="sc">$</span>best.parameters[<span class="dv">2</span>], <span class="at">scale=</span>F)</span>
+<span id="cb159-7"><a href="modelado.html#cb159-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-8"><a href="modelado.html#cb159-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla comparativa</span></span>
+<span id="cb159-9"><a href="modelado.html#cb159-9" aria-hidden="true" tabindex="-1"></a>prediccion_svm.parametros<span class="ot">=</span><span class="fu">predict</span>(setas.svm_parametros, setas60_test)</span>
+<span id="cb159-10"><a href="modelado.html#cb159-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.parametros, setas_test[,<span class="dv">1</span>])</span></code></pre></div>
 <p>El método no converge, por lo que toma el menor valor de ambos parámetros, lo que daría un resultado exactamente igual que usando una estimación para el parámetro gamma y cost.</p>
 <p>Si realizamos el ajuste de SVM pero establecemos que el kernel es lineal, obtenemos lo siguiente:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelado.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el coste: </span></span>
-<span id="cb158-2"><a href="modelado.html#cb158-2" aria-hidden="true" tabindex="-1"></a>norma2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb158-3"><a href="modelado.html#cb158-3" aria-hidden="true" tabindex="-1"></a>cost_est<span class="ot">=</span><span class="fu">apply</span>(setas60_validacion,<span class="dv">2</span>,norma2)</span>
-<span id="cb158-4"><a href="modelado.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="modelado.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
-<span id="cb158-6"><a href="modelado.html#cb158-6" aria-hidden="true" tabindex="-1"></a>setas.svm.lineal<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;linear&quot;</span>,<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
-<span id="cb158-7"><a href="modelado.html#cb158-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-8"><a href="modelado.html#cb158-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
-<span id="cb158-9"><a href="modelado.html#cb158-9" aria-hidden="true" tabindex="-1"></a>prediccion_svm.lineal<span class="ot">=</span><span class="fu">predict</span>(setas.svm.lineal,setas60_test)</span>
-<span id="cb158-10"><a href="modelado.html#cb158-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.lineal,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelado.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para estimar el coste: </span></span>
+<span id="cb160-2"><a href="modelado.html#cb160-2" aria-hidden="true" tabindex="-1"></a>norma2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb160-3"><a href="modelado.html#cb160-3" aria-hidden="true" tabindex="-1"></a>cost_est<span class="ot">=</span><span class="fu">apply</span>(setas60_validacion,<span class="dv">2</span>,norma2)</span>
+<span id="cb160-4"><a href="modelado.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-5"><a href="modelado.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajustamos el modelo</span></span>
+<span id="cb160-6"><a href="modelado.html#cb160-6" aria-hidden="true" tabindex="-1"></a>setas.svm.lineal<span class="ot">=</span><span class="fu">svm</span>(setas60_train,setas_train[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;C-classification&quot;</span>,<span class="at">kernel=</span><span class="st">&quot;linear&quot;</span>,<span class="at">cost=</span><span class="fu">mean</span>(cost_est),<span class="at">scale=</span>F)</span>
+<span id="cb160-7"><a href="modelado.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Vectores soporte</span></span>
+<span id="cb160-8"><a href="modelado.html#cb160-8" aria-hidden="true" tabindex="-1"></a>setas.svm.lineal<span class="sc">$</span>tot.nSV</span></code></pre></div>
+<pre><code>## [1] 474</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="modelado.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla comparativa</span></span>
+<span id="cb162-2"><a href="modelado.html#cb162-2" aria-hidden="true" tabindex="-1"></a>prediccion_svm.lineal<span class="ot">=</span><span class="fu">predict</span>(setas.svm.lineal,setas60_test)</span>
+<span id="cb162-3"><a href="modelado.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prediccion_svm.lineal,setas_test[,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##                      
 ## prediccion_svm.lineal   0   1
 ##                     0 812  43
 ##                     1  26 743</code></pre>
 <p>Podemos ver que respecto al kernel radial, las predicciones empeoran. Esto lo podemos observar en las medidas de precisión.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelado.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
-<span id="cb160-2"><a href="modelado.html#cb160-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
-<span id="cb160-3"><a href="modelado.html#cb160-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
-<span id="cb160-4"><a href="modelado.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-5"><a href="modelado.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
-<span id="cb160-6"><a href="modelado.html#cb160-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb160-7"><a href="modelado.html#cb160-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
-<span id="cb160-8"><a href="modelado.html#cb160-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-9"><a href="modelado.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
-<span id="cb160-10"><a href="modelado.html#cb160-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb160-11"><a href="modelado.html#cb160-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-12"><a href="modelado.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
-<span id="cb160-13"><a href="modelado.html#cb160-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb160-14"><a href="modelado.html#cb160-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-15"><a href="modelado.html#cb160-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
-<span id="cb160-16"><a href="modelado.html#cb160-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb160-17"><a href="modelado.html#cb160-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-18"><a href="modelado.html#cb160-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
-<span id="cb160-19"><a href="modelado.html#cb160-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
-<span id="cb160-20"><a href="modelado.html#cb160-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-21"><a href="modelado.html#cb160-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
-<span id="cb160-22"><a href="modelado.html#cb160-22" aria-hidden="true" tabindex="-1"></a>medidas.svmlineal<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
-<span id="cb160-23"><a href="modelado.html#cb160-23" aria-hidden="true" tabindex="-1"></a>medidas.svmlineal</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="modelado.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medidas de precisión</span></span>
+<span id="cb164-2"><a href="modelado.html#cb164-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>])<span class="sc">/</span><span class="fu">nrow</span>(setas_test)</span>
+<span id="cb164-3"><a href="modelado.html#cb164-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>accuracy</span>
+<span id="cb164-4"><a href="modelado.html#cb164-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-5"><a href="modelado.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas VENENOSAS, sensitivity o recall</span></span>
+<span id="cb164-6"><a href="modelado.html#cb164-6" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb164-7"><a href="modelado.html#cb164-7" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">=</span> sensitivity</span>
+<span id="cb164-8"><a href="modelado.html#cb164-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-9"><a href="modelado.html#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto sobre el total de las setas COMESTIBLES</span></span>
+<span id="cb164-10"><a href="modelado.html#cb164-10" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">=</span>  <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(setas_test[,<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb164-11"><a href="modelado.html#cb164-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-12"><a href="modelado.html#cb164-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es VENENOSAS</span></span>
+<span id="cb164-13"><a href="modelado.html#cb164-13" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">=</span> <span class="fu">sum</span>((prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>]) <span class="sc">&amp;</span> (prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb164-14"><a href="modelado.html#cb164-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-15"><a href="modelado.html#cb164-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Acierto cuando el predicho es COMESTIBLE</span></span>
+<span id="cb164-16"><a href="modelado.html#cb164-16" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">=</span> <span class="fu">sum</span>(prediccion_svm.lineal<span class="sc">==</span> setas_test[,<span class="dv">1</span>] <span class="sc">&amp;</span> prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">sum</span>(prediccion_svm.lineal <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb164-17"><a href="modelado.html#cb164-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-18"><a href="modelado.html#cb164-18" aria-hidden="true" tabindex="-1"></a><span class="co"># F1_score</span></span>
+<span id="cb164-19"><a href="modelado.html#cb164-19" aria-hidden="true" tabindex="-1"></a>f1score <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>precision<span class="sc">*</span>recall <span class="sc">/</span>(precision<span class="sc">+</span>recall)</span>
+<span id="cb164-20"><a href="modelado.html#cb164-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-21"><a href="modelado.html#cb164-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Tabla de medidas de precisión</span></span>
+<span id="cb164-22"><a href="modelado.html#cb164-22" aria-hidden="true" tabindex="-1"></a>medidas.svmlineal<span class="ot">=</span><span class="fu">c</span>(<span class="at">accuracy =</span> accuracy, <span class="at">error =</span> error, <span class="at">sensitivity =</span> sensitivity, <span class="at">specificity =</span> specificity, <span class="at">precision =</span> precision, <span class="at">npv =</span> npv, <span class="at">f1=</span>f1score)</span>
+<span id="cb164-23"><a href="modelado.html#cb164-23" aria-hidden="true" tabindex="-1"></a>medidas.svmlineal</span></code></pre></div>
 <pre><code>##    accuracy       error sensitivity specificity   precision         npv 
 ##  0.95751232  0.04248768  0.94529262  0.96897375  0.96618986  0.94970760 
 ##          f1 
 ##  0.95562701</code></pre>
-<p>Por tanto descartaría usar un SVM con kernel lineal.</p>
+<p>Por tanto descartaríamos usar un SVM con kernel lineal.</p>
 </div>
 </div>
             </section>

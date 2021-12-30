@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="preprocesado-de-datos." class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Preprocesado de datos.</h1>
-<p>Para poder tranformar las variables en factor, lo haremos mediante <strong>as.factor()</strong> a todas las variables de los datos.</p>
+<p>Para poder tranformar las variables en factores, lo hacemos aplicando el comando <strong>as.factor()</strong> a todas las variables.</p>
 <p>Ahora podemos ver mejor como son nuestros datos.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="preprocesado-de-datos..html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos.setas)</span></code></pre></div>
 <pre><code>##  Letalidad Forma_S  Cuticula    Color_S     Escamas       Olor      Fijacion_L
@@ -260,10 +260,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##              (Other): 144             w: 192</code></pre>
 <p>Una de las variables, <strong>Tipo_v</strong> (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="preprocesado-de-datos..html#cb10-1" aria-hidden="true" tabindex="-1"></a>datos.setas<span class="ot">=</span>datos.setas[,<span class="sc">-</span><span class="dv">17</span>]</span></code></pre></div>
-<p>Quizás trabajar con este tipo de datos no sea lo más adecuado, por ellos nos planteamos codificar las variables de forma que sean binomiales, para ello cada subnivel de las variables originales se va a comnvertir en una nueva variables binaria, de forma que será 0 si no se presenta ese subnivel en la variable original y 1 si si lo hace.</p>
-<p>En la variable respuesta, establecemos que 1 si la seta es venenosa y 0 si no lo es. La variable <strong>Escamas</strong>, la codificamos como 1 si presenta escamas y 0 si no tiene escamas. Y la variable <strong>Tamaño_L</strong>, establecemos que 1 es si el tamaño de las láminas de la seta es ancho y 0 si es estrecho. Por último la variable <strong>Forma_T</strong>, la establecemos como 1 si es agrandado y 0 si es afilado.</p>
-<p>Además, la variable <strong>Fijacion_L</strong> tendría solo dos subniveles pues en el subnivel descendente y entallado no aparecen en los datos, por ello establecemos que 1 es si la variable <strong>Fijacion_L</strong> es adjunto y 0 si es libre y la variable <strong>Espacio_L</strong> también tiene dos subniveles pues el subnivel distante tampoco aparece, por ello la codificamos como 1 si la variable <strong>Espacio_L</strong> es cerca y 0 si es atestado.</p>
-<p>Tras realizar las codificaciones anterior obtenemos que nuestros nuevos datos tiene la siguiente forma y la dimensión de la matriz de datos ha cambiado.</p>
+<p>Quizás trabajar con este tipo de datos no sea lo más adecuado, por ello nos planteamos codificar las variables de forma que sean binarias, para ello cada subnivel de las variables originales se va a convertir en una nueva variables binaria, de forma que será 0 si no se presenta ese subnivel en la variable original y 1 si si lo hace.</p>
+<p>En la variable respuesta, establecemos que 1 es si la seta es venenosa y 0 si no lo es. La variable <strong>Escamas</strong>, la codificamos como 1 si presenta escamas y 0 si no tiene escamas. Y la variable <strong>Tamaño_L</strong>, establecemos que es 1 es si el tamaño de las láminas de la seta es ancho y 0 si es estrecho. Por último la variable <strong>Forma_T</strong>, la establecemos como 1 si es agrandado y 0 si es afilado.</p>
+<p>Además, la variable <strong>Fijacion_L</strong> tendría solo dos subniveles pues los subnivel descendente y entallado no aparecen en los datos, por ello establecemos que 1 es si la variable <strong>Fijacion_L</strong> es adjunto y 0 si es libre y la variable <strong>Espacio_L</strong> también tiene dos subniveles pues el subnivel distante tampoco aparece, por ello la codificamos como 1 si la variable <strong>Espacio_L</strong> es cerca y 0 si es atestado.</p>
+<p>Tras realizar las codificaciones de los datos, vemos que nuestros nuevos datos tiene la siguiente forma y la dimensión de la matriz de datos ha cambiado.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesado-de-datos..html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#6 primeras observaciones de los datos ya codificados</span></span>
 <span id="cb11-2"><a href="preprocesado-de-datos..html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(setas)</span></code></pre></div>
 <pre><code>##   Letalidad Campana Cónica Convexa Plana Nudosa Hundida Fibroso Surcos Escamoso
@@ -383,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 8124  117</code></pre>
 <div id="particiones." class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Particiones.</h2>
-<p>Repartimos nuestro de la siguiente forma para tener un conjunto de datos para entrenamiento de nuestros modelos, para testear los modelos ajustados mediante los datos de entrenamiento y para validación. Asignamos un 60% para entrenamiento y un 20% respectivamente para test y validación.</p>
+<p>Repartimos nuestros datos de forma que tengamos un conjunto de datos para entrenamiento de los modelos, otro para testear los modelos ajustados mediante los datos de entrenamiento y otro para validación. Asignamos un 60% para entrenamiento y un 20% respectivamente para test y validación.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="preprocesado-de-datos..html#cb15-1" aria-hidden="true" tabindex="-1"></a>n_totales<span class="ot">=</span><span class="fu">dim</span>(setas)[<span class="dv">1</span>]</span>
 <span id="cb15-2"><a href="preprocesado-de-datos..html#cb15-2" aria-hidden="true" tabindex="-1"></a>n_train<span class="ot">=</span><span class="fu">floor</span>(n_totales<span class="sc">*</span><span class="fl">0.6</span>) </span>
 <span id="cb15-3"><a href="preprocesado-de-datos..html#cb15-3" aria-hidden="true" tabindex="-1"></a>n_test<span class="ot">=</span><span class="fu">floor</span>(n_totales<span class="sc">*</span><span class="fl">0.2</span>) </span>
@@ -482,8 +482,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   p    0  192 2160    0   36  120  256  576  576</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="preprocesado-de-datos..html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~olor</span></span>
 <span id="cb35-2"><a href="preprocesado-de-datos..html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Olor),<span class="at">main=</span><span class="st">&quot;Letalidad vs Olor&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Olor&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Almendra&quot;</span>, <span class="st">&quot;Creosota&quot;</span>,<span class="st">&quot;Asqueroso&quot;</span>,<span class="st">&quot;Anís&quot;</span>,<span class="st">&quot;Mohoso&quot;</span>,<span class="st">&quot;Ninguno&quot;</span>,<span class="st">&quot;Acre&quot;</span>,<span class="st">&quot;Picante&quot;</span>,<span class="st">&quot;Pescado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/olor%20setas-1.png" width="672" />
-Podemos observar que la variable <strong>Olor</strong> se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo <em>creosota, asqueroso, mohoso, acre, picante o pesacado</em> son venenosas mientras que si presentan un olor del tipo <em>almendar, anís </em> son comestibles, mientras que si es <em>ninguno</em> el olor tienes una proporción de 96.6% de que sea comestible.</p>
+<p><img src="MEMORIA_files/figure-html/olor%20setas-1.png" width="672" /></p>
+<p>Podemos observar que la variable <strong>Olor</strong> se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo <em>creosota, asqueroso, mohoso, acre, picante o pesacado</em> son venenosas mientras que si presentan un olor del tipo <em>almendar, anís </em> son comestibles, mientras que si es <em>ninguno</em> el olor tienes una proporción de 96.6% de que sea comestible.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="preprocesado-de-datos..html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según olor sea ninguno</span></span>
 <span id="cb36-2"><a href="preprocesado-de-datos..html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Olor)[,<span class="dv">6</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##         e         p 
@@ -500,8 +500,8 @@ Podemos observar que la variable <strong>Olor</strong> se distribuye entre los d
 ##   p   18 3898</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="preprocesado-de-datos..html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~fijación de las láminas</span></span>
 <span id="cb40-2"><a href="preprocesado-de-datos..html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Fijacion_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Fijación de las láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Fijación&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Adjunto&quot;</span>, <span class="st">&quot;Libre&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/fijacion-1.png" width="672" />
-Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 91.4% frente a un 8.6%, comestible o venenosa, respectivamente.</p>
+<p><img src="MEMORIA_files/figure-html/fijacion-1.png" width="672" /></p>
+<p>Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 91.4% frente a un 8.6%, comestible o venenosa, respectivamente.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="preprocesado-de-datos..html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según fijacion sea adjunto</span></span>
 <span id="cb41-2"><a href="preprocesado-de-datos..html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Fijacion_L)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##         e         p 
@@ -521,8 +521,8 @@ Podemos ver que la proporción de que la seta sea venenosa o comestible según l
 ##   p 3804  112</code></pre>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="preprocesado-de-datos..html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~espacio entre láminas</span></span>
 <span id="cb47-2"><a href="preprocesado-de-datos..html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Espacio_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Espacio entre láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Espacio&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Cerca&quot;</span>, <span class="st">&quot;Atestado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/espacio-1.png" width="672" />
-Podemos ver que ocurre algo parecido que en la variable <strong>Fijacion_L</strong>, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 91.5% frente a un 8.5%, comestible o venenosa, respectivamente.</p>
+<p><img src="MEMORIA_files/figure-html/espacio-1.png" width="672" /></p>
+<p>Podemos ver que ocurre algo parecido que en la variable <strong>Fijacion_L</strong>, la proporción de que la seta sea venenosa o comestible según el espacio entre las láminas en el caso de que estén cerca es casi del 50% mientras que si están atestado la proporción cambia a un 91.5% frente a un 8.5%, comestible o venenosa, respectivamente.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="preprocesado-de-datos..html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según espacio sea cerca</span></span>
 <span id="cb48-2"><a href="preprocesado-de-datos..html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Espacio_L)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
@@ -542,8 +542,8 @@ Podemos ver que ocurre algo parecido que en la variable <strong>Fijacion_L</stro
 ##   p 1692 2224</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="preprocesado-de-datos..html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~tamaño de las láminas</span></span>
 <span id="cb54-2"><a href="preprocesado-de-datos..html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Tamaño_L),<span class="at">main=</span><span class="st">&quot;Letalidad vs Tamaño de las láminas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Tamaño&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ancho&quot;</span>, <span class="st">&quot;Estrecho&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/tamaño-1.png" width="672" />
-Podemos ver que la proporción de que la seta sea venenosa o comestible según el tamaño de las láminas en el caso de que sea ancha es del 30% frente a 70%, respectivamente, mientras que si es estrecho la proporción cambia a un 11.5% frente a un 88.5%, respectivamente.</p>
+<p><img src="MEMORIA_files/figure-html/tamaño-1.png" width="672" /></p>
+<p>Podemos ver que la proporción de que la seta sea venenosa o comestible según el tamaño de las láminas en el caso de que sea ancha es del 30% frente a 70%, respectivamente, mientras que si es estrecho la proporción cambia a un 11.5% frente a un 88.5%, respectivamente.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="preprocesado-de-datos..html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según tamaño sea ancho</span></span>
 <span id="cb55-2"><a href="preprocesado-de-datos..html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Tamaño_L)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
@@ -575,8 +575,8 @@ Podemos ver que la proporción de que la seta sea venenosa o comestible según e
 ##   p 1900 2016</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="preprocesado-de-datos..html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~forma del tallo</span></span>
 <span id="cb64-2"><a href="preprocesado-de-datos..html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Forma_T),<span class="at">main=</span><span class="st">&quot;Letalidad vs Forma del tallo&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Tallo&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Agrandado&quot;</span>, <span class="st">&quot;Afilado&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/forma%20tallo-1.png" width="672" />
-Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo</p>
+<p><img src="MEMORIA_files/figure-html/forma%20tallo-1.png" width="672" /></p>
+<p>Podemos ver que la proporción de que la seta sea venenosa o comestible según el forma del tallo es casi del 50% en ambos formas del tallo</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="preprocesado-de-datos..html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Proporción según forma sea agrandado</span></span>
 <span id="cb65-2"><a href="preprocesado-de-datos..html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Forma_T)[,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##        e        p 
@@ -692,8 +692,8 @@ Podemos ver que la proporción de que la seta sea venenosa o comestible según e
 ##   p    0 1584  224  224    0   72    0 1812    0</code></pre>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="preprocesado-de-datos..html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico letalidad~color de las esporas</span></span>
 <span id="cb95-2"><a href="preprocesado-de-datos..html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(datos.setas<span class="sc">$</span>Letalidad,datos.setas<span class="sc">$</span>Color_esporas),<span class="at">main=</span><span class="st">&quot;Letalidad vs Esporas&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Color&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Número de setas&quot;</span>,<span class="at">names.arg=</span><span class="fu">c</span>(<span class="st">&quot;Ante&quot;</span>, <span class="st">&quot;Chocolate&quot;</span>,<span class="st">&quot;Negro&quot;</span>,<span class="st">&quot;Marrón&quot;</span>,<span class="st">&quot;Naranja&quot;</span>,<span class="st">&quot;Verde&quot;</span>,<span class="st">&quot;Morado&quot;</span>,<span class="st">&quot;Blanco&quot;</span>,<span class="st">&quot;Amarillo&quot;</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;magenta&quot;</span>))</span></code></pre></div>
-<p><img src="MEMORIA_files/figure-html/color%20esporas-1.png" width="672" />
-Podemos observar que aquellas setas que tengan el color de las esporas ante, naranja, morado o amarillo son comestibles, si son verde son totalmente venenosas, y el resto de colores se reparten entre venenosas y comestibles.</p>
+<p><img src="MEMORIA_files/figure-html/color%20esporas-1.png" width="672" /></p>
+<p>Podemos observar que aquellas setas que tengan el color de las esporas ante, naranja, morado o amarillo son comestibles, si son verde son totalmente venenosas, y el resto de colores se reparten entre venenosas y comestibles.</p>
 </div>
 <div id="población" class="section level3" number="4.3.20">
 <h3><span class="header-section-number">4.3.20</span> Población</h3>
@@ -727,27 +727,7 @@ Podemos observar que aquellas setas que tengan el color de las esporas ante, nar
 <div id="proceso-previo" class="section level3" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Proceso previo</h3>
 <p>Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:</p>
-<table>
-<thead>
-<tr class="header">
-<th>-</th>
-<th>1</th>
-<th>0</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>a</td>
-<td>b</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>c</td>
-<td>d</td>
-</tr>
-</tbody>
-</table>
+<p><img src="Tabla%20de%20contingencia.png" /></p>
 <p>Hacemos un intento de calcular nuestra propia medida de similitud mediante un algoritmo programado por nosotros mismos.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="preprocesado-de-datos..html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#i observacion1, j observacion2, k caracteristica</span></span>
 <span id="cb104-2"><a href="preprocesado-de-datos..html#cb104-2" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
@@ -767,7 +747,7 @@ Podemos observar que aquellas setas que tengan el color de las esporas ante, nar
 <span id="cb104-16"><a href="preprocesado-de-datos..html#cb104-16" aria-hidden="true" tabindex="-1"></a>  i<span class="ot">=</span>i<span class="sc">+</span><span class="dv">1</span></span>
 <span id="cb104-17"><a href="preprocesado-de-datos..html#cb104-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Pero vemos que el proceso es muy largo debido a la dimensión de la matriz de los datos, por ello buscamos alguna función predeterminada en R que sea capaz de hacerla.</p>
-<p>Encontramos la función <em>designdist()</em> que nos permite definir nuestra propia medida de similitud. La cebezara de está función será
+<p>Encontramos la función <em>designdist()</em> que nos permite definir nuestra propia medida de similitud. La cabecera de esta función será
 <span class="math display">\[designdist(datos,metodo,abcd)\]</span>
 donde <strong>datos</strong> es nuestra matriz codificada de forma binaria, <strong>metodo</strong> escribiremos la expresión de la medida de similitud que queramos y <strong>abcd=TRUE</strong> usa la tabla de contingencia para datos binarios.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="preprocesado-de-datos..html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">designdist</span>(setas_train[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">117</span>],<span class="st">&quot;(2*a)/(2*a+b+c)&quot;</span>,<span class="at">abcd=</span><span class="cn">TRUE</span>)</span></code></pre></div>
@@ -840,11 +820,12 @@ donde <strong>datos</strong> es nuestra matriz codificada de forma binaria, <str
 ## 17                    
 ## 19 0.5000000          
 ## 21 0.4864865 0.6153846</code></pre>
+<p>Como hemos dicho, la medidas de similutd no es la correcta, por ello descartamos esta opción.</p>
 <p>Finalmente nos decantaremos por la función <em>distance()</em> de la librería <strong><em>philentropy</em></strong>, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos <em>method=“dice”</em>, cuya expresión matemática es exactamente:
 <span class="math display">\[d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}\]</span></p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="preprocesado-de-datos..html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distancia Dice</span></span>
 <span id="cb110-2"><a href="preprocesado-de-datos..html#cb110-2" aria-hidden="true" tabindex="-1"></a>distancia_dice<span class="ot">=</span><span class="fu">distance</span>(setas_train[,<span class="dv">2</span><span class="sc">:</span><span class="fu">dim</span>(setas_train)[<span class="dv">2</span>]],<span class="at">method=</span><span class="st">&quot;dice&quot;</span>)</span></code></pre></div>
-<p>Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentan minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de <em>kmeans()</em>, <em>fastkmed()</em> escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.</p>
+<p>Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentando minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de <em>kmeans()</em>, <em>fastkmed()</em> escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.</p>
 <p>Para seleccionar el número de medoides adecuado, hacemos cross-validation aplicando después un análisis de componente principales, probamos primero con una cantidad muy pequeña de medoides.</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="preprocesado-de-datos..html#cb111-1" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
 <span id="cb111-2"><a href="preprocesado-de-datos..html#cb111-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">=</span><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">9</span>,<span class="at">ncol=</span><span class="dv">3</span>)</span>
@@ -997,7 +978,7 @@ donde <strong>datos</strong> es nuestra matriz codificada de forma binaria, <str
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="preprocesado-de-datos..html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="fl">.60</span><span class="sc">$</span>x,<span class="at">col=</span>setas_train<span class="sc">$</span>Letalidad[k60<span class="sc">$</span>medoid]<span class="sc">+</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/pca-1.png" width="672" /></p>
 <p>En la otra gráfica, vemos como los medoides que se encuentra con un valor de <span class="math inline">\(PC1&lt;0\)</span> son setas no venenosas, si <span class="math inline">\(PC1&gt;2\)</span> las setas son venenosas, mientras que en el intervalo <span class="math inline">\(PC1\in(0,2)\)</span> tenemos setas venenosas y no venenosas.</p>
-<p>Las dos gráficas siguientes son las mismas que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro. Esto solo ocurre en un punto.</p>
+<p>Las dos gráficas siguientes son las mismas que la anterior, pero las realizamos para ver si algunos de los puntos está superpuesto por otro.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="preprocesado-de-datos..html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico:</span></span>
 <span id="cb120-2"><a href="preprocesado-de-datos..html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Indices de los medoides según toxicidad:</span></span>
 <span id="cb120-3"><a href="preprocesado-de-datos..html#cb120-3" aria-hidden="true" tabindex="-1"></a>comestible<span class="ot">=</span><span class="fu">which</span>(setas_train[k60<span class="sc">$</span>medoid,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span>)</span>
@@ -1074,7 +1055,7 @@ donde <strong>datos</strong> es nuestra matriz codificada de forma binaria, <str
 <span id="cb124-10"><a href="preprocesado-de-datos..html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[no.comestibles,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">19</span>)</span>
 <span id="cb124-11"><a href="preprocesado-de-datos..html#cb124-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca.train<span class="sc">$</span>x[comestible,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">col=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/medoides%20a%20observaciones-2.png" width="672" /></p>
-<p>Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. La única direfencia con el análsis anterior es las coordenads de cada seta han cambiado ligeramente, hasta ver el punto de haber dado un giro de 180 grados. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían por lo menos 4 o 5, para intentar clasificar lo mejor posible la nube de puntos de <span class="math inline">\(PC1\in(-1,2)\)</span> y <span class="math inline">\(PC2\in(-1,0.5)\)</span>.</p>
+<p>Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. La única diferencia con el análsis anterior son las coordenads de cada seta, han cambiado ligeramente, hasta el punto de haber dado un giro de 180 grados. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían por lo menos 4 o 5, para intentar clasificar lo mejor posible la nube de puntos de <span class="math inline">\(PC1\in(-1,2)\)</span> y <span class="math inline">\(PC2\in(-0.5,1)\)</span>.</p>
 </div>
 </div>
 <div id="transformación-de-variables" class="section level2" number="4.5">
