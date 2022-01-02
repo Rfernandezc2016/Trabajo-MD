@@ -57,12 +57,12 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
  NOMBRE VARIABLE | DESCRIPCIÓN
  --------------- | ------------
   Letalidad      | venenosa (p) o comestible(e)
-  Forma del sombrebro o píleo | campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s)
+  Forma del sombrero o píleo | campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s)
   Cutícula o superficie del sombrero | fibroso (f), con surcos (g), escamosa (y) o lisa (s)
   Color del sombrero | marrón (n), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
   Escamas | verdadero (t) o falso (f)
   Olor | almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s)
-  Fijación de las láminas | adjunto (a), descentente (d), libre (f) o entallado (n)
+  Fijación de las láminas | adjunto (a), descendente (d), libre (f) o entallado (n)
   Espacio entre láminas | cerca (c), atestado (w) o distante (d)
   Tamaño de las láminas | ancho (b) o estrecho (n)
   Color de las láminas | negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)
@@ -78,7 +78,7 @@ Luego son variables cualitativas y por tanto habrá que tratarlas como factores.
   Tipo de anillo | telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z)
   Color de las esporas | negro (k), marrón (n), ante (b), chocolate (h), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y)
   Población | abundante (a), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)
-  Habitat | pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)
+  Hábitat | pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)
 
 Vamos a llamar a las variables como la característica que ejemplifican.
 ```{r nombre de variables}
@@ -88,7 +88,7 @@ colnames(datos.setas)=c("Letalidad","Forma_S","Cuticula","Color_S","Escamas","Ol
 
 #  Preprocesado de datos.
 
-Para poder tranformar las variables en factores, lo hacemos aplicando el comando **as.factor()** a todas las variables.
+Para poder transformar las variables en factores, lo hacemos aplicando el comando **as.factor()** a todas las variables.
 ```{r factores, echo=FALSE}
 #VARIABLE RESPUESTA
 datos.setas$Letalidad=as.factor(datos.setas$Letalidad)
@@ -768,7 +768,7 @@ barplot(table(datos.setas$Letalidad,datos.setas$Forma_S),main="Letalidad vs Form
 ### Cutícula
 
 ```{r cuticula,echo=TRUE,warning=FALSE}
-#Tabla de frecuencias letalidad~cuticula
+#Tabla de frecuencias letalidad~cutícula
 table(datos.setas$Letalidad,datos.setas$Cuticula)
 #Gráfico letalidad~cuticula
 barplot(table(datos.setas$Letalidad,datos.setas$Cuticula),main="Letalidad vs Cuticula",xlab="Cuticula",ylab="Número de setas",names.arg=c("Fibroso", "Con surcos", "Lisa", "Escamosa"),col=c("blue","magenta"))
@@ -804,12 +804,12 @@ table(datos.setas$Letalidad,datos.setas$Olor)
 barplot(table(datos.setas$Letalidad,datos.setas$Olor),main="Letalidad vs Olor",xlab="Olor",ylab="Número de setas",names.arg=c("Almendra", "Creosota","Asqueroso","Anís","Mohoso","Ninguno","Acre","Picante","Pescado"),col=c("blue","magenta"))
 ```
 
-Podemos observar que la variable **Olor** se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pesacado* son venenosas mientras que si presentan un olor del tipo *almendar, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 96.6% de que sea comestible. 
+Podemos observar que la variable **Olor** se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pescado* son venenosas mientras que si presentan un olor del tipo *almendra, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 96.6% de que sea comestible. 
 ```{r proporcion olor,echo=TRUE}
 #Proporción según olor sea ninguno
 prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])*100
 ```
-Entonces modríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
+Entonces podríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
 
 
 ### Fijación de las láminas (Fijacion_L)
@@ -823,10 +823,10 @@ barplot(table(datos.setas$Letalidad,datos.setas$Fijacion_L),main="Letalidad vs F
 
 Podemos ver que la proporción de que la seta sea venenosa o comestible según la fijación de las láminas en el caso de que estén libre es casi del 50% mientras que si están adjuntas la proporción cambia a un 91.4% frente a un 8.6%, comestible o venenosa, respectivamente.
 ```{r proporcion fijacion,echo=TRUE}
-#Proporción según fijacion sea adjunto
+#Proporción según fijación sea adjunto
 prop.table(table(datos.setas$Letalidad,datos.setas$Fijacion_L)[,1])*100
 
-#Proporción según fijacion sea libre
+#Proporción según fijación sea libre
 prop.table(table(datos.setas$Letalidad,datos.setas$Fijacion_L)[,2])*100
 ```
 
@@ -901,7 +901,7 @@ prop.table(table(datos.setas$Letalidad,datos.setas$Forma_T)[,2])*100
 ### Tallo-Raíz (Tallo_raiz)
 
 ```{r tallo raiz,echo=TRUE,warning=FALSE}
-#Tabla de frecuencias letalidad~tallo-raiz
+#Tabla de frecuencias letalidad~tallo-raíz
 table(datos.setas$Letalidad,datos.setas$Tallo_raiz)
 #Gráfico letalidad~tallo-raiz
 barplot(table(datos.setas$Letalidad,datos.setas$Tallo_raiz),main="Letalidad vs Tallo-Raiz",xlab="Tallo-Raiz",ylab="Número de setas",names.arg=c("Faltante", "Bulboso","Club","Igual","Enraizado"),col=c("blue","magenta"))
@@ -961,7 +961,7 @@ barplot(table(datos.setas$Letalidad,datos.setas$Color_V),main="Letalidad vs Volv
 ### Número de anillos (N_anillos)
 
 ```{r numero anillos,echo=TRUE,warning=FALSE}
-#Tabla de frecuencias letalidad~numero de anillos
+#Tabla de frecuencias letalidad~número de anillos
 table(datos.setas$Letalidad,datos.setas$N_anillos)
 #Gráfico letalidad~numero de anillos
 barplot(table(datos.setas$Letalidad,datos.setas$N_anillos),main="Letalidad vs Anillos",xlab="Número",ylab="Número de setas",names.arg=c("Ninguno","Uno","Dos"),col=c("blue","magenta"))
@@ -993,7 +993,7 @@ Podemos observar que aquellas setas que tengan el color de las esporas ante, nar
 ### Población
 
 ```{r poblacion,echo=TRUE,warning=FALSE}
-#Tabla de frecuencias letalidad~poblacion
+#Tabla de frecuencias letalidad~población
 table(datos.setas$Letalidad,datos.setas$Poblacion)
 #Gráfico letalidad~poblacion
 barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",xlab="Poblacion",ylab="Número de setas",names.arg=c("abundante", "agrupada", "numerosa", "dispersa", "varias", "solitaria"),col=c("blue","magenta"))
@@ -1004,7 +1004,7 @@ barplot(table(datos.setas$Letalidad,datos.setas$Poblacion),main="Letalidad",xlab
 ### Habitat
 
 ```{r habitat,echo=TRUE,warning=FALSE}
-#Tabla de frecuencias letalidad~habitat
+#Tabla de frecuencias letalidad~hábitat
 table(datos.setas$Letalidad,datos.setas$Habitat)
 #Gráfico letalidad~habitat
 barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="Habitat",ylab="Número de setas",names.arg=c("bosques", "pastos", "hojas", "prados", "caminos", "urbano", "desechos"),col=c("blue","magenta"))
@@ -1014,7 +1014,7 @@ barplot(table(datos.setas$Letalidad,datos.setas$Habitat),main="Letalidad",xlab="
 ## Componentes principales
 
 ### Proceso previo
-Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclideas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:
+Dada la naturaleza de nuestros datos, no nos es posible usar las distancias euclídeas como medida para comparar como de cerca están dos observaciones, por ellos debemos usar otras medidas de similitud. Para ello, usamos la siguiente tabla de contingencia:
 
 ![](Tabla de contingencia.png)
 
@@ -1082,7 +1082,7 @@ distancia_dice
 designdist(setas_train[1:10,2:117],"(2*a)/(2*a+b+c)",abcd=TRUE)
 ```
 
-Como hemos dicho, la medidas de similutd no es la correcta, por ello descartamos esta opción.
+Como hemos dicho, la medidas de similitud no es la correcta, por ello descartamos esta opción.
 
 Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
 $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
@@ -1091,7 +1091,7 @@ $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
 distancia_dice=distance(setas_train[,2:dim(setas_train)[2]],method="dice")
 ```
 
-Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un problema de computo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentando minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
+Una vez calculada nuestra medida de similitud, buscamos encontrar unos puntos que nos sirvan como referentes, esto es debido que trabajar con una matriz de tales dimensiones va a suponer un problema de cómputo en futuros modelos a aplicar. Por ello calculamos una cierta cantidad de medoides que los hallaremos trabajando con particiones e intentando minimizar la distancia entre puntos de un grupo y otro punto designado como el centro de ese grupo. A diferencia de *kmeans()*, *fastkmed()* escoge como medoides puntos de los datos y trabaja con una métrica arbitraria de distancias.
 
 Para seleccionar el número de medoides adecuado, hacemos cross-validation aplicando después un análisis de componente principales, probamos primero con una cantidad muy pequeña de medoides.
 ```{r medoides menos de 10,echo=TRUE}
@@ -1123,7 +1123,7 @@ i=i+1
 }
 datos
 ```
-Podemos ver que a partir de 4 meodides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medodides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.
+Podemos ver que a partir de 4 medoides el ajuste por componente principales empieza a mejorar, esto se debe a que las setas venenosas empiezan a estar presentadas por algún medoide. Vamos a utilizar la proporción de varianza acumulada como medida para seleccionar el número de medoides que necesitamos, y vemos que cuando el número de medoides está entre 1 y 10 hay una mayor proporción de varianza acumulada explicada y puede deberse al número reducido de componentes principales.
 
 Ahora vamos a probar a hacerlo con una cantidad distintas de medoides, desde 10 medoides hasta 250 aumentando de diez en diez. Nos quedaremos con aquella que tenga mayor proporción acumulada pero sin sacrificar información sobre los datos.
 
@@ -1214,14 +1214,14 @@ points(pca.train$x[no.comestibles,1:2],col=2,pch=19)
 points(pca.train$x[comestible,1:2],col=1,pch=19)
 ```
 
-Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. La única diferencia con el análsis anterior son las coordenads de cada seta, han cambiado ligeramente, hasta el punto de haber dado un giro de 180 grados. Luego podemos llegar a suponer que el número de cluster necesarios en un futuro análisis cluster serían por lo menos 4 o 5, para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-0.5,1)$. 
+Observamos algo bastante parecido a lo obtenido en el análisis anterior, dos zonas bastante bien diferenciadas y otra zona donde coinciden las setas venenosas y las comestibles. La única diferencia con el análisis anterior son las coordenadas de cada seta, han cambiado ligeramente, hasta el punto de haber dado un giro de 180 grados. Luego podemos llegar a suponer que el número de clúster necesarios en un futuro análisis clúster serían por lo menos 4 o 5, para intentar clasificar lo mejor posible la nube de puntos de $PC1\in(-1,2)$ y $PC2\in(-0.5,1)$. 
 
 
 
 
 ##  Transformación de variables
 
-Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
+Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclídea en los algoritmos posteriores.
 
 ```{r datos transformados,echo=TRUE,warning=FALSE,message=FALSE}
 #Datos train:
@@ -1234,7 +1234,7 @@ setas60_test=distancia_medoides_test[-c(1:60),c(1:60)]
 colnames(setas60_test)=colnames(setas60_train)
 rownames(setas60_test)=rownames(setas_test)
 
-#Datos validation:
+#Datos validacion:
 medoides_setas_validacion=rbind(setas_train[k60$medoid,],setas_validacion)
 distancia_medoides_validacion=distance(medoides_setas_validacion[,2:117],method="dice")
 setas60_validacion=distancia_medoides_validacion[-c(1:60),c(1:60)]
@@ -1242,16 +1242,16 @@ colnames(setas60_validacion)=colnames(setas60_train)
 rownames(setas60_validacion)=rownames(setas_validacion)
 ```
 
-##  Imputacion de datos (datos faltantes)
+##  Imputación de datos (datos faltantes)
 
 No se requiere de imputación de datos, pues no hay datos faltantes en ninguna de las variables.
 
 #  Modelado
 
 
-## Análisis Cluster
+## Análisis Clúster
 
-El análisis cluster es un conjunto de técnicas multivariantes utilizadas para clasificar a un conjunto de individuos en grupos homogéneos. Para determinar el número de grupos, realizamos cross-validation con nuestros datos de validación. 
+El análisis clúster es un conjunto de técnicas multivariantes utilizadas para clasificar a un conjunto de individuos en grupos homogéneos. Para determinar el número de grupos, realizamos cross-validation con nuestros datos de validación. 
 
 ```{r crossvalidation cluster,echo=TRUE}
 #Números de clusters
@@ -1267,7 +1267,7 @@ for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas60_validacion)$x,centers=i,nsta
 plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
 ```
 
-En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
+En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clúster.
 
 ```{r analisis cluster 5,echo=TRUE}
 #Análisis cluster
@@ -1275,7 +1275,7 @@ clusters.datos=kmeans(prcomp(setas60_train)$x,centers=5,nstart=25)
 table(clusters.datos$cluster,setas_train$Letalidad)
 ```
 
-Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas, por ejemplo el cluster que reparte las setas de la forma 624-486 es menos especifíco que los cluster que reparten 835-4, 1059-5 y 4-1089.
+Podemos ver que un clúster identificar correctamente a las setas venenosas mientras que el resto de clusters, las setas están un poco más repartidas, por ejemplo el clúster que reparte las setas de la forma 624-486 es menos específico que los clusters que reparten 835-4, 1059-5 y 4-1089.
 
 ```{r grafico cluster 5,echo=TRUE}
 pca=prcomp(setas60_train)$x
@@ -1315,10 +1315,10 @@ legend("topright",
        fil = seq(2,6))
 ```
 
-El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
+El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los clúster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
 
 
-Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.
+Vamos a realizar otro análisis clúster pero aumentando el número de clúster con la intención de con un número mayor de clusters se clasifiquen mejor las setas.
 
 ```{r analisis cluster 8,echo=TRUE}
 #Análisis cluster
@@ -1364,9 +1364,9 @@ legend("topright",
        fil = seq(2,9))
 ```
 
-Vemos que tras realizar el análisis cluster con 8 grupos, no obtenemos tan claramente la clasificación de setas que buscamos pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, aparece un cluster que clasifica correctamente la toxicidad de la setas dentro de la maraña de datos pero el resto están mezclados entre los cluster y habría que analizar cada uno de ellos para poder obtener alguna información más.
+Vemos que tras realizar el análisis clúster con 8 grupos, no obtenemos tan claramente la clasificación de setas que buscamos pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, aparece un clúster que clasifica correctamente la toxicidad de la setas dentro de la maraña de datos pero el resto están mezclados entre los clusters y habría que analizar cada uno de ellos para poder obtener alguna información más.
 
-Con este análisis también vemos que a pesar de haber aumentado el número de cluster, no conseguimos una clasificación perfecta, por ello sacamos la conclusión no vamos a clasificar todas las setas correctamente y cometeremos un cierto error.
+Con este análisis también vemos que a pesar de haber aumentado el número de clúster, no conseguimos una clasificación perfecta, por ello sacamos la conclusión no vamos a clasificar todas las setas correctamente y cometeremos un cierto error.
 
 
 
@@ -1438,7 +1438,7 @@ medidas_presicision
 
 
 
-#Grafico de las medidas de precision
+#Grafico de las medidas de precisión
 plot(seq(1,round(k)),medidas_presicision[,1],main="Medidas de precision",type="n",xlab="Número de k vecinos",ylab="",ylim=c(0,1),xlim=c(1,round(k)+2))
 for (i in 1:7) {
   points(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
@@ -1676,7 +1676,7 @@ El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pu
 
 #  Actualización del modelo...
 
-Tras haber obtenido los resultados de nuestros datos, nos planteamos ciertas actulizaciones de los modelos.
+Tras haber obtenido los resultados de nuestros datos, nos planteamos ciertas actualizaciones de los modelos.
 
 ## Datos sin variable **Olor**
 Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis a los datos quitando esta variable.
@@ -1693,7 +1693,7 @@ Recalculamos la medida de similitud
 distancia_dice.sin.olor=distance(setas_train.sin.olor[,2:dim(setas_train.sin.olor)[2]],method="dice")
 ```
 
-Para seleccionar el número de medoides adecuado, hacemos cross-validation pero como sabemos que quizas el número de medoides adecuado está cuando son más de 10, probamos directamente. También usamos la distancia de todas las observaciones hasta el número de medoides que estamos probando. Nos quedaremos con aquella que tenga mayor proporcion acumulada pero sin sacrificar información sobre los datos.
+Para seleccionar el número de medoides adecuado, hacemos cross-validation pero como sabemos que quizás el número de medoides adecuado está cuando son más de 10, probamos directamente. También usamos la distancia de todas las observaciones hasta el número de medoides que estamos probando. Nos quedaremos con aquella que tenga mayor proporción acumulada pero sin sacrificar información sobre los datos.
 
 ```{r medoides mas de 10 sin olor,echo=TRUE}
 i=10
@@ -1723,7 +1723,7 @@ i=i+10
 datos
 ```
 
-Los resultados son bastantes parecidos al análisis en el que incluimos la variable **Olor**, por tanto, nos seguimos quedando con la distancia de todas las observaciones a los 60 medoides, la segunda proporcion acumulada más alta, para tener más información.
+Los resultados son bastantes parecidos al análisis en el que incluimos la variable **Olor**, por tanto, nos seguimos quedando con la distancia de todas las observaciones a los 60 medoides, la segunda proporción acumulada más alta, para tener más información.
 
 
 ```{r medoides sin olor,echo=TRUE}
@@ -1756,10 +1756,10 @@ points(pca.60$x[comestible,1:2],col=1,pch=19)
 ```
 
 
-Observamos una gran maraña de puntos, parecida a la que obtenemos haciendo el mismo análsis incluyendo la variable **Olor**, donde solo podemos ver dos grupos bien diferenciados del resto.
+Observamos una gran maraña de puntos, parecida a la que obtenemos haciendo el mismo análisis incluyendo la variable **Olor**, donde solo podemos ver dos grupos bien diferenciados del resto.
 
 
-Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
+Las variables no necesitan ninguna modificación adicional, pues ya las hemos codificado anteriormente. Lo único que transformamos son nuestro datos. A partir de ahora, los datos serán la distancia de cada seta a los 60 medoides que hemos calculado, esto permite utilizar la distancia euclídea en los algoritmos posteriores.
 
 ```{r datos transformados sin olor,echo=TRUE,warning=FALSE,message=FALSE}
 #Datos train:
@@ -1772,7 +1772,7 @@ setas60_test.sin.olor=distancia_medoides_test.sin.olor[-c(1:60),c(1:60)]
 colnames(setas60_test.sin.olor)=colnames(setas60_train.sin.olor)
 rownames(setas60_test.sin.olor)=rownames(setas_test.sin.olor)
 
-#Datos validation:
+#Datos validacion:
 medoides_setas_validacion.sin.olor=rbind(setas_train.sin.olor[k60$medoid,],setas_validacion.sin.olor)
 distancia_medoides_validacion.sin.olor=distance(medoides_setas_validacion.sin.olor[,2:dim(setas_validacion.sin.olor)[2]],method="dice")
 setas60_validacion.sin.olor=distancia_medoides_validacion.sin.olor[-c(1:60),c(1:60)]
@@ -1783,7 +1783,7 @@ rownames(setas60_validacion.sin.olor)=rownames(setas_validacion.sin.olor)
 
 ### Análisis Cluster
 
-Aplicamos el análsis cluster a nuestros datos con el objetivo de tener grupos de setas que contengas solo setas venenosas o comestibles, pero primero vemos por cross-validation el número adecuado de cluster a aplicar.
+Aplicamos el análisis clúster a nuestros datos con el objetivo de tener grupos de setas que contengas solo setas venenosas o comestibles, pero primero vemos por cross-validation el número adecuado de clusters a aplicar.
 
 ```{r cluster sin olor,echo=TRUE}
 #Números de clusters
@@ -1806,7 +1806,7 @@ En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros d
 clusters.datos.sin.olor=kmeans(prcomp(setas60_train.sin.olor)$x,centers=5,nstart=25)
 table(clusters.datos.sin.olor$cluster,setas_train.sin.olor$Letalidad)
 ```
-Podemos ver que un cluster identificar correctamente a las setas venenosas mientras que el resto de cluster las setas están un poco más repartidas.
+Podemos ver que un clúster identificar correctamente a las setas venenosas mientras que el resto de clusters las setas están un poco más repartidas.
 
 ```{r grafico cluster 5 sin olor,echo=TRUE}
 pca=prcomp(setas60_train.sin.olor)$x
@@ -1846,10 +1846,10 @@ legend("topright",
        fil = seq(2,6))
 ```
 
-En estos gráficos podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los cluster no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
+En estos gráficos podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los clusters no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
 
 
-Vamos a realizar otro análisis cluster pero aumentando el número de cluster con la intención de con un número mayor de cluster se clasifiquen mejor las setas.
+Vamos a realizar otro análisis clúster pero aumentando el número de clusters con la intención de con un número mayor de clusters se clasifiquen mejor las setas.
 
 ```{r analisis cluster 8 sin olor,echo=TRUE}
 #Análisis cluster
@@ -1894,7 +1894,7 @@ legend("topright",
        fil = seq(2,9))
 ```
 
-Vemos que tras realizar el análisis cluster con 8 grupos, notamos un empeoramiento de la predicción, por lo que nos quedamos con el análsis cluster con $k=5$.
+Vemos que tras realizar el análisis clúster con 8 grupos, notamos un empeoramiento de la predicción, por lo que nos quedamos con el análsis clúster con $k=5$.
 
 
 
@@ -1935,14 +1935,14 @@ medidas.knn.sin.olor=c(accuracy = accuracy, error = error, sensitivity = sensiti
 medidas.knn.sin.olor
 ```
 
-Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajueste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.1%.
+Si usamos el 1 vecino más cercano, podemos ver en sus medidas de precisión que el ajuste es como decíamos, es decir, predice la toxicidad de las setas con un grado de acierto muy alto, solo comete un error del 0.1%.
 
 Pero vamos a probar a calcular todas estas medidas con un número distinto de vecinos más cercano, por si acaso disminuyese ese pequeño error.
 
 ```{r knn cross-validation sin olor,echo=TRUE}
 k=(dim(setas60_train.sin.olor)[1]^(4/(4+dim(setas60_train.sin.olor)[2])))*10
 
-#Matriz de las medidas de precision:
+#Matriz de las medidas de precisión:
 medidas_presicision=matrix(nrow=round(k),ncol=7)
 nombres_medidas=c("accuracy", "error", "sensitivity", "specificity", "precision", "npv", "f1score")
 colnames(medidas_presicision)=nombres_medidas
@@ -1960,7 +1960,7 @@ for (i in 1:round(k)){
 }
 medidas_presicision
 
-#Grafico de las medidas de precision
+#Grafico de las medidas de precisión
 plot(seq(1,round(k)),medidas_presicision[,1],main="Medidas de precision",type="n",xlab="Número de k vecinos",ylab="",ylim=c(0,1),xlim=c(1,round(k)+2))
 for (i in 1:7) {
   points(seq(1,round(k)),medidas_presicision[,i],lwd=2,col=i+1)
@@ -2087,7 +2087,7 @@ prediccion_svm.sin.olor=predict(setas.svm.sin.olor,setas60_test.sin.olor)
 table(prediccion_svm.sin.olor,setas_test.sin.olor[,1])
 ```
 
-La tabla nos dice que el modelo predice a la perfección los datos, podría estar sobreajustado. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
+La tabla nos dice que el modelo predice a la perfección los datos, podría estar sobre ajustado. Las medidas de precisión no van a aportar nada que no sepamos con mirar simplemente la tabla.
 
 ```{r medidas de precision svm sin olor,echo=TRUE}
 # Medidas de precisión
@@ -2172,7 +2172,7 @@ colnames(medidas.precision.sin.olor)=c("accuracy", "error", "sensitivity", "spec
 rownames(medidas.precision.sin.olor)=c("k-NN","Arboles de decision","Bosques aleatorios","SVM radial","SVM lineal")
 medidas.precision.sin.olor
 ```
-El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test, pero como hemos dicho antes, podría estar sobreajustado, por ello nos quedamos con el modelo k-NN.
+El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pues predice a la perfección los datos tanto los de entrenamiento como los de test, pero como hemos dicho antes, podría estar sobre ajustado, por ello nos quedamos con el modelo k-NN.
 
 
 ## Datos con variable **Olor=n**
