@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Datos | MEMORIA.knit</title>
+  <title>1 MEMORIA | MEMORIA.knit</title>
   <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Datos | MEMORIA.knit" />
+  <meta property="og:title" content="1 MEMORIA | MEMORIA.knit" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Datos | MEMORIA.knit" />
+  <meta name="twitter:title" content="1 MEMORIA | MEMORIA.knit" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="objetivos.html"/>
-<link rel="next" href="preprocesado-de-datos..html"/>
+
+<link rel="next" href="introducción.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -221,157 +221,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="datos" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Datos</h1>
-<p>Importamos los datos mediante el siguiente comando:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="datos.html#cb2-1" aria-hidden="true" tabindex="-1"></a>datos.setas<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;agaricus-lepiota.data&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<p>Comprobamos que se han leído correctamente los datos mirando la dimensión de los datos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="datos.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos.setas)</span></code></pre></div>
-<pre><code>## [1] 8124   23</code></pre>
-<p>Como vemos, disponemos de 8124 observaciones de setas de las cuales hemos recogido información sobre 23 características.</p>
-<p>Realizamos una exploración básica de los datos para comprobar que tipo de datos tenemos.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="datos.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos.setas)</span></code></pre></div>
-<pre><code>##       V1                 V2                 V3                 V4           
-##  Length:8124        Length:8124        Length:8124        Length:8124       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##       V5                 V6                 V7                 V8           
-##  Length:8124        Length:8124        Length:8124        Length:8124       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##       V9                V10                V11                V12           
-##  Length:8124        Length:8124        Length:8124        Length:8124       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##      V13                V14                V15                V16           
-##  Length:8124        Length:8124        Length:8124        Length:8124       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##      V17                V18                V19                V20           
-##  Length:8124        Length:8124        Length:8124        Length:8124       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##      V21                V22                V23           
-##  Length:8124        Length:8124        Length:8124       
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character</code></pre>
-<p>Luego son variables cualitativas y por tanto habrá que tratarlas como factores. Estas variables son:</p>
-<table>
-<colgroup>
-<col width="55%" />
-<col width="44%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>NOMBRE VARIABLE</th>
-<th>DESCRIPCIÓN</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Letalidad</td>
-<td>venenosa (p) o comestible(e)</td>
-</tr>
-<tr class="even">
-<td>Forma del sombrero o píleo</td>
-<td>campana (b), cónica (c), convexa (x), plana (f), nudosa (k) o hundida (s)</td>
-</tr>
-<tr class="odd">
-<td>Cutícula o superficie del sombrero</td>
-<td>fibroso (f), con surcos (g), escamosa (y) o lisa (s)</td>
-</tr>
-<tr class="even">
-<td>Color del sombrero</td>
-<td>marrón (n), ante (b), canela (c), gris (g), verde (r), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)</td>
-</tr>
-<tr class="odd">
-<td>Escamas</td>
-<td>verdadero (t) o falso (f)</td>
-</tr>
-<tr class="even">
-<td>Olor</td>
-<td>almendra (a), anís (l), creosota (c), pescado (y), asqueroso (f), mohoso (m), ninguno (n), acre(p) o picante (s)</td>
-</tr>
-<tr class="odd">
-<td>Fijación de las láminas</td>
-<td>adjunto (a), descendente (d), libre (f) o entallado (n)</td>
-</tr>
-<tr class="even">
-<td>Espacio entre láminas</td>
-<td>cerca (c), atestado (w) o distante (d)</td>
-</tr>
-<tr class="odd">
-<td>Tamaño de las láminas</td>
-<td>ancho (b) o estrecho (n)</td>
-</tr>
-<tr class="even">
-<td>Color de las láminas</td>
-<td>negro (k), marrón (n), ante (b), chocolate (h), gris (g), verde (r), naranja (o), rosa (p), morado (u), rojo (e), blanco (w) o amarillo (y)</td>
-</tr>
-<tr class="odd">
-<td>Forma del tallo</td>
-<td>agrandado (e) o afilado (t)</td>
-</tr>
-<tr class="even">
-<td>Tallo-raíz</td>
-<td>bulboso (b), club (c), copa (u), igual (e), rizomorfos (z), enraizado (r) o faltante (?)</td>
-</tr>
-<tr class="odd">
-<td>Superficie del tallo por encima del anillo</td>
-<td>fibroso (f), escamoso (y), sedoso (k) o liso (s)</td>
-</tr>
-<tr class="even">
-<td>Superficie del tallo por debajo del anillo</td>
-<td>fibroso (f), escamoso (y), sedoso (k) o liso (s)</td>
-</tr>
-<tr class="odd">
-<td>Color del tallo por encima del anillo</td>
-<td>marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y)</td>
-</tr>
-<tr class="even">
-<td>Color del tallo por debajo del anillo</td>
-<td>marrón (n), ante (b), canela (c), gris (g), naranja (o), rosa (p), rojo (e), blanco (w) o amarillo (y)</td>
-</tr>
-<tr class="odd">
-<td>Tipo de volva</td>
-<td>parcial (p) o universal (u)</td>
-</tr>
-<tr class="even">
-<td>Color del volva</td>
-<td>marrón (n), naranja (o), blanco (w) o amarillo (y)</td>
-</tr>
-<tr class="odd">
-<td>Número de anillos</td>
-<td>ninguno (n), uno (o) o dos (t)</td>
-</tr>
-<tr class="even">
-<td>Tipo de anillo</td>
-<td>telaraña (c), evanescente (e), abocinado (f), grande (l), ninguno (n), colgante (p), revestimiento (s) o zona (z)</td>
-</tr>
-<tr class="odd">
-<td>Color de las esporas</td>
-<td>negro (k), marrón (n), ante (b), chocolate (h), verde (r), naranja (o), morado (u), blanco (w) o amarillo (y)</td>
-</tr>
-<tr class="even">
-<td>Población</td>
-<td>abundante (a), agrupada (c), numerosa (n), dispersa (s), varias (v) o solitaria (y)</td>
-</tr>
-<tr class="odd">
-<td>Hábitat</td>
-<td>pastos (g), hojas (l), prados (m), caminos (p), urbano (u), desechos (w) o bosques (d)</td>
-</tr>
-</tbody>
-</table>
-<p>Vamos a llamar a las variables como la característica que ejemplifican.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="datos.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(datos.setas)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Letalidad&quot;</span>,<span class="st">&quot;Forma_S&quot;</span>,<span class="st">&quot;Cuticula&quot;</span>,<span class="st">&quot;Color_S&quot;</span>,<span class="st">&quot;Escamas&quot;</span>,<span class="st">&quot;Olor&quot;</span>,<span class="st">&quot;Fijacion_L&quot;</span>,<span class="st">&quot;Espacio_L&quot;</span>,<span class="st">&quot;Tamaño_L&quot;</span>,<span class="st">&quot;Color_L&quot;</span>,<span class="st">&quot;Forma_T&quot;</span>,<span class="st">&quot;Tallo_raiz&quot;</span>,<span class="st">&quot;Superficie_T1&quot;</span>,<span class="st">&quot;Superficie_T2&quot;</span>,<span class="st">&quot;Color_T1&quot;</span>,<span class="st">&quot;Color_T2&quot;</span>,<span class="st">&quot;Tipo_V&quot;</span>,<span class="st">&quot;Color_V&quot;</span>,<span class="st">&quot;N_anillos&quot;</span>,<span class="st">&quot;Tipo_anillo&quot;</span>,<span class="st">&quot;Color_esporas&quot;</span>,<span class="st">&quot;Poblacion&quot;</span>,<span class="st">&quot;Habitat&quot;</span>)</span></code></pre></div>
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="memoria" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> MEMORIA</h1>
+<p><img src="Portada.png" /><!-- --></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="objetivos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="preprocesado-de-datos..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+<a href="introducción.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

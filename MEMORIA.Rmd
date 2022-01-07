@@ -1,12 +1,18 @@
 ---
-title: "Memoria del trabajo"
-author: "Adrián Rocha De la Casa, Yassin Khalifa Martino y Rocío Fernández Cebrián"
+title: ""
+author: ""
 date: "13/01/2022"
 output: bookdown::gitbook
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+# MEMORIA
+
+```{r portada,echo=FALSE}
+knitr::include_graphics("Portada.png")
 ```
 
 #  Introducción
@@ -2277,14 +2283,14 @@ rownames(setas.dice_train.olor)=rownames(setas_train.olor)
 #Datos test:
 setas_test.olor_train=rbind(setas_train.olor,setas_test.olor)
 setas.dice_test.olor=distance(setas_test.olor_train[,2:dim(setas_test.olor)[2]],method="dice")
-setas.dice_test.olor=setas.dice_test.olor[-c(1:dim(setas_train.olor)),c(1:dim(setas_train.olor))]
+setas.dice_test.olor=setas.dice_test.olor[-c(1:dim(setas_train.olor)[1]),c(1:dim(setas_train.olor)[1])]
 colnames(setas.dice_test.olor)=rownames(setas_train.olor)
 rownames(setas.dice_test.olor)=rownames(setas_test.olor)
 
 #Datos validation:
 setas_validacion.olor_train=rbind(setas_train.olor,setas_validacion.olor)
 setas.dice_validacion.olor=distance(setas_validacion.olor_train[,2:dim(setas_validacion.olor)[2]],method="dice")
-setas.dice_validacion.olor=setas.dice_validacion.olor[-c(1:dim(setas_train.olor)),c(1:dim(setas_train.olor))]
+setas.dice_validacion.olor=setas.dice_validacion.olor[-c(1:dim(setas_train.olor)[1]),c(1:dim(setas_train.olor)[1])]
 colnames(setas.dice_validacion.olor)=rownames(setas_train.olor)
 rownames(setas.dice_validacion.olor)=rownames(setas_validacion.olor)
 ```
