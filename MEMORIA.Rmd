@@ -148,17 +148,20 @@ Ahora podemos ver mejor como son nuestros datos.
 ```{r resumen datos,echo=TRUE}
 summary(datos.setas)
 ```
-Una de las variables, **Tipo_v** (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podríamos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible.
+Una de las variables, **Tipo_v** (tipo de volva) con dos niveles distintos, parcial (p) y universal (u), podemos eliminarla de nuestros datos pues todo la frecuencia solo está en uno de los niveles, luego no aporta información alguna para determinar si es venenosa o comestible. La variable **Tipo_v** es la número 17.
 
 ```{r eliminar variable,echo=TRUE}
 datos.setas=datos.setas[,-17]
 ```
 
-Quizás trabajar con este tipo de datos no sea lo más adecuado, por ello nos planteamos codificar las variables de forma que sean binarias, para ello cada subnivel de las variables originales se va a convertir en una nueva variables binaria, de forma que será 0 si no se presenta ese subnivel en la variable original y 1 si si lo hace.
+Quizás trabajar con datos que todas sus variables sean cualitativas no sea lo más adecuado, por ello nos planteamos codificar las variables de forma que sean binarias, para ello cada subnivel de las variables originales se va a convertir en una nueva variable binaria, de forma que será 0 si no se presenta ese subnivel en la variable original y 1 si si lo hace.
 
-En la variable respuesta, establecemos que 1 es si la seta es venenosa y 0 si no lo es. La variable **Escamas**, la codificamos como 1 si presenta escamas y 0 si no tiene escamas. Y la variable **Tamaño_L**, establecemos que es 1 es si el tamaño de las láminas de la seta es ancho y 0 si es estrecho. Por último la variable **Forma_T**, la establecemos como 1 si es agrandado y 0 si es afilado.
-
-Además, la variable **Fijacion_L** tendría solo dos subniveles pues los subnivel descendente y entallado no aparecen en los datos, por ello establecemos que 1 es si la variable **Fijacion_L** es adjunto y 0 si es libre  y la variable **Espacio_L** también tiene dos subniveles pues el subnivel distante tampoco aparece, por ello la codificamos como 1 si la variable **Espacio_L** es cerca y 0 si es atestado.
+ + La variable respuesta, establecemos que 1 es si la seta es venenosa y 0 si es comestible. 
+ + La variable **Escamas**, la codificamos como 1 si la seta presenta escamas y 0 si no tiene escamas.
+ + La variable **Tamaño_L**, establecemos que es 1 si el tamaño de las láminas de la seta es ancho y 0 si es estrecho. 
+ + La variable **Forma_T**, la establecemos como 1 si es agrandado y 0 si es afilado.
+ + La variable **Fijacion_L** tendría solo dos subniveles pues los subniveles descendente y entallado no aparecen en los datos, por ello establecemos que 1 es si la variable **Fijacion_L** es adjunto y 0 si es libre.
+ + La variable **Espacio_L** también tiene dos subniveles pues el subnivel distante tampoco aparece, por ello la codificamos como 1 si la variable **Espacio_L** es cerca y 0 si es atestado.
 
 ```{r codificación,echo=FALSE}
 #Variable respuesta
@@ -746,7 +749,7 @@ setas_validacion=setas[indices_validacion,]
 ##  EDA. Exploratory Data Analysis.
 
 ### Letalidad:
-La variable **Letalidad** tiene dos niveles distintos, venenosa (p) o comestible (e), la frecuencia relativa correspondiente a nuestros datos es:
+La variable **Letalidad** tiene dos niveles distintos, venenosa (1) o comestible (0), la frecuencia relativa correspondiente a nuestros datos es:
 ```{r proporcion, echo=TRUE}
 #Tabla:
 table(setas$Letalidad)
@@ -760,7 +763,7 @@ Los datos se reparten aproximademente a partes iguales entre los dos niveles, es
 
 ##  Correlación entre las variables.
 
-Vamos a comprobar si existe alguna correlación entre las distintas variables. 
+Vamos a comprobar si existe alguna correlación entre las distintas variables, para ello usamos los datos sin codificar de forma binaria.
 
 ### Forma del sombrero (Forma_S)
 
@@ -811,12 +814,12 @@ table(datos.setas$Letalidad,datos.setas$Olor)
 barplot(table(datos.setas$Letalidad,datos.setas$Olor),main="Letalidad vs Olor",xlab="Olor",ylab="Número de setas",names.arg=c("Almendra", "Creosota","Asqueroso","Anís","Mohoso","Ninguno","Acre","Picante","Pescado"),col=c("blue","magenta"))
 ```
 
-Podemos observar que la variable **Olor** se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pescado* son venenosas mientras que si presentan un olor del tipo *almendra, anís * son comestibles, mientras que si es *ninguno* el olor tienes una proporción de 96.6% de que sea comestible. 
+Podemos observar que la variable **Olor** se distribuye entre los distintos tipos de olor de forma exclusiva, es decir, todas las setas que presentan un olor del tipo *creosota, asqueroso, mohoso, acre, picante o pescado* son venenosas mientras que si presentan un olor del tipo *almendra o anís * son comestibles, mientras que si es *ninguno* el olor tienes una probabilidad del 96.6% de que sea comestible. 
 ```{r proporcion olor,echo=TRUE}
 #Proporción según olor sea ninguno
 prop.table(table(datos.setas$Letalidad,datos.setas$Olor)[,6])*100
 ```
-Entonces podríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0.
+Entonces podríamos cambiar la codificación hecha anteriormente y tener solo una variable codificada de forma binaria de tal forma que para los olores que producen que la seta sea venenosa darles el valor 1 y para los que no, darles el valor 0, pero las setas con olor *ninguno* no podríamos asignarlas a ninguno de esos valores porque hay setas venenosas y comestibles y por tanto tendríamos que añadir un nuevo valor para ellas.
 
 
 ### Fijación de las láminas (Fijacion_L)
@@ -994,7 +997,7 @@ table(datos.setas$Letalidad,datos.setas$Color_esporas)
 barplot(table(datos.setas$Letalidad,datos.setas$Color_esporas),main="Letalidad vs Esporas",xlab="Color",ylab="Número de setas",names.arg=c("Ante", "Chocolate","Negro","Marrón","Naranja","Verde","Morado","Blanco","Amarillo"),col=c("blue","magenta"))
 ```
 
-Podemos observar que aquellas setas que tengan el color de las esporas ante, naranja, morado o amarillo son comestibles, si son verde son totalmente venenosas, y el resto de colores se reparten entre venenosas y comestibles.
+Podemos observar que aquellas setas que tengan el color de las esporas *ante, naranja, morado o amarillo* son comestibles, si son *verde* son totalmente venenosas, y el resto de colores se reparten entre venenosas y comestibles.
 
 
 ### Población
@@ -1035,10 +1038,11 @@ Dadas dos observaciones distintas, calculamos:
 Hacemos un intento de calcular nuestra propia medida de similitud mediante un algoritmo programado por nosotros mismos, la medida que vamos a calcular es la medida Dice o Czekanowski que sigue la siguiente fórmula 
 $$\dfrac{2a}{2a+b+c}$$
 
-Para calcular **a** como buscamos que ambas multiplicamos el valor de la variable de cada observaciones sean 1 y sumamos el número de veces que esa multiplicación sea 1, es decir, hacemos el sumatorio del producto escalar de los dos vectores de las observaciones. 
+Para calcular **a** como buscamos que ambos valores de la variable de cada observaciones sean 1 y sumamos el número de veces que al multiplicar cada valor con el otro sea 1, es decir, hacemos el sumatorio del producto escalar de los dos vectores de las observaciones. 
 
-Como calcular **b,c** supondría más complicado, calculamos **d** y lo hacemos de una forma parecida a **a**, pero le restamos cada valor de la variable a la unidad para después hacer el sumatorio del producto escalar, la razón de hacer esto es convertir aquellas variables que tengan valor 1 en 0 para que nos lleve a error al calcular el número de veces que una de las variables binarias es 0 en ambas observaciones.
-Una vez calculada **d**, al número total de variables $k$ le restamos **a,d**, es decir, $b+c=k-a-d$, entonces la medida queda la siguiente forma
+Como calcular **b, c** supone más trabajo, calculamos **d** y lo hacemos de una forma parecida a **a**, pero le restamos cada valor de la variable a la unidad para después hacer el sumatorio del producto escalar, la razón de hacer esto es convertir aquellas variables que tengan valor 1 en 0 para que no nos lleve a error al calcular el número de veces que ambas observaciones son 0, ya que en el caso de que una de las variables binarias es 1 en una observaciones y 0 en la otra también obtendríamos ese resultado.
+
+Una vez calculada **d**, al número total de variables $k$ le restamos **a, d**, es decir, $b+c=k-a-d$, entonces la medida queda la siguiente forma
 $$\dfrac{2a}{a+(k-d)}$$
 ```{r intento medida de similitud dice,eval=FALSE}
 #i observacion1, j observacion2, k caracteristica
@@ -1105,7 +1109,7 @@ designdist(setas_train[1:10,2:k],"(2*a)/((2*a)+b+c)",abcd=TRUE)
 
 Como hemos dicho, la medidas de similitud no es la correcta, por ello descartamos esta opción.
 
-Finalmente nos decantaremos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos *method="dice"*, cuya expresión matemática es exactamente:
+Finalmente nos decantamos por la función *distance()* de la librería **_philentropy_**, a la cual debemos introducirle como parámetros la matriz con nuestros datos codificados y el método por el cual queremos calcular la distancia, en nuestro caso, utilizamos **method="dice"**, cuya expresión matemática es exactamente:
 $$d = \dfrac{\sum(P_i − Q_i)^2}{(\sum P_i^2 + \sum Q_i^2)}$$
 ```{r distancias,echo=TRUE,warning=FALSE,message=FALSE}
 #Distancia Dice
@@ -1293,7 +1297,7 @@ for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas60_validacion)$x,centers=i,nsta
 plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
 ```
 
-En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
+En el gráfico podemos observar que a partir de aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
 
 ```{r analisis cluster 5,echo=TRUE}
 #Análisis cluster
@@ -1341,7 +1345,7 @@ legend("topright",
        fil = seq(2,6))
 ```
 
-El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados los tipos de setas pero uno de los clusters no clasifica tan bien como los otros, pues las setas están mezcladas, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
+El objetivo de los gráficos que están a par es ver que debería estar cada color solo en uno de ellos pero podemos ver lo que hemos comentado antes, tenemos bastante bien clasificados las setas venenosas en un cluster pero uno de los clusters con setas mezcladas no clasifica tan bien como los otros, luego habría que estudiar ese para ver como diferenciar las venenosas de las comestibles.
 
 
 Vamos a realizar otro análisis clúster pero aumentando el número de clusters con la intención de con un número mayor de clusters se clasifiquen mejor las setas.
@@ -1390,7 +1394,7 @@ legend("topright",
        fil = seq(2,9))
 ```
 
-Vemos que tras realizar el análisis clúster con 8 grupos, no obtenemos tan claramente la clasificación de setas que buscamos pero volvemos a tener dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, aparece un clúster que clasifica correctamente la toxicidad de la setas dentro de la maraña de datos pero el resto están mezclados entre los clusters y habría que analizar cada uno de ellos para poder obtener alguna información más.
+Vemos que tras realizar el análisis clúster con 8 grupos, no obtenemos tan claramente la clasificación de setas que buscamos pero ahora tenemos dos grupos bien diferenciados, que son los que vemos en el gráfico del análisis de componentes principales, y aparece un tercer clúster que clasifica correctamente la toxicidad de la setas dentro de la maraña de datos pero el resto están mezclados entre los clusters y habría que analizar cada uno de ellos para poder obtener alguna información más.
 
 Con este análisis también vemos que a pesar de haber aumentado el número de clusters, no conseguimos una clasificación perfecta, por ello sacamos la conclusión que no vamos a clasificar todas las setas correctamente y cometeremos un cierto error mediante este modelo.
 
@@ -1399,7 +1403,7 @@ Con este análisis también vemos que a pesar de haber aumentado el número de c
 
 ##  k-NN
 
-El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según tenga k vecinos más cerca de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
+El algoritmo k-NN clasifica cada dato nuevo en el grupo que corresponda, según los k vecinos más cercanos que tenga de un grupo o de otro. Es decir, calcula la distancia del elemento nuevo a cada uno de los existentes, y ordena dichas distancias de menor a mayor para ir seleccionando el grupo al que pertenecer. Este grupo será, por tanto, el de mayor frecuencia con menores distancias.
 
 
 ```{r knn,echo=TRUE}
@@ -1704,11 +1708,11 @@ El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pu
 
 #  Actualización del modelo...
 
-Tras haber obtenido analizado los resultados que obtenemos al aplicar los modelos a nuestros datos, nos planteamos ciertas actualizaciones no a los modelos sino a los datos.
+Tras haber analizado los resultados que obtenemos al aplicar los modelos a nuestros datos, nos planteamos ciertas actualizaciones no a los modelos sino a los datos.
 
 ## Datos sin variable **Olor**
 
-Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis a los datos quitando esta variable de los datos.
+Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis quitando esta variable de los datos. Las variables asociadas al olor se sitúan entre las columnas 23-31.
 
 ```{r quitamos olor,echo=TRUE}
 setas_train.sin.olor=setas[indices_train,-c(23:31)]
@@ -1832,7 +1836,7 @@ for (i in 2:15) SSW[i] <- sum(kmeans(prcomp(setas60_validacion.sin.olor)$x,cente
 plot(1:15, SSW, type="b", xlab="Número de clusters", ylab="Suma de cuadrados de los grupos",pch=19, col="steelblue4")
 ```
 
-En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
+En el gráfico podemos observar que a partir de aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.
 
 ```{r analisis cluster 5 sin olor,echo=TRUE}
 #Análisis cluster
@@ -1927,7 +1931,7 @@ legend("topright",
        fil = seq(2,9))
 ```
 
-Vemos que tras realizar el análisis clúster con 8 grupos, notamos un empeoramiento de la predicción a pesar que ahora tenemos dos cluster bien diferenciados, por lo que nos quedamos con el análsis clúster con $k=5$.
+Vemos que tras realizar el análisis clúster con 8 grupos, notamos un empeoramiento de la predicción a pesar que ahora tenemos tres cluster bien diferenciados, por lo que nos quedamos con el análsis clúster con $k=5$.
 
 
 
@@ -2211,7 +2215,7 @@ El mejor modelo para aplicar a nuestros datos es el SVM con el kernel radial, pu
 
 ## Datos con variable **Olor=n**
 
-Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, por ello nos planteamos realizar todo el análisis a los datos dejando solo las setas que tengan cuyo olor sea ninguno.
+Cuando realizamos el análisis descriptivo, ya observamos que la variable **Olor** es bastante determinante a la hora de clasificar las setas según su toxicidad, por ello nos planteamos realizar todo el análisis dejando solo las setas cuyo olor sea ninguno.
 ```{r olor ninguno,echo=TRUE}
 setas.olor=setas[which(setas[,29]==1),]
 setas.olor=setas.olor[,-c(23:31)]
@@ -2221,7 +2225,7 @@ table(setas.olor$Letalidad)
 
 Pero vemos que no hay la misma proporción de setas que tengan olor ninguno que sean comestibles o venenosas, por ello vamos a reducir los datos con los que vamos a trabajar a partir de ahora.
 
-De las setas comestibles elegimos 120 setas de forma aleatoria para que unan a las setas venenosas que tienen olor ninguno y usar esos datos para realizar el análisis.
+De las setas comestibles elegimos 120 setas de forma aleatoria para que se unan a las setas venenosas que tienen olor ninguno y usar esos datos para realizar el análisis.
 
 ```{r datos setas olor,echo=TRUE}
 setas.olor.comestible=sample(dim(setas.olor)[1],sum(setas.olor$Letalidad==1))
@@ -2271,7 +2275,7 @@ Con solo las dos primeras componentes principales explicamos un 74% de la variab
 En la gráfica que enfrenta las dos primeras componentes principales vemos que las setas venenosas están ubicadas en grupos pequeños, mientras que hay algunas comestibles más esparcidas.
 
 
-Transformamos nuestro datos alculandoos la medida Dice en el conjunto de datos de test y validación, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
+Transformamos nuestro datos calculándo la medida Dice en el conjunto de datos de test y validación, esto permite utilizar la distancia euclínea en los algoritmos posteriores.
 
 
 ```{r datos transformados olor,echo=TRUE,warning=FALSE,message=FALSE}
@@ -2366,7 +2370,7 @@ clusters.datos.train.olor=kmeans(pca$x,centers=8,nstart=25)
 table(clusters.datos.train.olor$cluster,setas_train.olor$Letalidad)
 ```
 
-Seguimos sin poder separar las setas que no estaban en su debido cluster en el análisis con 5 clusters, además de que ha aparecido otro cluster con setas mezcladas.
+Seguimos sin poder separar las setas que no estaban en su debido cluster en el análisis con 6 clusters, además de que ha aparecido otro cluster con setas mezcladas.
 
 ```{r grafico cluster 8 olor,echo=TRUE}
 

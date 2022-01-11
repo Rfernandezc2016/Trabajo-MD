@@ -223,10 +223,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="actualización-del-modelo" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> Actualización del modelo…</h1>
-<p>Tras haber obtenido analizado los resultados que obtenemos al aplicar los modelos a nuestros datos, nos planteamos ciertas actualizaciones no a los modelos sino a los datos.</p>
+<p>Tras haber analizado los resultados que obtenemos al aplicar los modelos a nuestros datos, nos planteamos ciertas actualizaciones no a los modelos sino a los datos.</p>
 <div id="datos-sin-variable-olor" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Datos sin variable <strong>Olor</strong></h2>
-<p>Cuando realizamos el análisis descriptivo, ya observamos que la variable <strong>Olor</strong> es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis a los datos quitando esta variable de los datos.</p>
+<p>Cuando realizamos el análisis descriptivo, ya observamos que la variable <strong>Olor</strong> es bastante determinante a la hora de clasificar las setas según su toxicidad, pero ello nos planteamos realizar todo el análisis quitando esta variable de los datos. Las variables asociadas al olor se sitúan entre las columnas 23-31.</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="actualización-del-modelo.html#cb168-1" aria-hidden="true" tabindex="-1"></a>setas_train.sin.olor<span class="ot">=</span>setas[indices_train,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">23</span><span class="sc">:</span><span class="dv">31</span>)]</span>
 <span id="cb168-2"><a href="actualización-del-modelo.html#cb168-2" aria-hidden="true" tabindex="-1"></a>setas_test.sin.olor<span class="ot">=</span>setas[indices_test,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">23</span><span class="sc">:</span><span class="dv">31</span>)]</span>
 <span id="cb168-3"><a href="actualización-del-modelo.html#cb168-3" aria-hidden="true" tabindex="-1"></a>setas_validacion.sin.olor<span class="ot">=</span>setas[indices_validacion,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">23</span><span class="sc">:</span><span class="dv">31</span>)]</span></code></pre></div>
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb179-10"><a href="actualización-del-modelo.html#cb179-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Dibujamos un gráfico con el resultado</span></span>
 <span id="cb179-11"><a href="actualización-del-modelo.html#cb179-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, SSW, <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Número de clusters&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Suma de cuadrados de los grupos&quot;</span>,<span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;steelblue4&quot;</span>)</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/cluster%20sin%20olor-1.png" width="672" /></p>
-<p>En el gráfico podemos observar que a partir del aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.</p>
+<p>En el gráfico podemos observar que a partir de aplicar 5 clusters a nuestros datos la suma de los cuadrados se reduce en menor medida, por ello realizamos el análisis con ese número de clusters.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="actualización-del-modelo.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Análisis cluster</span></span>
 <span id="cb180-2"><a href="actualización-del-modelo.html#cb180-2" aria-hidden="true" tabindex="-1"></a>clusters.datos.sin.olor<span class="ot">=</span><span class="fu">kmeans</span>(<span class="fu">prcomp</span>(setas60_train.sin.olor)<span class="sc">$</span>x,<span class="at">centers=</span><span class="dv">5</span>,<span class="at">nstart=</span><span class="dv">25</span>)</span>
 <span id="cb180-3"><a href="actualización-del-modelo.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clusters.datos.sin.olor<span class="sc">$</span>cluster,setas_train.sin.olor<span class="sc">$</span>Letalidad)</span></code></pre></div>
@@ -485,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb187-21"><a href="actualización-del-modelo.html#cb187-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
 <span id="cb187-22"><a href="actualización-del-modelo.html#cb187-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fil =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span></code></pre></div>
 <p><img src="MEMORIA_files/figure-html/grafico%20cluster%208%20sin%20olor-2.png" width="672" /></p>
-<p>Vemos que tras realizar el análisis clúster con 8 grupos, notamos un empeoramiento de la predicción a pesar que ahora tenemos dos cluster bien diferenciados, por lo que nos quedamos con el análsis clúster con <span class="math inline">\(k=5\)</span>.</p>
+<p>Vemos que tras realizar el análisis clúster con 8 grupos, notamos un empeoramiento de la predicción a pesar que ahora tenemos tres cluster bien diferenciados, por lo que nos quedamos con el análsis clúster con <span class="math inline">\(k=5\)</span>.</p>
 </div>
 <div id="k-nn-1" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> k-NN</h3>
@@ -1035,7 +1035,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="datos-con-variable-olorn" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Datos con variable <strong>Olor=n</strong></h2>
-<p>Cuando realizamos el análisis descriptivo, ya observamos que la variable <strong>Olor</strong> es bastante determinante a la hora de clasificar las setas según su toxicidad, por ello nos planteamos realizar todo el análisis a los datos dejando solo las setas que tengan cuyo olor sea ninguno.</p>
+<p>Cuando realizamos el análisis descriptivo, ya observamos que la variable <strong>Olor</strong> es bastante determinante a la hora de clasificar las setas según su toxicidad, por ello nos planteamos realizar todo el análisis dejando solo las setas cuyo olor sea ninguno.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="actualización-del-modelo.html#cb220-1" aria-hidden="true" tabindex="-1"></a>setas.olor<span class="ot">=</span>setas[<span class="fu">which</span>(setas[,<span class="dv">29</span>]<span class="sc">==</span><span class="dv">1</span>),]</span>
 <span id="cb220-2"><a href="actualización-del-modelo.html#cb220-2" aria-hidden="true" tabindex="-1"></a>setas.olor<span class="ot">=</span>setas.olor[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">23</span><span class="sc">:</span><span class="dv">31</span>)]</span>
 <span id="cb220-3"><a href="actualización-del-modelo.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(setas.olor)<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">dim</span>(setas.olor)[<span class="dv">1</span>])</span>
@@ -1044,7 +1044,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    0    1 
 ## 3408  120</code></pre>
 <p>Pero vemos que no hay la misma proporción de setas que tengan olor ninguno que sean comestibles o venenosas, por ello vamos a reducir los datos con los que vamos a trabajar a partir de ahora.</p>
-<p>De las setas comestibles elegimos 120 setas de forma aleatoria para que unan a las setas venenosas que tienen olor ninguno y usar esos datos para realizar el análisis.</p>
+<p>De las setas comestibles elegimos 120 setas de forma aleatoria para que se unan a las setas venenosas que tienen olor ninguno y usar esos datos para realizar el análisis.</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="actualización-del-modelo.html#cb222-1" aria-hidden="true" tabindex="-1"></a>setas.olor.comestible<span class="ot">=</span><span class="fu">sample</span>(<span class="fu">dim</span>(setas.olor)[<span class="dv">1</span>],<span class="fu">sum</span>(setas.olor<span class="sc">$</span>Letalidad<span class="sc">==</span><span class="dv">1</span>))</span>
 <span id="cb222-2"><a href="actualización-del-modelo.html#cb222-2" aria-hidden="true" tabindex="-1"></a>setas.olor.venenosa<span class="ot">=</span><span class="fu">which</span>(setas.olor<span class="sc">$</span>Letalidad<span class="sc">==</span><span class="dv">1</span>)</span>
 <span id="cb222-3"><a href="actualización-del-modelo.html#cb222-3" aria-hidden="true" tabindex="-1"></a>setas.olor.nueva<span class="ot">=</span><span class="fu">rbind</span>(setas.olor[setas.olor.comestible,],setas.olor[setas.olor.venenosa,])</span></code></pre></div>
@@ -1185,7 +1185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="MEMORIA_files/figure-html/pca%20olor-1.png" width="672" /></p>
 <p>Con solo las dos primeras componentes principales explicamos un 74% de la variabilidad de los datos, es decir un nivel parecido que teníamos en análsis anteriores.</p>
 <p>En la gráfica que enfrenta las dos primeras componentes principales vemos que las setas venenosas están ubicadas en grupos pequeños, mientras que hay algunas comestibles más esparcidas.</p>
-<p>Transformamos nuestro datos alculandoos la medida Dice en el conjunto de datos de test y validación, esto permite utilizar la distancia euclínea en los algoritmos posteriores.</p>
+<p>Transformamos nuestro datos calculándo la medida Dice en el conjunto de datos de test y validación, esto permite utilizar la distancia euclínea en los algoritmos posteriores.</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="actualización-del-modelo.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Datos train:</span></span>
 <span id="cb228-2"><a href="actualización-del-modelo.html#cb228-2" aria-hidden="true" tabindex="-1"></a>setas.dice_train.olor<span class="ot">=</span>distancia_dice.olor</span>
 <span id="cb228-3"><a href="actualización-del-modelo.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(setas.dice_train.olor)<span class="ot">=</span><span class="fu">rownames</span>(setas_train.olor)</span>
@@ -1278,7 +1278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   6 27  0
 ##   7  0 42
 ##   8 18  0</code></pre>
-<p>Seguimos sin poder separar las setas que no estaban en su debido cluster en el análisis con 5 clusters, además de que ha aparecido otro cluster con setas mezcladas.</p>
+<p>Seguimos sin poder separar las setas que no estaban en su debido cluster en el análisis con 6 clusters, además de que ha aparecido otro cluster con setas mezcladas.</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="actualización-del-modelo.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico de los cluster</span></span>
 <span id="cb236-2"><a href="actualización-del-modelo.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca<span class="sc">$</span>x,<span class="at">main=</span><span class="st">&quot;Clusters&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>)</span>
 <span id="cb236-3"><a href="actualización-del-modelo.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(setas_train.olor)[<span class="dv">1</span>]){</span>
