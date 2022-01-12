@@ -2689,7 +2689,7 @@ rownames(medidas.precision.olor)=c("k-NN","Arboles de decision","Bosques aleator
 medidas.precision.olor
 ```
 
-El mejor modelo para aplicar a nuestros datos es puede ser el k-NN con el vecino más próximo o los bosques aleatorios, pues predice bastante bien los datos tanto los de entrenamiento como los de test, solo se comete un error del 4,1%. La conclusión a la que hemos llegado tras finalizar el análisis de los datos difiere un poco del resto de conclusiones.
+El mejor modelo para aplicar a nuestros datos puede ser el k-NN con el vecino más próximo o los bosques aleatorios, pues ambos modelos predicen bastante bien los datos tanto los de entrenamiento como los de test, solo se comete un error del 4,1%. La conclusión a la que hemos llegado tras finalizar el análisis de los datos difiere un poco del resto de conclusiones. Aunque, al ser pocos datos, puede que no sea una muestra lo suficientemente representativa (a pesar de haber seleccionado las setas venenosas de forma aleatoria) y por lo tanto las conclusiones pueden ser erróneas.
 
 
 
